@@ -21,7 +21,7 @@ func _physics_process(delta: float) -> void:
 func state_transition():
 	if state == States.IDLE and check_for_input() == true:
 		state = States.WALKING
-	elif state == States.WALKING and velocity.y <= .1 and velocity.x <= .1 and check_for_input() == false:
+	elif state == States.WALKING and check_for_input() == false:
 		state = States.IDLE
 
 func check_for_input():
@@ -45,7 +45,9 @@ func get_direction():
 	return input
 
 func reset_velocity():
-	velocity = Vector2(0,0)
+	velocity = velocity.lerp(Vector2.ZERO,deceleration)
+	move_and_slide()
+	#velocity = Vector2(0,0)
 
 func walk():
 	var direction : Vector2 = get_direction()
@@ -53,5 +55,9 @@ func walk():
 		velocity = velocity.lerp(direction.normalized() * speed, acceleration)
 	else:
 		velocity = velocity.lerp(Vector2.ZERO,deceleration)
+	if velocity.x > 0:
+		get_node("%Sprite2D").flip_h = false
+	elif velocity.x < 0:
+		get_node("%Sprite2D").flip_h = true
 	move_and_slide()
 	#print(velocity)
