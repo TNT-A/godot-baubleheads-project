@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://7gtqe8n30r7v"]
+
+[ext_resource type="Texture2D" uid="uid://cxuq0bmaayu5l" path="res://background/grassPlaceholder.png" id="1_wpob2"]
+
+[node name="TextureRect" type="TextureRect"]
+offset_left = 2.0
+offset_right = 2318.0
+offset_bottom = 1211.0
+texture = ExtResource("1_wpob2")
+stretch_mode = 1

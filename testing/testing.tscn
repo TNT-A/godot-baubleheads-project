@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bq2kc2kmqxae0"]
+
+[ext_resource type="PackedScene" uid="uid://coa54e45uplra" path="res://player/player.tscn" id="1_hmpim"]
+[ext_resource type="PackedScene" uid="uid://7gtqe8n30r7v" path="res://background/background.tscn" id="2_y1d6g"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="PlayerBody" parent="." instance=ExtResource("1_hmpim")]
+
+[node name="TextureRect" parent="." instance=ExtResource("2_y1d6g")]
+z_index = -5
