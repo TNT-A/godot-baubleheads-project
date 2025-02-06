@@ -9,3 +9,7 @@
 
 [node name="TextureRect" parent="." instance=ExtResource("2_y1d6g")]
 z_index = -5
+offset_left = 10.0
+offset_top = 6.0
+offset_right = 2326.0
+offset_bottom = 1217.0
