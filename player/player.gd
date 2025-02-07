@@ -8,11 +8,11 @@ enum States {IDLE, WALKING, RUNNING}
 var state: States = States.IDLE
 
 func _ready() -> void:
-	pass
+	$"/root/Global".register_player(self)
 
 func _physics_process(delta: float) -> void:
 	state_transition()
-	print(state)
+	#print(state)
 	if state == States.IDLE:
 		reset_velocity()
 	if state == States.WALKING:
