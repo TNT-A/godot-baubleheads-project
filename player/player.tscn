@@ -9,6 +9,7 @@ height = 48.0
 
 [node name="PlayerBody" type="CharacterBody2D"]
 position = Vector2(543, 276)
+collision_mask = 2
 script = ExtResource("1_rjkni")
 speed = 250
 
