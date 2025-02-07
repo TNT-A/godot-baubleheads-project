@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bq2kc2kmqxae0"]
+[gd_scene load_steps=4 format=3 uid="uid://bq2kc2kmqxae0"]
 
 [ext_resource type="PackedScene" uid="uid://coa54e45uplra" path="res://player/player.tscn" id="1_hmpim"]
 [ext_resource type="PackedScene" uid="uid://7gtqe8n30r7v" path="res://background/background.tscn" id="2_y1d6g"]
+[ext_resource type="PackedScene" uid="uid://d31vg3emxkypt" path="res://baublehead.tscn" id="3_27rjv"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -9,3 +10,33 @@
 
 [node name="TextureRect" parent="." instance=ExtResource("2_y1d6g")]
 z_index = -5
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("3_27rjv")]
+position = Vector2(707, 118)
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("3_27rjv")]
+position = Vector2(783, 139)
+
+[node name="CharacterBody2D3" parent="." instance=ExtResource("3_27rjv")]
+position = Vector2(895, 310)
+
+[node name="CharacterBody2D4" parent="." instance=ExtResource("3_27rjv")]
+position = Vector2(840, 60)
+
+[node name="CharacterBody2D5" parent="." instance=ExtResource("3_27rjv")]
+position = Vector2(990, 115)
+
+[node name="CharacterBody2D6" parent="." instance=ExtResource("3_27rjv")]
+position = Vector2(890, 139)
+
+[node name="CharacterBody2D7" parent="." instance=ExtResource("3_27rjv")]
+position = Vector2(733, 217)
+
+[node name="CharacterBody2D8" parent="." instance=ExtResource("3_27rjv")]
+position = Vector2(826, 215)
+
+[node name="CharacterBody2D9" parent="." instance=ExtResource("3_27rjv")]
+position = Vector2(964, 196)
+
+[node name="CharacterBody2D10" parent="." instance=ExtResource("3_27rjv")]
+position = Vector2(792, 291)
