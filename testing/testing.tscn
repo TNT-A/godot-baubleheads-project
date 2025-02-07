@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8q38agy2c6wa"]
+[gd_scene load_steps=4 format=3 uid="uid://c8q38agy2c6wa"]
 
 [ext_resource type="PackedScene" uid="uid://coa54e45uplra" path="res://player/player.tscn" id="1_6ima4"]
 [ext_resource type="PackedScene" uid="uid://7gtqe8n30r7v" path="res://background/background.tscn" id="2_vmif0"]
+[ext_resource type="PackedScene" uid="uid://d31vg3emxkypt" path="res://baublehead.tscn" id="3_ah8ic"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -9,3 +10,18 @@
 
 [node name="TextureRect" parent="." instance=ExtResource("2_vmif0")]
 z_index = -5
+
+[node name="baublehead" parent="." instance=ExtResource("3_ah8ic")]
+position = Vector2(52, 333)
+
+[node name="baublehead2" parent="." instance=ExtResource("3_ah8ic")]
+position = Vector2(1354, 273)
+
+[node name="baublehead3" parent="." instance=ExtResource("3_ah8ic")]
+position = Vector2(1548, 908)
+
+[node name="baublehead4" parent="." instance=ExtResource("3_ah8ic")]
+position = Vector2(497, 1136)
+
+[node name="baublehead5" parent="." instance=ExtResource("3_ah8ic")]
+position = Vector2(786, 225)
