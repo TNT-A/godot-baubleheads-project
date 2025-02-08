@@ -1,15 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://e477mip5fnwt"]
 
-[ext_resource type="Texture2D" path="res://PixelArt/Earthworm.png" id="1_riicm"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7b72k"]
-size = Vector2(34, 35)
+[ext_resource type="Script" path="res://earthworm.gd" id="1_3xudi"]
+[ext_resource type="Texture2D" uid="uid://b8liyu5p322jp" path="res://PixelArt/Earthworm.png" id="1_riicm"]
 
 [node name="Earthworm" type="CharacterBody2D"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-4, 3.5)
-shape = SubResource("RectangleShape2D_7b72k")
+script = ExtResource("1_3xudi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2, 10)
 texture = ExtResource("1_riicm")
