@@ -1,15 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8q38agy2c6wa"]
+[gd_scene load_steps=7 format=3 uid="uid://c8q38agy2c6wa"]
 
 [ext_resource type="PackedScene" uid="uid://coa54e45uplra" path="res://player/player.tscn" id="1_6ima4"]
 [ext_resource type="PackedScene" uid="uid://7gtqe8n30r7v" path="res://background/background.tscn" id="2_vmif0"]
 [ext_resource type="PackedScene" uid="uid://d31vg3emxkypt" path="res://baublehead.tscn" id="3_ah8ic"]
+[ext_resource type="PackedScene" uid="uid://e477mip5fnwt" path="res://Earthworm.tscn" id="4_cohp8"]
+[ext_resource type="PackedScene" uid="uid://c8g0kk7fj1rdj" path="res://damage_zone.tscn" id="5_olbl2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sr10r"]
+size = Vector2(27.5, 24.75)
 
 [node name="Node2D" type="Node2D"]
 
 [node name="PlayerBody" parent="." instance=ExtResource("1_6ima4")]
 
+[node name="HealthBar" type="ProgressBar" parent="PlayerBody"]
+offset_left = -320.0
+offset_top = -183.0
+offset_right = -172.0
+offset_bottom = -148.0
+max_value = 5.0
+step = 1.0
+fill_mode = 1
+
 [node name="TextureRect" parent="." instance=ExtResource("2_vmif0")]
 z_index = -5
+offset_left = -52.0
+offset_top = 48.0
+offset_right = 2264.0
+offset_bottom = 1259.0
 
 [node name="baublehead" parent="." instance=ExtResource("3_ah8ic")]
 position = Vector2(52, 333)
@@ -25,3 +43,14 @@ position = Vector2(497, 1136)
 
 [node name="baublehead5" parent="." instance=ExtResource("3_ah8ic")]
 position = Vector2(786, 225)
+
+[node name="Earthworm" parent="." instance=ExtResource("4_cohp8")]
+position = Vector2(443, 269)
+
+[node name="DamageZone" parent="." instance=ExtResource("5_olbl2")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
+position = Vector2(439, 273)
+shape = SubResource("RectangleShape2D_sr10r")
+
+[connection signal="body_entered" from="DamageZone" to="PlayerBody" method="_on_damage_zone_body_entered"]
