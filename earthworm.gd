@@ -2,8 +2,6 @@ extends CharacterBody2D
 
 var player : Node = Global.player
 
-
-
 #func deal_damage():
 	#
 	#pass
