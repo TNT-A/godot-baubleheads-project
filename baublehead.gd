@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed : int = 250
+@export var speed : int = 50
 @export var acceleration : float = .07
 @export var deceleration : float = .05
 
@@ -27,7 +27,6 @@ func state_transition():
 		state = States.WALKING
 	elif state == States.WALKING and inPlayer == true:
 		state = States.IDLE
-	print(state)
 
 func resetVelocity():
 	velocity = velocity.lerp(Vector2.ZERO,deceleration)
