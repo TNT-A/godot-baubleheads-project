@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-
 @export var speed : int = 200
 @export var acceleration : float = .1
 @export var deceleration : float = .1
@@ -8,28 +7,26 @@ extends CharacterBody2D
 var health = Max_Health
 const Max_Health = 5
 
-
-
 enum States {IDLE, WALKING, RUNNING}
 var state: States = States.IDLE
 
-func damage():
-	health -= 1
+signal health_changed(damage)
+
+func change_health(change):
+	health -= change
 	if health <= 0:
 		health = 0
 	set_health_bar()
+
 func set_health_bar() -> void:
 	$HealthBar.value = health
-func _on_damage_zone_body_entered(body=Node2D) -> void:
-	damage()
-
-
-	
 
 func _ready() -> void:
 	$"/root/Global".register_player(self)
 	set_health_bar()
 	$HealthBar.max_value = Max_Health
+	
+
 func _physics_process(delta: float) -> void:
 	state_transition()
 	#print(state)
@@ -82,7 +79,8 @@ func walk():
 	move_and_slide()
 	#print(velocity)
 
-
-
-	
-	
+func _on_hurtbox_area_entered(area: Area2D) -> void:
+	var enemy = area
+	if area.is_in_group("hurts_player"):
+		change_health(enemy.damage_dealt)
+		print(enemy.damage_dealt)
