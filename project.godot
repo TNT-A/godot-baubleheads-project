@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Global="*res://globals/global.gd"
+BaubleManager="*res://globals/bauble_manager.gd"
 
 [display]
 
