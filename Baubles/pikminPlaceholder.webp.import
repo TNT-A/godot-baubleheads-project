@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bsl3xvdgvrao8"
-path="res://.godot/imported/pikminPlaceholder.webp-499786fe079c807e6641ae203d02ada9.ctex"
+path="res://.godot/imported/pikminPlaceholder.webp-96fdf7e80c2c1bd7426ccde7cbfec7f6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://pikminPlaceholder.webp"
-dest_files=["res://.godot/imported/pikminPlaceholder.webp-499786fe079c807e6641ae203d02ada9.ctex"]
+source_file="res://Baubles/pikminPlaceholder.webp"
+dest_files=["res://.godot/imported/pikminPlaceholder.webp-96fdf7e80c2c1bd7426ccde7cbfec7f6.ctex"]
 
 [params]
 
