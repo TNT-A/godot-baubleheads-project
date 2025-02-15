@@ -1,9 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://d31vg3emxkypt"]
 
-[ext_resource type="Texture2D" uid="uid://bsl3xvdgvrao8" path="res://Baubles/pikminPlaceholder.webp" id="1_6e8pp"]
-[ext_resource type="Script" path="res://Baubles/baublehead.gd" id="1_srp8k"]
-[ext_resource type="PackedScene" uid="uid://bkxa43sfw8n5o" path="res://components/locate_player/find_player.tscn" id="3_eu3jk"]
-
+[ext_resource type="Texture2D" uid="uid://b7pqjlc5pgemm" path="res://baubles/pikminPlaceholder.webp" id="1_6e8pp"]
+[ext_resource type="Script" path="res://baubles/baublehead.gd" id="1_srp8k"]
+[ext_resource type="PackedScene" uid="uid://bkxa43sfw8n5o" path="res://components/find_player.tscn" id="3_eu3jk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ebtt6"]
 height = 48.0
