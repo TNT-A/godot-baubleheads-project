@@ -1,9 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://e477mip5fnwt"]
 
-[ext_resource type="Script" path="res://Enemies/Earthworm/earthworm.gd" id="1_3xudi"]
+[ext_resource type="Script" path="res://enemies/earthworm/earthworm.gd" id="1_3xudi"]
 [ext_resource type="Texture2D" uid="uid://b8liyu5p322jp" path="res://PixelArt/Earthworm.png" id="1_riicm"]
-[ext_resource type="PackedScene" uid="uid://c8g0kk7fj1rdj" path="res://components/damage_zone/damage_zone.tscn" id="3_rikgm"]
-
+[ext_resource type="PackedScene" uid="uid://c8g0kk7fj1rdj" path="res://components/damage_zone.tscn" id="3_rikgm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gjer8"]
 size = Vector2(24, 24)
