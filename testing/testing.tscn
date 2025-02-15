@@ -5,11 +5,12 @@
 [ext_resource type="Texture2D" uid="uid://y5vyycq6blo7" path="res://PixelArt/CaveTilemap.png" id="1_i4jth"]
 [ext_resource type="PackedScene" uid="uid://7gtqe8n30r7v" path="res://background/background.tscn" id="2_vmif0"]
 
-[ext_resource type="PackedScene" uid="uid://d31vg3emxkypt" path="res://baublehead.tscn" id="3_ah8ic"]
-[ext_resource type="PackedScene" uid="uid://e477mip5fnwt" path="res://Earthworm.tscn" id="4_cohp8"]
+[ext_resource type="PackedScene" uid="uid://d31vg3emxkypt" path="res://Baubles/baublehead.tscn" id="3_ah8ic"]
+[ext_resource type="PackedScene" uid="uid://e477mip5fnwt" path="res://Enemies/Earthworm/Earthworm.tscn" id="4_cohp8"]
+
 [ext_resource type="Script" path="res://testing/health_bar.gd" id="4_ep7dp"]
-[ext_resource type="PackedScene" uid="uid://b0r48ca6qo1lv" path="res://settings_menu.tscn" id="6_mun1c"]
-[ext_resource type="PackedScene" uid="uid://bhphdqmsev4lg" path="res://pause_menu.tscn" id="7_ttung"]
+[ext_resource type="PackedScene" uid="uid://b0r48ca6qo1lv" path="res://settings/settings_menu.tscn" id="6_mun1c"]
+[ext_resource type="PackedScene" uid="uid://bhphdqmsev4lg" path="res://pause/pause_menu.tscn" id="7_ttung"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wdqlt"]
 texture = ExtResource("1_i4jth")
@@ -102,6 +103,7 @@ fill_mode = 1
 script = ExtResource("4_ep7dp")
 
 [node name="PauseMenu" parent="PlayerBody" instance=ExtResource("7_ttung")]
+unique_name_in_owner = true
 visible = false
 z_index = 2
 anchors_preset = 0
@@ -116,6 +118,7 @@ grow_vertical = 1
 scale = Vector2(3, 3)
 
 [node name="SettingsMenu" parent="PlayerBody" instance=ExtResource("6_mun1c")]
+unique_name_in_owner = true
 visible = false
 z_index = 2
 offset_left = -96.0

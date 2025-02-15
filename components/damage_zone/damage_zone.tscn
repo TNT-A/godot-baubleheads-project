@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8g0kk7fj1rdj"]
+
+[ext_resource type="Script" path="res://components/damage_zone/damage_zone.gd" id="1_nvgsd"]
+
+
+[node name="DamageZone" type="Area2D"]
+script = ExtResource("1_nvgsd")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.6
+
+[connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
