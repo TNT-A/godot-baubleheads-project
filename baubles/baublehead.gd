@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed : int = 50
+@export var speed : int = 250
 @export var acceleration : float = .07
 @export var deceleration : float = .05
 
@@ -12,7 +12,11 @@ var state: States = States.IDLE
 
 var inPlayer : bool = false
 
+signal on_spawned(baublehead)
+
 func _ready() -> void:
+	self.position = player.position
+	emit_signal("on_spawned", self)
 	pass
 
 func _physics_process(delta: float) -> void:
