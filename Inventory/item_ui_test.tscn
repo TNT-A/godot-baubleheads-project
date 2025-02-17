@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://tj1lnfakvxin"]
+
+[ext_resource type="Script" path="res://Inventory/item_ui.gd" id="1_au8ig"]
+[ext_resource type="Texture2D" uid="uid://b7pqjlc5pgemm" path="res://Baubles/pikminPlaceholder.webp" id="2_rqwbc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6otad"]
+radius = 35.0571
+
+[node name="Item" type="Control"]
+layout_mode = 3
+anchor_right = 0.077
+anchor_bottom = 0.117
+offset_left = 242.0
+offset_top = 140.0
+offset_right = 252.72
+offset_bottom = 161.88
+script = ExtResource("1_au8ig")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(46, 24)
+scale = Vector2(0.516667, 0.202265)
+texture = ExtResource("2_rqwbc")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visibility_layer = 2
+position = Vector2(27, 30)
+shape = SubResource("CircleShape2D_6otad")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

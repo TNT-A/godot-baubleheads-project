@@ -4,7 +4,7 @@ class_name Baublehead
 @export var speed : int = 250
 @export var acceleration : float = .07
 @export var deceleration : float = .05
-@export var stats : Resource
+@export var type : Resource
 
 @onready var find_player : Node = $find_player
 @onready var player : Node = Global.player
@@ -17,7 +17,7 @@ var inPlayer : bool = false
 signal on_spawned(baublehead)
 
 func _ready() -> void:
-	$Sprite2D.texture = stats.sprite
+	$Sprite2D.texture = type.sprite
 	$Sprite2D.scale = Vector2(2,2)
 	self.position = random_spawn()
 	emit_signal("on_spawned", self)

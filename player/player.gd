@@ -25,7 +25,6 @@ func _ready() -> void:
 	$"/root/Global".register_player(self)
 	set_health_bar()
 	$HealthBar.max_value = Max_Health
-	
 
 func _physics_process(delta: float) -> void:
 	state_transition()
