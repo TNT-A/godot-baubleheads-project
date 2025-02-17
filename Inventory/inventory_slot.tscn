@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://dh2y7p3oi5yot"]
+
+[ext_resource type="Texture2D" uid="uid://cr1oop4kpupya" path="res://Inventory/inventory_slot.png" id="1_hqvit"]
+
+[node name="InventorySlot" type="CenterContainer"]
+custom_minimum_size = Vector2(40, 40)
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.058
+anchor_right = 0.12
+anchor_bottom = 0.236
+offset_left = 0.199999
+offset_top = 0.119999
+offset_right = 0.199997
+offset_bottom = 0.0399933
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("1_hqvit")
+stretch_mode = 1

@@ -1,20 +1,15 @@
-[gd_scene load_steps=18 format=3 uid="uid://c8q38agy2c6wa"]
+[gd_scene load_steps=13 format=3 uid="uid://c8q38agy2c6wa"]
 
 [ext_resource type="PackedScene" uid="uid://coa54e45uplra" path="res://player/player.tscn" id="1_6ima4"]
 [ext_resource type="Script" path="res://testing/testing.gd" id="1_8ocim"]
 [ext_resource type="Texture2D" uid="uid://y5vyycq6blo7" path="res://PixelArt/CaveTilemap.png" id="1_i4jth"]
 [ext_resource type="PackedScene" uid="uid://7gtqe8n30r7v" path="res://background/background.tscn" id="2_vmif0"]
-[ext_resource type="PackedScene" uid="uid://e477mip5fnwt" path="res://enemies/earthworm/earthworm.tscn" id="4_cohp8"]
+[ext_resource type="PackedScene" uid="uid://e477mip5fnwt" path="res://enemies/earthworm/Earthworm.tscn" id="4_cohp8"]
 [ext_resource type="Script" path="res://testing/health_bar.gd" id="4_ep7dp"]
 [ext_resource type="PackedScene" uid="uid://b0r48ca6qo1lv" path="res://settings/settings_menu.tscn" id="6_mun1c"]
 [ext_resource type="PackedScene" uid="uid://bhphdqmsev4lg" path="res://pause/pause_menu.tscn" id="7_ttung"]
 [ext_resource type="PackedScene" uid="uid://d31vg3emxkypt" path="res://Baubles/baublehead.tscn" id="9_h72yb"]
-[ext_resource type="Resource" uid="uid://dupd7c1r3kxw6" path="res://Baubles/bauble_resources/ruby_bauble.tres" id="10_bqsjp"]
 [ext_resource type="Resource" uid="uid://dbdhf1xacmyxj" path="res://Baubles/bauble_resources/opal_bauble.tres" id="10_wr2k3"]
-[ext_resource type="Resource" uid="uid://dyltartabnoo6" path="res://Baubles/bauble_resources/emerald_bauble.tres" id="12_yhbep"]
-[ext_resource type="Resource" uid="uid://dadd5h0xmc8dd" path="res://Baubles/bauble_resources/topaz_bauble.tres" id="13_d0puu"]
-[ext_resource type="Resource" uid="uid://b732x7oucq5xj" path="res://Baubles/bauble_resources/sapphire_bauble.tres" id="14_m1q8a"]
-[ext_resource type="Resource" uid="uid://c3r2db27o2ow1" path="res://Baubles/bauble_resources/diamond_bauble.tres" id="15_gje1k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wdqlt"]
 texture = ExtResource("1_i4jth")
@@ -142,50 +137,6 @@ offset_bottom = 1259.0
 [node name="Earthworm" parent="." instance=ExtResource("4_cohp8")]
 position = Vector2(584, 206)
 
-[node name="baublehead3" parent="." instance=ExtResource("9_h72yb")]
-position = Vector2(608, 518)
-stats = ExtResource("10_wr2k3")
-
-[node name="baublehead4" parent="." instance=ExtResource("9_h72yb")]
-position = Vector2(802, 358)
-stats = ExtResource("10_bqsjp")
-
-[node name="baublehead5" parent="." instance=ExtResource("9_h72yb")]
-position = Vector2(801, 512)
-stats = ExtResource("12_yhbep")
-
-[node name="baublehead6" parent="." instance=ExtResource("9_h72yb")]
-position = Vector2(859, 671)
-stats = ExtResource("13_d0puu")
-
-[node name="baublehead7" parent="." instance=ExtResource("9_h72yb")]
-position = Vector2(592, 660)
-stats = ExtResource("14_m1q8a")
-
-[node name="baublehead8" parent="." instance=ExtResource("9_h72yb")]
-position = Vector2(1055, 504)
-stats = ExtResource("15_gje1k")
-
-[node name="baublehead9" parent="." instance=ExtResource("9_h72yb")]
-position = Vector2(967, 361)
-stats = ExtResource("10_bqsjp")
-
-[node name="baublehead10" parent="." instance=ExtResource("9_h72yb")]
-position = Vector2(1214, 586)
-stats = ExtResource("15_gje1k")
-
-[node name="baublehead11" parent="." instance=ExtResource("9_h72yb")]
-position = Vector2(908, 479)
-stats = ExtResource("12_yhbep")
-
-[node name="baublehead12" parent="." instance=ExtResource("9_h72yb")]
-position = Vector2(1009, 641)
-stats = ExtResource("13_d0puu")
-
-[node name="baublehead13" parent="." instance=ExtResource("9_h72yb")]
-position = Vector2(691, 436)
-stats = ExtResource("10_wr2k3")
-
-[node name="baublehead14" parent="." instance=ExtResource("9_h72yb")]
-position = Vector2(703, 617)
-stats = ExtResource("14_m1q8a")
+[node name="baublehead" parent="." instance=ExtResource("9_h72yb")]
+position = Vector2(710, 414)
+type = ExtResource("10_wr2k3")

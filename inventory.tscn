@@ -1,0 +1,84 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxmwo2vw1s6o"]
+
+[ext_resource type="PackedScene" uid="uid://dh2y7p3oi5yot" path="res://Inventory/inventory_slot.tscn" id="1_fbr10"]
+[ext_resource type="PackedScene" uid="uid://tj1lnfakvxin" path="res://Inventory/item_ui_test.tscn" id="2_jk6s8"]
+
+[node name="Control" type="Control"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -3.0
+offset_right = 1.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="."]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 48.0
+offset_top = 22.0
+offset_right = -52.0
+offset_bottom = -274.0
+columns = 8
+
+[node name="InventorySlot" parent="GridContainer" instance=ExtResource("1_fbr10")]
+layout_mode = 2
+
+[node name="Item" parent="GridContainer/InventorySlot" instance=ExtResource("2_jk6s8")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+
+[node name="InventorySlot2" parent="GridContainer" instance=ExtResource("1_fbr10")]
+layout_mode = 2
+
+[node name="Item" parent="GridContainer/InventorySlot2" instance=ExtResource("2_jk6s8")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+
+[node name="InventorySlot3" parent="GridContainer" instance=ExtResource("1_fbr10")]
+layout_mode = 2
+
+[node name="Item" parent="GridContainer/InventorySlot3" instance=ExtResource("2_jk6s8")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+
+[node name="InventorySlot4" parent="GridContainer" instance=ExtResource("1_fbr10")]
+layout_mode = 2
+
+[node name="Item" parent="GridContainer/InventorySlot4" instance=ExtResource("2_jk6s8")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+
+[node name="InventorySlot5" parent="GridContainer" instance=ExtResource("1_fbr10")]
+layout_mode = 2
+
+[node name="Item" parent="GridContainer/InventorySlot5" instance=ExtResource("2_jk6s8")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+
+[node name="InventorySlot6" parent="GridContainer" instance=ExtResource("1_fbr10")]
+layout_mode = 2
+
+[node name="Item" parent="GridContainer/InventorySlot6" instance=ExtResource("2_jk6s8")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+
+[node name="InventorySlot7" parent="GridContainer" instance=ExtResource("1_fbr10")]
+layout_mode = 2
+
+[node name="Item" parent="GridContainer/InventorySlot7" instance=ExtResource("2_jk6s8")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+
+[node name="InventorySlot8" parent="GridContainer" instance=ExtResource("1_fbr10")]
+layout_mode = 2
+
+[node name="Item" parent="GridContainer/InventorySlot8" instance=ExtResource("2_jk6s8")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhi1r7e1l81he"]
+
+[ext_resource type="Script" path="res://Inventory/item_ui.gd" id="1_0jceb"]
+[ext_resource type="Texture2D" uid="uid://b7pqjlc5pgemm" path="res://Baubles/pikminPlaceholder.webp" id="2_vmkdk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_twrn3"]
+radius = 42.0119
+
+[node name="Area2D" type="Area2D"]
+position = Vector2(324, 150)
+script = ExtResource("1_0jceb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2.25, -1.75)
+scale = Vector2(0.516667, 0.202265)
+texture = ExtResource("2_vmkdk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 0)
+shape = SubResource("CircleShape2D_twrn3")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
