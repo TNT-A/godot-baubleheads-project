@@ -1,8 +1,10 @@
 extends CharacterBody2D
+class_name Baublehead
 
 @export var speed : int = 250
 @export var acceleration : float = .07
 @export var deceleration : float = .05
+@export var stats : Resource
 
 @onready var find_player : Node = $find_player
 @onready var player : Node = Global.player
@@ -15,7 +17,9 @@ var inPlayer : bool = false
 signal on_spawned(baublehead)
 
 func _ready() -> void:
-	self.position = player.position
+	$Sprite2D.texture = stats.sprite
+	$Sprite2D.scale = Vector2(2,2)
+	self.position = random_spawn()
 	emit_signal("on_spawned", self)
 	pass
 
@@ -31,6 +35,14 @@ func state_transition():
 		state = States.WALKING
 	elif state == States.WALKING and inPlayer == true:
 		state = States.IDLE
+
+func random_spawn():
+	var rng = RandomNumberGenerator.new()
+	var spawn_position : Vector2 = Vector2()
+	var random_range : float = 30.0
+	spawn_position.x = player.position.x + rng.randf_range(-random_range,random_range)
+	spawn_position.y = player.position.y + rng.randf_range(-random_range,random_range)
+	return spawn_position
 
 func resetVelocity():
 	velocity = velocity.lerp(Vector2.ZERO,deceleration)

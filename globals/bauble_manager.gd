@@ -49,7 +49,6 @@ func find_full_slot():
 		elif slot is Node:
 			current_index = 9
 	return current_index
-	pass
 
 func spawn_bauble(bauble):
 	var new_bauble = bauble_scene.instantiate()

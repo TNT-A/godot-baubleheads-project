@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://d31vg3emxkypt"]
 
 [ext_resource type="Script" path="res://Baubles/baublehead.gd" id="1_1xugq"]
-[ext_resource type="Texture2D" uid="uid://b7pqjlc5pgemm" path="res://Baubles/pikminPlaceholder.webp" id="1_6e8pp"]
+[ext_resource type="Texture2D" uid="uid://0iqsrpem6iqi" path="res://Baubles/bauble_sprites/Bauble_Ruby.png" id="2_6cagt"]
 [ext_resource type="PackedScene" uid="uid://bkxa43sfw8n5o" path="res://components/locate_player/find_player.tscn" id="3_eu3jk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ebtt6"]
@@ -21,7 +21,7 @@ shape = SubResource("CapsuleShape2D_ebtt6")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(10.3503, 0.496643)
 scale = Vector2(0.324671, 0.184444)
-texture = ExtResource("1_6e8pp")
+texture = ExtResource("2_6cagt")
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(-2.6497, 7.49664)
