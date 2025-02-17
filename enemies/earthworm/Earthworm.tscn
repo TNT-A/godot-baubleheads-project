@@ -1,11 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://e477mip5fnwt"]
+[gd_scene load_steps=7 format=3 uid="uid://e477mip5fnwt"]
 
 [ext_resource type="Script" path="res://enemies/earthworm/earthworm.gd" id="1_3xudi"]
 [ext_resource type="Texture2D" uid="uid://b8liyu5p322jp" path="res://PixelArt/Earthworm.png" id="1_riicm"]
-[ext_resource type="PackedScene" uid="uid://c8g0kk7fj1rdj" path="res://components/damage_zone.tscn" id="3_rikgm"]
+[ext_resource type="PackedScene" uid="uid://c8g0kk7fj1rdj" path="res://components/damage_zone/damage_zone.tscn" id="3_rikgm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gjer8"]
 size = Vector2(24, 24)
+
+[sub_resource type="GDScript" id="GDScript_7v0ou"]
+script/source = "extends Area2D
+
+@onready var timer: Timer = $Timer
+@onready var node = get_node(\"player\")
+
+@export var damage_dealt : int = 1
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iykv8"]
 size = Vector2(54, 43)
@@ -22,6 +31,7 @@ position = Vector2(-2, 10)
 texture = ExtResource("1_riicm")
 
 [node name="DamageZone" parent="." groups=["hurts_player"] instance=ExtResource("3_rikgm")]
+script = SubResource("GDScript_7v0ou")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
 position = Vector2(-3, 3.5)

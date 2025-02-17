@@ -1,10 +1,16 @@
 [gd_scene load_steps=2 format=3 uid="uid://c8g0kk7fj1rdj"]
 
-[ext_resource type="Script" path="res://components/damage_zone/damage_zone.gd" id="1_nvgsd"]
+[sub_resource type="GDScript" id="GDScript_npbq6"]
+script/source = "extends Area2D
 
+@onready var timer: Timer = $Timer
+@onready var node = get_node(\"player\")
+
+@export var damage_dealt : int = 1
+"
 
 [node name="DamageZone" type="Area2D"]
-script = ExtResource("1_nvgsd")
+script = SubResource("GDScript_npbq6")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.6
