@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cr1oop4kpupya" path="res://Inventory/inventory_slot.png" id="1_hqvit"]
 
-[node name="InventorySlot" type="CenterContainer"]
+[node name="InventorySlot" type="CenterContainer" groups=["inventory_slot"]]
 custom_minimum_size = Vector2(40, 40)
 anchors_preset = -1
 anchor_left = 0.02

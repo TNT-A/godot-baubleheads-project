@@ -13,7 +13,11 @@ var mouse_position : Vector2
 var speed : float = 0.2
 
 func _physics_process(delta: float) -> void:
-	base_position = get_parent().global_position
+	if get_parent().is_in_group("inventory_slot"):
+		base_position = get_parent().global_position
+	else:
+		base_position = Vector2(100,100)
+		pass
 	print(self.global_position)
 	print(mouse_position)
 	is_item_at_base()
@@ -57,7 +61,6 @@ func is_item_at_base():
 		is_at_base = true
 	else:
 		is_at_base = false
-
 
 func _on_mouse_entered() -> void:
 	is_mouse_entered = true

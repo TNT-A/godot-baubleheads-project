@@ -29,6 +29,7 @@ window/stretch/mode="canvas_items"
 [global_group]
 
 hurts_player="Hurts the player when it enters their hurtbox"
+inventory_slot=""
 
 [input]
 
