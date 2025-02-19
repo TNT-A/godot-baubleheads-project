@@ -29,7 +29,7 @@ func state_transition():
 		state = States.HOVERED
 	elif state == States.HOVERED and is_mouse_entered == false:
 		state = States.BASE
-	elif state == States.HOVERED and Input.is_action_pressed("Player_Ability_1"):
+	elif state == States.HOVERED and Input.is_action_just_pressed("Player_Ability_1"):
 		state = States.DRAGGED
 	elif state == States.DRAGGED and Input.is_action_just_released("Player_Ability_1"):
 		if is_at_target == false:
@@ -42,14 +42,14 @@ func state_transition():
 func state_functions():
 	mouse_position = get_viewport().get_mouse_position()
 	if state == States.BASE:
-		$Sprite2D.rotation_degrees = 0
+		$Sprite2D.scale = Vector2(0.517,0.202)
 		self.global_position = base_position
 	if state == States.HOVERED:
-		$Sprite2D.rotation_degrees = 180
+		$Sprite2D.scale = Vector2(1,1)
 	if state == States.DRAGGED:
 		self.global_position = mouse_position
 	if state == States.RETURN:
-		$Sprite2D.rotation_degrees = 0
+		$Sprite2D.scale = Vector2(0.517,0.202)
 		self.global_position = lerp(self.global_position, base_position, speed)
 	if state == States.USED:
 		$Sprite2D.scale = Vector2(0.1, 0.1)
