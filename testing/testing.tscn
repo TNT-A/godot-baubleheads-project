@@ -1,14 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://c8q38agy2c6wa"]
+[gd_scene load_steps=13 format=3 uid="uid://c8q38agy2c6wa"]
 
 [ext_resource type="PackedScene" uid="uid://coa54e45uplra" path="res://player/player.tscn" id="1_6ima4"]
 [ext_resource type="Script" path="res://testing/testing.gd" id="1_8ocim"]
 [ext_resource type="Texture2D" uid="uid://y5vyycq6blo7" path="res://PixelArt/CaveTilemap.png" id="1_i4jth"]
 [ext_resource type="PackedScene" uid="uid://7gtqe8n30r7v" path="res://background/background.tscn" id="2_vmif0"]
-[ext_resource type="PackedScene" uid="uid://d31vg3emxkypt" path="res://baublehead.tscn" id="3_ah8ic"]
-[ext_resource type="PackedScene" uid="uid://e477mip5fnwt" path="res://Earthworm.tscn" id="4_cohp8"]
+[ext_resource type="PackedScene" uid="uid://e477mip5fnwt" path="res://Enemies/Earthworm/Earthworm.tscn" id="4_cohp8"]
 [ext_resource type="Script" path="res://testing/health_bar.gd" id="4_ep7dp"]
-[ext_resource type="PackedScene" uid="uid://b0r48ca6qo1lv" path="res://settings_menu.tscn" id="6_mun1c"]
-[ext_resource type="PackedScene" uid="uid://bhphdqmsev4lg" path="res://pause_menu.tscn" id="7_ttung"]
+[ext_resource type="PackedScene" uid="uid://b0r48ca6qo1lv" path="res://settings/settings_menu.tscn" id="6_mun1c"]
+[ext_resource type="PackedScene" uid="uid://bhphdqmsev4lg" path="res://pause/pause_menu.tscn" id="7_ttung"]
+[ext_resource type="PackedScene" uid="uid://d31vg3emxkypt" path="res://Baubles/baublehead.tscn" id="9_h72yb"]
+[ext_resource type="Resource" uid="uid://dbdhf1xacmyxj" path="res://Baubles/bauble_resources/opal_bauble.tres" id="10_wr2k3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wdqlt"]
 texture = ExtResource("1_i4jth")
@@ -79,6 +80,7 @@ physics_layer_0/collision_mask = 2
 sources/0 = SubResource("TileSetAtlasSource_wdqlt")
 
 [node name="Node2D" type="Node2D"]
+position = Vector2(-18, 0)
 script = ExtResource("1_8ocim")
 
 [node name="CaveTilemap" type="TileMap" parent="."]
@@ -101,6 +103,7 @@ fill_mode = 1
 script = ExtResource("4_ep7dp")
 
 [node name="PauseMenu" parent="PlayerBody" instance=ExtResource("7_ttung")]
+unique_name_in_owner = true
 visible = false
 z_index = 2
 anchors_preset = 0
@@ -115,12 +118,13 @@ grow_vertical = 1
 scale = Vector2(3, 3)
 
 [node name="SettingsMenu" parent="PlayerBody" instance=ExtResource("6_mun1c")]
+unique_name_in_owner = true
 visible = false
 z_index = 2
-offset_left = -96.0
-offset_top = -27.0
-offset_right = -96.0
-offset_bottom = -27.0
+offset_left = -116.0
+offset_top = -33.0
+offset_right = -116.0
+offset_bottom = -33.0
 scale = Vector2(2, 2)
 
 [node name="TextureRect" parent="." instance=ExtResource("2_vmif0")]
@@ -131,20 +135,9 @@ offset_top = 48.0
 offset_right = 2264.0
 offset_bottom = 1259.0
 
-[node name="baublehead" parent="." instance=ExtResource("3_ah8ic")]
-position = Vector2(52, 333)
-
-[node name="baublehead2" parent="." instance=ExtResource("3_ah8ic")]
-position = Vector2(1354, 273)
-
-[node name="baublehead3" parent="." instance=ExtResource("3_ah8ic")]
-position = Vector2(1417, 815)
-
-[node name="baublehead4" parent="." instance=ExtResource("3_ah8ic")]
-position = Vector2(594, 814)
-
-[node name="baublehead5" parent="." instance=ExtResource("3_ah8ic")]
-position = Vector2(786, 225)
-
 [node name="Earthworm" parent="." instance=ExtResource("4_cohp8")]
 position = Vector2(584, 206)
+
+[node name="baublehead" parent="." instance=ExtResource("9_h72yb")]
+position = Vector2(710, 414)
+type = ExtResource("10_wr2k3")
