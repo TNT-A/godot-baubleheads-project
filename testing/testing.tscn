@@ -78,6 +78,7 @@ physics_layer_0/collision_mask = 2
 sources/0 = SubResource("TileSetAtlasSource_wdqlt")
 
 [node name="Node2D" type="Node2D"]
+position = Vector2(-18, 0)
 script = ExtResource("1_8ocim")
 
 [node name="CaveTilemap" type="TileMap" parent="."]
@@ -118,10 +119,10 @@ scale = Vector2(3, 3)
 unique_name_in_owner = true
 visible = false
 z_index = 2
-offset_left = -96.0
-offset_top = -27.0
-offset_right = -96.0
-offset_bottom = -27.0
+offset_left = -116.0
+offset_top = -33.0
+offset_right = -116.0
+offset_bottom = -33.0
 scale = Vector2(2, 2)
 
 [node name="TextureRect" parent="." instance=ExtResource("2_vmif0")]
