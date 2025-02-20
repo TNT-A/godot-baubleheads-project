@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6gn4ohjt7fri"]
+[gd_scene load_steps=4 format=3 uid="uid://bxmwo2vw1s6o"]
 
 [ext_resource type="PackedScene" uid="uid://dh2y7p3oi5yot" path="res://Inventory/inventory_slot.tscn" id="1_fbr10"]
 [ext_resource type="PackedScene" uid="uid://tj1lnfakvxin" path="res://Inventory/item_ui_test.tscn" id="2_jk6s8"]
-[ext_resource type="PackedScene" uid="uid://dqtb7r3vpmlw0" path="res://party_slot.tscn" id="3_8oimf"]
+[ext_resource type="PackedScene" uid="uid://d0fa7typrrlw5" path="res://party_slot.tscn" id="3_8oimf"]
 
 [node name="Control" type="Control"]
 custom_minimum_size = Vector2(64, 64)
