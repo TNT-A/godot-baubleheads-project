@@ -30,6 +30,8 @@ window/stretch/mode="canvas_items"
 
 hurts_player="Hurts the player when it enters their hurtbox"
 inventory_slot=""
+Item="Can be dragged onto a party slot"
+party_slot="Is a party slot, can accept items"
 
 [input]
 

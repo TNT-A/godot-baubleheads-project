@@ -18,8 +18,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		base_position = Vector2(100,100)
 		pass
-	print(self.global_position)
-	print(mouse_position)
 	is_item_at_base()
 	state_transition()
 	state_functions()
@@ -45,9 +43,10 @@ func state_functions():
 		$Sprite2D.scale = Vector2(0.517,0.202)
 		self.global_position = base_position
 	if state == States.HOVERED:
-		$Sprite2D.scale = Vector2(1,1)
+		$Sprite2D.scale = Vector2(0.517,0.202) * 1.2 
 	if state == States.DRAGGED:
 		self.global_position = mouse_position
+		$Area2D/CollisionShape2D.scale = Vector2(.05, .05)
 	if state == States.RETURN:
 		$Sprite2D.scale = Vector2(0.517,0.202)
 		self.global_position = lerp(self.global_position, base_position, speed)
