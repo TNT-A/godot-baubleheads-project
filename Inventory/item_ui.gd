@@ -25,8 +25,6 @@ func _physics_process(delta: float) -> void:
 	is_item_at_base()
 	state_transition()
 	state_functions()
-	print(base_position)
-	print(get_parent().get_groups())
 
 func state_transition():
 	if state == States.BASE and is_mouse_entered == true and is_at_base == true:
