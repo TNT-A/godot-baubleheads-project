@@ -1,3 +1,5 @@
+[gd_scene load_steps=13 format=3 uid="uid://c8q38agy2c6wa"]
+
 [gd_scene load_steps=14 format=3 uid="uid://c8q38agy2c6wa"]
 
 [ext_resource type="PackedScene" uid="uid://coa54e45uplra" path="res://player/player.tscn" id="1_6ima4"]
@@ -8,6 +10,8 @@
 [ext_resource type="Script" path="res://testing/health_bar.gd" id="4_ep7dp"]
 [ext_resource type="PackedScene" uid="uid://b0r48ca6qo1lv" path="res://settings/settings_menu.tscn" id="6_mun1c"]
 [ext_resource type="PackedScene" uid="uid://bhphdqmsev4lg" path="res://pause/pause_menu.tscn" id="7_ttung"]
+[ext_resource type="PackedScene" uid="uid://c6gn4ohjt7fri" path="res://Inventory/inventory.tscn" id="7_wwsyx"]
+[ext_resource type="PackedScene" uid="uid://bmgdfffipgdik" path="res://pickups/gemstone_pickup.tscn" id="9_dcapp"]
 [ext_resource type="PackedScene" uid="uid://dfaaxsafo3xgi" path="res://Enemies/Effects/Explosion.tscn" id="9_0emdr"]
 [ext_resource type="PackedScene" uid="uid://cfwscgufalgmj" path="res://bullet.tscn" id="10_gv504"]
 
@@ -94,8 +98,15 @@ func _on_body_entered(body: Node2D) -> void:
 "
 
 [node name="Node2D" type="Node2D"]
-position = Vector2(-18, 0)
+position = Vector2(-18, -2)
 script = ExtResource("1_8ocim")
+
+[node name="Inventory" parent="." instance=ExtResource("7_wwsyx")]
+unique_name_in_owner = true
+offset_left = 237.0
+offset_top = 178.0
+offset_right = 877.0
+offset_bottom = 538.0
 
 [node name="CaveTilemap" type="TileMap" parent="."]
 position = Vector2(414, 68)
@@ -151,6 +162,24 @@ offset_bottom = 1259.0
 
 [node name="Earthworm" parent="." instance=ExtResource("4_cohp8")]
 position = Vector2(584, 206)
+
+[node name="GemstonePickup" parent="." instance=ExtResource("9_dcapp")]
+position = Vector2(331, 306)
+
+[node name="GemstonePickup2" parent="." instance=ExtResource("9_dcapp")]
+position = Vector2(1056, 489)
+
+[node name="GemstonePickup3" parent="." instance=ExtResource("9_dcapp")]
+position = Vector2(1238, 225)
+
+[node name="GemstonePickup4" parent="." instance=ExtResource("9_dcapp")]
+position = Vector2(445, 668)
+
+[node name="GemstonePickup5" parent="." instance=ExtResource("9_dcapp")]
+position = Vector2(1310, 806)
+
+[node name="GemstonePickup6" parent="." instance=ExtResource("9_dcapp")]
+position = Vector2(-178, 536)
 
 [node name="Explosion" parent="." instance=ExtResource("9_0emdr")]
 position = Vector2(559, 450)
