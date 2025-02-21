@@ -6,7 +6,10 @@ extends Node2D
 @onready var inventory_menu : Control = %Inventory
 
 var paused = false
+
 var inventory = false
+
+@onready var explosion: AnimatedSprite2D = $Explosion
 
 func _ready():
 	pause_menu.hide()
@@ -16,9 +19,13 @@ func _ready():
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Pause"):
 		pauseMenu()
-	if Input.is_action_just_pressed("Inventory"):
-		inventoryMenu()
 
+if Input.is_action_just_pressed("Inventory"):
+		inventoryMenu()
+	
+func Explosion():
+	explosion.play("Explosion")
+	
 func pauseMenu():
 	if paused:
 		pause_menu.hide()

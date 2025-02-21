@@ -1,15 +1,19 @@
 [gd_scene load_steps=13 format=3 uid="uid://c8q38agy2c6wa"]
 
+[gd_scene load_steps=14 format=3 uid="uid://c8q38agy2c6wa"]
+
 [ext_resource type="PackedScene" uid="uid://coa54e45uplra" path="res://player/player.tscn" id="1_6ima4"]
 [ext_resource type="Script" path="res://testing/testing.gd" id="1_8ocim"]
 [ext_resource type="Texture2D" uid="uid://y5vyycq6blo7" path="res://PixelArt/CaveTilemap.png" id="1_i4jth"]
 [ext_resource type="PackedScene" uid="uid://7gtqe8n30r7v" path="res://background/background.tscn" id="2_vmif0"]
-[ext_resource type="PackedScene" uid="uid://e477mip5fnwt" path="res://enemies/earthworm/earthworm.tscn" id="4_cohp8"]
+[ext_resource type="PackedScene" uid="uid://e477mip5fnwt" path="res://Enemies/Earthworm/Earthworm.tscn" id="4_cohp8"]
 [ext_resource type="Script" path="res://testing/health_bar.gd" id="4_ep7dp"]
 [ext_resource type="PackedScene" uid="uid://b0r48ca6qo1lv" path="res://settings/settings_menu.tscn" id="6_mun1c"]
 [ext_resource type="PackedScene" uid="uid://bhphdqmsev4lg" path="res://pause/pause_menu.tscn" id="7_ttung"]
 [ext_resource type="PackedScene" uid="uid://c6gn4ohjt7fri" path="res://Inventory/inventory.tscn" id="7_wwsyx"]
 [ext_resource type="PackedScene" uid="uid://bmgdfffipgdik" path="res://pickups/gemstone_pickup.tscn" id="9_dcapp"]
+[ext_resource type="PackedScene" uid="uid://dfaaxsafo3xgi" path="res://Enemies/Effects/Explosion.tscn" id="9_0emdr"]
+[ext_resource type="PackedScene" uid="uid://cfwscgufalgmj" path="res://bullet.tscn" id="10_gv504"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wdqlt"]
 texture = ExtResource("1_i4jth")
@@ -78,6 +82,20 @@ tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 2
 sources/0 = SubResource("TileSetAtlasSource_wdqlt")
+
+[sub_resource type="GDScript" id="GDScript_vt2k7"]
+script/source = "extends Area2D
+
+var speed = 750
+
+func _physics_process(delta: float) -> void:
+	position += transform.x*speed*delta
+
+
+
+func _on_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.
+"
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(-18, -2)
@@ -162,3 +180,12 @@ position = Vector2(1310, 806)
 
 [node name="GemstonePickup6" parent="." instance=ExtResource("9_dcapp")]
 position = Vector2(-178, 536)
+
+[node name="Explosion" parent="." instance=ExtResource("9_0emdr")]
+position = Vector2(559, 450)
+
+[node name="Bullet" parent="." instance=ExtResource("10_gv504")]
+position = Vector2(523, -105)
+script = SubResource("GDScript_vt2k7")
+
+[connection signal="body_entered" from="Bullet" to="Bullet" method="_on_body_entered"]
