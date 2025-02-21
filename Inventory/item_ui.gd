@@ -1,10 +1,9 @@
 extends Control
 class_name draggable_object
 
-@onready var base_position : Vector2 = get_parent().position
+@export var item_type : Resource 
 
-enum States {BASE, HOVERED, DRAGGED, RETURN, USED}
-var state: States = States.BASE
+@onready var base_position : Vector2 = get_parent().position
 
 var is_mouse_entered : bool = false
 var is_at_base : bool = true
@@ -12,15 +11,22 @@ var is_at_target : bool = false
 var mouse_position : Vector2 
 var speed : float = 0.2
 
+enum States {BASE, HOVERED, DRAGGED, RETURN, USED}
+var state: States = States.BASE
+
+func _ready() -> void:
+	pass
+
 func _physics_process(delta: float) -> void:
 	if get_parent().is_in_group("inventory_slot"):
 		base_position = get_parent().global_position
 	else:
 		base_position = Vector2(100,100)
-		pass
 	is_item_at_base()
 	state_transition()
 	state_functions()
+	print(base_position)
+	print(get_parent().get_groups())
 
 func state_transition():
 	if state == States.BASE and is_mouse_entered == true and is_at_base == true:
@@ -38,7 +44,7 @@ func state_transition():
 		state = States.BASE
 
 func state_functions():
-	mouse_position = get_viewport().get_mouse_position()
+	mouse_position = get_global_mouse_position()
 	if state == States.BASE:
 		$Sprite2D.scale = Vector2(0.517,0.202)
 		self.global_position = base_position

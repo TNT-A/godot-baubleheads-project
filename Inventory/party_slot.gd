@@ -1,10 +1,15 @@
 extends CenterContainer
 
-enum States {EMPTY, HOVERED, DROPPED, FULL}
-var state: States = States.EMPTY
+@export var slot : int 
+@export var member_info : Resource
 
+var member : Node
+var temp_member : Node
 var has_member : bool = false
 var item_hovering : bool = false
+
+enum States {EMPTY, HOVERED, DROPPED, FULL}
+var state: States = States.EMPTY
 
 func _ready() -> void:
 	pass
@@ -12,7 +17,6 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	state_transition()
 	state_functions()
-	print($Area2D.global_position)
 
 func state_transition():
 	if state == States.EMPTY and item_hovering == true:
@@ -36,13 +40,17 @@ func state_functions():
 		$Area2D.scale *= 0
 
 func item_dropped():
+	member = temp_member
 	pass
 
 func _on_area_2d_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
-	item_hovering = true
+	if area.is_in_group("Item"):
+		item_hovering = true
+		temp_member = area
 
 func _on_area_2d_area_shape_exited(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
-	item_hovering = false
+	if area.is_in_group("Item"):
+		item_hovering = false
 
 #func _on_area_2d_mouse_entered() -> void:
 	#print("Yippee")
