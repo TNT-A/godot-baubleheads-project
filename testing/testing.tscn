@@ -1,18 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://c8q38agy2c6wa"]
-
-[gd_scene load_steps=14 format=3 uid="uid://c8q38agy2c6wa"]
+[gd_scene load_steps=16 format=3 uid="uid://c8q38agy2c6wa"]
 
 [ext_resource type="PackedScene" uid="uid://coa54e45uplra" path="res://player/player.tscn" id="1_6ima4"]
 [ext_resource type="Script" path="res://testing/testing.gd" id="1_8ocim"]
 [ext_resource type="Texture2D" uid="uid://y5vyycq6blo7" path="res://PixelArt/CaveTilemap.png" id="1_i4jth"]
 [ext_resource type="PackedScene" uid="uid://7gtqe8n30r7v" path="res://background/background.tscn" id="2_vmif0"]
-[ext_resource type="PackedScene" uid="uid://e477mip5fnwt" path="res://Enemies/Earthworm/Earthworm.tscn" id="4_cohp8"]
+[ext_resource type="PackedScene" uid="uid://e477mip5fnwt" path="res://enemies/earthworm/earthworm.tscn" id="4_cohp8"]
 [ext_resource type="Script" path="res://testing/health_bar.gd" id="4_ep7dp"]
 [ext_resource type="PackedScene" uid="uid://b0r48ca6qo1lv" path="res://settings/settings_menu.tscn" id="6_mun1c"]
 [ext_resource type="PackedScene" uid="uid://bhphdqmsev4lg" path="res://pause/pause_menu.tscn" id="7_ttung"]
 [ext_resource type="PackedScene" uid="uid://c6gn4ohjt7fri" path="res://Inventory/inventory.tscn" id="7_wwsyx"]
+[ext_resource type="PackedScene" uid="uid://dfaaxsafo3xgi" path="res://enemies/Effects/Explosion.tscn" id="9_0emdr"]
 [ext_resource type="PackedScene" uid="uid://bmgdfffipgdik" path="res://pickups/gemstone_pickup.tscn" id="9_dcapp"]
-[ext_resource type="PackedScene" uid="uid://dfaaxsafo3xgi" path="res://Enemies/Effects/Explosion.tscn" id="9_0emdr"]
 [ext_resource type="PackedScene" uid="uid://cfwscgufalgmj" path="res://bullet.tscn" id="10_gv504"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wdqlt"]
@@ -101,13 +99,6 @@ func _on_body_entered(body: Node2D) -> void:
 position = Vector2(-18, -2)
 script = ExtResource("1_8ocim")
 
-[node name="Inventory" parent="." instance=ExtResource("7_wwsyx")]
-unique_name_in_owner = true
-offset_left = 237.0
-offset_top = 178.0
-offset_right = 877.0
-offset_bottom = 538.0
-
 [node name="CaveTilemap" type="TileMap" parent="."]
 position = Vector2(414, 68)
 tile_set = SubResource("TileSet_iq531")
@@ -151,6 +142,14 @@ offset_top = -33.0
 offset_right = -116.0
 offset_bottom = -33.0
 scale = Vector2(2, 2)
+
+[node name="Inventory" parent="PlayerBody" instance=ExtResource("7_wwsyx")]
+unique_name_in_owner = true
+visible = false
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
 
 [node name="TextureRect" parent="." instance=ExtResource("2_vmif0")]
 visible = false

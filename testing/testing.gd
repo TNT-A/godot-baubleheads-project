@@ -19,10 +19,9 @@ func _ready():
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Pause"):
 		pauseMenu()
-
-if Input.is_action_just_pressed("Inventory"):
+	if Input.is_action_just_pressed("Inventory"):
 		inventoryMenu()
-	
+
 func Explosion():
 	explosion.play("Explosion")
 	
