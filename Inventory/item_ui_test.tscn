@@ -7,6 +7,7 @@
 radius = 35.0571
 
 [node name="Item" type="Control" groups=["Item"]]
+z_index = 2
 layout_mode = 3
 anchor_right = 0.077
 anchor_bottom = 0.117

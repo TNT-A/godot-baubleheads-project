@@ -1,11 +1,13 @@
 extends Control
 
+var inventory : Dictionary
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	SignalBus.picked_up.connect(recieve_item)
 
+func _physics_process(delta: float) -> void:
+	position
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func recieve_item(item):
+	print("Come and give me a hug :smiling_imp:")
 	pass
