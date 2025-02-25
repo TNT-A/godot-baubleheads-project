@@ -19,24 +19,31 @@ script/source = "extends Area2D
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iykv8"]
 size = Vector2(25.5, 25)
 
-[node name="Earthworm" type="CharacterBody2D"]
+[node name="Earthworm" type="Node2D"]
 script = ExtResource("1_3xudi")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(-5, 4)
 shape = SubResource("RectangleShape2D_gjer8")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
 position = Vector2(-2, 10)
 texture = ExtResource("1_riicm")
 
-[node name="DamageZone" parent="." groups=["hurts_player"] instance=ExtResource("3_rikgm")]
+[node name="DamageZone" parent="CharacterBody2D" groups=["hurts_player"] instance=ExtResource("3_rikgm")]
 script = SubResource("GDScript_7v0ou")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/DamageZone"]
 position = Vector2(-5, 4)
 shape = SubResource("RectangleShape2D_iykv8")
 
-[node name="Mouth" type="Marker2D" parent="."]
-position = Vector2(-23, 0)
-gizmo_extents = 23.0
+[node name="RayCast2D" type="RayCast2D" parent="CharacterBody2D"]
+target_position = Vector2(250, 0)
+
+[node name="ReloadTimer" type="Timer" parent="CharacterBody2D/RayCast2D"]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="CharacterBody2D/RayCast2D/ReloadTimer" to="." method="_on_reload_timer_timeout"]
