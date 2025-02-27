@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Item_Opal" load_steps=3 format=3 uid="uid://srhbw1bth3p8"]
+
+[ext_resource type="Script" path="res://pickups/pickup_resource_script/item_opal.gd" id="1_t7gs7"]
+[ext_resource type="Texture2D" uid="uid://cnls5fgxx5p3s" path="res://Inventory/inventorySprites/Item_opal.png" id="2_8ps2n"]
+
+[resource]
+script = ExtResource("1_t7gs7")
+sprite = ExtResource("2_8ps2n")
+type = "opal"

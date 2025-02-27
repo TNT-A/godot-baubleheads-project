@@ -40,5 +40,5 @@ func inventoryMenu():
 		Engine.time_scale = 1
 	else:
 		inventory_menu.show()
-		Engine.time_scale = 0
+		Engine.time_scale = 1
 	inventory = !inventory

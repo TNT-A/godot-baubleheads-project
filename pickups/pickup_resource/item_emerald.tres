@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Item_Emerald" load_steps=3 format=3 uid="uid://c1ge2a0sudct1"]
+
+[ext_resource type="Script" path="res://pickups/pickup_resource_script/item_emerald.gd" id="1_nj1oc"]
+[ext_resource type="Texture2D" uid="uid://ba1x0c7f7ud7j" path="res://Inventory/inventorySprites/Item_emerald.png" id="2_66rm0"]
+
+[resource]
+script = ExtResource("1_nj1oc")
+sprite = ExtResource("2_66rm0")
+type = "emerald"

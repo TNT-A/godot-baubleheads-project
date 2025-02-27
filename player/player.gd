@@ -22,7 +22,6 @@ func set_health_bar() -> void:
 	$HealthBar.value = health
 
 func _ready() -> void:
-	SignalBus.picked_up.connect(test)
 	$"/root/Global".register_player(self)
 	set_health_bar()
 	$HealthBar.max_value = Max_Health
@@ -84,6 +83,3 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("hurts_player"):
 		change_health(enemy.damage_dealt)
 		print(enemy.damage_dealt)
-
-func test(item):
-	print(item)
