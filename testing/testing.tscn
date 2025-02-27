@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c8q38agy2c6wa"]
+[gd_scene load_steps=22 format=3 uid="uid://c8q38agy2c6wa"]
 
 [ext_resource type="PackedScene" uid="uid://coa54e45uplra" path="res://player/player.tscn" id="1_6ima4"]
 [ext_resource type="Script" path="res://testing/testing.gd" id="1_8ocim"]
@@ -12,6 +12,12 @@
 [ext_resource type="PackedScene" uid="uid://dfaaxsafo3xgi" path="res://enemies/Effects/Explosion.tscn" id="9_0emdr"]
 [ext_resource type="PackedScene" uid="uid://bmgdfffipgdik" path="res://pickups/gemstone_pickup.tscn" id="9_dcapp"]
 [ext_resource type="PackedScene" uid="uid://cfwscgufalgmj" path="res://bullet.tscn" id="10_gv504"]
+[ext_resource type="Resource" uid="uid://srhbw1bth3p8" path="res://pickups/pickup_resource/item_opal.tres" id="11_ou7st"]
+[ext_resource type="Resource" uid="uid://ewck2wib7hun" path="res://pickups/pickup_resource/item_topaz.tres" id="12_ibmhr"]
+[ext_resource type="Resource" uid="uid://c1ge2a0sudct1" path="res://pickups/pickup_resource/item_emerald.tres" id="13_rrdyl"]
+[ext_resource type="Resource" uid="uid://ctnhj85v2swgr" path="res://pickups/pickup_resource/item_sapphire.tres" id="14_t2hwn"]
+[ext_resource type="Resource" uid="uid://c8guslvmqww32" path="res://pickups/pickup_resource/item_diamond.tres" id="15_7p851"]
+[ext_resource type="Resource" uid="uid://bnqkjk51xm27m" path="res://pickups/pickup_resource/item_ruby.tres" id="15_kqa0o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wdqlt"]
 texture = ExtResource("1_i4jth")
@@ -164,21 +170,27 @@ position = Vector2(584, 206)
 
 [node name="GemstonePickup" parent="." instance=ExtResource("9_dcapp")]
 position = Vector2(331, 306)
+item_resource = ExtResource("15_7p851")
 
 [node name="GemstonePickup2" parent="." instance=ExtResource("9_dcapp")]
 position = Vector2(1056, 489)
+item_resource = ExtResource("14_t2hwn")
 
 [node name="GemstonePickup3" parent="." instance=ExtResource("9_dcapp")]
 position = Vector2(1238, 225)
+item_resource = ExtResource("12_ibmhr")
 
 [node name="GemstonePickup4" parent="." instance=ExtResource("9_dcapp")]
 position = Vector2(445, 668)
+item_resource = ExtResource("11_ou7st")
 
 [node name="GemstonePickup5" parent="." instance=ExtResource("9_dcapp")]
 position = Vector2(1310, 806)
+item_resource = ExtResource("15_kqa0o")
 
 [node name="GemstonePickup6" parent="." instance=ExtResource("9_dcapp")]
 position = Vector2(-178, 536)
+item_resource = ExtResource("13_rrdyl")
 
 [node name="Explosion" parent="." instance=ExtResource("9_0emdr")]
 position = Vector2(559, 450)
@@ -186,5 +198,13 @@ position = Vector2(559, 450)
 [node name="Bullet" parent="." instance=ExtResource("10_gv504")]
 position = Vector2(523, -105)
 script = SubResource("GDScript_vt2k7")
+
+[node name="GemstonePickup7" parent="." instance=ExtResource("9_dcapp")]
+position = Vector2(161, 336)
+item_resource = ExtResource("15_7p851")
+
+[node name="GemstonePickup8" parent="." instance=ExtResource("9_dcapp")]
+position = Vector2(203, 436)
+item_resource = ExtResource("15_7p851")
 
 [connection signal="body_entered" from="Bullet" to="Bullet" method="_on_body_entered"]

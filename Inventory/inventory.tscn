@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6gn4ohjt7fri"]
+[gd_scene load_steps=4 format=3 uid="uid://c6gn4ohjt7fri"]
 
 [ext_resource type="Script" path="res://Inventory/inventory.gd" id="1_3klns"]
 [ext_resource type="PackedScene" uid="uid://dh2y7p3oi5yot" path="res://Inventory/inventory_slot.tscn" id="1_fbr10"]
-[ext_resource type="PackedScene" uid="uid://tj1lnfakvxin" path="res://Inventory/item_ui_test.tscn" id="2_jk6s8"]
 [ext_resource type="PackedScene" uid="uid://dqtb7r3vpmlw0" path="res://Inventory/party_slot.tscn" id="3_8oimf"]
 
 [node name="Inventory" type="Control"]
@@ -11,128 +10,142 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = -3.0
-offset_right = 1.0
-offset_bottom = -3.0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = -1.0
+offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_3klns")
 
-[node name="CenterContainer2" type="CenterContainer" parent="."]
+[node name="InventorySlots" type="GridContainer" parent="."]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.997
-anchor_bottom = 0.311
-offset_right = 1.91998
-offset_bottom = 0.0399933
-mouse_filter = 2
-
-[node name="InventorySlots" type="GridContainer" parent="CenterContainer2"]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
+anchor_left = 0.077
+anchor_top = 0.083
+anchor_right = 0.92
+anchor_bottom = 0.259
+offset_left = -0.280006
+offset_top = -0.129002
+offset_right = 0.200012
+offset_bottom = -0.0169983
 mouse_filter = 2
 columns = 8
 
-[node name="InventorySlot" parent="CenterContainer2/InventorySlots" instance=ExtResource("1_fbr10")]
+[node name="InventorySlot" parent="InventorySlots" instance=ExtResource("1_fbr10")]
+unique_name_in_owner = true
 layout_mode = 2
-
-[node name="Item" parent="CenterContainer2/InventorySlots/InventorySlot" instance=ExtResource("2_jk6s8")]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-
-[node name="InventorySlot2" parent="CenterContainer2/InventorySlots" instance=ExtResource("1_fbr10")]
-layout_mode = 2
-
-[node name="Item" parent="CenterContainer2/InventorySlots/InventorySlot2" instance=ExtResource("2_jk6s8")]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-
-[node name="InventorySlot3" parent="CenterContainer2/InventorySlots" instance=ExtResource("1_fbr10")]
-layout_mode = 2
-
-[node name="Item" parent="CenterContainer2/InventorySlots/InventorySlot3" instance=ExtResource("2_jk6s8")]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-
-[node name="InventorySlot4" parent="CenterContainer2/InventorySlots" instance=ExtResource("1_fbr10")]
-layout_mode = 2
-
-[node name="Item" parent="CenterContainer2/InventorySlots/InventorySlot4" instance=ExtResource("2_jk6s8")]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-
-[node name="InventorySlot5" parent="CenterContainer2/InventorySlots" instance=ExtResource("1_fbr10")]
-layout_mode = 2
-
-[node name="Item" parent="CenterContainer2/InventorySlots/InventorySlot5" instance=ExtResource("2_jk6s8")]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-
-[node name="InventorySlot6" parent="CenterContainer2/InventorySlots" instance=ExtResource("1_fbr10")]
-layout_mode = 2
-
-[node name="Item" parent="CenterContainer2/InventorySlots/InventorySlot6" instance=ExtResource("2_jk6s8")]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-
-[node name="InventorySlot7" parent="CenterContainer2/InventorySlots" instance=ExtResource("1_fbr10")]
-layout_mode = 2
-
-[node name="Item" parent="CenterContainer2/InventorySlots/InventorySlot7" instance=ExtResource("2_jk6s8")]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-
-[node name="InventorySlot8" parent="CenterContainer2/InventorySlots" instance=ExtResource("1_fbr10")]
-layout_mode = 2
-
-[node name="Item" parent="CenterContainer2/InventorySlots/InventorySlot8" instance=ExtResource("2_jk6s8")]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-
-[node name="CenterContainer" type="CenterContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.281
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -0.160004
-offset_right = -1.0
 mouse_filter = 2
 
-[node name="PartySlots" type="GridContainer" parent="CenterContainer"]
+[node name="InventorySlot2" parent="InventorySlots" instance=ExtResource("1_fbr10")]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+slot_number = 1
+
+[node name="InventorySlot3" parent="InventorySlots" instance=ExtResource("1_fbr10")]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+slot_number = 2
+
+[node name="InventorySlot4" parent="InventorySlots" instance=ExtResource("1_fbr10")]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+slot_number = 3
+
+[node name="InventorySlot5" parent="InventorySlots" instance=ExtResource("1_fbr10")]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+slot_number = 4
+
+[node name="InventorySlot6" parent="InventorySlots" instance=ExtResource("1_fbr10")]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+slot_number = 5
+
+[node name="InventorySlot7" parent="InventorySlots" instance=ExtResource("1_fbr10")]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+slot_number = 6
+
+[node name="InventorySlot8" parent="InventorySlots" instance=ExtResource("1_fbr10")]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+slot_number = 7
+
+[node name="PartySlots" type="GridContainer" parent="."]
 custom_minimum_size = Vector2(110, 110)
 layout_mode = 2
+offset_left = 36.0
+offset_top = 118.0
+offset_right = 602.0
+offset_bottom = 342.0
 mouse_filter = 2
 columns = 5
 
-[node name="PartySlot" parent="CenterContainer/PartySlots" instance=ExtResource("3_8oimf")]
+[node name="PartySlot" parent="PartySlots" instance=ExtResource("3_8oimf")]
+unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 2
 
-[node name="PartySlot2" parent="CenterContainer/PartySlots" instance=ExtResource("3_8oimf")]
+[node name="PartySlot2" parent="PartySlots" instance=ExtResource("3_8oimf")]
+unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 2
+slot = 1
 
-[node name="PartySlot3" parent="CenterContainer/PartySlots" instance=ExtResource("3_8oimf")]
+[node name="PartySlot3" parent="PartySlots" instance=ExtResource("3_8oimf")]
+unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 2
+slot = 2
 
-[node name="PartySlot4" parent="CenterContainer/PartySlots" instance=ExtResource("3_8oimf")]
+[node name="PartySlot4" parent="PartySlots" instance=ExtResource("3_8oimf")]
+unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 2
+slot = 3
 
-[node name="PartySlot5" parent="CenterContainer/PartySlots" instance=ExtResource("3_8oimf")]
+[node name="PartySlot5" parent="PartySlots" instance=ExtResource("3_8oimf")]
+unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 2
+slot = 4
 
-[node name="PartySlot6" parent="CenterContainer/PartySlots" instance=ExtResource("3_8oimf")]
+[node name="PartySlot6" parent="PartySlots" instance=ExtResource("3_8oimf")]
+unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 2
+slot = 5
 
-[node name="PartySlot7" parent="CenterContainer/PartySlots" instance=ExtResource("3_8oimf")]
+[node name="PartySlot7" parent="PartySlots" instance=ExtResource("3_8oimf")]
+unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 2
+slot = 6
 
-[node name="PartySlot8" parent="CenterContainer/PartySlots" instance=ExtResource("3_8oimf")]
+[node name="PartySlot8" parent="PartySlots" instance=ExtResource("3_8oimf")]
+unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 2
+slot = 7
 
-[node name="PartySlot9" parent="CenterContainer/PartySlots" instance=ExtResource("3_8oimf")]
+[node name="PartySlot9" parent="PartySlots" instance=ExtResource("3_8oimf")]
+unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 2
+slot = 8
 
-[node name="PartySlot10" parent="CenterContainer/PartySlots" instance=ExtResource("3_8oimf")]
+[node name="PartySlot10" parent="PartySlots" instance=ExtResource("3_8oimf")]
+unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 2
+slot = 9

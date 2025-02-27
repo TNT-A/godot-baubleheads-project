@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Item_Diamond" load_steps=3 format=3 uid="uid://c8guslvmqww32"]
+
+[ext_resource type="Script" path="res://pickups/pickup_resource_script/item_diamond.gd" id="1_xrai5"]
+[ext_resource type="Texture2D" uid="uid://c1v04prcng03o" path="res://Inventory/inventorySprites/Item_diamond.png" id="2_wffd6"]
+
+[resource]
+script = ExtResource("1_xrai5")
+sprite = ExtResource("2_wffd6")
+type = "diamond"

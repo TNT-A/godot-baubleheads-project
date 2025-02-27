@@ -6,10 +6,9 @@ class_name Baublehead
 @export var deceleration : float = .05
 @export var type : Resource
 
-@onready var find_player : Node = $find_player
 @onready var player : Node = Global.player
 
-enum States {IDLE, WALKING}
+enum States {IDLE, FOLLOW, PATROL, THROWN, ATTACK, DEFEND, RETURN}
 var state: States = States.IDLE
 
 var inPlayer : bool = false
@@ -25,15 +24,15 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	state_transition()
-	if state == States.WALKING:
+	if state == States.FOLLOW:
 		walk()
 	if state == States.IDLE:
 		resetVelocity()
 
 func state_transition():
 	if state == States.IDLE and inPlayer == false:
-		state = States.WALKING
-	elif state == States.WALKING and inPlayer == true:
+		state = States.FOLLOW
+	elif state == States.FOLLOW and inPlayer == true:
 		state = States.IDLE
 
 func random_spawn():

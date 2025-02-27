@@ -1,24 +1,38 @@
-[gd_scene load_steps=2 format=3 uid="uid://dh2y7p3oi5yot"]
+[gd_scene load_steps=3 format=3 uid="uid://dh2y7p3oi5yot"]
 
 [ext_resource type="Texture2D" uid="uid://cr1oop4kpupya" path="res://Inventory/inventory_slot.png" id="1_hqvit"]
+[ext_resource type="Script" path="res://Inventory/inventory_slot.gd" id="1_ndcix"]
 
-[node name="InventorySlot" type="CenterContainer" groups=["inventory_slot"]]
+[node name="InventorySlot" type="Control" groups=["inventory_slot"]]
 z_index = 1
-custom_minimum_size = Vector2(40, 40)
-anchors_preset = -1
-anchor_left = 0.02
-anchor_top = 0.058
-anchor_right = 0.12
-anchor_bottom = 0.236
-offset_left = 0.199999
-offset_top = 0.119999
-offset_right = 0.199997
-offset_bottom = 0.0399933
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 3
+anchor_right = 0.1
+anchor_bottom = 0.178
+offset_bottom = -0.0800018
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ndcix")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(40, 40)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
 texture = ExtResource("1_hqvit")
 stretch_mode = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.266
+anchor_top = 0.578
+anchor_right = 0.891
+anchor_bottom = 0.937
+offset_left = -0.0240002
+offset_top = 0.00799942
+offset_right = -0.0240021
+offset_bottom = 0.0319977
+text = "0"
+horizontal_alignment = 2

@@ -27,19 +27,21 @@ var bauble_inventory : Array = [
 ]
 
 func _ready() -> void:
+	SignalBus.item_used.connect(determine_bauble_control)
 	pass
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Baublehead_Call"):
 		var current_index = find_empty_slot()
 		if current_index is int and current_index < 10:
-			spawn_bauble(current_index, "opal")
+			spawn_bauble("ruby", current_index)
 	if Input.is_action_just_pressed("Baublehead_Kill"):
 		var current_index = find_full_slot()
+		print(current_index)
 		if current_index is int and current_index < 10:
 			despawn_bauble(current_index)
 	if Input.is_action_just_pressed("Run"):
-		replace_bauble(0, "opal")
+		replace_bauble("ruby", 0)
 
 func find_empty_slot():
 	var current_index
@@ -53,17 +55,20 @@ func find_full_slot():
 	var current_index
 	for slot in bauble_inventory:
 		if slot is not Node:
-			current_index = bauble_inventory.find(slot) - 1
-			break
+			pass
 		elif slot is Node:
-			current_index = 9
+			current_index = bauble_inventory.find(slot)
+			break
 	return current_index
 
-func spawn_bauble(slot, type_of_bauble):
+func determine_bauble_control(item, party_slot):
+	var item_type = item.type 
+	replace_bauble(item_type, party_slot)
+
+func spawn_bauble(type_of_bauble, slot):
 	var new_bauble = bauble_scene.instantiate()
-	var current_index = find_empty_slot()
-	if current_index is int and current_index < 10:
-		bauble_inventory[current_index] = new_bauble
+	if slot is int and slot < 10:
+		bauble_inventory[slot] = new_bauble
 		new_bauble.type = load(bauble_types[type_of_bauble])
 		main.add_child(new_bauble)
 	else:
@@ -77,11 +82,11 @@ func despawn_bauble(slot):
 	else:
 		pass
 
-func replace_bauble(slot, type_of_bauble):
+func replace_bauble(type_of_bauble, slot):
 	if bauble_inventory[slot] is Node:
 		despawn_bauble(slot)
-		spawn_bauble(slot, type_of_bauble)
+		spawn_bauble(type_of_bauble, slot)
 	elif bauble_inventory[slot] == null:
-		spawn_bauble(slot, type_of_bauble)
+		spawn_bauble(type_of_bauble, slot)
 	else:
 		print('Nothing to replace')
