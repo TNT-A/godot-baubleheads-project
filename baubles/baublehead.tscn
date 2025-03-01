@@ -15,19 +15,16 @@ position = Vector2(135, 98)
 script = ExtResource("1_1xugq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.350296, 3.49664)
+position = Vector2(-2.98023e-08, -3.09944e-06)
 shape = SubResource("CapsuleShape2D_ebtt6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(10.3503, 0.496643)
 scale = Vector2(0.324671, 0.184444)
 texture = ExtResource("2_6cagt")
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(-2.6497, 7.49664)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-0.350296, -4.49664)
 shape = SubResource("CircleShape2D_3vjkq")
 
 [node name="find_player" parent="." instance=ExtResource("3_eu3jk")]
