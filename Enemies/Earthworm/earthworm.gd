@@ -18,21 +18,19 @@ func _ready():
 	target = find_target()
 
 func _physics_process(delta: float) -> void:
-	if target != null:
-		var angle_to_target: float = global_position.direction_to(target.global_position).angle()
-		raycast.global_rotation = angle_to_target
-		
-		if raycast.is_colliding() and raycast.get_collider().is_in_group("player"):
-			earthworm.rotation = angle_to_target
-			if timer.is_stopped():
-				shoot()
-
+	pass
+	#if target != null:
+		#var angle_to_target: float = global_position.direction_to(target.global_position).angle()
+		#raycast.global_rotation = angle_to_target
+		#if raycast.is_colliding() and raycast.get_collider().is_in_group("player"):
+			#earthworm.rotation = angle_to_target
+			#if timer.is_stopped():
+				#shoot()
 
 func shoot():
-	
 	raycast.enabled = false
 	if BULLET: 
-		var bullet: Node2D = BULLET.instance()
+		var bullet: Node2D = BULLET.instantiate()
 		get_tree().current_scene.add_child(bullet)
 		bullet.global_position = global_position
 		bullet.global_rotation = raycast.global_rotation
