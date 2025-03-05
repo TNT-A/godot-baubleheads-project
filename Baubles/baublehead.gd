@@ -6,6 +6,7 @@ class_name Baublehead
 @export var deceleration : float = .05
 @export var type : Resource
 
+@onready var nav_agent : NavigationAgent2D = $NavigationAgent2D
 @onready var player : Node = Global.player
 
 enum States {IDLE, FOLLOW, PATROL, THROWN, ATTACK, DEFEND, RETURN}
@@ -23,13 +24,9 @@ func _ready() -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
-	state_transition()
-	if state == States.FOLLOW:
-		move_toward_target(player.position, 250)
-	if state == States.IDLE:
-		resetVelocity()
-	if state == States.PATROL:
-		move_toward_target(get_global_mouse_position(), 350)
+	pathfinding()
+	#state_transition()
+	#state_functions()
 
 func state_transition():
 	if state == States.IDLE and inPlayer == false:
@@ -40,7 +37,14 @@ func state_transition():
 		state = States.PATROL
 	elif state == States.PATROL and Input.is_action_just_released("Player_Ability_1") == true:
 		state = States.IDLE
-	print(state)
+
+func state_functions():
+	if state == States.FOLLOW:
+		move_toward_target(player.global_position, 250)
+	if state == States.IDLE:
+		resetVelocity()
+	if state == States.PATROL:
+		move_toward_target(get_global_mouse_position(), 350)
 
 func random_spawn():
 	var rng = RandomNumberGenerator.new()
@@ -61,13 +65,22 @@ func resetVelocity():
 func move_toward_target(target, speed_change):
 	var direction
 	speed = speed_change
-	direction = (target - self.position).normalized()
+	direction = (target - self.global_position).normalized()
 	velocity = velocity.lerp(direction * speed, acceleration)
 	if velocity.x > 0 and abs(position.x - target.x) > 20:
 		$Sprite2D.flip_h = false
 	elif velocity.x < 0 and abs(position.x - target.x) > 20:
 		$Sprite2D.flip_h = true
 	move_and_slide()
+
+func pathfinding():
+	var next_path_pos := nav_agent.get_next_path_position()
+	var dir := global_position.direction_to(next_path_pos)
+	velocity = (dir*speed)
+	move_and_slide()
+
+func make_path():
+	nav_agent.target_position = player.global_position
 
 func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	if body == player:
@@ -76,3 +89,6 @@ func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_inde
 func _on_area_2d_body_shape_exited(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	if body == player:
 		inPlayer = false
+
+func _on_timer_timeout() -> void:
+	make_path()
