@@ -12,6 +12,9 @@ radius = 70.7931
 
 [node name="baublehead" type="CharacterBody2D"]
 position = Vector2(135, 98)
+collision_mask = 3
+motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_1xugq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -29,6 +32,14 @@ shape = SubResource("CircleShape2D_3vjkq")
 
 [node name="find_player" parent="." instance=ExtResource("3_eu3jk")]
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]
 [connection signal="body_shape_exited" from="Area2D" to="." method="_on_area_2d_body_shape_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
