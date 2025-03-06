@@ -34,14 +34,14 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Baublehead_Call"):
 		var current_index = find_empty_slot()
 		if current_index is int and current_index < 10:
-			spawn_bauble("ruby", current_index)
+			spawn_bauble("opal", current_index)
 	if Input.is_action_just_pressed("Baublehead_Kill"):
 		var current_index = find_full_slot()
 		print(current_index)
 		if current_index is int and current_index < 10:
 			despawn_bauble(current_index)
 	if Input.is_action_just_pressed("Run"):
-		replace_bauble("ruby", 0)
+		replace_bauble("opal", 0)
 
 func find_empty_slot():
 	var current_index
