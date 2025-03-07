@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://0iqsrpem6iqi" path="res://Baubles/bauble_sprites/Bauble_Ruby.png" id="2_6cagt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t0pkf"]
+radius = 4.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3vjkq"]
 radius = 79.0063
@@ -16,9 +17,9 @@ wall_min_slide_angle = 0.0
 script = ExtResource("1_1xugq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(8, -8)
 scale = Vector2(2, 2)
 texture = ExtResource("2_6cagt")
+offset = Vector2(4, -4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_t0pkf")
@@ -31,6 +32,7 @@ shape = SubResource("CircleShape2D_3vjkq")
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 16.0
 target_desired_distance = 8.0
+debug_enabled = true
 
 [node name="TimerPathfinding" type="Timer" parent="."]
 wait_time = 0.1

@@ -18,6 +18,7 @@ var target : Vector2
 signal on_spawned(baublehead)
 
 func _ready() -> void:
+	speed = player.speed
 	if type == null:
 		type = load("res://Baubles/bauble_resources/diamond_bauble.tres")
 	$Sprite2D.texture = type.sprite
@@ -27,7 +28,6 @@ func _ready() -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
-	new_target()
 	state_transition()
 	state_functions()
 
@@ -36,19 +36,21 @@ func state_transition():
 		state = States.FOLLOW
 	elif state == States.FOLLOW and inPlayer == true:
 		state = States.IDLE
-	elif (state == States.FOLLOW or state == States.IDLE) and Input.is_action_pressed("Player_Ability_1") == true:
+	elif (state == States.FOLLOW or state == States.IDLE) and Input.is_action_pressed("Player_Ability_2") == true:
 		state = States.PATROL
-	elif state == States.PATROL and Input.is_action_just_released("Player_Ability_1") == true:
+	elif state == States.PATROL and Input.is_action_just_released("Player_Ability_2") == true:
 		state = States.IDLE
 
 func state_functions():
 	if state == States.FOLLOW:
-		pathfinding()
-		#move_toward_target(player.global_position, 250)
+		new_target(player.global_position)
+		pathfinding(speed)
 	if state == States.IDLE:
 		resetVelocity()
 	if state == States.PATROL:
-		move_toward_target(get_global_mouse_position(), 350)
+		new_target(get_global_mouse_position())
+		pathfinding(speed*1.5)
+
 
 func random_location(location, range):
 	if player:
@@ -58,13 +60,21 @@ func random_location(location, range):
 		random_position.y = location.y + rng.randf_range(-range,range)
 		return random_position
 
+func random_pivot(location, range):
+	if player:
+		var rng = RandomNumberGenerator.new()
+		var random_pivot : Vector2 = Vector2()
+		random_pivot.x = rng.randf_range(-range,range)
+		random_pivot.y = rng.randf_range(-range,range)
+		return random_pivot
+
 func resetVelocity():
 	velocity = velocity.lerp(Vector2.ZERO,deceleration)
 	move_and_slide()
-	#if player.position > position and abs(position.x - player.position.x) > 20:
-		#$Sprite2D.flip_h = false
-	#if player.position < position and abs(position.x - player.position.x) > 20:
-		#$Sprite2D.flip_h = true
+	if player.position > position and abs(position.x - player.position.x) > 20:
+		$Sprite2D.flip_h = false
+	if player.position < position and abs(position.x - player.position.x) > 20:
+		$Sprite2D.flip_h = true
 
 func move_toward_target(target, speed_change):
 	var direction
@@ -77,10 +87,14 @@ func move_toward_target(target, speed_change):
 		$Sprite2D.flip_h = true
 	move_and_slide()
 
-func pathfinding():
+func pathfinding(speed_change):
 	var next_path_pos := nav_agent.get_next_path_position()
 	var dir := global_position.direction_to(next_path_pos)
-	velocity = velocity.lerp(dir * speed, acceleration)
+	velocity = velocity.lerp(dir * speed_change, acceleration)
+	if player.position > position and abs(position.x - player.position.x) > 20:
+		$Sprite2D.flip_h = false
+	if player.position < position and abs(position.x - player.position.x) > 20:
+		$Sprite2D.flip_h = true
 	move_and_slide()
 
 func make_path():
@@ -89,12 +103,14 @@ func make_path():
 	else:
 		nav_agent.target_position = player.global_position
 
+var target_pivot : Vector2 
 var target_timeout = false
-func new_target():
+func new_target(target_position):
+	target = target_position + target_pivot
 	if target_timeout == false:
-		target = random_location(player.global_position, 100.0)
+		target_pivot = random_pivot(target_position, 50.0)
 		target_timeout = true
-		await get_tree().create_timer(.30).timeout
+		await get_tree().create_timer(2.0).timeout
 		target_timeout = false
 
 func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
