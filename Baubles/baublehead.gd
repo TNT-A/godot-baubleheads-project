@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Baublehead
 
 @export var speed : int = 250
+@export var attack_speed : int = 400
 @export var acceleration : float = .1
 @export var deceleration : float = .05
 @export var type : Resource
@@ -9,13 +10,14 @@ class_name Baublehead
 @onready var nav_agent : NavigationAgent2D = $NavigationAgent2D
 @onready var player : Node = Global.player
 
-enum States {IDLE, FOLLOW, PATROL, THROWN, ATTACK, DEFEND, RETURN}
+enum States {IDLE, FOLLOW, PATROL, TARGETING, ATTACK, DEFEND, RETURN, THROWN}
 var state: States = States.IDLE
 
+var attack_time : bool = false
 var inPlayer : bool = false
+var current_enemy #: Node 
 var target : Vector2 
-
-signal on_spawned(baublehead)
+var damage : int = 1
 
 func _ready() -> void:
 	speed = player.speed
@@ -28,29 +30,65 @@ func _ready() -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
+	lose_enemy()
 	state_transition()
 	state_functions()
 
 func state_transition():
 	if state == States.IDLE and inPlayer == false:
 		state = States.FOLLOW
+		state_changed()
 	elif state == States.FOLLOW and inPlayer == true:
 		state = States.IDLE
+		state_changed()
 	elif (state == States.FOLLOW or state == States.IDLE) and Input.is_action_pressed("Player_Ability_2") == true:
 		state = States.PATROL
+		state_changed()
 	elif state == States.PATROL and Input.is_action_just_released("Player_Ability_2") == true:
-		state = States.IDLE
+		if detect_enemy() == true:
+			state = States.TARGETING
+		elif detect_enemy() == false:
+			state = States.IDLE
+		state_changed()
+	elif state == States.TARGETING and detect_enemy() == false:
+		state = States.FOLLOW
+		state_changed()
+	elif state == States.TARGETING and attack_time == true:
+		state = States.ATTACK
+		state_changed()
+	elif state == States.ATTACK:
+		if attack_time == false:
+			state = States.TARGETING
+		elif current_enemy == null:
+			state = States.TARGETING
+		state_changed()
 
+var attack_ready : bool = true
 func state_functions():
 	if state == States.FOLLOW:
-		new_target(player.global_position)
+		new_target(player.global_position, 50.0)
+		reset_target(50)
 		pathfinding(speed)
 	if state == States.IDLE:
-		resetVelocity()
+		reset_velocity()
 	if state == States.PATROL:
-		new_target(get_global_mouse_position())
+		new_target(get_global_mouse_position(), 0.0)
 		pathfinding(speed*1.5)
+	if state == States.TARGETING:
+		if $TimerAttackCooldown.is_stopped():
+			$TimerAttackCooldown.start()
+		$Sprite2D.scale = Vector2(2,2)
+		if current_enemy != null:
+			new_target(current_enemy.global_position, 50.0)
+		pathfinding(speed)
+	if state == States.ATTACK:
+		$Sprite2D.scale = Vector2(3,3)
+		attack_enemy()
 
+func state_changed():
+	target_decided = false
+	$TimerAttackCooldown.stop()
+	$Sprite2D.rotation = 0
 
 func random_location(location, range):
 	if player:
@@ -60,7 +98,7 @@ func random_location(location, range):
 		random_position.y = location.y + rng.randf_range(-range,range)
 		return random_position
 
-func random_pivot(location, range):
+func random_pivot(range):
 	if player:
 		var rng = RandomNumberGenerator.new()
 		var random_pivot : Vector2 = Vector2()
@@ -68,7 +106,7 @@ func random_pivot(location, range):
 		random_pivot.y = rng.randf_range(-range,range)
 		return random_pivot
 
-func resetVelocity():
+func reset_velocity():
 	velocity = velocity.lerp(Vector2.ZERO,deceleration)
 	move_and_slide()
 	if player.position > position and abs(position.x - player.position.x) > 20:
@@ -76,16 +114,38 @@ func resetVelocity():
 	if player.position < position and abs(position.x - player.position.x) > 20:
 		$Sprite2D.flip_h = true
 
-func move_toward_target(target, speed_change):
-	var direction
-	speed = speed_change
-	direction = (target - self.global_position).normalized()
-	velocity = velocity.lerp(direction * speed, acceleration)
-	if velocity.x > 0 and abs(position.x - target.x) > 20:
-		$Sprite2D.flip_h = false
-	elif velocity.x < 0 and abs(position.x - target.x) > 20:
-		$Sprite2D.flip_h = true
-	move_and_slide()
+func detect_enemy():
+	var inEnemy : bool = false
+	if current_enemy != null:
+		inEnemy = true
+	else:
+		inEnemy = false
+	return inEnemy
+
+var attack_speed_timeout : bool = false
+func attack_enemy():
+	var direction : Vector2 
+	var range : Vector2 = Vector2(3,3)
+	var max_enemy_distance : Vector2 = Vector2(50,50)
+	var enemy_position : Vector2 = current_enemy.global_position
+	var target_position : Vector2 = enemy_position + (enemy_position - global_position)
+	var distance : Vector2 
+	if attack_speed_timeout == false and attack_ready == true:
+		$Sprite2D.rotation = get_angle_to(current_enemy.global_position)
+		direction = (target_position - global_position).normalized()
+		velocity = (attack_speed * direction)
+		attack_ready = false
+		#print("Iran")
+	distance = abs(enemy_position - global_position)
+	if distance.x >= max_enemy_distance.x or distance.y >= max_enemy_distance.y:
+		reset_velocity()
+		SignalBus.emit_signal("change_enemy_health", current_enemy, damage)
+		attack_ready = true
+		attack_time = false
+		#print("I'll end it all now!")
+	else:
+		move_and_slide()
+		#print(distance, " ", state, " ", velocity, " ", attack_ready)
 
 func pathfinding(speed_change):
 	var next_path_pos := nav_agent.get_next_path_position()
@@ -104,18 +164,33 @@ func make_path():
 		nav_agent.target_position = player.global_position
 
 var target_pivot : Vector2 
-var target_timeout = false
-func new_target(target_position):
+var target_decided : bool = false
+func new_target(target_position, range):
+	if target_decided == false:
+		target_pivot = Vector2(0,0)
+		target_pivot = random_pivot(range)
+		target_decided = true
 	target = target_position + target_pivot
+
+var target_timeout = false
+func reset_target(range):
 	if target_timeout == false:
-		target_pivot = random_pivot(target_position, 50.0)
+		target_pivot = random_pivot(range)
 		target_timeout = true
 		await get_tree().create_timer(2.0).timeout
 		target_timeout = false
 
+func lose_enemy():
+	if is_instance_valid(current_enemy):
+		pass
+	else:
+		current_enemy = null
+
 func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	if body == player:
 		inPlayer = true
+	if body.is_in_group("enemy") and state == States.PATROL:
+		current_enemy = body
 
 func _on_area_2d_body_shape_exited(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	if body == player:
@@ -123,3 +198,6 @@ func _on_area_2d_body_shape_exited(body_rid: RID, body: Node2D, body_shape_index
 
 func _on_timer_timeout() -> void:
 	make_path()
+
+func _on_timer_attack_timeout() -> void:
+	attack_time = true
