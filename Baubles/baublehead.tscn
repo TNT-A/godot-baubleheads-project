@@ -7,7 +7,7 @@
 radius = 4.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3vjkq"]
-radius = 79.0063
+radius = 76.0263
 
 [node name="baublehead" type="CharacterBody2D"]
 position = Vector2(135, 98)
@@ -38,7 +38,11 @@ debug_enabled = true
 wait_time = 0.1
 autostart = true
 
+[node name="TimerAttackCooldown" type="Timer" parent="."]
+wait_time = 3.0
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]
 [connection signal="body_shape_exited" from="Area2D" to="." method="_on_area_2d_body_shape_exited"]
 [connection signal="timeout" from="TimerPathfinding" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="TimerAttackCooldown" to="." method="_on_timer_attack_timeout"]

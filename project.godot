@@ -34,6 +34,7 @@ inventory_slot=""
 Item="Can be dragged onto a party slot"
 party_slot="Is a party slot, can accept items"
 player="It's legit just the player bro"
+enemy="Is an enemy lmao"
 
 [input]
 

@@ -19,7 +19,7 @@ script/source = "extends Area2D
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iykv8"]
 size = Vector2(25.5, 25)
 
-[node name="Earthworm" type="CharacterBody2D"]
+[node name="Earthworm" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_3xudi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

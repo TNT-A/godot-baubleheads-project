@@ -136,4 +136,16 @@ item_resource = ExtResource("15_7p851")
 position = Vector2(203, 436)
 item_resource = ExtResource("15_7p851")
 
+[node name="Earthworm2" parent="." instance=ExtResource("4_cohp8")]
+position = Vector2(834, 241)
+
+[node name="Earthworm3" parent="." instance=ExtResource("4_cohp8")]
+position = Vector2(192, 233)
+
+[node name="Earthworm4" parent="." instance=ExtResource("4_cohp8")]
+position = Vector2(331, 506)
+
+[node name="Earthworm5" parent="." instance=ExtResource("4_cohp8")]
+position = Vector2(735, 539)
+
 [connection signal="body_entered" from="Bullet" to="Bullet" method="_on_body_entered"]
