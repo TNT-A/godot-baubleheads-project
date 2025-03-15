@@ -3,9 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://coa54e45uplra" path="res://player/player.tscn" id="1_6ima4"]
 [ext_resource type="Script" path="res://testing/testing.gd" id="1_8ocim"]
 [ext_resource type="PackedScene" uid="uid://dnlsiamufqhvp" path="res://cave_tilemap.tscn" id="2_ac32q"]
-[ext_resource type="PackedScene" uid="uid://s5mmhv02h0t8" path="res://in_game_ui.tscn" id="4_c0rjo"]
-[ext_resource type="PackedScene" uid="uid://e477mip5fnwt" path="res://enemies/earthworm/earthworm.tscn" id="4_cohp8"]
-[ext_resource type="PackedScene" uid="uid://dfaaxsafo3xgi" path="res://enemies/Effects/Explosion.tscn" id="9_0emdr"]
+[ext_resource type="PackedScene" path="res://in_game_ui.tscn" id="4_c0rjo"]
+[ext_resource type="PackedScene" uid="uid://e477mip5fnwt" path="res://Enemies/Earthworm/Earthworm.tscn" id="4_cohp8"]
+[ext_resource type="PackedScene" uid="uid://dfaaxsafo3xgi" path="res://Enemies/Effects/Explosion.tscn" id="9_0emdr"]
 [ext_resource type="PackedScene" uid="uid://bmgdfffipgdik" path="res://pickups/gemstone_pickup.tscn" id="9_dcapp"]
 [ext_resource type="PackedScene" uid="uid://cfwscgufalgmj" path="res://bullet.tscn" id="10_gv504"]
 [ext_resource type="Resource" uid="uid://srhbw1bth3p8" path="res://pickups/pickup_resource/item_opal.tres" id="11_ou7st"]
@@ -14,7 +14,7 @@
 [ext_resource type="Resource" uid="uid://ctnhj85v2swgr" path="res://pickups/pickup_resource/item_sapphire.tres" id="14_t2hwn"]
 [ext_resource type="Resource" uid="uid://c8guslvmqww32" path="res://pickups/pickup_resource/item_diamond.tres" id="15_7p851"]
 [ext_resource type="Resource" uid="uid://bnqkjk51xm27m" path="res://pickups/pickup_resource/item_ruby.tres" id="15_kqa0o"]
-[ext_resource type="PackedScene" uid="uid://02aewb52n510" path="res://floor_exit.tscn" id="19_pefhd"]
+[ext_resource type="PackedScene" path="res://floor_exit.tscn" id="19_pefhd"]
 
 [sub_resource type="GDScript" id="GDScript_vt2k7"]
 script/source = "extends Area2D
