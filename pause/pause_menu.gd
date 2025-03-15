@@ -6,7 +6,7 @@ extends Control
 @onready var main = $"../../"
 
 func _on_resume_pressed() -> void:
-	main.pauseMenu()
+	SignalBus.emit_signal("resume_game")
 
 func _on_settings_pressed() -> void:
 	settings_menu.show()

@@ -80,6 +80,7 @@ func state_functions():
 		pathfinding(speed*1.5)
 	if state == States.TARGETING:
 		if $TimerAttackCooldown.is_stopped():
+			$TimerAttackCooldown.wait_time = randf_range(0.8, 1.2)
 			$TimerAttackCooldown.start()
 		$Sprite2D.scale = Vector2(2,2)
 		if current_enemy != null:
@@ -129,7 +130,7 @@ func detect_enemy():
 var attack_speed_timeout : bool = false
 func attack_enemy():
 	var direction : Vector2 
-	var range : Vector2 = Vector2(3,3)
+	#var range : Vector2 = Vector2(3,3)
 	var max_enemy_distance : Vector2 = Vector2(50,50)
 	var enemy_position : Vector2 = current_enemy.global_position
 	var target_position : Vector2 = enemy_position + (enemy_position - global_position)
@@ -139,17 +140,14 @@ func attack_enemy():
 		direction = (target_position - global_position).normalized()
 		velocity = (attack_speed * direction)
 		attack_ready = false
-		#print("Iran")
 	distance = abs(enemy_position - global_position)
 	if distance.x >= max_enemy_distance.x or distance.y >= max_enemy_distance.y:
 		reset_velocity()
 		SignalBus.emit_signal("change_enemy_health", current_enemy, damage)
 		attack_ready = true
 		attack_time = false
-		#print("I'll end it all now!")
 	else:
 		move_and_slide()
-		#print(distance, " ", state, " ", velocity, " ", attack_ready)
 
 func pathfinding(speed_change):
 	var next_path_pos := nav_agent.get_next_path_position()

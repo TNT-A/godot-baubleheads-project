@@ -1,15 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://c8q38agy2c6wa"]
+[gd_scene load_steps=17 format=3 uid="uid://c8q38agy2c6wa"]
 
 [ext_resource type="PackedScene" uid="uid://coa54e45uplra" path="res://player/player.tscn" id="1_6ima4"]
 [ext_resource type="Script" path="res://testing/testing.gd" id="1_8ocim"]
 [ext_resource type="PackedScene" uid="uid://dnlsiamufqhvp" path="res://cave_tilemap.tscn" id="2_ac32q"]
-[ext_resource type="PackedScene" uid="uid://7gtqe8n30r7v" path="res://background/background.tscn" id="2_vmif0"]
-[ext_resource type="PackedScene" uid="uid://e477mip5fnwt" path="res://Enemies/Earthworm/Earthworm.tscn" id="4_cohp8"]
-[ext_resource type="Script" path="res://testing/health_bar.gd" id="4_ep7dp"]
-[ext_resource type="PackedScene" uid="uid://b0r48ca6qo1lv" path="res://settings/settings_menu.tscn" id="6_mun1c"]
-[ext_resource type="PackedScene" uid="uid://bhphdqmsev4lg" path="res://pause/pause_menu.tscn" id="7_ttung"]
-[ext_resource type="PackedScene" uid="uid://c6gn4ohjt7fri" path="res://Inventory/inventory.tscn" id="7_wwsyx"]
-[ext_resource type="PackedScene" uid="uid://dfaaxsafo3xgi" path="res://Enemies/Effects/Explosion.tscn" id="9_0emdr"]
+[ext_resource type="PackedScene" uid="uid://s5mmhv02h0t8" path="res://in_game_ui.tscn" id="4_c0rjo"]
+[ext_resource type="PackedScene" uid="uid://e477mip5fnwt" path="res://enemies/earthworm/earthworm.tscn" id="4_cohp8"]
+[ext_resource type="PackedScene" uid="uid://dfaaxsafo3xgi" path="res://enemies/Effects/Explosion.tscn" id="9_0emdr"]
 [ext_resource type="PackedScene" uid="uid://bmgdfffipgdik" path="res://pickups/gemstone_pickup.tscn" id="9_dcapp"]
 [ext_resource type="PackedScene" uid="uid://cfwscgufalgmj" path="res://bullet.tscn" id="10_gv504"]
 [ext_resource type="Resource" uid="uid://srhbw1bth3p8" path="res://pickups/pickup_resource/item_opal.tres" id="11_ou7st"]
@@ -18,6 +14,7 @@
 [ext_resource type="Resource" uid="uid://ctnhj85v2swgr" path="res://pickups/pickup_resource/item_sapphire.tres" id="14_t2hwn"]
 [ext_resource type="Resource" uid="uid://c8guslvmqww32" path="res://pickups/pickup_resource/item_diamond.tres" id="15_7p851"]
 [ext_resource type="Resource" uid="uid://bnqkjk51xm27m" path="res://pickups/pickup_resource/item_ruby.tres" id="15_kqa0o"]
+[ext_resource type="PackedScene" uid="uid://02aewb52n510" path="res://floor_exit.tscn" id="19_pefhd"]
 
 [sub_resource type="GDScript" id="GDScript_vt2k7"]
 script/source = "extends Area2D
@@ -42,57 +39,8 @@ script = ExtResource("1_8ocim")
 [node name="PlayerBody" parent="." instance=ExtResource("1_6ima4")]
 position = Vector2(557, 358)
 
-[node name="HealthBar" type="ProgressBar" parent="PlayerBody"]
-offset_left = -320.0
-offset_top = -183.0
-offset_right = -172.0
-offset_bottom = -148.0
-max_value = 5.0
-step = 1.0
-fill_mode = 1
-script = ExtResource("4_ep7dp")
-metadata/_edit_use_anchors_ = true
-
-[node name="PauseMenu" parent="PlayerBody" instance=ExtResource("7_ttung")]
+[node name="InGameUI" parent="." instance=ExtResource("4_c0rjo")]
 unique_name_in_owner = true
-visible = false
-z_index = 2
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = -60.0
-offset_top = -97.0
-offset_right = -60.0
-offset_bottom = -97.0
-grow_horizontal = 1
-grow_vertical = 1
-scale = Vector2(3, 3)
-
-[node name="SettingsMenu" parent="PlayerBody" instance=ExtResource("6_mun1c")]
-unique_name_in_owner = true
-visible = false
-z_index = 2
-offset_left = -116.0
-offset_top = -33.0
-offset_right = -116.0
-offset_bottom = -33.0
-scale = Vector2(2, 2)
-
-[node name="Inventory" parent="PlayerBody" instance=ExtResource("7_wwsyx")]
-unique_name_in_owner = true
-visible = false
-offset_left = -320.0
-offset_top = -180.0
-offset_right = 320.0
-offset_bottom = 180.0
-
-[node name="TextureRect" parent="." instance=ExtResource("2_vmif0")]
-visible = false
-z_index = -5
-offset_left = -52.0
-offset_top = 48.0
-offset_right = 2264.0
-offset_bottom = 1259.0
 
 [node name="Earthworm" parent="." instance=ExtResource("4_cohp8")]
 position = Vector2(584, 206)
@@ -147,5 +95,8 @@ position = Vector2(331, 506)
 
 [node name="Earthworm5" parent="." instance=ExtResource("4_cohp8")]
 position = Vector2(735, 539)
+
+[node name="FloorExit" parent="." instance=ExtResource("19_pefhd")]
+position = Vector2(485, 262)
 
 [connection signal="body_entered" from="Bullet" to="Bullet" method="_on_body_entered"]
