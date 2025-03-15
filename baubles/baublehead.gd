@@ -14,7 +14,7 @@ enum States {IDLE, FOLLOW, PATROL, TARGETING, ATTACK, DEFEND, RETURN, THROWN}
 var state: States = States.IDLE
 
 var attack_time : bool = false
-var inPlayer : bool = false
+var inPlayer : bool = false #checks if bauble is around the player
 var current_enemy #: Node 
 var target : Vector2 
 var damage : int = 1
@@ -33,7 +33,7 @@ func _physics_process(delta: float) -> void:
 	lose_enemy()
 	state_transition()
 	state_functions()
-
+#player ability 2 is right click
 func state_transition():
 	if state == States.IDLE and inPlayer == false:
 		state = States.FOLLOW
@@ -49,6 +49,9 @@ func state_transition():
 			state = States.TARGETING
 		elif detect_enemy() == false:
 			state = States.IDLE
+		state_changed()
+	elif (state == States.TARGETING or state == States.ATTACK) and Input.is_action_just_pressed("Crackhead_Call") == true:
+		state = States.FOLLOW
 		state_changed()
 	elif state == States.TARGETING and detect_enemy() == false:
 		state = States.FOLLOW
@@ -69,6 +72,7 @@ func state_functions():
 		new_target(player.global_position, 50.0)
 		reset_target(50)
 		pathfinding(speed)
+
 	if state == States.IDLE:
 		reset_velocity()
 	if state == States.PATROL:
