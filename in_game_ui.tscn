@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://s5mmhv02h0t8"]
+
+[ext_resource type="Script" path="res://in_game_ui.gd" id="1_d0fmj"]
+[ext_resource type="PackedScene" uid="uid://dol4pn3hf2vu4" path="res://health_bar.tscn" id="2_gylfp"]
+[ext_resource type="PackedScene" uid="uid://bhphdqmsev4lg" path="res://pause/pause_menu.tscn" id="2_uspk5"]
+[ext_resource type="PackedScene" uid="uid://b0r48ca6qo1lv" path="res://settings/settings_menu.tscn" id="3_4bekk"]
+[ext_resource type="PackedScene" uid="uid://c6gn4ohjt7fri" path="res://Inventory/inventory.tscn" id="4_vatir"]
+
+[node name="InGameUI" type="CanvasLayer"]
+script = ExtResource("1_d0fmj")
+
+[node name="HealthBar" parent="." instance=ExtResource("2_gylfp")]
+unique_name_in_owner = true
+
+[node name="PauseMenu" parent="." instance=ExtResource("2_uspk5")]
+unique_name_in_owner = true
+z_index = 2
+offset_left = 250.0
+offset_top = 81.0
+offset_right = -390.0
+offset_bottom = -279.0
+scale = Vector2(3, 3)
+
+[node name="SettingsMenu" parent="." instance=ExtResource("3_4bekk")]
+unique_name_in_owner = true
+z_index = 2
+offset_left = 197.0
+offset_top = 124.0
+offset_right = -443.0
+offset_bottom = -236.0
+scale = Vector2(2, 2)
+
+[node name="Inventory" parent="." instance=ExtResource("4_vatir")]
+unique_name_in_owner = true
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
