@@ -3,7 +3,7 @@ extends Node2D
 @onready var player = Global.player
 
 var player_scene : PackedScene = preload("res://player/player.tscn")
-var map_scene : PackedScene = preload("res://cave_tilemap.tscn") 
+var map_scene : PackedScene = preload("res://Maps/cave_tilemap.tscn") 
 var ui_scene : PackedScene = preload("res://in_game_ui.tscn")
 
 func _ready() -> void:

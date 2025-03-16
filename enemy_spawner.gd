@@ -4,4 +4,4 @@ extends Node2D
 var enemy_scene : PackedScene = preload("res://enemies/earthworm/earthworm.tscn")
 
 func _ready() -> void:
-	
+	pass
