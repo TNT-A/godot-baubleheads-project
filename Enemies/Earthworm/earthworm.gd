@@ -18,8 +18,6 @@ func _physics_process(delta: float) -> void:
 	#state_transition()
 	state_functions()
 
-	
-	
 func state_functions():
 	if state == States.ATTACK:
 		if $TimerAttackCooldown.is_stopped():
