@@ -22,7 +22,6 @@ func _process(delta: float) -> void:
 		inventoryMenu()
 
 func set_health_bar(max_health, health) -> void:
-	print(max_health, health)
 	%HealthBar.max_value = max_health
 	%HealthBar.value = health
 

@@ -30,7 +30,7 @@ shape = SubResource("RectangleShape2D_gjer8")
 position = Vector2(-2, 10)
 texture = ExtResource("1_riicm")
 
-[node name="DamageZone" parent="." groups=["hurts_player"] instance=ExtResource("3_rikgm")]
+[node name="DamageZone" parent="." instance=ExtResource("3_rikgm")]
 script = SubResource("GDScript_7v0ou")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]

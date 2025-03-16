@@ -21,8 +21,6 @@ func _physics_process(delta: float) -> void:
 	
 	state_functions()
 
-
-	
 func state_functions():
 	if state == States.ATTACK:
 		

@@ -9,7 +9,7 @@ script/source = "extends Area2D
 @export var damage_dealt : int = 1
 "
 
-[node name="DamageZone" type="Area2D"]
+[node name="DamageZone" type="Area2D" groups=["hurts_player"]]
 script = SubResource("GDScript_npbq6")
 
 [node name="Timer" type="Timer" parent="."]
