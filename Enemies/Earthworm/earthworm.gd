@@ -7,7 +7,7 @@ var is_alive : bool = true
 var attack_time : bool = false
 enum States {IDLE, ATTACK, MOVE}
 var state: States = States.ATTACK
-
+var playerCrackable : bool = false
 
 func _ready():
 	SignalBus.change_enemy_health.connect(change_health)
@@ -18,19 +18,28 @@ func _physics_process(delta: float) -> void:
 		die()
 	if Input.is_action_just_pressed("Testing"):
 		queue_free()
-	
+	state_transitions()
 	state_functions()
-
+	
+func state_transitions():
+	if playerCrackable:
+		state = States.ATTACK
+		
+		
+	elif true: #change conditional later
+		state = States.MOVE
+		
 func state_functions():
 	if state == States.ATTACK:
 		
 		if $TimerAttackCooldown.is_stopped():
 			
-			$TimerAttackCooldown.wait_time = randf_range(1.2,2.0)
+			$TimerAttackCooldown.wait_time = randf_range(1.2, 2.0)
+			
 			$TimerAttackCooldown.start()
-	if attack_time:
-		shoot()
-		attack_time = false
+		if attack_time:
+			shoot()
+			attack_time = false
 func shoot():
 	
 	add_child(crackshot.instantiate())
@@ -54,4 +63,24 @@ func die():
 
 
 func _on_timer_attack_cooldown_timeout():
-	attack_time = true
+	if playerCrackable:
+		attack_time = true
+	print(attack_time)
+
+
+func _on_area_2d_body_shape_entered(body_rid, body: Node2D, body_shape_index, local_shape_index):
+	if body == Global.player:
+		playerCrackable = true
+		print("player on crack")
+	pass # Replace with function body.
+
+
+func _on_area_2d_body_shape_exited(body_rid, body: Node2D, body_shape_index, local_shape_index):
+	if body == Global.player:
+		playerCrackable = false
+		$TimerAttackCooldown.stop()
+		$TimerAttackCooldown.wait_time = randf_range(1.2, 2.0)
+		attack_time = false
+		print("player no longer being cracked")
+		
+	pass # Replace with function body.
