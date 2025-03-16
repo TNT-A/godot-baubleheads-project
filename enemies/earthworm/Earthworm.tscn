@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://e477mip5fnwt"]
 
-[ext_resource type="Script" path="res://enemies/earthworm/earthworm.gd" id="1_3xudi"]
+[ext_resource type="Script" path="res://Enemies/Earthworm/earthworm.gd" id="1_ebkfr"]
 [ext_resource type="Texture2D" uid="uid://b8liyu5p322jp" path="res://PixelArt/Earthworm.png" id="1_riicm"]
 [ext_resource type="PackedScene" uid="uid://c8g0kk7fj1rdj" path="res://components/damage_zone/damage_zone.tscn" id="3_rikgm"]
 
@@ -20,7 +20,7 @@ script/source = "extends Area2D
 size = Vector2(25.5, 25)
 
 [node name="Earthworm" type="CharacterBody2D" groups=["enemy"]]
-script = ExtResource("1_3xudi")
+script = ExtResource("1_ebkfr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-5, 4)
@@ -40,3 +40,7 @@ shape = SubResource("RectangleShape2D_iykv8")
 [node name="Mouth" type="Marker2D" parent="."]
 position = Vector2(-23, 0)
 gizmo_extents = 23.0
+
+[node name="TimerAttackCooldown" type="Timer" parent="."]
+
+[connection signal="timeout" from="TimerAttackCooldown" to="." method="_on_timer_attack_cooldown_timeout"]
