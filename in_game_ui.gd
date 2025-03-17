@@ -8,6 +8,7 @@ var paused = false
 var inventory = false
 
 func _ready():
+	visible = true
 	SignalBus.scene_transition.connect(change_scene)
 	SignalBus.set_health_bar.connect(set_health_bar)
 	SignalBus.resume_game.connect(pauseMenu)
