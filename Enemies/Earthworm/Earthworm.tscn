@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://e477mip5fnwt"]
+[gd_scene load_steps=8 format=3 uid="uid://e477mip5fnwt"]
 
 [ext_resource type="Script" path="res://Enemies/Earthworm/earthworm.gd" id="1_ebkfr"]
 [ext_resource type="Texture2D" uid="uid://b8liyu5p322jp" path="res://PixelArt/Earthworm.png" id="1_riicm"]
@@ -11,13 +11,16 @@ size = Vector2(24, 24)
 script/source = "extends Area2D
 
 @onready var timer: Timer = $Timer
-@onready var node = get_node(\"player\")
+# @onready var node = get_node(\"player\") do we need this?
 
 @export var damage_dealt : int = 1
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iykv8"]
 size = Vector2(25.5, 25)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qvyj8"]
+radius = 157.537
 
 [node name="Earthworm" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_ebkfr")
@@ -43,4 +46,11 @@ gizmo_extents = 23.0
 
 [node name="TimerAttackCooldown" type="Timer" parent="."]
 
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_qvyj8")
+
 [connection signal="timeout" from="TimerAttackCooldown" to="." method="_on_timer_attack_cooldown_timeout"]
+[connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]
+[connection signal="body_shape_exited" from="Area2D" to="." method="_on_area_2d_body_shape_exited"]
