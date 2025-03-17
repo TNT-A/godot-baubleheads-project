@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c8q38agy2c6wa"]
+[gd_scene load_steps=18 format=3 uid="uid://c8q38agy2c6wa"]
 
 [ext_resource type="PackedScene" uid="uid://coa54e45uplra" path="res://player/player.tscn" id="1_6ima4"]
 [ext_resource type="Script" path="res://testing/testing.gd" id="1_8ocim"]
@@ -14,6 +14,7 @@
 [ext_resource type="Resource" uid="uid://ctnhj85v2swgr" path="res://pickups/pickup_resource/item_sapphire.tres" id="14_t2hwn"]
 [ext_resource type="Resource" uid="uid://c8guslvmqww32" path="res://pickups/pickup_resource/item_diamond.tres" id="15_7p851"]
 [ext_resource type="Resource" uid="uid://bnqkjk51xm27m" path="res://pickups/pickup_resource/item_ruby.tres" id="15_kqa0o"]
+[ext_resource type="PackedScene" uid="uid://cneonblq7tq5d" path="res://enemy_spawner.tscn" id="16_u7vp4"]
 [ext_resource type="PackedScene" uid="uid://02aewb52n510" path="res://floor_exit.tscn" id="19_pefhd"]
 
 [sub_resource type="GDScript" id="GDScript_vt2k7"]
@@ -41,6 +42,7 @@ position = Vector2(557, 358)
 
 [node name="InGameUI" parent="." instance=ExtResource("4_c0rjo")]
 unique_name_in_owner = true
+visible = false
 
 [node name="Earthworm" parent="." instance=ExtResource("4_cohp8")]
 position = Vector2(584, 206)
@@ -84,19 +86,16 @@ item_resource = ExtResource("15_7p851")
 position = Vector2(203, 436)
 item_resource = ExtResource("15_7p851")
 
-[node name="Earthworm2" parent="." instance=ExtResource("4_cohp8")]
-position = Vector2(834, 241)
-
-[node name="Earthworm3" parent="." instance=ExtResource("4_cohp8")]
-position = Vector2(192, 233)
-
-[node name="Earthworm4" parent="." instance=ExtResource("4_cohp8")]
-position = Vector2(331, 506)
-
-[node name="Earthworm5" parent="." instance=ExtResource("4_cohp8")]
-position = Vector2(735, 539)
-
 [node name="FloorExit" parent="." instance=ExtResource("19_pefhd")]
 position = Vector2(485, 262)
+
+[node name="EnemySpawner" parent="." instance=ExtResource("16_u7vp4")]
+position = Vector2(557, 642)
+
+[node name="EnemySpawner2" parent="." instance=ExtResource("16_u7vp4")]
+position = Vector2(211, 252)
+
+[node name="EnemySpawner3" parent="." instance=ExtResource("16_u7vp4")]
+position = Vector2(802, 298)
 
 [connection signal="body_entered" from="Bullet" to="Bullet" method="_on_body_entered"]

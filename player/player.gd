@@ -1,7 +1,5 @@
 extends CharacterBody2D
 
-@onready var in_game_ui: CanvasLayer = %InGameUI
-
 @export var speed : int = 200
 @export var acceleration : float = .1
 @export var deceleration : float = .1
