@@ -20,7 +20,7 @@ script/source = "extends Area2D
 size = Vector2(25.5, 25)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qvyj8"]
-radius = 157.537
+radius = 371.163
 
 [node name="Earthworm" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_ebkfr")

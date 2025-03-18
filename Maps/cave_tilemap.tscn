@@ -1,8 +1,12 @@
-[gd_scene load_steps=5 format=4 uid="uid://dnlsiamufqhvp"]
+[gd_scene load_steps=9 format=4 uid="uid://dnlsiamufqhvp"]
 
 [ext_resource type="TileSet" uid="uid://3fxl7giqa67u" path="res://cave_tileset.tres" id="1_ho417"]
 [ext_resource type="PackedScene" uid="uid://cneonblq7tq5d" path="res://enemy_spawner.tscn" id="2_vrnme"]
 [ext_resource type="PackedScene" uid="uid://02aewb52n510" path="res://floor_exit.tscn" id="3_f8v0e"]
+[ext_resource type="PackedScene" uid="uid://bmgdfffipgdik" path="res://pickups/gemstone_pickup.tscn" id="4_aontj"]
+[ext_resource type="Resource" uid="uid://ctnhj85v2swgr" path="res://pickups/pickup_resource/item_sapphire.tres" id="5_bi6c3"]
+[ext_resource type="Resource" uid="uid://bnqkjk51xm27m" path="res://pickups/pickup_resource/item_ruby.tres" id="6_dgtj2"]
+[ext_resource type="Resource" uid="uid://ewck2wib7hun" path="res://pickups/pickup_resource/item_topaz.tres" id="7_ojrgi"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_rbath"]
 vertices = PackedVector2Array(87, -40, -656.617, -40, -656.281, -85.0625, 87, -86.2734, 1111, -40, 359, -40, 359, -86.7109, 1111, -87.9297, 239, 96, 904.438, 296, 821.563, 296, -329, 288, -329, 127.281, 207, 96, -73, 672, 1087, 768, -633, 768, -249, 672, 1087, 96, 951, 480, 951, 319.281, 775, 319.281, 775, 480, -73, 511.281, 207, 32, 239, 32, -119.563, 488, -202.438, 488, -249, 511.281, -505, 288, -633, 96, -505, 127.281, -458.438, 104, -375.563, 104)
@@ -25,7 +29,43 @@ position = Vector2(1, 0)
 navigation_polygon = SubResource("NavigationPolygon_rbath")
 
 [node name="EnemySpawner" parent="." instance=ExtResource("2_vrnme")]
-position = Vector2(208, 478)
+position = Vector2(211, 757)
 
 [node name="FloorExit" parent="." instance=ExtResource("3_f8v0e")]
-position = Vector2(850, 659)
+position = Vector2(897, 754)
+
+[node name="GemstonePickup" parent="." instance=ExtResource("4_aontj")]
+position = Vector2(-333, 263)
+item_resource = ExtResource("5_bi6c3")
+
+[node name="GemstonePickup2" parent="." instance=ExtResource("4_aontj")]
+position = Vector2(-416, 273)
+item_resource = ExtResource("5_bi6c3")
+
+[node name="GemstonePickup3" parent="." instance=ExtResource("4_aontj")]
+position = Vector2(-362, 347)
+item_resource = ExtResource("5_bi6c3")
+
+[node name="GemstonePickup4" parent="." instance=ExtResource("4_aontj")]
+position = Vector2(515, 526)
+item_resource = ExtResource("6_dgtj2")
+
+[node name="GemstonePickup5" parent="." instance=ExtResource("4_aontj")]
+position = Vector2(432, 536)
+item_resource = ExtResource("6_dgtj2")
+
+[node name="GemstonePickup6" parent="." instance=ExtResource("4_aontj")]
+position = Vector2(486, 610)
+item_resource = ExtResource("6_dgtj2")
+
+[node name="GemstonePickup7" parent="." instance=ExtResource("4_aontj")]
+position = Vector2(865, 189)
+item_resource = ExtResource("7_ojrgi")
+
+[node name="GemstonePickup8" parent="." instance=ExtResource("4_aontj")]
+position = Vector2(782, 199)
+item_resource = ExtResource("7_ojrgi")
+
+[node name="GemstonePickup9" parent="." instance=ExtResource("4_aontj")]
+position = Vector2(836, 273)
+item_resource = ExtResource("7_ojrgi")

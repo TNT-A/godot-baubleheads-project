@@ -1,24 +1,32 @@
 extends CharacterBody2D
 
-@export var speed : int = 200
 @export var acceleration : float = .1
 @export var deceleration : float = .1
 
-var health = Max_Health
-const Max_Health = 5
+@export var stats : Dictionary = {
+	max_health = 5,
+	health = 5,
+	speed = 200,
+}
 
 enum States {IDLE, WALKING, RUNNING}
 var state: States = States.IDLE
 
-func change_health(change):
-	health -= change
-	if health <= 0:
-		health = 0
-	SignalBus.emit_signal("set_health_bar", Max_Health, health)
-
 func _ready() -> void:
-	SignalBus.emit_signal("set_health_bar", Max_Health, health)
-	$"/root/Global".register_player(self)
+	Global.register_player(self)
+	set_stats()
+	SignalBus.emit_signal("set_health_bar", stats.max_health, stats.health)
+
+func set_stats():
+	Global.register_player(self)
+	for stat in stats:
+		stats[stat] = Global.player_stats[stat]
+
+func change_health(change):
+	stats.health -= change
+	if stats.health <= 0:
+		stats.health = 0
+	SignalBus.emit_signal("set_health_bar", stats.max_health, stats.health)
 
 func _physics_process(delta: float) -> void:
 	state_transition()
@@ -62,7 +70,7 @@ func reset_velocity():
 func walk():
 	var direction : Vector2 = get_direction()
 	if direction.length() > 0:
-		velocity = velocity.lerp(direction.normalized() * speed, acceleration)
+		velocity = velocity.lerp(direction.normalized() * stats.speed, acceleration)
 	else:
 		velocity = velocity.lerp(Vector2.ZERO,deceleration)
 	if velocity.x > 0:
@@ -76,4 +84,3 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	var enemy = area
 	if area.is_in_group("hurts_player"):
 		change_health(enemy.damage_dealt)
-		print(enemy.damage_dealt)

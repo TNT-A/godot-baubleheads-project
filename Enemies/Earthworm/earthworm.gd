@@ -20,22 +20,17 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 	state_transitions()
 	state_functions()
-	
+
 func state_transitions():
 	if playerCrackable:
 		state = States.ATTACK
-		
-		
 	elif true: #change conditional later
 		state = States.MOVE
-		
+
 func state_functions():
 	if state == States.ATTACK:
-		
 		if $TimerAttackCooldown.is_stopped():
-			
 			$TimerAttackCooldown.wait_time = randf_range(1.2, 2.0)
-			
 			$TimerAttackCooldown.start()
 		if attack_time:
 			shoot()
@@ -57,23 +52,13 @@ func change_health(enemy, change):
 func die():
 	queue_free()
 
-
-
-	
-
-
 func _on_timer_attack_cooldown_timeout():
 	if playerCrackable:
 		attack_time = true
-	print(attack_time)
-
 
 func _on_area_2d_body_shape_entered(body_rid, body: Node2D, body_shape_index, local_shape_index):
 	if body == Global.player:
 		playerCrackable = true
-		print("player on crack")
-	pass # Replace with function body.
-
 
 func _on_area_2d_body_shape_exited(body_rid, body: Node2D, body_shape_index, local_shape_index):
 	if body == Global.player:
@@ -81,6 +66,3 @@ func _on_area_2d_body_shape_exited(body_rid, body: Node2D, body_shape_index, loc
 		$TimerAttackCooldown.stop()
 		$TimerAttackCooldown.wait_time = randf_range(1.2, 2.0)
 		attack_time = false
-		print("player no longer being cracked")
-		
-	pass # Replace with function body.

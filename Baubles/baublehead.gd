@@ -20,14 +20,13 @@ var target : Vector2
 var damage : int = 1
 
 func _ready() -> void:
-	speed = player.speed
+	speed = player.stats.speed
 	if type == null:
 		type = load("res://Baubles/bauble_resources/diamond_bauble.tres")
 	$Sprite2D.texture = type.sprite
 	$Sprite2D.scale = Vector2(2,2)
 	self.position = random_location(player.position, 30.0)
 	emit_signal("on_spawned", self)
-	pass
 
 func _physics_process(delta: float) -> void:
 	lose_enemy()
