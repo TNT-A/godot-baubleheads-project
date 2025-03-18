@@ -13,6 +13,19 @@ var bauble_types : Dictionary = {
 	"diamond" : "res://Baubles/bauble_resources/diamond_bauble.tres",
 	}
 
+var saved_baubles : Array = [
+	null,
+	null,
+	null,
+	null,
+	null,
+	null,
+	null,
+	null,
+	null,
+	null,
+]
+
 var bauble_inventory : Array = [
 	null,
 	null,
@@ -31,13 +44,14 @@ func _ready() -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
+	main = get_tree().current_scene
 	if Input.is_action_just_pressed("Baublehead_Call"):
 		var current_index = find_empty_slot()
 		if current_index is int and current_index < 10:
 			spawn_bauble("opal", current_index)
 	if Input.is_action_just_pressed("Baublehead_Kill"):
 		var current_index = find_full_slot()
-		print(current_index)
+		#print(current_index)
 		if current_index is int and current_index < 10:
 			despawn_bauble(current_index)
 	if Input.is_action_just_pressed("Run"):
@@ -54,7 +68,7 @@ func find_empty_slot():
 func find_full_slot():
 	var current_index
 	for slot in bauble_inventory:
-		if slot is not Node:
+		if slot is not Node: # slot == null:
 			pass
 		elif slot is Node:
 			current_index = bauble_inventory.find(slot)
@@ -64,6 +78,21 @@ func find_full_slot():
 func determine_bauble_control(item, party_slot):
 	var item_type = item.type 
 	replace_bauble(item_type, party_slot)
+
+func refill_party():
+	main = get_tree().current_scene
+	var slot_count = bauble_inventory.size()
+	for index in slot_count:
+		#var index = saved_baubles.find(bauble)
+		var bauble = saved_baubles[index]
+		if saved_baubles[index] != null:
+			spawn_bauble(bauble, index)
+			#print("real")
+		elif saved_baubles[index] == null:
+			bauble_inventory[index] = null
+			#print("ICANT")
+	#print("refill done")
+	#print(bauble_inventory)
 
 func spawn_bauble(type_of_bauble, slot):
 	var new_bauble = bauble_scene.instantiate()
@@ -89,4 +118,5 @@ func replace_bauble(type_of_bauble, slot):
 	elif bauble_inventory[slot] == null:
 		spawn_bauble(type_of_bauble, slot)
 	else:
-		print('Nothing to replace')
+		#print('Nothing to replace')
+		pass

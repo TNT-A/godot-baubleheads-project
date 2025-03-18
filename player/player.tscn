@@ -15,7 +15,6 @@ height = 42.0
 position = Vector2(543, 276)
 collision_mask = 2
 script = ExtResource("1_rjkni")
-speed = 250
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 1)
