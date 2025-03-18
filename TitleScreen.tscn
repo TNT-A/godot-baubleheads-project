@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnpccuwttp3yn"]
+
+[ext_resource type="Texture2D" uid="uid://cr8xc6fe4a0ht" path="res://PixelArt/BaubleHeadsTitle1.png" id="1_p4u8o"]
+
+[node name="TextureRect" type="TextureRect"]
+offset_right = 248.0
+offset_bottom = 171.0
+texture = ExtResource("1_p4u8o")
