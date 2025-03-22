@@ -17,6 +17,8 @@ func _ready() -> void:
 	choose_map()
 	create_game_scene()
 	BaubleManager.refill_party()
+	$FadeToBlack.fade_from_black()
+	await $FadeToBlack/AnimationPlayer.animation_finished
 
 func create_game_scene():
 	var new_ui = ui_scene.instantiate()
@@ -33,6 +35,9 @@ func choose_map():
 	map_scene = preload("res://Maps/cave_tilemap.tscn") 
 
 func switch_maps():
+	$FadeToBlack.fade_from_black()
+	await $FadeToBlack/AnimationPlayer.animation_finished
+	print("sick nasty")
 	save_player_stats()
 	save_baubles()
 	save_inventory()

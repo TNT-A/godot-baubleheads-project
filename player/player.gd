@@ -9,6 +9,8 @@ extends CharacterBody2D
 	speed = 200,
 }
 
+@onready var hand_marker = $Marker2D
+@onready var sprite = $Sprite2D
 enum States {IDLE, WALKING, RUNNING}
 var state: States = States.IDLE
 
@@ -75,8 +77,10 @@ func walk():
 		velocity = velocity.lerp(Vector2.ZERO,deceleration)
 	if velocity.x > 0:
 		get_node("%Sprite2D").flip_h = false
+		hand_marker.position = Vector2(17, 4)
 	elif velocity.x < 0:
 		get_node("%Sprite2D").flip_h = true
+		hand_marker.position = Vector2(-17, 4)
 	move_and_slide()
 	#print(velocity)
 

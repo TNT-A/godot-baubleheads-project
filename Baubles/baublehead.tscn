@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://d31vg3emxkypt"]
+[gd_scene load_steps=12 format=3 uid="uid://d31vg3emxkypt"]
 
 [ext_resource type="Script" path="res://Baubles/baublehead.gd" id="1_1xugq"]
 [ext_resource type="Texture2D" uid="uid://0iqsrpem6iqi" path="res://Baubles/bauble_sprites/Bauble_Ruby.png" id="2_6cagt"]
@@ -7,7 +7,61 @@
 radius = 4.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3vjkq"]
-radius = 76.0263
+radius = 51.1566
+
+[sub_resource type="Animation" id="Animation_udpbm"]
+resource_name = "thrown"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.5708, 3.14159, 4.71239, 6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_f1n71"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_4vfyu"]
+resource_name = "idle"
+
+[sub_resource type="Animation" id="Animation_vo0e4"]
+resource_name = "walk"
+
+[sub_resource type="Animation" id="Animation_5n0qo"]
+resource_name = "attack"
+
+[sub_resource type="Animation" id="Animation_65cpm"]
+resource_name = "sit"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bjdru"]
+_data = {
+"RESET": SubResource("Animation_f1n71"),
+"attack": SubResource("Animation_5n0qo"),
+"idle": SubResource("Animation_4vfyu"),
+"sit": SubResource("Animation_65cpm"),
+"thrown": SubResource("Animation_udpbm"),
+"walk": SubResource("Animation_vo0e4")
+}
 
 [node name="baublehead" type="CharacterBody2D"]
 position = Vector2(135, 98)
@@ -34,14 +88,23 @@ path_desired_distance = 16.0
 target_desired_distance = 8.0
 debug_enabled = true
 
+[node name="TimerRange" type="Timer" parent="."]
+wait_time = 10.0
+
 [node name="TimerPathfinding" type="Timer" parent="."]
 wait_time = 0.1
 autostart = true
 
 [node name="TimerAttackCooldown" type="Timer" parent="."]
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bjdru")
+}
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]
 [connection signal="body_shape_exited" from="Area2D" to="." method="_on_area_2d_body_shape_exited"]
+[connection signal="timeout" from="TimerRange" to="." method="_on_timer_range_timeout"]
 [connection signal="timeout" from="TimerPathfinding" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="TimerAttackCooldown" to="." method="_on_timer_attack_timeout"]
