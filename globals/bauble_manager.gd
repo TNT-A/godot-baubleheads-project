@@ -3,6 +3,7 @@ extends Node
 @onready var main = get_tree().current_scene
 
 var bauble_scene : PackedScene = preload("res://Baubles/baublehead.tscn")
+var held_count : int = 0
 
 var bauble_types : Dictionary = {
 	"ruby" : "res://Baubles/bauble_resources/ruby_bauble.tres", 
@@ -39,12 +40,15 @@ var bauble_inventory : Array = [
 	null
 ]
 
+var held_baubles : Array
+
 func _ready() -> void:
 	SignalBus.item_used.connect(determine_bauble_control)
-	pass
 
 func _physics_process(delta: float) -> void:
 	main = get_tree().current_scene
+	count_held()
+	held_count = held_baubles.size()
 	if Input.is_action_just_pressed("Baublehead_Call"):
 		var current_index = find_empty_slot()
 		if current_index is int and current_index < 10:
@@ -100,7 +104,9 @@ func spawn_bauble(type_of_bauble, slot):
 		bauble_inventory[slot] = new_bauble
 		new_bauble.type = load(bauble_types[type_of_bauble])
 		main.add_child(new_bauble)
+		print("okay :D")
 	else:
+		print("nuh-uh")
 		pass
 
 func despawn_bauble(slot):
@@ -120,3 +126,18 @@ func replace_bauble(type_of_bauble, slot):
 	else:
 		#print('Nothing to replace')
 		pass
+
+func count_held():
+	for bauble in bauble_inventory:
+		if bauble is Node:
+			if bauble.being_held:
+				if !held_baubles.has(bauble):
+					held_baubles.append(bauble)
+			elif !bauble.being_held:
+				if held_baubles.has(bauble):
+					var index = held_baubles.find(bauble)
+					held_baubles.remove_at(index)
+	for held_bauble in held_baubles:
+		if !is_instance_valid(held_bauble):
+			var index = held_baubles.find(held_bauble)
+			held_baubles.remove_at(index)
