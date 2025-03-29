@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="Item_Opal" load_steps=3 format=3 uid="uid://srhbw1bth3p8"]
+[gd_resource type="Resource" script_class="Item_Opal" load_steps=3 format=3 uid="uid://dk3ayj76rr52f"]
 
-[ext_resource type="Script" path="res://pickups/pickup_resource_script/item_opal.gd" id="1_t7gs7"]
-[ext_resource type="Texture2D" uid="uid://cnls5fgxx5p3s" path="res://Inventory/inventorySprites/Item_opal.png" id="2_8ps2n"]
+[ext_resource type="Texture2D" uid="uid://cnls5fgxx5p3s" path="res://Inventory/inventorySprites/Item_opal.png" id="1_g5wa3"]
+[ext_resource type="Script" path="res://pickups/pickup_resource_script/item_opal.gd" id="2_murkp"]
 
 [resource]
-script = ExtResource("1_t7gs7")
-sprite = ExtResource("2_8ps2n")
+script = ExtResource("2_murkp")
+pickup_sprite = ExtResource("1_g5wa3")
 type = "opal"
+inventory_sprite = ExtResource("1_g5wa3")

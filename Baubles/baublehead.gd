@@ -69,7 +69,7 @@ func _ready() -> void:
 		#print("I'm dead XD")
 	load_stats()
 	if type == null:
-		type = load("res://Baubles/bauble_resources/diamond_bauble.tres")
+		type = load("res://baubles/bauble_resources/diamond_bauble.tres")
 	favored_pickup = "pickup_" + type.type
 	$Sprite2D.texture = type.sprite
 	$Sprite2D.scale = Vector2(2,2)

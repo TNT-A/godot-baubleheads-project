@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://855bl0eld2f0"
-path="res://.godot/imported/Bauble_Emerald33.png-4c806660ad2c8edb2675851d7fc8f820.ctex"
+path="res://.godot/imported/Bauble_Emerald33.png-2e95eabf6889de62e4504b6808034477.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Baubles/bauble_sprites/Bauble_Emerald33.png"
-dest_files=["res://.godot/imported/Bauble_Emerald33.png-4c806660ad2c8edb2675851d7fc8f820.ctex"]
+source_file="res://baubles/bauble_sprites/Bauble_Emerald33.png"
+dest_files=["res://.godot/imported/Bauble_Emerald33.png-2e95eabf6889de62e4504b6808034477.ctex"]
 
 [params]
 

@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="Item_Emerald" load_steps=3 format=3 uid="uid://c1ge2a0sudct1"]
+[gd_resource type="Resource" script_class="Item_Emerald" load_steps=3 format=3 uid="uid://q8otuondegwd"]
 
-[ext_resource type="Script" path="res://pickups/pickup_resource_script/item_emerald.gd" id="1_nj1oc"]
-[ext_resource type="Texture2D" uid="uid://ba1x0c7f7ud7j" path="res://Inventory/inventorySprites/Item_emerald.png" id="2_66rm0"]
+[ext_resource type="Texture2D" uid="uid://ba1x0c7f7ud7j" path="res://Inventory/inventorySprites/Item_emerald.png" id="1_tcaco"]
+[ext_resource type="Script" path="res://pickups/pickup_resource_script/item_emerald.gd" id="2_k3wc3"]
 
 [resource]
-script = ExtResource("1_nj1oc")
-sprite = ExtResource("2_66rm0")
+script = ExtResource("2_k3wc3")
+pickup_sprite = ExtResource("1_tcaco")
 type = "emerald"
+inventory_sprite = ExtResource("1_tcaco")

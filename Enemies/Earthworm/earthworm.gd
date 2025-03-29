@@ -21,8 +21,7 @@ var drop_chart : Dictionary = {
 	"none" : 40,
 	"ruby" : 60,
 	"sapphire" : 80,
-	"topaz" : 100
-}
+	"topaz" : 100}
 
 func _ready():
 	SignalBus.change_enemy_health.connect(change_health)
