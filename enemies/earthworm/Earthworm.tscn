@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://e477mip5fnwt"]
+[gd_scene load_steps=9 format=3 uid="uid://e477mip5fnwt"]
 
 [ext_resource type="Script" path="res://Enemies/Earthworm/earthworm.gd" id="1_ebkfr"]
 [ext_resource type="Texture2D" uid="uid://b8liyu5p322jp" path="res://PixelArt/Earthworm.png" id="1_riicm"]
@@ -21,6 +21,9 @@ size = Vector2(25.5, 25)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qvyj8"]
 radius = 371.163
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ueksg"]
+radius = 136.004
 
 [node name="Earthworm" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_ebkfr")
@@ -51,6 +54,13 @@ gizmo_extents = 23.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_qvyj8")
 
+[node name="BaubleChecker" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaubleChecker"]
+shape = SubResource("CircleShape2D_ueksg")
+
 [connection signal="timeout" from="TimerAttackCooldown" to="." method="_on_timer_attack_cooldown_timeout"]
 [connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]
 [connection signal="body_shape_exited" from="Area2D" to="." method="_on_area_2d_body_shape_exited"]
+[connection signal="body_entered" from="BaubleChecker" to="." method="_on_bauble_checker_body_entered"]
+[connection signal="body_exited" from="BaubleChecker" to="." method="_on_bauble_checker_body_exited"]

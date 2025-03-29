@@ -18,6 +18,19 @@ var bauble_types : Dictionary = {
 	"diamond" : "res://Baubles/bauble_resources/diamond_bauble.tres",
 	}
 
+var bauble_inventory : Array = [
+	null,
+	null,
+	null,
+	null,
+	null,
+	null,
+	null,
+	null,
+	null,
+	null
+]
+
 var saved_baubles : Array = [
 	null,
 	null,
@@ -31,7 +44,20 @@ var saved_baubles : Array = [
 	null,
 ]
 
-var bauble_inventory : Array = [
+var bauble_stats_template : Dictionary = {
+	level = 1,
+	exp = 0,
+	exp_max = 100,
+	health = 5,
+	damage = 1, 
+	throw_damage = 3,
+	max_range = 0.8,
+	speed = 250,
+	attack_speed = 400,
+	attack_cooldown = 1.0
+}
+
+var bauble_stats_list : Array = [
 	null,
 	null,
 	null,
@@ -41,7 +67,7 @@ var bauble_inventory : Array = [
 	null,
 	null,
 	null,
-	null
+	null,
 ]
 
 var held_baubles : Array
@@ -90,7 +116,12 @@ func find_full_slot():
 
 func determine_bauble_control(item, party_slot):
 	var item_type = item.type 
-	replace_bauble(item_type, party_slot)
+	var pickup_type = "pickup_" + item_type
+	
+	if bauble_inventory[party_slot] is Node:
+		bauble_inventory[party_slot].add_xp(pickup_type)
+	else:
+		replace_bauble(item_type, party_slot)
 
 func refill_party():
 	main = get_tree().current_scene

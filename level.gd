@@ -51,6 +51,7 @@ func switch_maps():
 	print("sick nasty")
 	save_player_stats()
 	save_baubles()
+	save_bauble_stats()
 	save_inventory()
 	$FadeToBlack.fade_to_black()
 	await $FadeToBlack/AnimationPlayer.animation_finished
@@ -106,6 +107,16 @@ func save_baubles():
 			BaubleManager.saved_baubles[index] = BaubleManager.bauble_inventory[index].type.type
 		elif target == null:
 			BaubleManager.saved_baubles[index] = null
+
+func save_bauble_stats():
+	for bauble in BaubleManager.bauble_inventory:
+		var target = bauble
+		var index = BaubleManager.bauble_inventory.find(bauble)
+		if target != null:
+			var bauble_stats = bauble.stats
+			BaubleManager.bauble_stats_list[index] = bauble_stats
+		elif target == null:
+			BaubleManager.bauble_stats_list[index] = null
 
 func save_inventory():
 	var inventory = current_ui.get_child(1).inventory
