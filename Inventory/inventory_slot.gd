@@ -30,7 +30,7 @@ func add_item(item_resource, slot):
 func create_new_stack(item_resource): 
 	var new_item = item_scene.instantiate()
 	held_type = item_resource.type
-	new_item.type = item_resource.path
+	new_item.type = item_resource
 	call_deferred("add_child", new_item)
 	held_item = new_item
 	slot_full =  true

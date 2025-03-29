@@ -2,7 +2,7 @@ extends Node
 
 @onready var main = get_tree().current_scene
 
-var bauble_scene : PackedScene = preload("res://Baubles/baublehead.tscn")
+var bauble_scene : PackedScene = preload("res://baubles/baublehead.tscn")
 var held_count : int = 0
 var max_bauble_count : int = 3
 var max_baubles_held : bool = false
@@ -10,12 +10,12 @@ var throw_cooldown : float = 0.5
 var throwing : bool = false
 
 var bauble_types : Dictionary = {
-	"ruby" : "res://Baubles/bauble_resources/ruby_bauble.tres", 
-	"sapphire" : "res://Baubles/bauble_resources/sapphire_bauble.tres", 
-	"topaz" : "res://Baubles/bauble_resources/topaz_bauble.tres", 
-	"emerald" : "res://Baubles/bauble_resources/emerald_bauble.tres", 
-	"opal" : "res://Baubles/bauble_resources/opal_bauble.tres", 
-	"diamond" : "res://Baubles/bauble_resources/diamond_bauble.tres",
+	"ruby" : "res://baubles/bauble_resources/ruby_bauble.tres", 
+	"sapphire" : "res://baubles/bauble_resources/sapphire_bauble.tres", 
+	"topaz" : "res://baubles/bauble_resources/topaz_bauble.tres", 
+	"emerald" : "res://baubles/bauble_resources/emerald_bauble.tres", 
+	"opal" : "res://baubles/bauble_resources/opal_bauble.tres", 
+	"diamond" : "res://baubles/bauble_resources/diamond_bauble.tres",
 	}
 
 var bauble_inventory : Array = [

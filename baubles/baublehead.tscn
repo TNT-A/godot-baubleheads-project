@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://d31vg3emxkypt"]
 
-[ext_resource type="Script" path="res://Baubles/baublehead.gd" id="1_1xugq"]
-[ext_resource type="Texture2D" uid="uid://0iqsrpem6iqi" path="res://Baubles/bauble_sprites/Bauble_Ruby.png" id="2_6cagt"]
+[ext_resource type="Script" path="res://baubles/baublehead.gd" id="1_1xugq"]
+[ext_resource type="Texture2D" uid="uid://0iqsrpem6iqi" path="res://baubles/bauble_sprites/Bauble_Ruby.png" id="2_6cagt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t0pkf"]
 radius = 4.0

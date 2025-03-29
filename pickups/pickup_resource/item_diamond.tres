@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="Item_Diamond" load_steps=3 format=3 uid="uid://c8guslvmqww32"]
+[gd_resource type="Resource" script_class="Item_Diamond" load_steps=3 format=3 uid="uid://b3bvlsla86egr"]
 
-[ext_resource type="Script" path="res://pickups/pickup_resource_script/item_diamond.gd" id="1_xrai5"]
-[ext_resource type="Texture2D" uid="uid://c1v04prcng03o" path="res://Inventory/inventorySprites/Item_diamond.png" id="2_wffd6"]
+[ext_resource type="Texture2D" uid="uid://c1v04prcng03o" path="res://Inventory/inventorySprites/Item_diamond.png" id="1_x63ah"]
+[ext_resource type="Script" path="res://pickups/pickup_resource_script/item_diamond.gd" id="2_3abyg"]
 
 [resource]
-script = ExtResource("1_xrai5")
-sprite = ExtResource("2_wffd6")
+script = ExtResource("2_3abyg")
+pickup_sprite = ExtResource("1_x63ah")
 type = "diamond"
+inventory_sprite = ExtResource("1_x63ah")
