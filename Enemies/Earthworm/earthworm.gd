@@ -5,13 +5,17 @@ extends Node2D
 var crackshot: PackedScene = preload("res://enemies/earthworm/crackshot.tscn")
 var pickup_scene : PackedScene = preload("res://pickups/gemstone_pickup.tscn")
 
-var under_attack : bool = false
 var is_alive : bool = true
 var attack_time : bool = false
 enum States {IDLE, ATTACK, MOVE}
 var state: States = States.ATTACK
 var playerCrackable : bool = false
 var timer_cooldown : float = 1.6
+var count_attacking : int = 0
+
+var nearby_baubles : Array = []
+
+var attacking_baubles : Array = []
 
 var drop_chart : Dictionary = {
 	"none" : 40,
@@ -24,6 +28,7 @@ func _ready():
 	SignalBus.change_enemy_health.connect(change_health)
 
 func _physics_process(delta: float) -> void:
+	check_attacking_baubles()
 	if is_alive == false:
 		die()
 	state_transitions()
@@ -45,7 +50,8 @@ func state_functions():
 			attack_time = false
 
 func shoot():
-	add_child(crackshot.instantiate())
+	if count_attacking <= 5:
+		add_child(crackshot.instantiate())
 	#Global.player.global_position 
 
 func change_health(enemy, change):
@@ -54,6 +60,32 @@ func change_health(enemy, change):
 	if health <= 0:
 		health = 0
 		is_alive = false
+
+func check_attacking_baubles():
+	for bauble in nearby_baubles:
+		var index = nearby_baubles.find(bauble)
+		if !is_instance_valid(nearby_baubles[index]):
+			nearby_baubles.remove_at(index)
+			print("removed from nearby list")
+	for bauble in attacking_baubles:
+		var index = attacking_baubles.find(bauble)
+		if !is_instance_valid(attacking_baubles[index]):
+			attacking_baubles.remove_at(index)
+			print("removed from attacking list")
+	
+	for bauble in nearby_baubles:
+		if !attacking_baubles.has(bauble):
+			if bauble.state == bauble.States.ATTACK or bauble.state == bauble.States.TARGETING: 
+				attacking_baubles.append(bauble)
+				print("added to list")
+		elif attacking_baubles.has(bauble):
+			if bauble.state != bauble.States.ATTACK and bauble.state != bauble.States.TARGETING: 
+				var index = nearby_baubles.find(bauble)
+				attacking_baubles.remove_at(index)
+				print("removed from list")
+	
+	count_attacking = attacking_baubles.size()
+	print(count_attacking)
 
 func drop_item():
 	var drop_chance : int = randi_range(0, 100)
@@ -90,3 +122,12 @@ func _on_area_2d_body_shape_exited(body_rid, body: Node2D, body_shape_index, loc
 		$TimerAttackCooldown.stop()
 		$TimerAttackCooldown.wait_time = randf_range(1.2, 2.0)
 		attack_time = false
+
+func _on_bauble_checker_body_entered(body: Node2D) -> void:
+	if body.is_in_group("bauble"):
+		nearby_baubles.append(body)
+
+func _on_bauble_checker_body_exited(body: Node2D) -> void:
+	if body.is_in_group("bauble"):
+		var index = nearby_baubles.find(body)
+		nearby_baubles.remove_at(index)
