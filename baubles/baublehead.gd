@@ -13,21 +13,37 @@ class_name Baublehead
 enum States {IDLE, FOLLOW, PATROL, TARGETING, ATTACK, HELD, THROWN, DEFEND, RETURN}
 var state: States = States.IDLE
 
+var stats: Dictionary = {
+	health = 5,
+	damage = 1, 
+	throw_damage = 3,
+	max_range = 0.8,
+	speed = 250,
+	attack_speed = 400,
+	attack_cooldown = 1.0
+}
+
+var accept_input : bool = true
+
 var slot : int = 0
 var sprite_height : int = 30
 var throw_direction : Vector2 = Vector2(0, 0)
 var attack_time_ready : bool = false
 var inPlayer : bool = false #checks if bauble is around the player
+var inMouse : bool = false
 var current_enemy #: Node 
 var target : Vector2 
-var max_range : float = 0.8
+var temp_target : Vector2
 var at_range : bool = false
-var damage : int = 1
 var being_held : bool = false
 var in_air : bool = false
+var to_be_dropped : bool = false
+var to_be_thrown : bool = false
+var can_hold : bool = true
+var immune : bool = false
 
 func _ready() -> void:
-	$TimerRange.wait_time = max_range
+	$TimerRange.wait_time = stats.max_range
 	for bauble in BaubleManager.bauble_inventory:
 		if bauble == self:
 			slot = BaubleManager.bauble_inventory.find(bauble)
@@ -43,7 +59,6 @@ func _ready() -> void:
 	$Sprite2D.texture = type.sprite
 	$Sprite2D.scale = Vector2(2,2)
 	self.position = random_location(player.position, 30.0)
-	emit_signal("on_spawned", self)
 
 func _physics_process(delta: float) -> void:
 	lose_enemy()
@@ -52,26 +67,28 @@ func _physics_process(delta: float) -> void:
 
 #player ability 2 is right click
 func state_transition():
+	if state != States.IDLE and !accept_input:
+		state = States.FOLLOW
 	if state == States.IDLE and inPlayer == false:
 		state = States.FOLLOW
 		state_changed()
-	elif state == States.FOLLOW and inPlayer:
+	elif (state == States.FOLLOW or state == States.RETURN) and inPlayer:
 		state = States.IDLE
 		state_changed()
-	elif (state == States.FOLLOW or state == States.IDLE) and Input.is_action_pressed("Player_Ability_2"):
+	elif (state == States.FOLLOW or state == States.IDLE or States.RETURN) and Input.is_action_pressed("Player_Ability_2") and accept_input:
 		state = States.PATROL
 		state_changed()
-	elif state == States.PATROL and !Input.is_action_pressed("Player_Ability_2"):
-		if detect_enemy() :
+	elif state == States.PATROL and !Input.is_action_pressed("Player_Ability_2") and accept_input:
+		if detect_enemy():
 			state = States.TARGETING
-		elif detect_enemy() == false:
-			state = States.IDLE
+		elif !detect_enemy():
+			state = States.RETURN
 		state_changed()
-	elif (state == States.TARGETING or state == States.ATTACK or state == States.THROWN) and Input.is_action_just_pressed("Crackhead_Call"):
-		state = States.FOLLOW
+	elif (state == States.TARGETING or state == States.ATTACK or state == States.THROWN) and Input.is_action_just_pressed("Crackhead_Call") and accept_input:
+		state = States.RETURN
 		state_changed()
 	elif state == States.TARGETING and detect_enemy() == false:
-		state = States.FOLLOW
+		state = States.RETURN
 		state_changed()
 	elif state == States.TARGETING and attack_time_ready:
 		state = States.ATTACK
@@ -82,17 +99,16 @@ func state_transition():
 		elif current_enemy == null:
 			state = States.TARGETING
 			state_changed()
-	if state == States.FOLLOW or state == States.IDLE:
-		if Input.is_action_pressed("Player_Ability_1") and inPlayer:
+	if state == States.FOLLOW or state == States.IDLE or state == States.RETURN:
+		if Input.is_action_pressed("Player_Ability_1") and inPlayer and accept_input and can_hold and !BaubleManager.throwing:
 			state = States.HELD
 			state_changed()
-	if state == States.HELD and Input.is_action_just_released("Player_Ability_1"):
+	if state == States.HELD and to_be_dropped:
+		state = States.RETURN
+	if state == States.HELD and to_be_thrown and accept_input:
 		state = States.THROWN
 		state_changed()
 	if state == States.THROWN:
-		if Input.is_action_pressed("Player_Ability_1"):
-			state = States.IDLE
-			state_changed()
 		if !in_air:
 			state = States.PATROL
 			state_changed()
@@ -104,16 +120,34 @@ func state_functions():
 		reset_target(50)
 		pathfinding(speed)
 		$AnimationPlayer.play("walk")
+	if state == States.RETURN:
+		new_target(player.global_position, 50.0)
+		reset_target(50)
+		pathfinding(speed*1.25)
+		$AnimationPlayer.play("walk")
+		current_enemy = null
+		to_be_dropped = false
 	if state == States.IDLE:
 		reset_velocity()
 		$AnimationPlayer.play("idle")
 	if state == States.PATROL:
-		new_target(get_global_mouse_position(), 0.0)
-		pathfinding(speed*1.5)
+		new_target(get_global_mouse_position(), 20.0)
+		var random_speed : float = randf_range(1.3, 1.6)
+		#temp_target = get_global_mouse_position()
+		if !inMouse:
+			reset_target(50)
+			pathfinding(speed*random_speed)
+		else:
+			reset_velocity()
+		#clicking a position will make them go there, not just dragging mouse
+		#if Input.is_action_just_released("Player_Ability_2"):
+			#temp_target = get_global_mouse_position()
+			#pass
 		$AnimationPlayer.play("walk")
 	if state == States.TARGETING:
+		immune = true
 		if $TimerAttackCooldown.is_stopped():
-			$TimerAttackCooldown.wait_time = randf_range(0.8, 1.2)
+			$TimerAttackCooldown.wait_time = randf_range(stats.attack_cooldown - 0.1, stats.attack_cooldown + 0.1)
 			$TimerAttackCooldown.start()
 		$AnimationPlayer.play("walk")
 		$Sprite2D.scale = Vector2(2,2)
@@ -121,14 +155,17 @@ func state_functions():
 			new_target(current_enemy.global_position, 50.0)
 		pathfinding(speed)
 	if state == States.ATTACK:
+		immune = true
 		$Sprite2D.scale = Vector2(3,3)
 		attack_enemy()
 		$AnimationPlayer.play("attack")
 	if state == States.HELD:
+		immune = true
 		$AnimationPlayer.play("sit")
 		var stack_position : int = BaubleManager.held_baubles.find(self)
 		carry(stack_position * sprite_height)
 	if state == States.THROWN:
+		immune = true
 		$AnimationPlayer.play("thrown")
 		thrown()
 
@@ -139,7 +176,9 @@ func state_changed():
 	$TimerAttackCooldown.stop()
 	$TimerRange.stop()
 	$Sprite2D.rotation = 0
-	print("state changed ", state)
+	$Sprite2D.scale = Vector2(2, 2)
+	immune = false
+	#print("state changed ", state)
 
 func random_location(location, range):
 	if player:
@@ -189,7 +228,7 @@ func attack_enemy():
 	distance = abs(enemy_position - global_position)
 	if distance.x >= max_enemy_distance.x or distance.y >= max_enemy_distance.y:
 		reset_velocity()
-		SignalBus.emit_signal("change_enemy_health", current_enemy, damage)
+		SignalBus.emit_signal("change_enemy_health", current_enemy, stats.damage)
 		attack_ready = true
 		attack_time_ready = false
 	else:
@@ -207,20 +246,16 @@ func carry(height):
 
 func thrown():
 	if $TimerRange.is_stopped():
-		$TimerRange.wait_time = max_range
-		print($TimerRange.wait_time)
+		$TimerRange.wait_time = stats.max_range
+		#print($TimerRange.wait_time)
 		$TimerRange.start()
 	in_air = true
 	velocity = (attack_speed*throw_direction)
 	move_and_slide()
-	if is_on_wall():
+	if is_on_wall() or at_range:
 		velocity = Vector2(0, 0)
 		in_air = false
-		print("I fell from hitting the wall")
-	elif at_range:
-		velocity = Vector2(0, 0)
-		in_air = false
-		print("I fell from too high range")
+		to_be_thrown = false
 
 func pathfinding(speed_change):
 	var next_path_pos := nav_agent.get_next_path_position()
@@ -270,18 +305,42 @@ func enable_collision():
 func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	if body == player:
 		inPlayer = true
-	if body.is_in_group("enemy") and state == States.PATROL:
+	if body.is_in_group("enemy") and (state == States.PATROL or state == States.THROWN):
 		current_enemy = body
+	if body.is_in_group("enemy") and state == States.THROWN:
+		SignalBus.emit_signal("change_enemy_health", body, stats.throw_damage)
 
 func _on_area_2d_body_shape_exited(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	if body == player:
 		inPlayer = false
 
+func _on_area_2d_mouse_entered() -> void:
+	inMouse = true
+
+func _on_area_2d_mouse_exited() -> void:
+	inMouse = false
+
 func _on_timer_timeout() -> void:
 	make_path()
 
-func _on_timer_attack_timeout() -> void:
-	attack_time_ready = true
-
 func _on_timer_range_timeout() -> void:
 	at_range = true
+
+func _on_timer_attack_cooldown_timeout() -> void:
+	attack_time_ready = true
+
+func _on_hurtbox_area_entered(area: Area2D) -> void:
+	var enemy = area
+	if area.is_in_group("hurts_player"):
+		change_health(enemy.damage_dealt)
+
+func change_health(change):
+	if !immune:
+		stats.health -= change
+		if stats.health <= 0:
+			stats.health = 0
+			die()
+		print(stats.health)
+
+func die():
+	BaubleManager.despawn_bauble(slot)

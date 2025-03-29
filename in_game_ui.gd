@@ -4,6 +4,9 @@ extends CanvasLayer
 @onready var settings_menu: Control = %SettingsMenu
 @onready var inventory_menu : Control = %Inventory
 
+var can_open_pause : bool = true
+var can_open_inventory : bool = true
+
 var paused = false
 var inventory = false
 
@@ -16,10 +19,12 @@ func _ready():
 	inventory_menu.hide()
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("Pause"):
+	if Input.is_action_just_pressed("Pause") and can_open_pause:
 		pauseMenu()
-	if Input.is_action_just_pressed("Inventory"):
+	if Input.is_action_just_pressed("Inventory") and can_open_inventory:
 		inventoryMenu()
+	if paused:
+		Engine.time_scale = 0
 
 func set_health_bar(max_health, health) -> void:
 	%HealthBar.max_value = max_health
@@ -32,6 +37,8 @@ func pauseMenu():
 	else:
 		pause_menu.show()
 		Engine.time_scale = 0
+	if inventory:
+		inventoryMenu()
 	paused = !paused
 
 func settingsMenu():
