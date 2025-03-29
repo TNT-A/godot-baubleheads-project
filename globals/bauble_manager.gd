@@ -4,6 +4,10 @@ extends Node
 
 var bauble_scene : PackedScene = preload("res://Baubles/baublehead.tscn")
 var held_count : int = 0
+var max_bauble_count : int = 3
+var max_baubles_held : bool = false
+var throw_cooldown : float = 0.5
+var throwing : bool = false
 
 var bauble_types : Dictionary = {
 	"ruby" : "res://Baubles/bauble_resources/ruby_bauble.tres", 
@@ -41,6 +45,7 @@ var bauble_inventory : Array = [
 ]
 
 var held_baubles : Array
+var to_be_held : Array
 
 func _ready() -> void:
 	SignalBus.item_used.connect(determine_bauble_control)
@@ -49,16 +54,20 @@ func _physics_process(delta: float) -> void:
 	main = get_tree().current_scene
 	count_held()
 	held_count = held_baubles.size()
-	if Input.is_action_just_pressed("Baublehead_Call"):
+	
+	if Input.is_action_just_released("Player_Ability_1"):
+		determine_throw_order()
+	
+	if Input.is_action_just_pressed("Spawn_Bauble"):
 		var current_index = find_empty_slot()
 		if current_index is int and current_index < 10:
 			spawn_bauble("opal", current_index)
-	if Input.is_action_just_pressed("Baublehead_Kill"):
+	if Input.is_action_just_pressed("Kill_Bauble"):
 		var current_index = find_full_slot()
 		#print(current_index)
 		if current_index is int and current_index < 10:
 			despawn_bauble(current_index)
-	if Input.is_action_just_pressed("Run"):
+	if Input.is_action_just_pressed("Replace_Bauble"):
 		replace_bauble("opal", 0)
 
 func find_empty_slot():
@@ -128,6 +137,7 @@ func replace_bauble(type_of_bauble, slot):
 		pass
 
 func count_held():
+	#add and remove held baubles from the held list
 	for bauble in bauble_inventory:
 		if bauble is Node:
 			if bauble.being_held:
@@ -141,3 +151,25 @@ func count_held():
 		if !is_instance_valid(held_bauble):
 			var index = held_baubles.find(held_bauble)
 			held_baubles.remove_at(index)
+	#manage baubles above bauble maximum
+	if held_baubles.size() >= max_bauble_count:
+		for bauble in bauble_inventory:
+			if bauble is Node:
+				bauble.can_hold = false
+				if held_baubles.find(bauble) >= max_bauble_count:
+					bauble.to_be_dropped = true
+	else:
+		for bauble in bauble_inventory:
+			if bauble is Node:
+				bauble.can_hold = true
+
+func determine_throw_order():
+	throwing = true
+	for bauble in bauble_inventory:
+		if bauble is Node:
+			if held_baubles.has(bauble):
+				var index = held_baubles.find(bauble)
+				print(held_baubles.find(bauble))
+				held_baubles[index].to_be_thrown = true
+				await get_tree().create_timer(throw_cooldown).timeout
+	throwing = false

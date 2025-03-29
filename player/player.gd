@@ -11,8 +11,12 @@ extends CharacterBody2D
 
 @onready var hand_marker = $Marker2D
 @onready var sprite = $Sprite2D
-enum States {IDLE, WALKING, RUNNING}
+
+enum States {IDLE, WALKING, SPRINTING, HOLDING}
 var state: States = States.IDLE
+
+var accept_input : bool = true
+var sprinting : bool = false
 
 func _ready() -> void:
 	Global.register_player(self)
@@ -32,21 +36,37 @@ func change_health(change):
 
 func _physics_process(delta: float) -> void:
 	state_transition()
+	set_sprint()
+	state_functions()
 	#print(state)
+
+func state_functions():
 	if state == States.IDLE:
 		reset_velocity()
 	if state == States.WALKING:
-		walk()
+		walk(stats.speed)
+	if state == States.SPRINTING:
+		walk(stats.speed * 2)
+	if state == States.HOLDING:
+		walk(stats.speed)
 
 func state_transition():
 	if state == States.IDLE and check_for_input() == true:
 		state = States.WALKING
 	elif state == States.WALKING and check_for_input() == false:
 		state = States.IDLE
+	elif state == States.WALKING and sprinting:
+		state = States.SPRINTING
+	elif state == States.SPRINTING and !sprinting:
+		state = States.WALKING
+	elif (state == States.IDLE or state == States.WALKING or state == States.SPRINTING) and BaubleManager.held_count > 0:
+		state = States.HOLDING
+	elif state == States.HOLDING and BaubleManager.held_count <= 0:
+		state = States.IDLE
 
 func check_for_input():
 	var isButtonPressed : bool = false
-	if Input.is_action_pressed("Move_Left") or Input.is_action_pressed("Move_Right") or Input.is_action_pressed("Move_Down") or Input.is_action_pressed("Move_Up"):
+	if accept_input and (Input.is_action_pressed("Move_Left") or Input.is_action_pressed("Move_Right") or Input.is_action_pressed("Move_Down") or Input.is_action_pressed("Move_Up")):
 		isButtonPressed = true
 	else:
 		isButtonPressed = false
@@ -54,25 +74,32 @@ func check_for_input():
 
 func get_direction():
 	var input : Vector2 = Vector2()
-	if Input.is_action_pressed("Move_Up"):
+	if accept_input and Input.is_action_pressed("Move_Up"):
 		input.y -=1
-	if Input.is_action_pressed("Move_Down"):
+	if accept_input and Input.is_action_pressed("Move_Down"):
 		input.y +=1
-	if Input.is_action_pressed("Move_Left"):
+	if accept_input and Input.is_action_pressed("Move_Left"):
 		input.x -=1
-	if Input.is_action_pressed("Move_Right"):
+	if accept_input and Input.is_action_pressed("Move_Right"):
 		input.x +=1
 	return input
+
+func set_sprint():
+	if accept_input and Input.is_action_just_pressed("Sprint"):
+		if sprinting == true:
+			sprinting = false
+		elif sprinting == false:
+			sprinting = true
 
 func reset_velocity():
 	velocity = velocity.lerp(Vector2.ZERO,deceleration)
 	move_and_slide()
 	#velocity = Vector2(0,0)
 
-func walk():
+func walk(new_speed):
 	var direction : Vector2 = get_direction()
 	if direction.length() > 0:
-		velocity = velocity.lerp(direction.normalized() * stats.speed, acceleration)
+		velocity = velocity.lerp(direction.normalized() * new_speed, acceleration)
 	else:
 		velocity = velocity.lerp(Vector2.ZERO,deceleration)
 	if velocity.x > 0:

@@ -1,20 +1,14 @@
-[gd_scene load_steps=9 format=4 uid="uid://dnlsiamufqhvp"]
+[gd_scene load_steps=10 format=4 uid="uid://dnlsiamufqhvp"]
 
 [ext_resource type="TileSet" uid="uid://3fxl7giqa67u" path="res://cave_tileset.tres" id="1_ho417"]
+[ext_resource type="NavigationPolygon" uid="uid://crje1n1mbpptl" path="res://Maps/cave_tilemap_nav_region.tres" id="2_dlj4k"]
 [ext_resource type="PackedScene" uid="uid://cneonblq7tq5d" path="res://enemy_spawner.tscn" id="2_vrnme"]
 [ext_resource type="PackedScene" uid="uid://02aewb52n510" path="res://floor_exit.tscn" id="3_f8v0e"]
+[ext_resource type="PackedScene" uid="uid://q5o4kxajyvl6" path="res://Maps/player_spawn.tscn" id="3_pwdk1"]
 [ext_resource type="PackedScene" uid="uid://bmgdfffipgdik" path="res://pickups/gemstone_pickup.tscn" id="4_aontj"]
 [ext_resource type="Resource" uid="uid://ctnhj85v2swgr" path="res://pickups/pickup_resource/item_sapphire.tres" id="5_bi6c3"]
 [ext_resource type="Resource" uid="uid://bnqkjk51xm27m" path="res://pickups/pickup_resource/item_ruby.tres" id="6_dgtj2"]
 [ext_resource type="Resource" uid="uid://ewck2wib7hun" path="res://pickups/pickup_resource/item_topaz.tres" id="7_ojrgi"]
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_rbath"]
-vertices = PackedVector2Array(87, -40, -656.617, -40, -656.281, -85.0625, 87, -86.2734, 1111, -40, 359, -40, 359, -86.7109, 1111, -87.9297, 239, 96, 904.438, 296, 821.563, 296, -329, 288, -329, 127.281, 207, 96, -73, 672, 1087, 768, -633, 768, -249, 672, 1087, 96, 951, 480, 951, 319.281, 775, 319.281, 775, 480, -73, 511.281, 207, 32, 239, 32, -119.563, 488, -202.438, 488, -249, 511.281, -505, 288, -633, 96, -505, 127.281, -458.438, 104, -375.563, 104)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 9, 10, 11, 12, 13), PackedInt32Array(14, 15, 16, 17), PackedInt32Array(18, 15, 19, 20), PackedInt32Array(11, 10, 21), PackedInt32Array(22, 19, 15, 14, 23), PackedInt32Array(13, 24, 25, 8), PackedInt32Array(11, 21, 22, 23, 26), PackedInt32Array(11, 26, 27), PackedInt32Array(11, 27, 28), PackedInt32Array(18, 20, 9), PackedInt32Array(8, 18, 9), PackedInt32Array(11, 28, 17, 16, 29), PackedInt32Array(29, 16, 30, 31), PackedInt32Array(32, 31, 30), PackedInt32Array(32, 30, 13, 33), PackedInt32Array(13, 12, 33)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-696, -125, -703, 831, 1151, 832, 1151, -128)])
-source_geometry_mode = 1
-source_geometry_group_name = &"navigation"
-agent_radius = 40.0
 
 [node name="CaveTilemap" type="Node"]
 
@@ -26,7 +20,10 @@ tile_set = ExtResource("1_ho417")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 position = Vector2(1, 0)
-navigation_polygon = SubResource("NavigationPolygon_rbath")
+navigation_polygon = ExtResource("2_dlj4k")
+
+[node name="PlayerSpawn" parent="." instance=ExtResource("3_pwdk1")]
+position = Vector2(223, 54)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("2_vrnme")]
 position = Vector2(211, 757)
