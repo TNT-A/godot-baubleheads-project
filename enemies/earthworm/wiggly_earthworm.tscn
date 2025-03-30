@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnmbx0805u1i3"]
+
+[ext_resource type="PackedScene" uid="uid://c8g0kk7fj1rdj" path="res://components/damage_zone/damage_zone.tscn" id="1_of30d"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yn4co"]
+radius = 12.0
+height = 120.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p5ix1"]
+radius = 12.0
+height = 120.0
+
+[node name="WigglyEarthworm" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_yn4co")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="DamageZone" parent="." instance=ExtResource("1_of30d")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
+shape = SubResource("CapsuleShape2D_p5ix1")
