@@ -1,5 +1,7 @@
 extends Node2D
 
+@onready var player = Global.player
+
 @export var health : int = 50
 
 var crackshot: PackedScene = preload("res://enemies/earthworm/crackshot.tscn")
@@ -25,8 +27,14 @@ var drop_chart : Dictionary = {
 
 func _ready():
 	SignalBus.change_enemy_health.connect(change_health)
+	$AnimatedSprite2D.play("default")
 
 func _physics_process(delta: float) -> void:
+	if player.global_position < global_position and abs(global_position.x - player.global_position.x) > 20:
+		$AnimatedSprite2D.flip_h = false
+	if player.global_position > global_position and abs(global_position.x - player.global_position.x) > 20:
+		$AnimatedSprite2D.flip_h = true
+		
 	check_attacking_baubles()
 	if is_alive == false:
 		die()

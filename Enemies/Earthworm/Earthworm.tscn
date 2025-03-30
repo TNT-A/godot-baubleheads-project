@@ -1,20 +1,56 @@
-[gd_scene load_steps=8 format=3 uid="uid://e477mip5fnwt"]
+[gd_scene load_steps=13 format=3 uid="uid://e477mip5fnwt"]
 
 [ext_resource type="Script" path="res://enemies/earthworm/earthworm.gd" id="1_pgrt0"]
-[ext_resource type="Texture2D" uid="uid://b8liyu5p322jp" path="res://PixelArt/Earthworm.png" id="1_riicm"]
+[ext_resource type="Texture2D" uid="uid://bffbnpkx5ldko" path="res://PixelArt/earthworm_spritesheet - Copy.png" id="3_gdush"]
 [ext_resource type="PackedScene" uid="uid://c8g0kk7fj1rdj" path="res://components/damage_zone/damage_zone.tscn" id="3_rikgm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gjer8"]
 size = Vector2(24, 24)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mf51n"]
-radius = 15.2971
+radius = 28.1603
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qvyj8"]
 radius = 371.163
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ueksg"]
-radius = 136.004
+radius = 165.003
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dspvy"]
+atlas = ExtResource("3_gdush")
+region = Rect2(144, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tt82w"]
+atlas = ExtResource("3_gdush")
+region = Rect2(180, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5kbqe"]
+atlas = ExtResource("3_gdush")
+region = Rect2(216, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67ktw"]
+atlas = ExtResource("3_gdush")
+region = Rect2(252, 0, 36, 36)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a7f1e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dspvy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tt82w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5kbqe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67ktw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
 
 [node name="earthworm" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_pgrt0")
@@ -23,12 +59,8 @@ script = ExtResource("1_pgrt0")
 position = Vector2(-5, 4)
 shape = SubResource("RectangleShape2D_gjer8")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-2, 10)
-texture = ExtResource("1_riicm")
-
 [node name="Mouth" type="Marker2D" parent="."]
-position = Vector2(-23, 0)
+position = Vector2(-7, -4)
 gizmo_extents = 23.0
 
 [node name="TimerAttackCooldown" type="Timer" parent="."]
@@ -36,7 +68,7 @@ gizmo_extents = 23.0
 [node name="DamageZone" parent="." instance=ExtResource("3_rikgm")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
-position = Vector2(-4, 2)
+position = Vector2(-7, -3)
 shape = SubResource("CircleShape2D_mf51n")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -47,7 +79,14 @@ shape = SubResource("CircleShape2D_qvyj8")
 [node name="BaubleChecker" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BaubleChecker"]
+position = Vector2(-3, 0)
 shape = SubResource("CircleShape2D_ueksg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-13, -7)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_a7f1e")
+frame_progress = 0.805883
 
 [connection signal="timeout" from="TimerAttackCooldown" to="." method="_on_timer_attack_cooldown_timeout"]
 [connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]

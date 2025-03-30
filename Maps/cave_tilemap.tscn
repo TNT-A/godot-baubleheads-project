@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://dnlsiamufqhvp"]
+[gd_scene load_steps=11 format=4 uid="uid://dnlsiamufqhvp"]
 
 [ext_resource type="TileSet" uid="uid://3fxl7giqa67u" path="res://cave_tileset.tres" id="1_ho417"]
 [ext_resource type="NavigationPolygon" uid="uid://crje1n1mbpptl" path="res://Maps/cave_tilemap_nav_region.tres" id="2_dlj4k"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://ctnhj85v2swgr" path="res://pickups/pickup_resource/item_sapphire.tres" id="5_bi6c3"]
 [ext_resource type="Resource" uid="uid://bnqkjk51xm27m" path="res://pickups/pickup_resource/item_ruby.tres" id="6_dgtj2"]
 [ext_resource type="Resource" uid="uid://ewck2wib7hun" path="res://pickups/pickup_resource/item_topaz.tres" id="7_ojrgi"]
+[ext_resource type="PackedScene" uid="uid://cnmbx0805u1i3" path="res://enemies/earthworm/wiggly_earthworm.tscn" id="10_8fvj7"]
 
 [node name="CaveTilemap" type="Node"]
 
@@ -21,6 +22,12 @@ tile_set = ExtResource("1_ho417")
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 position = Vector2(1, 0)
 navigation_polygon = ExtResource("2_dlj4k")
+
+[node name="WigglyEarthworm" parent="NavigationRegion2D" instance=ExtResource("10_8fvj7")]
+position = Vector2(-226, 439)
+
+[node name="WigglyEarthworm2" parent="NavigationRegion2D" instance=ExtResource("10_8fvj7")]
+position = Vector2(787, 608)
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("3_pwdk1")]
 position = Vector2(223, 54)
@@ -66,3 +73,6 @@ item_resource = ExtResource("7_ojrgi")
 [node name="GemstonePickup9" parent="." instance=ExtResource("4_aontj")]
 position = Vector2(836, 273)
 item_resource = ExtResource("7_ojrgi")
+
+[node name="WigglyEarthworm" parent="." instance=ExtResource("10_8fvj7")]
+position = Vector2(213, 605)
