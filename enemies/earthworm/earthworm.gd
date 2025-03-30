@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var player = Global.player
 
-@export var health : int = 50
+@export var health : int = 30
 
 var crackshot: PackedScene = preload("res://enemies/earthworm/crackshot.tscn")
 var pickup_scene : PackedScene = preload("res://pickups/gemstone_pickup.tscn")
@@ -16,13 +16,12 @@ var timer_cooldown : float = 1.6
 var count_attacking : int = 0
 
 var nearby_baubles : Array = []
-
 var attacking_baubles : Array = []
 
 var drop_chart : Dictionary = {
 	"none" : 40,
-	"ruby" : 60,
-	"sapphire" : 80,
+	"ruby" : 80,
+	"sapphire" : 90,
 	"topaz" : 100}
 
 func _ready():

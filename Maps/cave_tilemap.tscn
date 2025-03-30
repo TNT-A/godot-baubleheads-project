@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://dnlsiamufqhvp"]
+[gd_scene load_steps=12 format=4 uid="uid://dnlsiamufqhvp"]
 
 [ext_resource type="TileSet" uid="uid://3fxl7giqa67u" path="res://cave_tileset.tres" id="1_ho417"]
 [ext_resource type="NavigationPolygon" uid="uid://crje1n1mbpptl" path="res://Maps/cave_tilemap_nav_region.tres" id="2_dlj4k"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://02aewb52n510" path="res://floor_exit.tscn" id="3_f8v0e"]
 [ext_resource type="PackedScene" uid="uid://q5o4kxajyvl6" path="res://Maps/player_spawn.tscn" id="3_pwdk1"]
 [ext_resource type="PackedScene" uid="uid://bmgdfffipgdik" path="res://pickups/gemstone_pickup.tscn" id="4_aontj"]
+[ext_resource type="PackedScene" uid="uid://buhvt42opr73m" path="res://beeg_earthworm.tscn" id="4_sn50h"]
 [ext_resource type="Resource" uid="uid://ctnhj85v2swgr" path="res://pickups/pickup_resource/item_sapphire.tres" id="5_bi6c3"]
 [ext_resource type="Resource" uid="uid://bnqkjk51xm27m" path="res://pickups/pickup_resource/item_ruby.tres" id="6_dgtj2"]
 [ext_resource type="Resource" uid="uid://ewck2wib7hun" path="res://pickups/pickup_resource/item_topaz.tres" id="7_ojrgi"]
@@ -28,6 +29,9 @@ position = Vector2(-226, 439)
 
 [node name="WigglyEarthworm2" parent="NavigationRegion2D" instance=ExtResource("10_8fvj7")]
 position = Vector2(787, 608)
+
+[node name="BeegEarthworm" parent="NavigationRegion2D" instance=ExtResource("4_sn50h")]
+position = Vector2(414, 227)
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("3_pwdk1")]
 position = Vector2(223, 54)
@@ -76,3 +80,6 @@ item_resource = ExtResource("7_ojrgi")
 
 [node name="WigglyEarthworm" parent="." instance=ExtResource("10_8fvj7")]
 position = Vector2(213, 605)
+
+[node name="BeegEarthworm" parent="." instance=ExtResource("4_sn50h")]
+position = Vector2(104, 225)
