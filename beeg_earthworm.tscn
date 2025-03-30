@@ -1,0 +1,147 @@
+[gd_scene load_steps=19 format=3 uid="uid://buhvt42opr73m"]
+
+[ext_resource type="Texture2D" uid="uid://5uaa1xijly2y" path="res://PixelArt/big_worm-Recovered.png" id="1_qguem"]
+[ext_resource type="Script" path="res://beeg_earthworm.gd" id="1_x1g0n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8tap"]
+atlas = ExtResource("1_qguem")
+region = Rect2(0, 0, 36, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kn4ms"]
+atlas = ExtResource("1_qguem")
+region = Rect2(36, 0, 36, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yp7f0"]
+atlas = ExtResource("1_qguem")
+region = Rect2(72, 0, 36, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sb4o4"]
+atlas = ExtResource("1_qguem")
+region = Rect2(108, 0, 36, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2pfb"]
+atlas = ExtResource("1_qguem")
+region = Rect2(144, 0, 36, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_avpr8"]
+atlas = ExtResource("1_qguem")
+region = Rect2(180, 0, 36, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wxwxf"]
+atlas = ExtResource("1_qguem")
+region = Rect2(216, 0, 36, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5qxf4"]
+atlas = ExtResource("1_qguem")
+region = Rect2(252, 0, 36, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4uw81"]
+atlas = ExtResource("1_qguem")
+region = Rect2(288, 0, 36, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2mxmd"]
+atlas = ExtResource("1_qguem")
+region = Rect2(324, 0, 36, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5n8h"]
+atlas = ExtResource("1_qguem")
+region = Rect2(360, 0, 36, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1iyxh"]
+atlas = ExtResource("1_qguem")
+region = Rect2(396, 0, 36, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgjpi"]
+atlas = ExtResource("1_qguem")
+region = Rect2(432, 0, 36, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3d40"]
+atlas = ExtResource("1_qguem")
+region = Rect2(468, 0, 36, 38)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_umh22"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f8tap")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kn4ms")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yp7f0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sb4o4")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2pfb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_avpr8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wxwxf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5qxf4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4uw81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5qxf4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4uw81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2mxmd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f5n8h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1iyxh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cgjpi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3d40")
+}],
+"loop": false,
+"name": &"shoot",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g7osf"]
+
+[node name="BeegEarthworm" type="CharacterBody2D"]
+position = Vector2(288, 295)
+script = ExtResource("1_x1g0n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_umh22")
+animation = &"shoot"
+frame = 11
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 12)
+shape = SubResource("CircleShape2D_g7osf")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-93, -41)
+
+[node name="TimerShotCooldown" type="Timer" parent="."]
+wait_time = 3.0
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
+[connection signal="timeout" from="TimerShotCooldown" to="." method="_on_timer_shot_cooldown_timeout"]

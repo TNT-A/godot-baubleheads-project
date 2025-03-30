@@ -1,25 +1,87 @@
-[gd_scene load_steps=4 format=3 uid="uid://cnmbx0805u1i3"]
+[gd_scene load_steps=12 format=3 uid="uid://cnmbx0805u1i3"]
 
+[ext_resource type="Texture2D" uid="uid://dn4yltu1tkd68" path="res://PixelArt/wiggle_worm-Recovered.png" id="1_42smv"]
+[ext_resource type="Script" path="res://enemies/earthworm/wiggly_earthworm.gd" id="1_61cal"]
 [ext_resource type="PackedScene" uid="uid://c8g0kk7fj1rdj" path="res://components/damage_zone/damage_zone.tscn" id="1_of30d"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yn4co"]
-radius = 12.0
-height = 120.0
+radius = 14.0
+height = 66.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uek58"]
+atlas = ExtResource("1_42smv")
+region = Rect2(0, 0, 34, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ngf2"]
+atlas = ExtResource("1_42smv")
+region = Rect2(34, 0, 34, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w7xif"]
+atlas = ExtResource("1_42smv")
+region = Rect2(68, 0, 34, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3l5pv"]
+atlas = ExtResource("1_42smv")
+region = Rect2(102, 0, 34, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6c3bg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uek58")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ngf2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w7xif")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3l5pv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p5ix1"]
-radius = 12.0
-height = 120.0
+radius = 14.0
 
-[node name="WigglyEarthworm" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_cejg8"]
+radius = 249.032
+
+[node name="WigglyEarthworm" type="CharacterBody2D" groups=["enemy"]]
+collision_mask = 6
+script = ExtResource("1_61cal")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
 shape = SubResource("CapsuleShape2D_yn4co")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_6c3bg")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="TimerPathfinding" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
 
 [node name="DamageZone" parent="." instance=ExtResource("1_of30d")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
+rotation = 1.5708
 shape = SubResource("CapsuleShape2D_p5ix1")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 16.0
+target_desired_distance = 8.0
+debug_enabled = true
+
+[node name="targetDetector" type="Area2D" parent="."]
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="targetDetector"]
+shape = SubResource("CircleShape2D_cejg8")
+
+[connection signal="timeout" from="TimerPathfinding" to="." method="_on_timer_pathfinding_timeout"]
+[connection signal="body_entered" from="targetDetector" to="." method="_on_target_detector_body_entered"]

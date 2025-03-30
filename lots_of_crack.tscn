@@ -1,0 +1,119 @@
+[gd_scene load_steps=11 format=3 uid="uid://q5d1yp2tn765"]
+
+[ext_resource type="Script" path="res://lots_of_crack.gd" id="1_qkiqy"]
+[ext_resource type="Texture2D" uid="uid://du34ovqx2rii" path="res://PixelArt/Meteorite-Sheet-Sheet.png" id="1_yb6x5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dn7b8"]
+atlas = ExtResource("1_yb6x5")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sfcot"]
+atlas = ExtResource("1_yb6x5")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8oqp"]
+atlas = ExtResource("1_yb6x5")
+region = Rect2(144, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vinrg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dn7b8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sfcot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8oqp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sfcot")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l0gm8"]
+radius = 42.107
+
+[sub_resource type="Animation" id="Animation_vokn8"]
+resource_name = "up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -400)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rf1ha"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t7vy3"]
+_data = {
+"RESET": SubResource("Animation_rf1ha"),
+"up": SubResource("Animation_vokn8")
+}
+
+[node name="lotsOfCrack" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_qkiqy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(5, 6)
+rotation = -1.5708
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_vinrg")
+frame_progress = 0.63365
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_l0gm8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_t7vy3")
+}
