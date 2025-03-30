@@ -1,15 +1,32 @@
 extends CharacterBody2D
 
+var pickup_scene : PackedScene = preload("res://pickups/gemstone_pickup.tscn")
+
 @onready var nav_agent : NavigationAgent2D = $NavigationAgent2D
 @onready var player : Node = Global.player
 
+@export var health : int = 9
+
 var target
 var has_target : bool = false
+var is_alive : bool = true
+var count_attacking : int = 0
+
+var nearby_baubles : Array = []
+var attacking_baubles : Array = []
+
+var drop_chart : Dictionary = {
+	"none" : 40,
+	"ruby" : 50,
+	"sapphire" : 60,
+	"topaz" : 100
+	}
 
 var speed : int = 200
 var acceleration : float  = 0.1
 
 func _ready() -> void:
+	SignalBus.change_enemy_health.connect(change_health)
 	$AnimatedSprite2D.play("default")
 
 func _physics_process(delta: float) -> void:
@@ -18,6 +35,60 @@ func _physics_process(delta: float) -> void:
 	if has_target:
 		pathfinding(speed)
 		$AnimatedSprite2D.rotation = get_angle_to(player.global_position)
+	check_attacking_baubles()
+	if is_alive == false:
+		die()
+
+func change_health(enemy, change):
+	if self == enemy:
+		health -= change
+	if health <= 0:
+		health = 0
+		is_alive = false
+
+func check_attacking_baubles():
+	for bauble in nearby_baubles:
+		var index = nearby_baubles.find(bauble)
+		if !is_instance_valid(nearby_baubles[index]):
+			nearby_baubles.remove_at(index)
+			print("removed from nearby list")
+	for bauble in attacking_baubles:
+		var index = attacking_baubles.find(bauble)
+		if !is_instance_valid(attacking_baubles[index]):
+			attacking_baubles.remove_at(index)
+			print("removed from attacking list")
+	for bauble in nearby_baubles:
+		if !attacking_baubles.has(bauble):
+			if bauble.state == bauble.States.ATTACK or bauble.state == bauble.States.TARGETING: 
+				attacking_baubles.append(bauble)
+				print("added to list")
+		elif attacking_baubles.has(bauble):
+			if bauble.state != bauble.States.ATTACK and bauble.state != bauble.States.TARGETING: 
+				var index = nearby_baubles.find(bauble)
+				attacking_baubles.remove_at(index)
+				print("removed from list")
+	count_attacking = attacking_baubles.size()
+
+func die():
+	drop_item()
+	queue_free()
+
+func drop_item():
+	var drop_chance : int = randi_range(0, 100)
+	if drop_chance < drop_chart["none"]:
+		print("none")
+	elif drop_chart["none"] < drop_chance and drop_chance <= drop_chart["ruby"]:
+		create_pickup("ruby")
+	elif drop_chart["ruby"] < drop_chance and drop_chance <= drop_chart["sapphire"]:
+		create_pickup("sapphire")
+	elif drop_chart["sapphire"] < drop_chance and drop_chance <= drop_chart["topaz"]:
+		create_pickup("topaz")
+
+func create_pickup(pickup):
+	var new_pickup = pickup_scene.instantiate()
+	new_pickup.item_resource = load("res://pickups/pickup_resource/item_" + pickup + ".tres")
+	get_parent().add_child(new_pickup)
+	new_pickup.global_position = global_position
 
 func pathfinding(speed_change):
 	var next_path_pos := nav_agent.get_next_path_position()
@@ -74,3 +145,12 @@ func _on_target_detector_body_entered(body: Node2D) -> void:
 		target = body
 		has_target = true
 		print("cool")
+
+func _on_bauble_checker_body_entered(body: Node2D) -> void:
+	if body.is_in_group("bauble"):
+		nearby_baubles.append(body)
+
+func _on_bauble_checker_body_exited(body: Node2D) -> void:
+	if body.is_in_group("bauble"):
+		var index = nearby_baubles.find(body)
+		nearby_baubles.remove_at(index)
