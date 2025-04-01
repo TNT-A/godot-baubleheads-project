@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="Upgrade_Bauble_Homing" load_steps=2 format=3 uid="uid://dl0o5yvob3qv2"]
+
+[ext_resource type="Script" path="res://items/item_resource_script/baubleHoming.gd" id="1_qpfvj"]
+
+[resource]
+script = ExtResource("1_qpfvj")

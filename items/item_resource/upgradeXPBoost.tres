@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="Upgrade_XP_Boost" load_steps=2 format=3 uid="uid://bjnkfwsbfr8v0"]
+
+[ext_resource type="Script" path="res://items/item_resource_script/xpBoost.gd" id="1_i3lvi"]
+
+[resource]
+script = ExtResource("1_i3lvi")

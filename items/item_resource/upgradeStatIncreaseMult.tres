@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="Upgrade_Stat_Increase_Multiplier" load_steps=2 format=3 uid="uid://cmpa6xl5b2a45"]
+
+[ext_resource type="Script" path="res://items/item_resource_script/statIncreaseMult.gd" id="1_jqp4l"]
+
+[resource]
+script = ExtResource("1_jqp4l")

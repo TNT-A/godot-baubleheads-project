@@ -86,7 +86,7 @@ func check_attacking_baubles():
 				print("added to list")
 		elif attacking_baubles.has(bauble):
 			if bauble.state != bauble.States.ATTACK and bauble.state != bauble.States.TARGETING: 
-				var index = nearby_baubles.find(bauble)
+				var index = attacking_baubles.find(bauble)
 				attacking_baubles.remove_at(index)
 				print("removed from list")
 	count_attacking = attacking_baubles.size()

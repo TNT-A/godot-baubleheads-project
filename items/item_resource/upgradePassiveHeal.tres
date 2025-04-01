@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="Upgrade_Passive_Heal" load_steps=2 format=3 uid="uid://dcdybg7fgciw8"]
+
+[ext_resource type="Script" path="res://items/item_resource_script/passiveHeal.gd" id="1_r3yy8"]
+
+[resource]
+script = ExtResource("1_r3yy8")
