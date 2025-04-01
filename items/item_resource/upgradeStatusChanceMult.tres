@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="Upgrade_Status_Chance_Multiplier" load_steps=2 format=3 uid="uid://d3x2jiv1qkxj7"]
+
+[ext_resource type="Script" path="res://items/item_resource_script/statusChanceMult.gd" id="1_udpa8"]
+
+[resource]
+script = ExtResource("1_udpa8")

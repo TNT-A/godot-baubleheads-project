@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="Upgrade_Drop_Chance_Up" load_steps=2 format=3 uid="uid://djhveuhrhl5xi"]
+
+[ext_resource type="Script" path="res://items/item_resource_script/dropChanceUp.gd" id="1_tivm1"]
+
+[resource]
+script = ExtResource("1_tivm1")

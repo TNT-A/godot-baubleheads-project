@@ -23,3 +23,5 @@ signal change_enemy_health(enemy, change)
 
 #Moving Scenese
 signal scene_transition
+
+signal target_hit(target_indicator)

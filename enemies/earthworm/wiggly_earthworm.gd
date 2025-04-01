@@ -10,6 +10,16 @@ var pickup_scene : PackedScene = preload("res://pickups/gemstone_pickup.tscn")
 var target
 var has_target : bool = false
 var is_alive : bool = true
+var cooldown_done : bool = false
+var windup_done : bool = false
+var dash_done : bool = false
+
+var dash_length : float = 1.5
+var dash_windup_length : float = 0.5
+var dash_cooldown : float = 4.0
+var dash_dir : Vector2 
+var dash_speed : int = 400
+
 var count_attacking : int = 0
 
 var nearby_baubles : Array = []
@@ -22,22 +32,59 @@ var drop_chart : Dictionary = {
 	"topaz" : 100
 	}
 
-var speed : int = 200
+var speed : int = 150
 var acceleration : float  = 0.1
+
+enum States {FOLLOW, WINDUP, DASH}
+var state: States = States.FOLLOW
 
 func _ready() -> void:
 	SignalBus.change_enemy_health.connect(change_health)
 	$AnimatedSprite2D.play("default")
 
 func _physics_process(delta: float) -> void:
-	new_target(player.global_position, 50.0)
-	reset_target(50)
-	if has_target:
-		pathfinding(speed)
-		$AnimatedSprite2D.rotation = get_angle_to(player.global_position)
+	state_transition()
+	state_functions()
 	check_attacking_baubles()
 	if is_alive == false:
 		die()
+
+func state_transition():
+	if state == States.FOLLOW and cooldown_done and has_target:
+		state = States.WINDUP
+	elif state == States.WINDUP and windup_done:
+		state = States.DASH
+	elif state == States.DASH and dash_done:
+		state = States.FOLLOW
+
+func state_functions():
+	if state == States.FOLLOW:
+		if $TimerDashCooldown.is_stopped() and has_target:
+			$TimerDashCooldown.wait_time = randf_range(dash_cooldown - 1.0, dash_cooldown + 1.0)
+			$TimerDashCooldown.start()
+		dash_done = false
+		new_target(player.global_position, 50.0)
+		reset_target(50)
+		if has_target:
+			pathfinding(speed)
+			$AnimatedSprite2D.rotation = get_angle_to(player.global_position)
+	if state == States.WINDUP:
+		cooldown_done = false
+		if $TimerDashWindup.is_stopped():
+			$TimerDashWindup.wait_time = dash_windup_length
+			$TimerDashWindup.start()
+			dash_dir = (player.global_position - global_position).normalized()
+			$AnimatedSprite2D.rotation = get_angle_to(player.global_position)
+	if state == States.DASH:
+		windup_done = false
+		if $TimerDashLength.is_stopped():
+			$TimerDashLength.wait_time = randf_range(dash_length - 0.2, dash_length + 0.2)
+			$TimerDashLength.start()
+		if is_on_wall() or is_on_ceiling() or is_on_floor():
+			dash_done = true
+			$TimerDashLength.stop()
+		velocity = (dash_dir * dash_speed)
+		move_and_slide()
 
 func change_health(enemy, change):
 	if self == enemy:
@@ -64,7 +111,7 @@ func check_attacking_baubles():
 				print("added to list")
 		elif attacking_baubles.has(bauble):
 			if bauble.state != bauble.States.ATTACK and bauble.state != bauble.States.TARGETING: 
-				var index = nearby_baubles.find(bauble)
+				var index = attacking_baubles.find(bauble)
 				attacking_baubles.remove_at(index)
 				print("removed from list")
 	count_attacking = attacking_baubles.size()
@@ -138,13 +185,15 @@ func _on_timer_pathfinding_timeout() -> void:
 
 func _on_target_detector_body_entered(body: Node2D) -> void:
 	if body == player:
-		target = body
+		if !has_target:
+			$TimerDashCooldown.start()
+		target = body.global_position
 		has_target = true
-		print("cool")
 	elif body.is_in_group("bauble"):
-		target = body
+		if !has_target:
+			$TimerDashCooldown.start()
+		target = body.global_position
 		has_target = true
-		print("cool")
 
 func _on_bauble_checker_body_entered(body: Node2D) -> void:
 	if body.is_in_group("bauble"):
@@ -154,3 +203,12 @@ func _on_bauble_checker_body_exited(body: Node2D) -> void:
 	if body.is_in_group("bauble"):
 		var index = nearby_baubles.find(body)
 		nearby_baubles.remove_at(index)
+
+func _on_timer_dash_windup_timeout() -> void:
+	windup_done = true
+
+func _on_timer_dash_cooldown_timeout() -> void:
+	cooldown_done = true
+
+func _on_timer_dash_length_timeout() -> void:
+	dash_done = true

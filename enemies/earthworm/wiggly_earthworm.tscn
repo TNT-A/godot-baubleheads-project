@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cnmbx0805u1i3"]
+[gd_scene load_steps=15 format=3 uid="uid://cnmbx0805u1i3"]
 
 [ext_resource type="Texture2D" uid="uid://dn4yltu1tkd68" path="res://PixelArt/wiggle_worm-Recovered.png" id="1_42smv"]
 [ext_resource type="Script" path="res://enemies/earthworm/wiggly_earthworm.gd" id="1_61cal"]
@@ -53,6 +53,26 @@ radius = 264.03
 [sub_resource type="CircleShape2D" id="CircleShape2D_61v2f"]
 radius = 264.197
 
+[sub_resource type="Animation" id="Animation_nltmj"]
+resource_name = "took damage"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_etlfc"]
+_data = {
+"took damage": SubResource("Animation_nltmj")
+}
+
 [node name="WigglyEarthworm" type="CharacterBody2D" groups=["enemy"]]
 collision_mask = 6
 script = ExtResource("1_61cal")
@@ -64,6 +84,17 @@ shape = SubResource("CapsuleShape2D_yn4co")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_6c3bg")
+
+[node name="TimerDashLength" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="TimerDashCooldown" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="TimerDashWindup" type="Timer" parent="."]
+one_shot = true
 
 [node name="TimerPathfinding" type="Timer" parent="."]
 wait_time = 0.2
@@ -91,6 +122,14 @@ shape = SubResource("CircleShape2D_cejg8")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BaubleChecker"]
 shape = SubResource("CircleShape2D_61v2f")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_etlfc")
+}
+
+[connection signal="timeout" from="TimerDashLength" to="." method="_on_timer_dash_length_timeout"]
+[connection signal="timeout" from="TimerDashCooldown" to="." method="_on_timer_dash_cooldown_timeout"]
+[connection signal="timeout" from="TimerDashWindup" to="." method="_on_timer_dash_windup_timeout"]
 [connection signal="timeout" from="TimerPathfinding" to="." method="_on_timer_pathfinding_timeout"]
 [connection signal="body_entered" from="targetDetector" to="." method="_on_target_detector_body_entered"]
 [connection signal="body_entered" from="BaubleChecker" to="." method="_on_bauble_checker_body_entered"]

@@ -1,0 +1,85 @@
+[gd_scene load_steps=12 format=3 uid="uid://bayramhg1wk13"]
+
+[ext_resource type="Texture2D" uid="uid://cuiqr00vfj4c2" path="res://PixelArt/Warning.png" id="1_ev181"]
+[ext_resource type="Script" path="res://indicators/target.gd" id="2_la4i3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvav4"]
+atlas = ExtResource("1_ev181")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02unx"]
+atlas = ExtResource("1_ev181")
+region = Rect2(144, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qnsvo"]
+atlas = ExtResource("1_ev181")
+region = Rect2(168, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p813e"]
+atlas = ExtResource("1_ev181")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjbb3"]
+atlas = ExtResource("1_ev181")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_umja7"]
+atlas = ExtResource("1_ev181")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p47cq"]
+atlas = ExtResource("1_ev181")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wjb4"]
+atlas = ExtResource("1_ev181")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5myak"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvav4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_02unx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qnsvo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p813e")
+}],
+"loop": true,
+"name": &"flash",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjbb3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_umja7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p47cq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0wjb4")
+}],
+"loop": false,
+"name": &"grow",
+"speed": 12.0
+}]
+
+[node name="Target" type="AnimatedSprite2D"]
+self_modulate = Color(1, 1, 1, 0.556863)
+position = Vector2(69, 75)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_5myak")
+animation = &"grow"
+frame = 3
+frame_progress = 1.0
+script = ExtResource("2_la4i3")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

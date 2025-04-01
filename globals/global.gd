@@ -17,6 +17,29 @@ var pickup_inventory : Dictionary = {
 	"diamond" = 0,
 }
 
+var upgrades : Dictionary = {
+	#Player Multipliers
+	"speedMult" = false,
+	"throwCooldownMult" = false,
+	
+	# Bauble Multipliers and Stats
+	"damageMult" = false,
+	"throwDamageMult" = false,
+	"attackSpeedMult" = false,
+	"statusChanceMult" = false,
+	"statIncreaseMult" = false,
+	
+	#Passive Upgrades
+	"passiveHeal" = false,
+	"dropChanceUp" = false,
+	"xpBoost" = false,
+	
+	#New Components
+	"baubleExplosion" = false,
+	"baubleChain" = false,
+	"baubleHoming" = false,
+}
+
 func _ready() -> void:
 	pass 
 
