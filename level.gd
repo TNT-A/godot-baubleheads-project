@@ -15,7 +15,8 @@ var map_scene : PackedScene
 
 var level_scenes : Array = [
 	preload("res://Maps/cave_tilemap.tscn"),
-	#preload("res://test_level1.tscn")
+	preload("res://test_level1.tscn")
+	preload("l")
 ]
 
 var can_continue : bool = false
