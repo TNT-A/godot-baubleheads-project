@@ -5,6 +5,7 @@ class_name Baublehead
 @export var acceleration : float = .1
 @export var deceleration : float = .05
 @export var type : Resource
+@export var bauble_type : String
 
 @onready var nav_agent : NavigationAgent2D = $NavigationAgent2D
 @onready var player : Node = Global.player
@@ -69,10 +70,10 @@ func _ready() -> void:
 		#print("I'm dead XD")
 	load_stats()
 	if type == null:
-		type = load("res://baubles/bauble_resources/diamond_bauble.tres")
+		type = load("res://baubles/bauble_resources/ruby_bauble.tres")
+	if type != null: 
+		bauble_type = type.type
 	favored_pickup = "pickup_" + type.type
-	$Sprite2D.texture = type.sprite
-	$Sprite2D.scale = Vector2(2,2)
 	self.position = random_location(player.position, 30.0)
 
 func load_stats():
@@ -140,6 +141,7 @@ func state_functions():
 		reset_target(50)
 		pathfinding(speed)
 		$AnimationPlayer.play("walk")
+		$AnimatedSprite2D.play(bauble_type+"_run")
 	if state == States.RETURN:
 		new_target(player.global_position, 50.0)
 		reset_target(50)
@@ -147,9 +149,11 @@ func state_functions():
 		$AnimationPlayer.play("walk")
 		current_enemy = null
 		to_be_dropped = false
+		$AnimatedSprite2D.play(bauble_type+"_run")
 	if state == States.IDLE:
 		reset_velocity()
 		$AnimationPlayer.play("idle")
+		$AnimatedSprite2D.play(bauble_type+"_idle")
 	if state == States.PATROL:
 		new_target(get_global_mouse_position(), 20.0)
 		var random_speed : float = randf_range(1.3, 1.6)
@@ -164,6 +168,7 @@ func state_functions():
 			#temp_target = get_global_mouse_position()
 			#pass
 		$AnimationPlayer.play("walk")
+		$AnimatedSprite2D.play(bauble_type+"_run")
 	if state == States.TARGETING:
 		immune = true
 		if $TimerAttackCooldown.is_stopped():
@@ -173,24 +178,27 @@ func state_functions():
 				$TimerAttackCooldown.wait_time = 0.00001
 			$TimerAttackCooldown.start()
 		$AnimationPlayer.play("walk")
-		$Sprite2D.scale = Vector2(2,2)
+		$AnimatedSprite2D.scale = Vector2(2,2)
 		if current_enemy != null:
 			new_target(current_enemy.global_position, 50.0)
 		pathfinding(speed)
+		$AnimatedSprite2D.play(bauble_type+"_run")
 	if state == States.ATTACK:
 		immune = true
-		$Sprite2D.scale = Vector2(3,3)
 		attack_enemy()
 		$AnimationPlayer.play("attack")
+		$AnimatedSprite2D.play(bauble_type+"_attack")
 	if state == States.HELD:
 		immune = true
 		$AnimationPlayer.play("sit")
 		var stack_position : int = BaubleManager.held_baubles.find(self)
 		carry(stack_position * sprite_height)
+		$AnimatedSprite2D.stop()
 	if state == States.THROWN:
 		immune = true
-		$AnimationPlayer.play("thrown")
 		thrown()
+		$AnimatedSprite2D.play(bauble_type+"_attack")
+		$AnimationPlayer.play("thrown")
 
 func state_changed():
 	target_decided = false
@@ -198,10 +206,9 @@ func state_changed():
 	enable_collision()
 	$TimerAttackCooldown.stop()
 	$TimerRange.stop()
-	$Sprite2D.rotation = 0
-	$Sprite2D.scale = Vector2(2, 2)
+	$AnimatedSprite2D.rotation = 0
+	$AnimatedSprite2D.scale = Vector2(2, 2)
 	immune = false
-	#print("state changed ", state)
 
 func random_location(location, range):
 	if player:
@@ -223,9 +230,9 @@ func reset_velocity():
 	velocity = velocity.lerp(Vector2.ZERO,deceleration)
 	move_and_slide()
 	if player.position > position and abs(position.x - player.position.x) > 20:
-		$Sprite2D.flip_h = false
+		$AnimatedSprite2D.flip_h = false
 	if player.position < position and abs(position.x - player.position.x) > 20:
-		$Sprite2D.flip_h = true
+		$AnimatedSprite2D.flip_h = true
 
 func detect_enemy():
 	var inEnemy : bool = false
@@ -244,7 +251,7 @@ func attack_enemy():
 	var target_position : Vector2 = enemy_position + (enemy_position - global_position)
 	var distance : Vector2 
 	if attack_speed_timeout == false and attack_ready :
-		$Sprite2D.rotation = get_angle_to(current_enemy.global_position)
+		#$AnimatedSprite2D.rotation = get_angle_to(current_enemy.global_position)
 		direction = (target_position - global_position).normalized()
 		velocity = (stats.attack_speed * direction)
 		attack_ready = false
@@ -260,7 +267,7 @@ func attack_enemy():
 func carry(height):
 	in_air = true
 	at_range = false
-	$Sprite2D.flip_h = player.sprite.flip_h
+	$AnimatedSprite2D.flip_h = player.sprite.flip_h
 	disable_collision()
 	global_position = player.hand_marker.global_position - Vector2(0, height)
 	target = get_global_mouse_position()
@@ -285,9 +292,9 @@ func pathfinding(speed_change):
 	var dir := global_position.direction_to(next_path_pos)
 	velocity = velocity.lerp(dir * speed_change, acceleration)
 	if player.position > position and abs(position.x - player.position.x) > 20:
-		$Sprite2D.flip_h = false
+		$AnimatedSprite2D.flip_h = false
 	if player.position < position and abs(position.x - player.position.x) > 20:
-		$Sprite2D.flip_h = true
+		$AnimatedSprite2D.flip_h = true
 	move_and_slide()
 
 func make_path():

@@ -1,0 +1,75 @@
+[gd_scene load_steps=8 format=3 uid="uid://cneonblq7tq5d"]
+
+[ext_resource type="Script" path="res://enemies/enemy_spawner.gd" id="1_eeh8n"]
+[ext_resource type="Texture2D" uid="uid://dn4yltu1tkd68" path="res://PixelArt/wiggle_worm-Recovered.png" id="2_exn1h"]
+
+[sub_resource type="Animation" id="Animation_3os6x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wfet3"]
+resource_name = "spawn_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.65098), Color(1, 1, 1, 0), Color(1, 1, 1, 0.65098), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p80uu"]
+_data = {
+"RESET": SubResource("Animation_3os6x"),
+"spawn_in": SubResource("Animation_wfet3")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m73oj"]
+atlas = ExtResource("2_exn1h")
+region = Rect2(0, 0, 34, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_in3xx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m73oj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="EnemySpawner" type="Node2D"]
+position = Vector2(265, 39)
+script = ExtResource("1_eeh8n")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_p80uu")
+}
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_in3xx")
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

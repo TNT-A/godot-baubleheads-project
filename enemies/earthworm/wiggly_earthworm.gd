@@ -7,7 +7,11 @@ var pickup_scene : PackedScene = preload("res://pickups/gemstone_pickup.tscn")
 
 @export var health : int = 9
 
+var starting_position : Vector2 
 var target
+var close_target : Vector2 
+var real_target : Vector2
+
 var has_target : bool = false
 var is_alive : bool = true
 var cooldown_done : bool = false
@@ -41,8 +45,13 @@ var state: States = States.FOLLOW
 func _ready() -> void:
 	SignalBus.change_enemy_health.connect(change_health)
 	$AnimatedSprite2D.play("default")
+	if starting_position:
+		global_position = starting_position
 
 func _physics_process(delta: float) -> void:
+	if player:
+		new_target(player.global_position, 50.0)
+		reset_target(50)
 	state_transition()
 	state_functions()
 	check_attacking_baubles()
@@ -59,17 +68,21 @@ func state_transition():
 
 func state_functions():
 	if state == States.FOLLOW:
+		dash_done = false
+		windup_done = false
+		$TimerDashWindup.stop()
+		$TimerDashLength.stop()
 		if $TimerDashCooldown.is_stopped() and has_target:
 			$TimerDashCooldown.wait_time = randf_range(dash_cooldown - 1.0, dash_cooldown + 1.0)
 			$TimerDashCooldown.start()
-		dash_done = false
-		new_target(player.global_position, 50.0)
-		reset_target(50)
 		if has_target:
 			pathfinding(speed)
 			$AnimatedSprite2D.rotation = get_angle_to(player.global_position)
 	if state == States.WINDUP:
+		dash_done = false
 		cooldown_done = false
+		$TimerDashCooldown.stop()
+		$TimerDashLength.stop()
 		if $TimerDashWindup.is_stopped():
 			$TimerDashWindup.wait_time = dash_windup_length
 			$TimerDashWindup.start()
@@ -77,6 +90,9 @@ func state_functions():
 			$AnimatedSprite2D.rotation = get_angle_to(player.global_position)
 	if state == States.DASH:
 		windup_done = false
+		cooldown_done = false
+		$TimerDashWindup.stop()
+		$TimerDashCooldown.stop()
 		if $TimerDashLength.is_stopped():
 			$TimerDashLength.wait_time = randf_range(dash_length - 0.2, dash_length + 0.2)
 			$TimerDashLength.start()
@@ -98,32 +114,34 @@ func check_attacking_baubles():
 		var index = nearby_baubles.find(bauble)
 		if !is_instance_valid(nearby_baubles[index]):
 			nearby_baubles.remove_at(index)
-			print("removed from nearby list")
+			#print("removed from nearby list")
 	for bauble in attacking_baubles:
 		var index = attacking_baubles.find(bauble)
 		if !is_instance_valid(attacking_baubles[index]):
 			attacking_baubles.remove_at(index)
-			print("removed from attacking list")
+			#print("removed from attacking list")
 	for bauble in nearby_baubles:
 		if !attacking_baubles.has(bauble):
 			if bauble.state == bauble.States.ATTACK or bauble.state == bauble.States.TARGETING: 
 				attacking_baubles.append(bauble)
-				print("added to list")
+				#print("added to list")
 		elif attacking_baubles.has(bauble):
 			if bauble.state != bauble.States.ATTACK and bauble.state != bauble.States.TARGETING: 
 				var index = attacking_baubles.find(bauble)
 				attacking_baubles.remove_at(index)
-				print("removed from list")
+				#print("removed from list")
 	count_attacking = attacking_baubles.size()
 
 func die():
 	drop_item()
-	queue_free()
+	SignalBus.enemy_dead.emit(self)
+	call_deferred("queue_free")
 
 func drop_item():
 	var drop_chance : int = randi_range(0, 100)
 	if drop_chance < drop_chart["none"]:
-		print("none")
+		#print("none")
+		pass
 	elif drop_chart["none"] < drop_chance and drop_chance <= drop_chart["ruby"]:
 		create_pickup("ruby")
 	elif drop_chart["ruby"] < drop_chance and drop_chance <= drop_chart["sapphire"]:
@@ -143,21 +161,23 @@ func pathfinding(speed_change):
 	velocity = velocity.lerp(dir * speed_change, acceleration)
 	move_and_slide()
 
-func random_location(location, range):
+func random_location(location, range_D):
 	if player:
 		var rng = RandomNumberGenerator.new()
 		var random_position : Vector2 = Vector2()
-		random_position.x = location.x + rng.randf_range(-range,range)
-		random_position.y = location.y + rng.randf_range(-range,range)
+		random_position.x = location.x + rng.randf_range(-range_D,range_D)
+		random_position.y = location.y + rng.randf_range(-range_D,range_D)
 		return random_position
 
-func random_pivot(range):
+func random_pivot(range_D):
 	if player:
 		var rng = RandomNumberGenerator.new()
 		var random_pivot : Vector2 = Vector2()
-		random_pivot.x = rng.randf_range(-range,range)
-		random_pivot.y = rng.randf_range(-range,range)
+		random_pivot.x = rng.randf_range(-range_D,range_D)
+		random_pivot.y = rng.randf_range(-range_D,range_D)
 		return random_pivot
+	else:
+		return Vector2(0, 0)
 
 func make_path():
 	if target:
@@ -165,17 +185,17 @@ func make_path():
 
 var target_pivot : Vector2 
 var target_decided : bool = false
-func new_target(target_position, range):
+func new_target(target_position, range_D):
 	if target_decided == false:
 		target_pivot = Vector2(0,0)
-		target_pivot = random_pivot(range)
+		target_pivot = random_pivot(range_D)
 		target_decided = true
 	target = target_position + target_pivot
 
 var target_timeout = false
-func reset_target(range):
+func reset_target(range_D):
 	if target_timeout == false:
-		target_pivot = random_pivot(range)
+		target_pivot = random_pivot(range_D)
 		target_timeout = true
 		await get_tree().create_timer(2.0).timeout
 		target_timeout = false
@@ -212,3 +232,12 @@ func _on_timer_dash_cooldown_timeout() -> void:
 
 func _on_timer_dash_length_timeout() -> void:
 	dash_done = true
+
+#func _on_player_checker_body_entered(body: Node2D) -> void:
+	#if body == player:
+		#real_target = target
+		#target = close_target
+#
+#func _on_player_checker_body_exited(body: Node2D) -> void:
+	#if body == player:
+		#target = real_target

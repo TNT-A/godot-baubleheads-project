@@ -21,10 +21,10 @@ func _on_item_radius_body_entered(body: Node2D) -> void:
 	#print(body, " entered ", player)
 	if body == player:
 		playerInRange = true
-		print("player entered")
+		#print("player entered")
 
 func _on_item_radius_body_exited(body: Node2D) -> void:
 	#print(body, " exited ", player)
 	if body == player:
 		playerInRange = false
-		print("player left")
+		#print("player left")

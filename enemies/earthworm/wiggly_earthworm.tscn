@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cnmbx0805u1i3"]
+[gd_scene load_steps=16 format=3 uid="uid://cnmbx0805u1i3"]
 
 [ext_resource type="Texture2D" uid="uid://dn4yltu1tkd68" path="res://PixelArt/wiggle_worm-Recovered.png" id="1_42smv"]
 [ext_resource type="Script" path="res://enemies/earthworm/wiggly_earthworm.gd" id="1_61cal"]
@@ -50,6 +50,9 @@ radius = 14.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_cejg8"]
 radius = 264.03
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_5baap"]
+radius = 85.0059
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_61v2f"]
 radius = 264.197
 
@@ -75,6 +78,8 @@ _data = {
 
 [node name="WigglyEarthworm" type="CharacterBody2D" groups=["enemy"]]
 collision_mask = 6
+motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_61cal")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -100,22 +105,28 @@ one_shot = true
 wait_time = 0.2
 autostart = true
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 16.0
+target_desired_distance = 8.0
+debug_enabled = true
+
 [node name="DamageZone" parent="." instance=ExtResource("1_of30d")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_p5ix1")
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-path_desired_distance = 16.0
-target_desired_distance = 8.0
-debug_enabled = true
-
 [node name="targetDetector" type="Area2D" parent="."]
 rotation = 1.5708
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="targetDetector"]
 shape = SubResource("CircleShape2D_cejg8")
+
+[node name="PlayerChecker" type="Area2D" parent="."]
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerChecker"]
+shape = SubResource("CircleShape2D_5baap")
 
 [node name="BaubleChecker" type="Area2D" parent="."]
 
@@ -132,5 +143,7 @@ libraries = {
 [connection signal="timeout" from="TimerDashWindup" to="." method="_on_timer_dash_windup_timeout"]
 [connection signal="timeout" from="TimerPathfinding" to="." method="_on_timer_pathfinding_timeout"]
 [connection signal="body_entered" from="targetDetector" to="." method="_on_target_detector_body_entered"]
+[connection signal="body_entered" from="PlayerChecker" to="." method="_on_player_checker_body_entered"]
+[connection signal="body_exited" from="PlayerChecker" to="." method="_on_player_checker_body_exited"]
 [connection signal="body_entered" from="BaubleChecker" to="." method="_on_bauble_checker_body_entered"]
 [connection signal="body_exited" from="BaubleChecker" to="." method="_on_bauble_checker_body_exited"]
