@@ -3,7 +3,6 @@
 [ext_resource type="Shader" path="res://settings/settings_menu.gdshader" id="1_wyset"]
 [ext_resource type="Script" path="res://settings/settings_menu.gd" id="1_y5uni"]
 
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_75slf"]
 shader = ExtResource("1_wyset")
 shader_parameter/amount = 2.5
@@ -35,6 +34,6 @@ layout_mode = 2
 
 [node name="BackToSettings" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Back to menu"
+text = "⬅️"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/BackToSettings" to="." method="_on_back_to_settings_pressed"]

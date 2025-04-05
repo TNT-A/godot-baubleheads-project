@@ -31,3 +31,6 @@ signal target_hit(target_indicator)
 
 #level control
 signal all_enemies_killed
+
+#player commands
+signal player_died

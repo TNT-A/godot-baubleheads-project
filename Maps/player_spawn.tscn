@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b18ac30irhyo5" path="res://icon.svg" id="1_hig5k"]
 
 [node name="PlayerSpawn" type="Node2D"]
+visible = false
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)

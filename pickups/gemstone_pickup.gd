@@ -6,9 +6,6 @@ func _ready() -> void:
 	if item_resource:
 		$Sprite2D.texture = item_resource.pickup_sprite
 
-func _physics_process(delta: float) -> void:
-	pass
-
 func pickup():
 	SignalBus.picked_up.emit(item_resource)
 	queue_free()
