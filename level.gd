@@ -3,11 +3,14 @@ extends Node2D
 enum States {GAME, INVENTORY, PAUSED}
 var state: States = States.GAME
 
+#var current_level : int = 0
+
 var current_player : Node
 var current_map : Node 
 var current_ui : Node
 
 var this_scene : PackedScene = preload("res://level_manager.tscn")
+var main_menu : PackedScene = preload("res://TitleScreen.tscn")
 
 var player_scene : PackedScene = preload("res://player/player.tscn")
 var ui_scene : PackedScene = preload("res://in_game_ui.tscn")
@@ -15,8 +18,14 @@ var map_scene : PackedScene
 
 var level_scenes : Array = [
 	preload("res://Maps/cave_tilemap.tscn"),
-	preload("res://test_level1.tscn")
-	preload("l")
+	preload("res://Maps/og_level_1.tscn"),
+	preload("res://Maps/og_level_2.tscn"),
+	preload("res://Maps/og_level_3.tscn"),
+	preload("res://Maps/og_level_4.tscn"),
+	preload("res://Maps/og_level_5.tscn"),
+	preload("res://Maps/og_level_6.tscn"),
+	preload("res://Maps/og_level_7.tscn"),
+	preload("res://Maps/og_level_8.tscn"),
 ]
 
 var can_continue : bool = false
@@ -25,6 +34,7 @@ func _ready() -> void:
 	#print("level started")
 	SignalBus.scene_transition.connect(switch_maps)
 	SignalBus.all_enemies_killed.connect(set_can_continue)
+	SignalBus.player_died.connect(reset_game)
 	choose_map()
 	create_game_scene()
 	BaubleManager.refill_party()
@@ -45,7 +55,7 @@ func create_game_scene():
 	current_map = new_area
 	current_player = new_player
 	current_ui = new_ui
-	current_player.global_position = current_map.player_spawn
+	current_player.global_position = current_map.player_spawn_location
 
 func choose_map():
 	var level_index = randi_range(0, level_scenes.size()-1)
@@ -130,3 +140,12 @@ func save_inventory():
 
 func set_can_continue():
 	can_continue = true
+
+func reset_game():
+	$FadeToBlack.fade_to_red()
+	await $FadeToBlack/AnimationPlayer.animation_finished
+	BaubleManager.saved_baubles = BaubleManager.base_bauble_inventory
+	Global.player_stats = Global.base_player_stats
+	Global.pickup_inventory = Global.base_pickup_inventory
+	if is_instance_valid(get_tree()):
+		get_tree().change_scene_to_file("res://TitleScreen.tscn")

@@ -49,9 +49,6 @@ func _ready() -> void:
 		global_position = starting_position
 
 func _physics_process(delta: float) -> void:
-	if player:
-		new_target(player.global_position, 50.0)
-		reset_target(50)
 	state_transition()
 	state_functions()
 	check_attacking_baubles()
@@ -75,6 +72,9 @@ func state_functions():
 		if $TimerDashCooldown.is_stopped() and has_target:
 			$TimerDashCooldown.wait_time = randf_range(dash_cooldown - 1.0, dash_cooldown + 1.0)
 			$TimerDashCooldown.start()
+		if player:
+			new_target(player.global_position, 50.0)
+			reset_target(50)
 		if has_target:
 			pathfinding(speed)
 			$AnimatedSprite2D.rotation = get_angle_to(player.global_position)
@@ -205,11 +205,6 @@ func _on_timer_pathfinding_timeout() -> void:
 
 func _on_target_detector_body_entered(body: Node2D) -> void:
 	if body == player:
-		if !has_target:
-			$TimerDashCooldown.start()
-		target = body.global_position
-		has_target = true
-	elif body.is_in_group("bauble"):
 		if !has_target:
 			$TimerDashCooldown.start()
 		target = body.global_position

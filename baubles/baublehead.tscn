@@ -329,6 +329,7 @@ _data = {
 }
 
 [node name="baublehead" type="CharacterBody2D" groups=["bauble"]]
+z_index = 2
 position = Vector2(135, 98)
 collision_mask = 2
 motion_mode = 1

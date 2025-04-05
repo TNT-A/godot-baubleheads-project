@@ -2,13 +2,13 @@ extends Node
 class_name Level
 
 @export var enemy_count: int 
-@export var player_spawn: Vector2
+@export var player_spawn_location: Vector2
 
 var enemies : Array = []
 
 func _ready() -> void:
 	enemies.clear()
-	player_spawn = $PlayerSpawn.global_position
+	player_spawn_location = $PlayerSpawn.global_position
 	SignalBus.enemy_added.connect(add_enemy)
 	SignalBus.enemy_dead.connect(remove_enemy)
 	for child in self.get_children():

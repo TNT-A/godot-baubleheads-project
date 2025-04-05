@@ -74,7 +74,7 @@ func _ready() -> void:
 	if type != null: 
 		bauble_type = type.type
 	favored_pickup = "pickup_" + type.type
-	self.position = random_location(player.position, 30.0)
+	self.global_position = random_location(player.global_position, 30.0)
 
 func load_stats():
 	if BaubleManager.bauble_stats_list[slot] != null:

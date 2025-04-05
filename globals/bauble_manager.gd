@@ -31,10 +31,23 @@ var bauble_inventory : Array = [
 	null
 ]
 
+var base_bauble_inventory : Array = [
+	"ruby",
+	"sapphire",
+	"topaz",
+	null,
+	null,
+	null,
+	null,
+	null,
+	null,
+	null,
+]
+
 var saved_baubles : Array = [
-	null,
-	null,
-	null,
+	"ruby",
+	"sapphire",
+	"topaz",
 	null,
 	null,
 	null,
@@ -80,21 +93,19 @@ func _physics_process(delta: float) -> void:
 	main = get_tree().current_scene
 	count_held()
 	held_count = held_baubles.size()
-	
 	if Input.is_action_just_released("Player_Ability_1"):
 		determine_throw_order()
-	
-	if Input.is_action_just_pressed("Spawn_Bauble"):
-		var current_index = find_empty_slot()
-		if current_index is int and current_index < 10:
-			spawn_bauble("ruby", current_index)
-	if Input.is_action_just_pressed("Kill_Bauble"):
-		var current_index = find_full_slot()
-		#print(current_index)
-		if current_index is int and current_index < 10:
-			despawn_bauble(current_index)
-	if Input.is_action_just_pressed("Replace_Bauble"):
-		replace_bauble("ruby", 0)
+	#if Input.is_action_just_pressed("Spawn_Bauble"):
+		#var current_index = find_empty_slot()
+		#if current_index is int and current_index < 10:
+			#spawn_bauble("ruby", current_index)
+	#if Input.is_action_just_pressed("Kill_Bauble"):
+		#var current_index = find_full_slot()
+		##print(current_index)
+		#if current_index is int and current_index < 10:
+			#despawn_bauble(current_index)
+	#if Input.is_action_just_pressed("Replace_Bauble"):
+		#replace_bauble("ruby", 0)
 
 func find_empty_slot():
 	var current_index
@@ -170,7 +181,7 @@ func replace_bauble(type_of_bauble, slot):
 func count_held():
 	#add and remove held baubles from the held list
 	for bauble in bauble_inventory:
-		if bauble is Node:
+		if is_instance_valid(bauble):
 			if bauble.being_held:
 				if !held_baubles.has(bauble):
 					held_baubles.append(bauble)
@@ -191,13 +202,13 @@ func count_held():
 					bauble.to_be_dropped = true
 	else:
 		for bauble in bauble_inventory:
-			if bauble is Node:
+			if is_instance_valid(bauble):
 				bauble.can_hold = true
 
 func determine_throw_order():
 	throwing = true
 	for bauble in bauble_inventory:
-		if bauble is Node:
+		if is_instance_valid(bauble):
 			if held_baubles.has(bauble):
 				var index = held_baubles.find(bauble)
 				#print(held_baubles.find(bauble))

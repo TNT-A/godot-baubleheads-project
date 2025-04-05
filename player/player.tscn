@@ -323,6 +323,7 @@ shape = SubResource("CapsuleShape2D_ms536")
 debug_color = Color(0.976901, 0, 0.408291, 0.42)
 
 [node name="Marker2D" type="Marker2D" parent="."]
+z_index = 100
 position = Vector2(6, -28)
 
 [node name="ColorRect" type="ColorRect" parent="Marker2D"]

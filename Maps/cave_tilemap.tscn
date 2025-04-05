@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dnlsiamufqhvp"]
+[gd_scene load_steps=13 format=3 uid="uid://dnlsiamufqhvp"]
 
 [ext_resource type="Script" path="res://Maps/cave_level.gd" id="1_3s42e"]
 [ext_resource type="PackedScene" uid="uid://b7utonsaypija" path="res://tile_map_base.tscn" id="2_5fvkc"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://bmgdfffipgdik" path="res://pickups/gemstone_pickup.tscn" id="4_aontj"]
 [ext_resource type="PackedScene" uid="uid://buhvt42opr73m" path="res://beeg_earthworm.tscn" id="4_sn50h"]
 [ext_resource type="Resource" uid="uid://ctnhj85v2swgr" path="res://pickups/pickup_resource/item_sapphire.tres" id="5_bi6c3"]
-[ext_resource type="PackedScene" uid="uid://coa54e45uplra" path="res://player/player.tscn" id="5_i1ul2"]
 [ext_resource type="Resource" uid="uid://bnqkjk51xm27m" path="res://pickups/pickup_resource/item_ruby.tres" id="6_dgtj2"]
 [ext_resource type="Resource" uid="uid://ewck2wib7hun" path="res://pickups/pickup_resource/item_topaz.tres" id="7_ojrgi"]
 [ext_resource type="PackedScene" uid="uid://cnmbx0805u1i3" path="res://enemies/earthworm/wiggly_earthworm.tscn" id="10_8fvj7"]
@@ -26,46 +25,19 @@ navigation_polygon = ExtResource("2_dlj4k")
 [node name="PlayerSpawn" parent="." instance=ExtResource("3_pwdk1")]
 position = Vector2(223, 54)
 
-[node name="PlayerBody" parent="." instance=ExtResource("5_i1ul2")]
-position = Vector2(766, 330)
-
 [node name="FloorExit" parent="." instance=ExtResource("3_f8v0e")]
 position = Vector2(897, 754)
 
-[node name="GemstonePickup" parent="." instance=ExtResource("4_aontj")]
-position = Vector2(-333, 263)
-item_resource = ExtResource("5_bi6c3")
-
 [node name="GemstonePickup2" parent="." instance=ExtResource("4_aontj")]
 position = Vector2(-416, 273)
-item_resource = ExtResource("5_bi6c3")
-
-[node name="GemstonePickup3" parent="." instance=ExtResource("4_aontj")]
-position = Vector2(-362, 347)
 item_resource = ExtResource("5_bi6c3")
 
 [node name="GemstonePickup4" parent="." instance=ExtResource("4_aontj")]
 position = Vector2(515, 526)
 item_resource = ExtResource("6_dgtj2")
 
-[node name="GemstonePickup5" parent="." instance=ExtResource("4_aontj")]
-position = Vector2(432, 536)
-item_resource = ExtResource("6_dgtj2")
-
-[node name="GemstonePickup6" parent="." instance=ExtResource("4_aontj")]
-position = Vector2(486, 610)
-item_resource = ExtResource("6_dgtj2")
-
 [node name="GemstonePickup7" parent="." instance=ExtResource("4_aontj")]
 position = Vector2(865, 189)
-item_resource = ExtResource("7_ojrgi")
-
-[node name="GemstonePickup8" parent="." instance=ExtResource("4_aontj")]
-position = Vector2(782, 199)
-item_resource = ExtResource("7_ojrgi")
-
-[node name="GemstonePickup9" parent="." instance=ExtResource("4_aontj")]
-position = Vector2(836, 273)
 item_resource = ExtResource("7_ojrgi")
 
 [node name="WigglyEarthworm" parent="." instance=ExtResource("10_8fvj7")]

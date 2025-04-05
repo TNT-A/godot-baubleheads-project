@@ -12,3 +12,6 @@ func fade_to_black():
 
 func fade_from_black():
 	$AnimationPlayer.play("fade_from_black")
+
+func fade_to_red():
+	$AnimationPlayer.play("fade_to_red")

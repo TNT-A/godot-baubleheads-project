@@ -32,6 +32,7 @@ func change_health(change):
 	stats.health -= change
 	if stats.health <= 0:
 		stats.health = 0
+		die()
 	SignalBus.emit_signal("set_health_bar", stats.max_health, stats.health)
 
 func _physics_process(delta: float) -> void:
@@ -118,6 +119,9 @@ func walk(new_speed):
 		hand_marker.position = Vector2(-6, -28)
 	move_and_slide()
 	#print(velocity)
+
+func die():
+	SignalBus.emit_signal("player_died")
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	var enemy = area
