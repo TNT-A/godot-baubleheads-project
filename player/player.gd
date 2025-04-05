@@ -6,7 +6,7 @@ extends CharacterBody2D
 @export var stats : Dictionary = {
 	max_health = 5,
 	health = 5,
-	speed = 200,
+	speed = 250,
 }
 
 @onready var hand_marker = $Marker2D
@@ -42,18 +42,26 @@ func _physics_process(delta: float) -> void:
 
 func state_functions():
 	if state == States.IDLE:
+		stats.speed = 250
 		reset_velocity()
+		$AnimatedSprite2D.play("idle")
 	if state == States.WALKING:
+		stats.speed = 250
 		walk(stats.speed)
+		$AnimatedSprite2D.play("walk")
 	if state == States.SPRINTING:
-		walk(stats.speed * 2)
-	if state == States.HOLDING:
+		stats.speed = 350
 		walk(stats.speed)
+		$AnimatedSprite2D.play("run")
+	if state == States.HOLDING:
+		stats.speed = 250
+		walk(stats.speed)
+		$AnimatedSprite2D.play("run_and_hold")
 
 func state_transition():
 	if state == States.IDLE and check_for_input() == true:
 		state = States.WALKING
-	elif state == States.WALKING and check_for_input() == false:
+	elif (state == States.WALKING or state == States.SPRINTING) and check_for_input() == false:
 		state = States.IDLE
 	elif state == States.WALKING and sprinting:
 		state = States.SPRINTING
@@ -104,10 +112,10 @@ func walk(new_speed):
 		velocity = velocity.lerp(Vector2.ZERO,deceleration)
 	if velocity.x > 0:
 		sprite.flip_h = false
-		hand_marker.position = Vector2(17, 4)
+		hand_marker.position = Vector2(6, -28)
 	elif velocity.x < 0:
 		sprite.flip_h = true
-		hand_marker.position = Vector2(-17, 4)
+		hand_marker.position = Vector2(-6, -28)
 	move_and_slide()
 	#print(velocity)
 

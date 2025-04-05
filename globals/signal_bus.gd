@@ -20,8 +20,14 @@ signal fade_from_black
 
 #Enemy Thingamajigs
 signal change_enemy_health(enemy, change)
+signal enemy_dead(enemy)
+signal enemy_added(enemy)
 
 #Moving Scenese
 signal scene_transition
 
+#target destruction
 signal target_hit(target_indicator)
+
+#level control
+signal all_enemies_killed

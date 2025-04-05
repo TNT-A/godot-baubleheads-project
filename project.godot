@@ -36,6 +36,7 @@ party_slot="Is a party slot, can accept items"
 player="It's legit just the player bro"
 enemy="Is an enemy lmao"
 bauble="is a bauble"
+navigation=""
 
 [input]
 
@@ -144,3 +145,4 @@ Sprint={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.133333, 0.109804, 0.101961, 1)

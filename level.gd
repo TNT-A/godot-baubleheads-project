@@ -18,9 +18,12 @@ var level_scenes : Array = [
 	#preload("res://test_level1.tscn")
 ]
 
+var can_continue : bool = false
+
 func _ready() -> void:
-	print("level started")
+	#print("level started")
 	SignalBus.scene_transition.connect(switch_maps)
+	SignalBus.all_enemies_killed.connect(set_can_continue)
 	choose_map()
 	create_game_scene()
 	BaubleManager.refill_party()
@@ -41,21 +44,22 @@ func create_game_scene():
 	current_map = new_area
 	current_player = new_player
 	current_ui = new_ui
-	current_player.global_position = current_map.get_child(2).global_position
+	current_player.global_position = current_map.player_spawn
 
 func choose_map():
 	var level_index = randi_range(0, level_scenes.size()-1)
 	map_scene = level_scenes[level_index]
 
 func switch_maps():
-	print("sick nasty")
-	save_player_stats()
-	save_baubles()
-	save_bauble_stats()
-	save_inventory()
-	$FadeToBlack.fade_to_black()
-	await $FadeToBlack/AnimationPlayer.animation_finished
-	get_tree().call_deferred("change_scene_to_packed", this_scene)
+	if can_continue:
+		#print("sick nasty")
+		save_player_stats()
+		save_baubles()
+		save_bauble_stats()
+		save_inventory()
+		$FadeToBlack.fade_to_black()
+		await $FadeToBlack/AnimationPlayer.animation_finished
+		get_tree().call_deferred("change_scene_to_packed", this_scene)
 
 func change_state():
 	if state == States.GAME:
@@ -122,3 +126,6 @@ func save_inventory():
 	var inventory = current_ui.get_child(1).inventory
 	for item in inventory:
 		Global.pickup_inventory[item] = inventory[item] 
+
+func set_can_continue():
+	can_continue = true

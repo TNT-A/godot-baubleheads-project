@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cohypfta3lfd7"]
+
+[ext_resource type="TileSet" uid="uid://3fxl7giqa67u" path="res://cave_tileset.tres" id="1_2pe87"]
+
+[node name="Layer0" type="TileMapLayer" groups=["navigation"]]
+z_index = -1
+use_parent_material = true
+rotation = -0.000276089
+tile_set = ExtResource("1_2pe87")

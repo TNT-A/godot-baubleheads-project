@@ -87,14 +87,14 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Spawn_Bauble"):
 		var current_index = find_empty_slot()
 		if current_index is int and current_index < 10:
-			spawn_bauble("opal", current_index)
+			spawn_bauble("ruby", current_index)
 	if Input.is_action_just_pressed("Kill_Bauble"):
 		var current_index = find_full_slot()
 		#print(current_index)
 		if current_index is int and current_index < 10:
 			despawn_bauble(current_index)
 	if Input.is_action_just_pressed("Replace_Bauble"):
-		replace_bauble("opal", 0)
+		replace_bauble("ruby", 0)
 
 func find_empty_slot():
 	var current_index
@@ -144,9 +144,9 @@ func spawn_bauble(type_of_bauble, slot):
 		bauble_inventory[slot] = new_bauble
 		new_bauble.type = load(bauble_types[type_of_bauble])
 		main.add_child(new_bauble)
-		print("okay :D")
+		#print("okay :D")
 	else:
-		print("nuh-uh")
+		#print("nuh-uh")
 		pass
 
 func despawn_bauble(slot):
@@ -200,7 +200,7 @@ func determine_throw_order():
 		if bauble is Node:
 			if held_baubles.has(bauble):
 				var index = held_baubles.find(bauble)
-				print(held_baubles.find(bauble))
+				#print(held_baubles.find(bauble))
 				held_baubles[index].to_be_thrown = true
 				await get_tree().create_timer(throw_cooldown).timeout
 	throwing = false

@@ -107,12 +107,14 @@ func check_attacking_baubles():
 
 func die():
 	drop_item()
-	queue_free()
+	SignalBus.enemy_dead.emit(self)
+	call_deferred("queue_free")
 
 func drop_item():
 	var drop_chance : int = randi_range(0, 100)
 	if drop_chance < drop_chart["none"]:
-		print("none")
+		#print("none")
+		pass
 	elif drop_chart["none"] < drop_chance and drop_chance <= drop_chart["ruby"]:
 		create_pickup("ruby")
 	elif drop_chart["ruby"] < drop_chance and drop_chance <= drop_chart["sapphire"]:

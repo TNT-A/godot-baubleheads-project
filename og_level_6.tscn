@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=4 uid="uid://cgxlc65xjne1t"]
+
+[ext_resource type="Script" path="res://og_level.gd" id="1_ccjmo"]
+[ext_resource type="TileSet" uid="uid://3fxl7giqa67u" path="res://cave_tileset.tres" id="2_7v8u5"]
+[ext_resource type="PackedScene" uid="uid://cneonblq7tq5d" path="res://enemies/enemy_spawner.tscn" id="3_50df7"]
+[ext_resource type="PackedScene" uid="uid://q5o4kxajyvl6" path="res://Maps/player_spawn.tscn" id="4_lrn2n"]
+[ext_resource type="PackedScene" uid="uid://02aewb52n510" path="res://floor_exit.tscn" id="6_bl0yh"]
+[ext_resource type="PackedScene" uid="uid://buhvt42opr73m" path="res://beeg_earthworm.tscn" id="7_l4wg2"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_kk4eo"]
+vertices = PackedVector2Array(855.133, -16.1328, 863.852, 609.93, 842, 586, 842, -10, -48.6484, -28.8516, -10, -10, -27.3281, 604.063, -10, 586, 798, 542, 42, 542, 282, 450, 358, 450, 642.359, 326, 573.641, 326, 282, 258, 358, 258, 166, 450, 666, 258, 666, 145.82, 798, 66, 550, 337.82, 450.359, 326, 42, 66, 166, 337.82, 189.641, 326, 166, 258, 550, 450, 474, 450, 474, 337.82, 550, 145.82, 550, 258, 474, 258, 474, 145.82, 642.359, 134, 573.641, 134, 450.359, 134, 666, 450, 666, 337.82, 381.641, 326, 258.359, 326, 358, 337.82, 282, 337.82, 381.641, 134, 358, 145.82, 258.359, 134, 282, 145.82, 189.641, 134, 166, 145.82)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(2, 1, 6, 7), PackedInt32Array(7, 6, 4, 5), PackedInt32Array(8, 9, 10, 11), PackedInt32Array(12, 13, 14, 15), PackedInt32Array(16, 10, 9), PackedInt32Array(17, 18, 19, 8), PackedInt32Array(14, 13, 20, 21), PackedInt32Array(16, 9, 22, 23), PackedInt32Array(24, 23, 22, 25), PackedInt32Array(20, 26, 27, 28), PackedInt32Array(29, 30, 31, 32), PackedInt32Array(19, 18, 33), PackedInt32Array(22, 19, 33, 34), PackedInt32Array(22, 34, 29, 35), PackedInt32Array(8, 36, 37), PackedInt32Array(17, 8, 37), PackedInt32Array(17, 37, 12, 30), PackedInt32Array(31, 30, 12), PackedInt32Array(26, 36, 8), PackedInt32Array(20, 28, 21), PackedInt32Array(14, 21, 38), PackedInt32Array(39, 25, 14, 38, 40, 41), PackedInt32Array(29, 32, 35), PackedInt32Array(22, 35, 42), PackedInt32Array(22, 42, 43, 44), PackedInt32Array(15, 31, 12), PackedInt32Array(15, 14, 45, 43), PackedInt32Array(43, 45, 44), PackedInt32Array(22, 44, 46), PackedInt32Array(22, 46, 47), PackedInt32Array(22, 47, 25), PackedInt32Array(39, 24, 25), PackedInt32Array(41, 40, 11, 10), PackedInt32Array(8, 11, 27), PackedInt32Array(8, 27, 26)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-59, -39, 865, -26, 874, 620, -37, 614)])
+source_geometry_mode = 1
+source_geometry_group_name = &"navigation"
+
+[node name="og_level_6" type="Node"]
+script = ExtResource("1_ccjmo")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." groups=["navigation"]]
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAABAAAAAAACAAAAAAABAAAAAAADAAAAAAABAAAAAAAEAAAAAAABAAAAAAAFAAAAAAABAAAAAAAGAAAAAAABAAAAAAAHAAAAAAABAAAAAAAIAAAAAAABAAAAAAAJAAAAAAABAAAAAAAKAAAAAAABAAAAAAALAAAAAAABAAAAAAAMAAAAAAACAAAAAAAMAAEAAAACAAEAAAAMAAIAAAACAAEAAAAMAAMAAAACAAEAAAAMAAQAAAACAAEAAAAMAAUAAAACAAEAAAAMAAYAAAACAAEAAAAAAAYAAAAAAAEAAAAAAAUAAAAAAAEAAAAAAAQAAAAAAAEAAAAAAAMAAAAAAAEAAAAAAAIAAAAAAAEAAAAAAAEAAAAAAAEAAAACAAYAAAAFAAEAAAADAAYAAAAGAAEAAAAEAAYAAAAHAAEAAAAEAAUAAAAHAAAAAAADAAUAAAAGAAAAAAACAAUAAAAFAAAAAAAKAAQAAAAGAAMAAAAKAAMAAAAHAAEAAAAKAAIAAAAHAAAAAAAKAAEAAAAGAAMAAAAJAAEAAAAGAAMAAAAIAAEAAAAGAAMAAAAHAAEAAAAGAAMAAAAGAAEAAAAGAAMAAAAFAAEAAAAGAAMAAAAEAAEAAAAGAAMAAAADAAEAAAAGAAMAAAACAAEAAAAGAAMAAAABAAEAAAAGAAMAAAABAAIAAAAGAAMAAAABAAMAAAAGAAMAAAABAAQAAAAGAAMAAAABAAUAAAAGAAMAAAABAAYAAAAGAAMAAAACAAQAAAAGAAMAAAACAAMAAAAFAAEAAAACAAIAAAAFAAAAAAADAAIAAAAGAAAAAAADAAMAAAAGAAEAAAADAAQAAAAGAAMAAAAEAAQAAAAGAAMAAAAEAAMAAAAHAAEAAAAEAAIAAAAHAAAAAAAFAAIAAAAFAAAAAAAFAAQAAAAGAAMAAAAFAAUAAAAFAAAAAAAFAAYAAAAFAAEAAAAGAAUAAAAGAAAAAAAGAAQAAAAGAAMAAAAGAAMAAAAGAAEAAAAGAAIAAAAGAAAAAAAHAAIAAAAHAAAAAAAHAAMAAAAHAAEAAAAHAAQAAAAGAAMAAAAHAAUAAAAHAAAAAAAHAAYAAAAHAAEAAAAIAAYAAAAFAAEAAAAIAAUAAAAFAAAAAAAIAAQAAAAGAAMAAAAIAAMAAAAFAAEAAAAIAAIAAAAFAAAAAAAJAAIAAAAGAAAAAAAJAAMAAAAGAAEAAAAJAAQAAAAGAAMAAAAJAAUAAAAGAAAAAAAJAAYAAAAGAAEAAAAKAAYAAAAHAAEAAAAKAAUAAAAHAAAAAAALAAUAAAAGAAMAAAALAAQAAAAGAAMAAAALAAMAAAAGAAMAAAALAAEAAAAGAAMAAAALAAYAAAAGAAMAAAAGAAYAAAAGAAEAAAAFAAMAAAAFAAEAAAALAAIAAAAGAAMAAAAMAAgAAAACAAIAAAAAAAgAAAAAAAIAAAAAAAcAAAAAAAEAAAABAAgAAAABAAIAAAACAAgAAAABAAIAAAADAAgAAAABAAIAAAAEAAgAAAABAAIAAAAFAAgAAAABAAIAAAAGAAgAAAABAAIAAAAHAAgAAAABAAIAAAAIAAgAAAABAAIAAAAJAAgAAAABAAIAAAAKAAgAAAABAAIAAAALAAgAAAABAAIAAAAMAAcAAAACAAEAAAAFAAcAAAAGAAMAAAAEAAcAAAAGAAMAAAADAAcAAAAGAAMAAAACAAcAAAAGAAMAAAABAAcAAAAGAAMAAAAGAAcAAAAGAAMAAAAHAAcAAAAGAAMAAAAIAAcAAAAGAAMAAAAJAAcAAAAGAAMAAAAKAAcAAAAGAAMAAAALAAcAAAAGAAMAAAA=")
+tile_set = ExtResource("2_7v8u5")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_kk4eo")
+
+[node name="EnemySpawner" parent="." instance=ExtResource("3_50df7")]
+position = Vector2(89, 499)
+spawn_time = 11.0
+spawns_left = 3
+
+[node name="EnemySpawner2" parent="." instance=ExtResource("3_50df7")]
+position = Vector2(750, 501)
+spawn_time = 8.0
+spawns_left = 3
+
+[node name="EnemySpawner3" parent="." instance=ExtResource("3_50df7")]
+position = Vector2(758, 103)
+spawn_time = 7.0
+spawns_left = 2
+
+[node name="EnemySpawner4" parent="." instance=ExtResource("3_50df7")]
+position = Vector2(101, 101)
+spawn_time = 12.0
+spawns_left = 2
+
+[node name="PlayerSpawn" parent="." instance=ExtResource("4_lrn2n")]
+position = Vector2(414, 291)
+
+[node name="FloorExit" parent="." instance=ExtResource("6_bl0yh")]
+position = Vector2(398, 85)
+
+[node name="BeegEarthworm" parent="." instance=ExtResource("7_l4wg2")]
+position = Vector2(417, 499)

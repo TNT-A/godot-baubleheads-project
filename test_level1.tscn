@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://3fxl7giqa67u" path="res://cave_tileset.tres" id="1_hss5u"]
 [ext_resource type="PackedScene" uid="uid://q5o4kxajyvl6" path="res://Maps/player_spawn.tscn" id="1_mavo0"]
-[ext_resource type="PackedScene" uid="uid://cneonblq7tq5d" path="res://enemy_spawner.tscn" id="3_27l1r"]
+[ext_resource type="PackedScene" uid="uid://cneonblq7tq5d" path="res://enemies/enemy_spawner.tscn" id="3_27l1r"]
 [ext_resource type="PackedScene" uid="uid://02aewb52n510" path="res://floor_exit.tscn" id="4_x5f4t"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ad2ia"]

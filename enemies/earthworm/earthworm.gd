@@ -29,11 +29,11 @@ func _ready():
 	$AnimatedSprite2D.play("default")
 
 func _physics_process(delta: float) -> void:
-	if player.global_position < global_position and abs(global_position.x - player.global_position.x) > 20:
-		$AnimatedSprite2D.flip_h = false
-	if player.global_position > global_position and abs(global_position.x - player.global_position.x) > 20:
-		$AnimatedSprite2D.flip_h = true
-		
+	if player:
+		if player.global_position < global_position and abs(global_position.x - player.global_position.x) > 20:
+			$AnimatedSprite2D.flip_h = false
+		if player.global_position > global_position and abs(global_position.x - player.global_position.x) > 20:
+			$AnimatedSprite2D.flip_h = true
 	check_attacking_baubles()
 	if is_alive == false:
 		die()
@@ -72,29 +72,30 @@ func check_attacking_baubles():
 		var index = nearby_baubles.find(bauble)
 		if !is_instance_valid(nearby_baubles[index]):
 			nearby_baubles.remove_at(index)
-			print("removed from nearby list")
+			#print("removed from nearby list")
 	for bauble in attacking_baubles:
 		var index = attacking_baubles.find(bauble)
 		if !is_instance_valid(attacking_baubles[index]):
 			attacking_baubles.remove_at(index)
-			print("removed from attacking list")
+			#print("removed from attacking list")
 	
 	for bauble in nearby_baubles:
 		if !attacking_baubles.has(bauble):
 			if bauble.state == bauble.States.ATTACK or bauble.state == bauble.States.TARGETING: 
 				attacking_baubles.append(bauble)
-				print("added to list")
+				#print("added to list")
 		elif attacking_baubles.has(bauble):
 			if bauble.state != bauble.States.ATTACK and bauble.state != bauble.States.TARGETING: 
 				var index = attacking_baubles.find(bauble)
 				attacking_baubles.remove_at(index)
-				print("removed from list")
+				#print("removed from list")
 	count_attacking = attacking_baubles.size()
 
 func drop_item():
 	var drop_chance : int = randi_range(0, 100)
 	if drop_chance < drop_chart["none"]:
-		print("none")
+		#print("none")
+		pass
 	elif drop_chart["none"] < drop_chance and drop_chance <= drop_chart["ruby"]:
 		create_pickup("ruby")
 	elif drop_chart["ruby"] < drop_chance and drop_chance <= drop_chart["sapphire"]:
@@ -110,7 +111,8 @@ func create_pickup(pickup):
 
 func die():
 	drop_item()
-	queue_free()
+	SignalBus.enemy_dead.emit(self)
+	call_deferred("queue_free")
 
 func _on_timer_attack_cooldown_timeout():
 	if playerCrackable:
