@@ -1,13 +1,13 @@
 [gd_scene load_steps=10 format=4 uid="uid://legh8pj150hc"]
 
-[ext_resource type="Script" path="res://og_level.gd" id="1_f1c51"]
-[ext_resource type="TileSet" uid="uid://3fxl7giqa67u" path="res://cave_tileset.tres" id="2_8026x"]
-[ext_resource type="PackedScene" uid="uid://q5o4kxajyvl6" path="res://Maps/player_spawn.tscn" id="3_0mg4l"]
-[ext_resource type="PackedScene" uid="uid://coa54e45uplra" path="res://player/player.tscn" id="4_7hqn5"]
-[ext_resource type="PackedScene" uid="uid://e477mip5fnwt" path="res://enemies/earthworm/earthworm.tscn" id="5_owlxb"]
-[ext_resource type="PackedScene" uid="uid://buhvt42opr73m" path="res://beeg_earthworm.tscn" id="6_fw25a"]
-[ext_resource type="PackedScene" uid="uid://cnmbx0805u1i3" path="res://enemies/earthworm/wiggly_earthworm.tscn" id="7_7krys"]
-[ext_resource type="PackedScene" uid="uid://02aewb52n510" path="res://floor_exit.tscn" id="8_xmk3p"]
+[ext_resource type="Script" path="res://og_level.gd" id="1_x7i5r"]
+[ext_resource type="TileSet" uid="uid://3fxl7giqa67u" path="res://cave_tileset.tres" id="2_7eek4"]
+[ext_resource type="PackedScene" uid="uid://q5o4kxajyvl6" path="res://Maps/player_spawn.tscn" id="3_powjt"]
+[ext_resource type="PackedScene" uid="uid://coa54e45uplra" path="res://player/player.tscn" id="4_i2dx7"]
+[ext_resource type="PackedScene" uid="uid://e477mip5fnwt" path="res://enemies/earthworm/earthworm.tscn" id="5_ex57i"]
+[ext_resource type="PackedScene" uid="uid://buhvt42opr73m" path="res://beeg_earthworm.tscn" id="6_lwe3x"]
+[ext_resource type="PackedScene" uid="uid://cnmbx0805u1i3" path="res://enemies/earthworm/wiggly_earthworm.tscn" id="7_755ki"]
+[ext_resource type="PackedScene" uid="uid://02aewb52n510" path="res://floor_exit.tscn" id="8_cxbio"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_6wcih"]
 vertices = PackedVector2Array(587.531, -68.7734, 537.461, 1045.34, 458, 906, 458, 566, -46.4297, 1006.61, -10, 906, -97.5078, -54.2109, -10, 566, 330, 566, 330, 522, 458, 522, 458, -10, -10, -10, -10, 522, 118, 522, 118, 566, 414, 66, 414, 478, 346, 386, 346, 273.82, 246, 478, 102, 386, 42, 66, 322.359, 262, 125.641, 262, 178, 642, 246, 578, 270, 578, 270, 642, 42, 862, 414, 642, 414, 862, 42, 642, 178, 578, 202, 578, 202, 478, 42, 478, 102, 273.82)
@@ -17,35 +17,35 @@ source_geometry_mode = 1
 source_geometry_group_name = &"navigation"
 
 [node name="og_level_8" type="Node"]
-script = ExtResource("1_f1c51")
+script = ExtResource("1_x7i5r")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." groups=["navigation"]]
 tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAABAAAAAAACAAAAAAABAAAAAAADAAAAAAABAAAAAAAEAAAAAAABAAAAAAAFAAAAAAABAAAAAAAGAAAAAAACAAAAAAAGAAEAAAACAAEAAAAGAAIAAAACAAEAAAAGAAMAAAACAAEAAAAGAAQAAAACAAEAAAAGAAUAAAACAAEAAAAGAAYAAAACAAEAAAAGAAcAAAACAAIAAAAGAAgAAAACAAYAAAAGAAkAAAACAAAAAAAGAAsAAAACAAEAAAAGAAoAAAACAAEAAAAAAAEAAAAAAAEAAAAAAAIAAAAAAAEAAAAAAAMAAAAAAAEAAAAAAAQAAAAAAAEAAAAAAAUAAAAAAAEAAAAAAAYAAAAAAAEAAAAAAAcAAAAAAAIAAAAAAAgAAAACAAYAAAAAAAkAAAAAAAAAAAAAAAoAAAAAAAEAAAAAAAsAAAAAAAEAAAADAAoAAAAGAAMAAAADAAkAAAAGAAMAAAADAAgAAAAGAAMAAAADAAcAAAAGAAMAAAADAAYAAAAGAAMAAAADAAUAAAAGAAEAAAADAAQAAAAGAAAAAAADAAMAAAAGAAMAAAADAAIAAAAGAAMAAAADAAEAAAAGAAMAAAACAAEAAAAGAAMAAAABAAEAAAAGAAMAAAABAAIAAAAGAAMAAAABAAMAAAAGAAMAAAABAAQAAAAFAAAAAAABAAUAAAAFAAEAAAABAAYAAAAGAAMAAAABAAcAAAABAAIAAAABAAgAAAACAAYAAAABAAkAAAABAAAAAAABAAoAAAAGAAMAAAABAAsAAAAGAAMAAAACAAsAAAAGAAMAAAACAAoAAAAGAAMAAAACAAkAAAAFAAMAAAACAAYAAAAGAAMAAAACAAUAAAAGAAEAAAACAAQAAAAGAAAAAAACAAMAAAAGAAMAAAACAAIAAAAGAAMAAAADAAsAAAAGAAMAAAAEAAsAAAAGAAMAAAAEAAoAAAAGAAMAAAAEAAkAAAAHAAMAAAAEAAcAAAAGAAMAAAAEAAYAAAAGAAMAAAAEAAUAAAAGAAEAAAAEAAQAAAAGAAAAAAAEAAMAAAAGAAMAAAAEAAIAAAAGAAMAAAAEAAEAAAAGAAMAAAAFAAEAAAAGAAMAAAAFAAIAAAAGAAMAAAAFAAMAAAAGAAMAAAAFAAQAAAAHAAAAAAAFAAUAAAAHAAEAAAAFAAYAAAAGAAMAAAAFAAcAAAABAAIAAAAFAAgAAAACAAYAAAAFAAkAAAABAAAAAAAFAAoAAAAGAAMAAAAFAAsAAAAGAAMAAAAAAAwAAAAAAAEAAAAGAAwAAAACAAEAAAAGAA0AAAACAAIAAAAFAA0AAAABAAIAAAAEAA0AAAABAAIAAAADAA0AAAABAAIAAAACAA0AAAABAAIAAAABAA0AAAABAAIAAAAAAA0AAAAAAAIAAAAFAAwAAAAGAAMAAAAEAAwAAAAGAAMAAAADAAwAAAAGAAMAAAACAAwAAAAGAAMAAAABAAwAAAAGAAMAAAACAAgAAAAAAAEAAAAEAAgAAAACAAEAAAACAAcAAAAGAAMAAAA=")
-tile_set = ExtResource("2_8026x")
+tile_set = ExtResource("2_7eek4")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_6wcih")
 
-[node name="PlayerSpawn" parent="." instance=ExtResource("3_0mg4l")]
+[node name="PlayerSpawn" parent="." instance=ExtResource("3_powjt")]
 position = Vector2(224, 838)
 
-[node name="PlayerBody" parent="PlayerSpawn" instance=ExtResource("4_7hqn5")]
+[node name="PlayerBody" parent="PlayerSpawn" instance=ExtResource("4_i2dx7")]
 position = Vector2(-2, -32)
 
-[node name="earthworm" parent="." instance=ExtResource("5_owlxb")]
+[node name="earthworm" parent="." instance=ExtResource("5_ex57i")]
 position = Vector2(230, 516)
 
-[node name="BeegEarthworm" parent="." instance=ExtResource("6_fw25a")]
+[node name="BeegEarthworm" parent="." instance=ExtResource("6_lwe3x")]
 position = Vector2(367, 658)
 
-[node name="BeegEarthworm2" parent="." instance=ExtResource("6_fw25a")]
+[node name="BeegEarthworm2" parent="." instance=ExtResource("6_lwe3x")]
 position = Vector2(81, 660)
 
-[node name="WigglyEarthworm" parent="." instance=ExtResource("7_7krys")]
+[node name="WigglyEarthworm" parent="." instance=ExtResource("7_755ki")]
 position = Vector2(91, 118)
 
-[node name="WigglyEarthworm2" parent="." instance=ExtResource("7_7krys")]
+[node name="WigglyEarthworm2" parent="." instance=ExtResource("7_755ki")]
 position = Vector2(364, 121)
 
-[node name="FloorExit" parent="." instance=ExtResource("8_xmk3p")]
+[node name="FloorExit" parent="." instance=ExtResource("8_cxbio")]
 position = Vector2(205, 108)
