@@ -49,6 +49,7 @@ func _ready() -> void:
 		global_position = starting_position
 
 func _physics_process(delta: float) -> void:
+	print(has_target)
 	state_transition()
 	state_functions()
 	check_attacking_baubles()

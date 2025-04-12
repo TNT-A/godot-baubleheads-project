@@ -34,7 +34,7 @@ spawn_time = 10.0
 spawns_left = 3
 
 [node name="earthworm" parent="." instance=ExtResource("6_5l5dr")]
-position = Vector2(417, 124)
+position = Vector2(429, 433)
 
 [node name="earthworm2" parent="." instance=ExtResource("6_5l5dr")]
 position = Vector2(108, 737)

@@ -133,6 +133,7 @@ radius = 88.0511
 position = Vector2(288, 295)
 scale = Vector2(2, 2)
 script = ExtResource("1_x1g0n")
+health = 40
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_umh22")
