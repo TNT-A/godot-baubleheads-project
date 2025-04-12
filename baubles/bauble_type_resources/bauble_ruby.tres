@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Ruby_Default" load_steps=3 format=3 uid="uid://t7866g4ll8t8"]
+
+[ext_resource type="Script" path="res://baubles/bauble_resource_scripts/ruby_resource.gd" id="1_3llna"]
+[ext_resource type="Texture2D" uid="uid://0iqsrpem6iqi" path="res://baubles/bauble_sprites/Bauble_Ruby.png" id="2_yxu2f"]
+
+[resource]
+script = ExtResource("1_3llna")
+sprite = ExtResource("2_yxu2f")
+type = "ruby"

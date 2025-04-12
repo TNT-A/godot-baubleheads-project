@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Emerald_Default" load_steps=3 format=3 uid="uid://c24oio4alv5gg"]
+
+[ext_resource type="Script" path="res://baubles/bauble_resource_scripts/emerald_resource.gd" id="1_eatxl"]
+[ext_resource type="Texture2D" uid="uid://bs4kd0g1rines" path="res://baubles/bauble_sprites/Bauble_Emerald.png" id="2_1h2dx"]
+
+[resource]
+script = ExtResource("1_eatxl")
+sprite = ExtResource("2_1h2dx")
+type = "emerald"

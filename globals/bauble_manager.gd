@@ -10,12 +10,12 @@ var throw_cooldown : float = 0.5
 var throwing : bool = false
 
 var bauble_types : Dictionary = {
-	"ruby" : "res://baubles/bauble_resources/ruby_bauble.tres", 
-	"sapphire" : "res://baubles/bauble_resources/sapphire_bauble.tres", 
-	"topaz" : "res://baubles/bauble_resources/topaz_bauble.tres", 
-	"emerald" : "res://baubles/bauble_resources/emerald_bauble.tres", 
-	"opal" : "res://baubles/bauble_resources/opal_bauble.tres", 
-	"diamond" : "res://baubles/bauble_resources/diamond_bauble.tres",
+	"ruby" : "res://baubles/bauble_type_resources/bauble_ruby.tres", 
+	"sapphire" : "res://baubles/bauble_type_resources/bauble_sapphire.tres", 
+	"topaz" : "res://baubles/bauble_type_resources/bauble_topaz.tres", 
+	"emerald" : "res://baubles/bauble_type_resources/bauble_emerald.tres", 
+	"opal" : "res://baubles/bauble_type_resources/bauble_opal.tres", 
+	"diamond" : "res://baubles/bauble_type_resources/bauble_diamond.tres",
 	}
 
 var bauble_inventory : Array = [
