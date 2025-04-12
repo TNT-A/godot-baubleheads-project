@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://3fxl7giqa67u" path="res://cave_tileset.tres" id="2_ur7rn"]
 [ext_resource type="PackedScene" uid="uid://q5o4kxajyvl6" path="res://Maps/player_spawn.tscn" id="3_0yqij"]
 [ext_resource type="PackedScene" uid="uid://cneonblq7tq5d" path="res://enemies/enemy_spawner.tscn" id="5_kbx5h"]
-[ext_resource type="PackedScene" uid="uid://e477mip5fnwt" path="res://enemies/earthworm/earthworm.tscn" id="6_5l5dr"]
+[ext_resource type="PackedScene" uid="uid://e477mip5fnwt" path="res://enemies/earthworm/Earthworm.tscn" id="6_5l5dr"]
 [ext_resource type="PackedScene" uid="uid://02aewb52n510" path="res://floor_exit.tscn" id="7_7a4ts"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_kxdmk"]

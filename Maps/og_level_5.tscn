@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://3fxl7giqa67u" path="res://cave_tileset.tres" id="1_8jrsy"]
 [ext_resource type="PackedScene" uid="uid://q5o4kxajyvl6" path="res://Maps/player_spawn.tscn" id="2_8yg8c"]
 [ext_resource type="PackedScene" uid="uid://02aewb52n510" path="res://floor_exit.tscn" id="3_jrw43"]
-[ext_resource type="PackedScene" uid="uid://e477mip5fnwt" path="res://enemies/earthworm/earthworm.tscn" id="4_6gxth"]
+[ext_resource type="PackedScene" uid="uid://e477mip5fnwt" path="res://enemies/earthworm/Earthworm.tscn" id="4_6gxth"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_81hgn"]
 vertices = PackedVector2Array(723.969, -88.0781, 722.023, 619.563, 650, 525, 650, -7, -185.188, -95.9063, 310, -7, -198.797, 580.422, -138, 525, -138, -7, 310, 57, 202, 57, 202, -7, 346, 325, 606, 481, -86, 481, 166, 325, 166, 212.82, -86, 69, 123.859, 69, 127.781, 72.9219, 135.781, 88.9219, 170.078, 123.219, 189.641, 201, 384.211, 72.9219, 388.141, 69, 606, 69, 346, 212.82, 376.219, 88.9219, 341.922, 123.219, 322.359, 201, 322.359, 133, 189.641, 133)

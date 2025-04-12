@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://og_level.gd" id="1_x7i5r"]
 [ext_resource type="TileSet" uid="uid://3fxl7giqa67u" path="res://cave_tileset.tres" id="2_7eek4"]
 [ext_resource type="PackedScene" uid="uid://q5o4kxajyvl6" path="res://Maps/player_spawn.tscn" id="3_powjt"]
-[ext_resource type="PackedScene" uid="uid://e477mip5fnwt" path="res://enemies/earthworm/earthworm.tscn" id="5_ex57i"]
+[ext_resource type="PackedScene" uid="uid://e477mip5fnwt" path="res://enemies/earthworm/Earthworm.tscn" id="5_ex57i"]
 [ext_resource type="PackedScene" uid="uid://buhvt42opr73m" path="res://beeg_earthworm.tscn" id="6_lwe3x"]
 [ext_resource type="PackedScene" uid="uid://cnmbx0805u1i3" path="res://enemies/earthworm/wiggly_earthworm.tscn" id="7_755ki"]
 [ext_resource type="PackedScene" uid="uid://02aewb52n510" path="res://floor_exit.tscn" id="8_cxbio"]
