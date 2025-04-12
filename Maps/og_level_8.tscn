@@ -30,7 +30,7 @@ navigation_polygon = SubResource("NavigationPolygon_6wcih")
 position = Vector2(224, 838)
 
 [node name="earthworm" parent="." instance=ExtResource("5_ex57i")]
-position = Vector2(230, 516)
+position = Vector2(225, 395)
 
 [node name="BeegEarthworm" parent="." instance=ExtResource("6_lwe3x")]
 position = Vector2(367, 658)
