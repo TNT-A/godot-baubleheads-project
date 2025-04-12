@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="Ruby_Default" load_steps=2 format=3 uid="uid://dupd7c1r3kxw6"]
-
-[ext_resource type="Script" path="res://baubles/bauble_resource_scripts/ruby_resource.gd" id="1_sxhjd"]
-
-
-[resource]
-script = ExtResource("1_sxhjd")
