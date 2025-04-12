@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="Sapphire_Default" load_steps=3 format=3 uid="uid://b732x7oucq5xj"]
-
-[ext_resource type="Script" path="res://baubles/bauble_resource_scripts/sapphire_resource.gd" id="1_kabvb"]
-[ext_resource type="Texture2D" uid="uid://cipj7ttfk3a5s" path="res://baubles/bauble_sprites/Bauble_Sapphire.png" id="2_1mfvb"]
-
-
-[resource]
-script = ExtResource("1_kabvb")
-sprite = ExtResource("2_1mfvb")

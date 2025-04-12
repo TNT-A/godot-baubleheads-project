@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Diamond_Default" load_steps=3 format=3 uid="uid://dywcf6cuk6pgk"]
+
+[ext_resource type="Script" path="res://baubles/bauble_resource_scripts/diamond_resource.gd" id="1_stewi"]
+[ext_resource type="Texture2D" uid="uid://knrqs61vl2k2" path="res://baubles/bauble_sprites/Bauble_Diamond.png" id="2_rfmn1"]
+
+[resource]
+script = ExtResource("1_stewi")
+sprite = ExtResource("2_rfmn1")
+type = "diamond"

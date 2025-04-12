@@ -70,7 +70,7 @@ func _ready() -> void:
 		#print("I'm dead XD")
 	load_stats()
 	if type == null:
-		type = load("res://baubles/bauble_resources/ruby_bauble.tres")
+		type = load("res://baubles/bauble_type_resources/bauble_ruby.tres")
 	if type != null: 
 		bauble_type = type.type
 	favored_pickup = "pickup_" + type.type
