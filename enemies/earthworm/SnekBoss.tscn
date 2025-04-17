@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://b4hvwrbvuargs"]
 
-[ext_resource type="Script" path="res://enemies/earthworm/snek_boss.gd" id="1_coxfr"]
+[ext_resource type="Script" uid="uid://615ylxw4j03x" path="res://enemies/earthworm/snek_boss.gd" id="1_coxfr"]
 [ext_resource type="Texture2D" uid="uid://sx74p7ouvwim" path="res://PixelArt/SerpentBoss.png" id="2_mvurq"]
 [ext_resource type="PackedScene" uid="uid://coa54e45uplra" path="res://player/player.tscn" id="3_hgn5k"]
 

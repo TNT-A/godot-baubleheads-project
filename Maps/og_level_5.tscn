@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=4 uid="uid://c2ylm0rc2vgxq"]
 
-[ext_resource type="Script" path="res://og_level.gd" id="1_04oi3"]
+[ext_resource type="Script" uid="uid://dq4mwi0wktpqq" path="res://og_level.gd" id="1_04oi3"]
 [ext_resource type="TileSet" uid="uid://3fxl7giqa67u" path="res://cave_tileset.tres" id="1_8jrsy"]
 [ext_resource type="PackedScene" uid="uid://q5o4kxajyvl6" path="res://Maps/player_spawn.tscn" id="2_8yg8c"]
 [ext_resource type="PackedScene" uid="uid://02aewb52n510" path="res://floor_exit.tscn" id="3_jrw43"]

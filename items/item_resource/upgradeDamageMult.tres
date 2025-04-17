@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Upgrade_Damage_Multiplier" load_steps=2 format=3 uid="uid://bxsbfgncoilm0"]
 
-[ext_resource type="Script" path="res://items/item_resource_script/damageMult.gd" id="1_aojvq"]
+[ext_resource type="Script" uid="uid://bcisb3tikyomj" path="res://items/item_resource_script/damageMult.gd" id="1_aojvq"]
 
 [resource]
 script = ExtResource("1_aojvq")

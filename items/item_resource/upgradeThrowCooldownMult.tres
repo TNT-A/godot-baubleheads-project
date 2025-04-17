@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Upgrade_Throw_Cooldown_Multiplier" load_steps=2 format=3 uid="uid://cdr0qaomttn0y"]
 
-[ext_resource type="Script" path="res://items/item_resource_script/throwCooldownMult.gd" id="1_pp3rt"]
+[ext_resource type="Script" uid="uid://cdodnrewb4gco" path="res://items/item_resource_script/throwCooldownMult.gd" id="1_pp3rt"]
 
 [resource]
 script = ExtResource("1_pp3rt")

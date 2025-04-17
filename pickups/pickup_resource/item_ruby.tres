@@ -1,9 +1,10 @@
 [gd_resource type="Resource" script_class="Item_Ruby" load_steps=3 format=3 uid="uid://bnqkjk51xm27m"]
 
-[ext_resource type="Script" path="res://pickups/pickup_resource_script/item_ruby.gd" id="1_rt1un"]
+[ext_resource type="Script" uid="uid://casfxlxjr3uoj" path="res://pickups/pickup_resource_script/item_ruby.gd" id="1_rt1un"]
 [ext_resource type="Texture2D" uid="uid://d33xh7n8lj63v" path="res://Inventory/inventorySprites/Item_ruby.png" id="2_kbcce"]
 
 [resource]
 script = ExtResource("1_rt1un")
-sprite = ExtResource("2_kbcce")
+pickup_sprite = ExtResource("2_kbcce")
 type = "ruby"
+inventory_sprite = ExtResource("2_kbcce")

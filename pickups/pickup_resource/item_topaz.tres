@@ -1,9 +1,10 @@
 [gd_resource type="Resource" script_class="Item_Topaz" load_steps=3 format=3 uid="uid://ewck2wib7hun"]
 
-[ext_resource type="Script" path="res://pickups/pickup_resource_script/item_topaz.gd" id="1_lxtuq"]
+[ext_resource type="Script" uid="uid://ncjv4hoi7hg1" path="res://pickups/pickup_resource_script/item_topaz.gd" id="1_lxtuq"]
 [ext_resource type="Texture2D" uid="uid://snox4iwti56x" path="res://Inventory/inventorySprites/Item_topaz.png" id="2_vjevc"]
 
 [resource]
 script = ExtResource("1_lxtuq")
-sprite = ExtResource("2_vjevc")
+pickup_sprite = ExtResource("2_vjevc")
 type = "topaz"
+inventory_sprite = ExtResource("2_vjevc")

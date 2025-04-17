@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bnpccuwttp3yn"]
 
 [ext_resource type="Texture2D" uid="uid://cr8xc6fe4a0ht" path="res://PixelArt/BaubleHeadsTitle1.png" id="1_p4u8o"]
-[ext_resource type="Script" path="res://title_screen.gd" id="2_egbuj"]
+[ext_resource type="Script" uid="uid://djr5lrts4iwfx" path="res://title_screen.gd" id="2_egbuj"]
 [ext_resource type="PackedScene" uid="uid://bdk5tvfo7amqa" path="res://fade_to_black.tscn" id="3_8gd7x"]
 [ext_resource type="Texture2D" uid="uid://dpihgyg1snaf4" path="res://PixelArt/playButton.png" id="4_xkckk"]
 [ext_resource type="Texture2D" uid="uid://d0uinjsw8x6oq" path="res://PixelArt/leaveButton.png" id="5_qimlj"]

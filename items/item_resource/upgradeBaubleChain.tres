@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Upgrade_Bauble_Chain" load_steps=2 format=3 uid="uid://cbdhgnto1kxc2"]
 
-[ext_resource type="Script" path="res://items/item_resource_script/baubleChain.gd" id="1_8ie0s"]
+[ext_resource type="Script" uid="uid://dkqce15utctn2" path="res://items/item_resource_script/baubleChain.gd" id="1_8ie0s"]
 
 [resource]
 script = ExtResource("1_8ie0s")

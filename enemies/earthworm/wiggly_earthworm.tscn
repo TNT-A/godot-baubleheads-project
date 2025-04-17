@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://cnmbx0805u1i3"]
 
 [ext_resource type="Texture2D" uid="uid://dn4yltu1tkd68" path="res://PixelArt/wiggle_worm-Recovered.png" id="1_42smv"]
-[ext_resource type="Script" path="res://enemies/earthworm/wiggly_earthworm.gd" id="1_61cal"]
+[ext_resource type="Script" uid="uid://dx70x1ax1otne" path="res://enemies/earthworm/wiggly_earthworm.gd" id="1_61cal"]
 [ext_resource type="PackedScene" uid="uid://c8g0kk7fj1rdj" path="res://components/damage_zone/damage_zone.tscn" id="1_of30d"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yn4co"]
@@ -73,7 +73,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_etlfc"]
 _data = {
-"took damage": SubResource("Animation_nltmj")
+&"took damage": SubResource("Animation_nltmj")
 }
 
 [node name="WigglyEarthworm" type="CharacterBody2D" groups=["enemy"]]

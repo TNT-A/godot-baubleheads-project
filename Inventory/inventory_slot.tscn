@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dh2y7p3oi5yot"]
 
 [ext_resource type="Texture2D" uid="uid://cr1oop4kpupya" path="res://Inventory/inventory_slot.png" id="1_hqvit"]
-[ext_resource type="Script" path="res://Inventory/inventory_slot.gd" id="1_ndcix"]
+[ext_resource type="Script" uid="uid://bystj8xdfkju7" path="res://Inventory/inventory_slot.gd" id="1_ndcix"]
 
 [node name="InventorySlot" type="Control" groups=["inventory_slot"]]
 z_index = 1

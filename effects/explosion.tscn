@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://uijmha5op1pj"]
 
 [ext_resource type="Texture2D" uid="uid://w0fi1onts6bt" path="res://PixelArt/Explosion-Sheet.png" id="1_g84qt"]
-[ext_resource type="Script" path="res://effects/explosion.gd" id="2_55hch"]
+[ext_resource type="Script" uid="uid://da3jxyitvhcls" path="res://effects/explosion.gd" id="2_55hch"]
 [ext_resource type="PackedScene" uid="uid://c8g0kk7fj1rdj" path="res://components/damage_zone/damage_zone.tscn" id="2_eosc1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_os1s3"]

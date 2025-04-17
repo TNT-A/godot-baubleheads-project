@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cneonblq7tq5d"]
 
-[ext_resource type="Script" path="res://enemies/enemy_spawner.gd" id="1_eeh8n"]
+[ext_resource type="Script" uid="uid://ccun2gdxu7xr3" path="res://enemies/enemy_spawner.gd" id="1_eeh8n"]
 [ext_resource type="Texture2D" uid="uid://dn4yltu1tkd68" path="res://PixelArt/wiggle_worm-Recovered.png" id="2_exn1h"]
 
 [sub_resource type="Animation" id="Animation_3os6x"]
@@ -35,8 +35,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p80uu"]
 _data = {
-"RESET": SubResource("Animation_3os6x"),
-"spawn_in": SubResource("Animation_wfet3")
+&"RESET": SubResource("Animation_3os6x"),
+&"spawn_in": SubResource("Animation_wfet3")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m73oj"]

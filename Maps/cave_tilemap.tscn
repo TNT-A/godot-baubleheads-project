@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://dnlsiamufqhvp"]
 
-[ext_resource type="Script" path="res://Maps/cave_level.gd" id="1_3s42e"]
+[ext_resource type="Script" uid="uid://btwa28lpci28m" path="res://Maps/cave_level.gd" id="1_3s42e"]
 [ext_resource type="PackedScene" uid="uid://b7utonsaypija" path="res://tile_map_base.tscn" id="2_5fvkc"]
 [ext_resource type="NavigationPolygon" uid="uid://crje1n1mbpptl" path="res://Maps/cave_tilemap_nav_region.tres" id="2_dlj4k"]
 [ext_resource type="PackedScene" uid="uid://02aewb52n510" path="res://floor_exit.tscn" id="3_f8v0e"]
@@ -11,7 +11,7 @@
 [ext_resource type="Resource" uid="uid://bnqkjk51xm27m" path="res://pickups/pickup_resource/item_ruby.tres" id="6_dgtj2"]
 [ext_resource type="Resource" uid="uid://ewck2wib7hun" path="res://pickups/pickup_resource/item_topaz.tres" id="7_ojrgi"]
 [ext_resource type="PackedScene" uid="uid://cnmbx0805u1i3" path="res://enemies/earthworm/wiggly_earthworm.tscn" id="10_8fvj7"]
-[ext_resource type="PackedScene" uid="uid://e477mip5fnwt" path="res://enemies/earthworm/earthworm.tscn" id="12_n3vpv"]
+[ext_resource type="PackedScene" uid="uid://e477mip5fnwt" path="res://enemies/earthworm/Earthworm.tscn" id="12_n3vpv"]
 
 [node name="CaveTilemap" type="Node"]
 script = ExtResource("1_3s42e")
