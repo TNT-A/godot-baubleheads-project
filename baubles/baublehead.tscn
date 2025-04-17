@@ -1,6 +1,6 @@
 [gd_scene load_steps=45 format=3 uid="uid://d31vg3emxkypt"]
 
-[ext_resource type="Script" path="res://baubles/baublehead.gd" id="1_1xugq"]
+[ext_resource type="Script" uid="uid://2y8st1i23l55" path="res://baubles/baublehead.gd" id="1_1xugq"]
 [ext_resource type="Texture2D" uid="uid://0iqsrpem6iqi" path="res://baubles/bauble_sprites/Bauble_Ruby.png" id="2_6cagt"]
 [ext_resource type="Texture2D" uid="uid://b1iewhes2imfx" path="res://baubles/bauble_sprites/Bauble_Ruby1.png" id="2_8fvfd"]
 [ext_resource type="Texture2D" uid="uid://b81jxq70lq0dw" path="res://baubles/bauble_sprites/Bauble_Ruby2.png" id="3_nkxpc"]
@@ -320,12 +320,12 @@ resource_name = "walk"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bjdru"]
 _data = {
-"RESET": SubResource("Animation_f1n71"),
-"attack": SubResource("Animation_5n0qo"),
-"idle": SubResource("Animation_4vfyu"),
-"sit": SubResource("Animation_65cpm"),
-"thrown": SubResource("Animation_udpbm"),
-"walk": SubResource("Animation_vo0e4")
+&"RESET": SubResource("Animation_f1n71"),
+&"attack": SubResource("Animation_5n0qo"),
+&"idle": SubResource("Animation_4vfyu"),
+&"sit": SubResource("Animation_65cpm"),
+&"thrown": SubResource("Animation_udpbm"),
+&"walk": SubResource("Animation_vo0e4")
 }
 
 [node name="baublehead" type="CharacterBody2D" groups=["bauble"]]

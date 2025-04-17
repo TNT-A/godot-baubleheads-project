@@ -1,9 +1,10 @@
 [gd_resource type="Resource" script_class="Item_Sapphire" load_steps=3 format=3 uid="uid://ctnhj85v2swgr"]
 
-[ext_resource type="Script" path="res://pickups/pickup_resource_script/item_sapphire.gd" id="1_dljqy"]
+[ext_resource type="Script" uid="uid://dkqkipqqdiman" path="res://pickups/pickup_resource_script/item_sapphire.gd" id="1_dljqy"]
 [ext_resource type="Texture2D" uid="uid://cujr52g0pipd5" path="res://Inventory/inventorySprites/Item_sapphire.png" id="2_yqb2e"]
 
 [resource]
 script = ExtResource("1_dljqy")
-sprite = ExtResource("2_yqb2e")
+pickup_sprite = ExtResource("2_yqb2e")
 type = "sapphire"
+inventory_sprite = ExtResource("2_yqb2e")

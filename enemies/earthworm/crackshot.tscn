@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://b11kjlwkin6tu"]
 
-[ext_resource type="Script" path="res://enemies/earthworm/crackshot.gd" id="1_561j4"]
+[ext_resource type="Script" uid="uid://brj5n026kutdy" path="res://enemies/earthworm/crackshot.gd" id="1_561j4"]
 [ext_resource type="Texture2D" uid="uid://du34ovqx2rii" path="res://PixelArt/Meteorite-Sheet-Sheet.png" id="3_3k0ha"]
 [ext_resource type="PackedScene" uid="uid://c8g0kk7fj1rdj" path="res://components/damage_zone/damage_zone.tscn" id="3_hk7xh"]
 

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Opal_Default" load_steps=3 format=3 uid="uid://du0pvy1w44u5w"]
 
-[ext_resource type="Script" path="res://baubles/bauble_resource_scripts/opal_resource.gd" id="1_6qrvw"]
+[ext_resource type="Script" uid="uid://tqw6k80p5h4e" path="res://baubles/bauble_resource_scripts/opal_resource.gd" id="1_6qrvw"]
 [ext_resource type="Texture2D" uid="uid://i8vuuh104qn0" path="res://baubles/bauble_sprites/Bauble_Opal.png" id="2_racvs"]
 
 [resource]

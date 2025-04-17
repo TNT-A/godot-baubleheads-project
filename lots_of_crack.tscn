@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://q5d1yp2tn765"]
 
-[ext_resource type="Script" path="res://lots_of_crack.gd" id="1_qkiqy"]
+[ext_resource type="Script" uid="uid://6cs5xjbvn7ae" path="res://lots_of_crack.gd" id="1_qkiqy"]
 [ext_resource type="Texture2D" uid="uid://du34ovqx2rii" path="res://PixelArt/Meteorite-Sheet-Sheet.png" id="1_yb6x5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dn7b8"]
@@ -157,9 +157,9 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t7vy3"]
 _data = {
-"Fall": SubResource("Animation_ut8ka"),
-"RESET": SubResource("Animation_rf1ha"),
-"up": SubResource("Animation_vokn8")
+&"Fall": SubResource("Animation_ut8ka"),
+&"RESET": SubResource("Animation_rf1ha"),
+&"up": SubResource("Animation_vokn8")
 }
 
 [node name="lotsOfCrack" type="CharacterBody2D"]
