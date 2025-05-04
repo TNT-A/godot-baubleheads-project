@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var player : Node = Global.player
 
 var crackshot_scene : PackedScene = preload("res://lots_of_crack.tscn")
-var pickup_scene : PackedScene = preload("res://pickups/gemstone_pickup.tscn")
+#var pickup_scene : PackedScene = preload("res://pickups/gemstone_pickup.tscn")
 
 @export var health : int = 60
 
@@ -21,12 +21,12 @@ var animation_done : bool = false
 var attack_cooldown : float = 5.0
 var cooldown_differential : float = 1.5
 
-var drop_chart : Dictionary = {
-	"none" : 40,
-	"ruby" : 50,
-	"sapphire" : 60,
-	"topaz" : 100
-	}
+#var drop_chart : Dictionary = {
+	#"none" : 40,
+	#"ruby" : 50,
+	#"sapphire" : 60,
+	#"topaz" : 100
+	#}
 
 enum States {IDLE, SHOOT}
 var state: States = States.IDLE
@@ -106,27 +106,27 @@ func check_attacking_baubles():
 	count_attacking = attacking_baubles.size()
 
 func die():
-	drop_item()
+	$DropPickups.drop_item()
 	SignalBus.enemy_dead.emit(self)
 	call_deferred("queue_free")
-
-func drop_item():
-	var drop_chance : int = randi_range(0, 100)
-	if drop_chance < drop_chart["none"]:
-		#print("none")
-		pass
-	elif drop_chart["none"] < drop_chance and drop_chance <= drop_chart["ruby"]:
-		create_pickup("ruby")
-	elif drop_chart["ruby"] < drop_chance and drop_chance <= drop_chart["sapphire"]:
-		create_pickup("sapphire")
-	elif drop_chart["sapphire"] < drop_chance and drop_chance <= drop_chart["topaz"]:
-		create_pickup("topaz")
-
-func create_pickup(pickup):
-	var new_pickup = pickup_scene.instantiate()
-	new_pickup.item_resource = load("res://pickups/pickup_resource/item_" + pickup + ".tres")
-	get_parent().add_child(new_pickup)
-	new_pickup.global_position = global_position
+#
+#func drop_item():
+	#var drop_chance : int = randi_range(0, 100)
+	#if drop_chance < drop_chart["none"]:
+		##print("none")
+		#pass
+	#elif drop_chart["none"] < drop_chance and drop_chance <= drop_chart["ruby"]:
+		#create_pickup("ruby")
+	#elif drop_chart["ruby"] < drop_chance and drop_chance <= drop_chart["sapphire"]:
+		#create_pickup("sapphire")
+	#elif drop_chart["sapphire"] < drop_chance and drop_chance <= drop_chart["topaz"]:
+		#create_pickup("topaz")
+#
+#func create_pickup(pickup):
+	#var new_pickup = pickup_scene.instantiate()
+	#new_pickup.item_resource = load("res://pickups/pickup_resource/item_" + pickup + ".tres")
+	#get_parent().add_child(new_pickup)
+	#new_pickup.global_position = global_position
 
 func spawn_crack(target_node):
 	var crackshot = crackshot_scene.instantiate()

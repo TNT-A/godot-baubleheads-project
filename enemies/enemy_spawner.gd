@@ -29,7 +29,7 @@ func spawn_enemy():
 		new_enemy.has_target = true
 	get_parent().add_child.call_deferred(new_enemy)
 	SignalBus.emit_signal("enemy_added", new_enemy)
-	print("it spawned")
+	#print("it spawned")
 	spawns_left -= 1
 	if spawns_left <= 0:
 		stop_spawn()

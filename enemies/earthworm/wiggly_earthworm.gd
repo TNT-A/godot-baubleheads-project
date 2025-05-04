@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var pickup_scene : PackedScene = preload("res://pickups/gemstone_pickup.tscn")
+#var pickup_scene : PackedScene = preload("res://pickups/gemstone_pickup.tscn")
 
 @onready var nav_agent : NavigationAgent2D = $NavigationAgent2D
 @onready var player : Node = Global.player
@@ -29,12 +29,12 @@ var count_attacking : int = 0
 var nearby_baubles : Array = []
 var attacking_baubles : Array = []
 
-var drop_chart : Dictionary = {
-	"none" : 40,
-	"ruby" : 50,
-	"sapphire" : 60,
-	"topaz" : 100
-	}
+#var drop_chart : Dictionary = {
+	#"none" : 40,
+	#"ruby" : 50,
+	#"sapphire" : 60,
+	#"topaz" : 100
+	#}
 
 var speed : int = 150
 var acceleration : float  = 0.1
@@ -49,7 +49,7 @@ func _ready() -> void:
 		global_position = starting_position
 
 func _physics_process(delta: float) -> void:
-	print(has_target)
+	#print(has_target)
 	state_transition()
 	state_functions()
 	check_attacking_baubles()
@@ -134,27 +134,27 @@ func check_attacking_baubles():
 	count_attacking = attacking_baubles.size()
 
 func die():
-	drop_item()
+	$DropPickups.drop_item()
 	SignalBus.enemy_dead.emit(self)
 	call_deferred("queue_free")
+#
+#func drop_item():
+	#var drop_chance : int = randi_range(0, 100)
+	#if drop_chance < drop_chart["none"]:
+		##print("none")
+		#pass
+	#elif drop_chart["none"] < drop_chance and drop_chance <= drop_chart["ruby"]:
+		#create_pickup("ruby")
+	#elif drop_chart["ruby"] < drop_chance and drop_chance <= drop_chart["sapphire"]:
+		#create_pickup("sapphire")
+	#elif drop_chart["sapphire"] < drop_chance and drop_chance <= drop_chart["topaz"]:
+		#create_pickup("topaz")
 
-func drop_item():
-	var drop_chance : int = randi_range(0, 100)
-	if drop_chance < drop_chart["none"]:
-		#print("none")
-		pass
-	elif drop_chart["none"] < drop_chance and drop_chance <= drop_chart["ruby"]:
-		create_pickup("ruby")
-	elif drop_chart["ruby"] < drop_chance and drop_chance <= drop_chart["sapphire"]:
-		create_pickup("sapphire")
-	elif drop_chart["sapphire"] < drop_chance and drop_chance <= drop_chart["topaz"]:
-		create_pickup("topaz")
-
-func create_pickup(pickup):
-	var new_pickup = pickup_scene.instantiate()
-	new_pickup.item_resource = load("res://pickups/pickup_resource/item_" + pickup + ".tres")
-	get_parent().add_child(new_pickup)
-	new_pickup.global_position = global_position
+#func create_pickup(pickup):
+	#var new_pickup = pickup_scene.instantiate()
+	#new_pickup.item_resource = load("res://pickups/pickup_resource/item_" + pickup + ".tres")
+	#get_parent().add_child(new_pickup)
+	#new_pickup.global_position = global_position
 
 func pathfinding(speed_change):
 	var next_path_pos := nav_agent.get_next_path_position()

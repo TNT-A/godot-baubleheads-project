@@ -5,7 +5,7 @@ extends Node2D
 @export var health : int = 30
 
 var crackshot: PackedScene = preload("res://enemies/earthworm/crackshot.tscn")
-var pickup_scene : PackedScene = preload("res://pickups/gemstone_pickup.tscn")
+#var pickup_scene : PackedScene = preload("res://pickups/gemstone_pickup.tscn")
 
 var is_alive : bool = true
 var attack_time : bool = false
@@ -90,27 +90,27 @@ func check_attacking_baubles():
 				attacking_baubles.remove_at(index)
 				#print("removed from list")
 	count_attacking = attacking_baubles.size()
-
-func drop_item():
-	var drop_chance : int = randi_range(0, 100)
-	if drop_chance < drop_chart["none"]:
-		#print("none")
-		pass
-	elif drop_chart["none"] < drop_chance and drop_chance <= drop_chart["ruby"]:
-		create_pickup("ruby")
-	elif drop_chart["ruby"] < drop_chance and drop_chance <= drop_chart["sapphire"]:
-		create_pickup("sapphire")
-	elif drop_chart["sapphire"] < drop_chance and drop_chance <= drop_chart["topaz"]:
-		create_pickup("topaz")
-
-func create_pickup(pickup):
-	var new_pickup = pickup_scene.instantiate()
-	new_pickup.item_resource = load("res://pickups/pickup_resource/item_" + pickup + ".tres")
-	get_parent().add_child(new_pickup)
-	new_pickup.global_position = global_position
+#
+#func drop_item():
+	#var drop_chance : int = randi_range(0, 100)
+	#if drop_chance < drop_chart["none"]:
+		##print("none")
+		#pass
+	#elif drop_chart["none"] < drop_chance and drop_chance <= drop_chart["ruby"]:
+		#create_pickup("ruby")
+	#elif drop_chart["ruby"] < drop_chance and drop_chance <= drop_chart["sapphire"]:
+		#create_pickup("sapphire")
+	#elif drop_chart["sapphire"] < drop_chance and drop_chance <= drop_chart["topaz"]:
+		#create_pickup("topaz")
+#
+#func create_pickup(pickup):
+	#var new_pickup = pickup_scene.instantiate()
+	#new_pickup.item_resource = load("res://pickups/pickup_resource/item_" + pickup + ".tres")
+	#get_parent().add_child(new_pickup)
+	#new_pickup.global_position = global_position
 
 func die():
-	drop_item()
+	$DropPickups.drop_item()
 	SignalBus.enemy_dead.emit(self)
 	call_deferred("queue_free")
 

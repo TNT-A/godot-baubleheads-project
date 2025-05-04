@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://cnmbx0805u1i3"]
+[gd_scene load_steps=17 format=3 uid="uid://cnmbx0805u1i3"]
 
 [ext_resource type="Texture2D" uid="uid://dn4yltu1tkd68" path="res://PixelArt/wiggle_worm-Recovered.png" id="1_42smv"]
 [ext_resource type="Script" uid="uid://dx70x1ax1otne" path="res://enemies/earthworm/wiggly_earthworm.gd" id="1_61cal"]
 [ext_resource type="PackedScene" uid="uid://c8g0kk7fj1rdj" path="res://components/damage_zone/damage_zone.tscn" id="1_of30d"]
+[ext_resource type="PackedScene" uid="uid://baov1nwgxw7ow" path="res://components/drop_pickups/drop_pickups.tscn" id="4_4l6yv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yn4co"]
 radius = 14.0
@@ -134,8 +135,10 @@ shape = SubResource("CircleShape2D_61v2f")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_etlfc")
+&"": SubResource("AnimationLibrary_etlfc")
 }
+
+[node name="DropPickups" parent="." instance=ExtResource("4_4l6yv")]
 
 [connection signal="timeout" from="TimerDashLength" to="." method="_on_timer_dash_length_timeout"]
 [connection signal="timeout" from="TimerDashCooldown" to="." method="_on_timer_dash_cooldown_timeout"]
