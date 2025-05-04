@@ -15,7 +15,7 @@ func _ready() -> void:
 		if child.is_in_group("enemy"):
 			enemies.append(child)
 	enemy_count = enemies.size()
-	print(enemy_count)
+	#print(enemy_count)
 	if enemy_count <= 0:
 		SignalBus.emit_signal("all_enemies_killed")
 
@@ -23,7 +23,7 @@ func remove_enemy(enemy):
 	if enemies.has(enemy):
 		enemies.erase(enemy)
 	enemy_count = enemies.size()
-	print(enemy_count)
+	#print(enemy_count)
 	if enemy_count <= 0:
 		SignalBus.emit_signal("all_enemies_killed")
 

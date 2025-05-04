@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://buhvt42opr73m"]
+[gd_scene load_steps=23 format=3 uid="uid://buhvt42opr73m"]
 
 [ext_resource type="Texture2D" uid="uid://5uaa1xijly2y" path="res://PixelArt/big_worm-Recovered.png" id="1_qguem"]
 [ext_resource type="Script" uid="uid://hopqr2tjbrru" path="res://beeg_earthworm.gd" id="1_x1g0n"]
 [ext_resource type="PackedScene" uid="uid://c8g0kk7fj1rdj" path="res://components/damage_zone/damage_zone.tscn" id="3_fxgpl"]
+[ext_resource type="PackedScene" uid="uid://baov1nwgxw7ow" path="res://components/drop_pickups/drop_pickups.tscn" id="4_pvgcw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f8tap"]
 atlas = ExtResource("1_qguem")
@@ -130,7 +131,6 @@ radius = 14.0
 radius = 88.0511
 
 [node name="BeegEarthworm" type="CharacterBody2D" groups=["enemy"]]
-position = Vector2(288, 295)
 scale = Vector2(2, 2)
 script = ExtResource("1_x1g0n")
 health = 40
@@ -162,6 +162,8 @@ shape = SubResource("CapsuleShape2D_1ay0a")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BaubleChecker"]
 shape = SubResource("CircleShape2D_mo1us")
+
+[node name="DropPickups" parent="." instance=ExtResource("4_pvgcw")]
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
