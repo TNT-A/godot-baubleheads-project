@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://e477mip5fnwt"]
 
-[ext_resource type="Script" path="res://enemies/earthworm/earthworm.gd" id="1_pgrt0"]
+[ext_resource type="Script" uid="uid://b52pac6sr1qan" path="res://enemies/earthworm/earthworm.gd" id="1_pgrt0"]
 [ext_resource type="Texture2D" uid="uid://bffbnpkx5ldko" path="res://PixelArt/earthworm_spritesheet - Copy.png" id="3_gdush"]
 [ext_resource type="PackedScene" uid="uid://c8g0kk7fj1rdj" path="res://components/damage_zone/damage_zone.tscn" id="3_rikgm"]
 

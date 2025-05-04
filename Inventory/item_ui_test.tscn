@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://tj1lnfakvxin"]
 
-[ext_resource type="Script" path="res://Inventory/item_ui.gd" id="1_au8ig"]
+[ext_resource type="Script" uid="uid://bp37cwg6wvckf" path="res://Inventory/item_ui.gd" id="1_au8ig"]
 [ext_resource type="Texture2D" uid="uid://b7pqjlc5pgemm" path="res://baubles/pikminPlaceholder.webp" id="2_rqwbc"]
 [ext_resource type="Resource" uid="uid://bnqkjk51xm27m" path="res://pickups/pickup_resource/item_ruby.tres" id="2_xfyse"]
 

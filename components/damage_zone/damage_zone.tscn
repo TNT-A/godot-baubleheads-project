@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c8g0kk7fj1rdj"]
 
-[ext_resource type="Script" path="res://components/damage_zone/damage_zone.gd" id="1_karui"]
+[ext_resource type="Script" uid="uid://bx77dks4awqgm" path="res://components/damage_zone/damage_zone.gd" id="1_karui"]
 
 [node name="DamageZone" type="Area2D" groups=["hurts_player"]]
 script = ExtResource("1_karui")

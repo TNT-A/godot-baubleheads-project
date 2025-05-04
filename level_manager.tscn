@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cri5yn6sulthf"]
 
-[ext_resource type="Script" path="res://level.gd" id="1_7uuex"]
+[ext_resource type="Script" uid="uid://m1t5hvp8csx8" path="res://level.gd" id="1_7uuex"]
 [ext_resource type="PackedScene" uid="uid://bdk5tvfo7amqa" path="res://fade_to_black.tscn" id="2_87h1r"]
 
 [node name="LevelManager" type="Node2D"]

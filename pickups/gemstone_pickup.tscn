@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bmgdfffipgdik"]
 
-[ext_resource type="Script" path="res://pickups/gemstone_pickup.gd" id="1_33yxk"]
+[ext_resource type="Script" uid="uid://btaba111xykwg" path="res://pickups/gemstone_pickup.gd" id="1_33yxk"]
 [ext_resource type="Texture2D" uid="uid://d33xh7n8lj63v" path="res://Inventory/inventorySprites/Item_ruby.png" id="2_t8nyd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0tbsg"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://cfwscgufalgmj"]
 
-[ext_resource type="Script" path="res://bullet.gd" id="1_34leh"]
+[ext_resource type="Script" uid="uid://erbm0gdpvjea" path="res://bullet.gd" id="1_34leh"]
 [ext_resource type="Texture2D" uid="uid://du34ovqx2rii" path="res://PixelArt/Meteorite-Sheet-Sheet.png" id="1_x6eki"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g6cva"]

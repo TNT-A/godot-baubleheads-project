@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://buhvt42opr73m"]
 
 [ext_resource type="Texture2D" uid="uid://5uaa1xijly2y" path="res://PixelArt/big_worm-Recovered.png" id="1_qguem"]
-[ext_resource type="Script" path="res://beeg_earthworm.gd" id="1_x1g0n"]
+[ext_resource type="Script" uid="uid://hopqr2tjbrru" path="res://beeg_earthworm.gd" id="1_x1g0n"]
 [ext_resource type="PackedScene" uid="uid://c8g0kk7fj1rdj" path="res://components/damage_zone/damage_zone.tscn" id="3_fxgpl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f8tap"]

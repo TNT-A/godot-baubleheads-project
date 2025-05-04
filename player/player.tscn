@@ -1,6 +1,6 @@
 [gd_scene load_steps=38 format=3 uid="uid://coa54e45uplra"]
 
-[ext_resource type="Script" path="res://player/player.gd" id="1_rjkni"]
+[ext_resource type="Script" uid="uid://kqxrrugv4bv8" path="res://player/player.gd" id="1_rjkni"]
 [ext_resource type="Texture2D" uid="uid://22a58735dink" path="res://PixelArt/Robot2-Sheet.png" id="2_q8r5f"]
 [ext_resource type="Texture2D" uid="uid://vf4avdxbghpn" path="res://PixelArt/Robot2pngOnlyRunAndHold.png" id="3_lfdng"]
 

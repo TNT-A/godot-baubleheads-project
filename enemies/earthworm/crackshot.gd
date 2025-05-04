@@ -1,6 +1,6 @@
 extends Node2D
-
-@onready var move = Vector2(global_position.x - Global.player.global_position.x, global_position.y - Global.player.global_position.y).normalized()
+var mo = Vector2()
+@onready var move = (Vector2(global_position.x - Global.player.global_position.x, global_position.y - Global.player.global_position.y) + mo).normalized()
 # Called when the node enters the scene tree for the first time.
 
 func _ready():
