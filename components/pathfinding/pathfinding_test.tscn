@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://dj7gh6slo0b5u"]
+
+[ext_resource type="PackedScene" uid="uid://l160kxor0r2e" path="res://components/pathfinding/pathfinding.tscn" id="1_atow8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jjky6"]
+
+[node name="PathfindingTest" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 520.0
+offset_top = 134.0
+offset_right = 560.0
+offset_bottom = 174.0
+
+[node name="Pathfinding" parent="." node_paths=PackedStringArray("host", "target_node") instance=ExtResource("1_atow8")]
+host = NodePath("../CharacterBody2D")
+target_node = NodePath("../CharacterBody2D/ColorRect")
+target_vector_position = Vector2(500, 300)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CircleShape2D_jjky6")
+
+[node name="ColorRect" type="ColorRect" parent="CharacterBody2D"]
+offset_left = -17.0
+offset_top = -18.0
+offset_right = 23.0
+offset_bottom = 22.0
