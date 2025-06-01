@@ -11,5 +11,7 @@ target_desired_distance = 8.0
 debug_enabled = true
 
 [node name="TimerPathfinding" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
 
 [connection signal="timeout" from="TimerPathfinding" to="." method="_on_timer_pathfinding_timeout"]

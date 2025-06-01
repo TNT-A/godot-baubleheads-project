@@ -27,27 +27,21 @@ navigation_polygon = SubResource("NavigationPolygon_7i1hm")
 position = Vector2(503, 97)
 
 [node name="FloorExit" parent="." instance=ExtResource("5_j6ngc")]
-visible = false
 position = Vector2(519, 689)
 
 [node name="WigglyEarthworm" parent="." instance=ExtResource("7_62gdq")]
-visible = false
 position = Vector2(162, 151)
 
 [node name="WigglyEarthworm2" parent="." instance=ExtResource("7_62gdq")]
-visible = false
 position = Vector2(871, 150)
 rotation = 3.14159
 
 [node name="WigglyEarthworm3" parent="." instance=ExtResource("7_62gdq")]
-visible = false
 position = Vector2(885, 677)
 rotation = 3.14159
 
 [node name="WigglyEarthworm4" parent="." instance=ExtResource("7_62gdq")]
-visible = false
 position = Vector2(139, 678)
 
 [node name="BeegEarthworm" parent="." instance=ExtResource("8_yigm5")]
-visible = false
 position = Vector2(529, 646)

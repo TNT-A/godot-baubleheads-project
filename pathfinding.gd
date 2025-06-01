@@ -18,10 +18,12 @@ func _physics_process(delta: float) -> void:
 func pathfinding(speed_change):
 	var next_path_pos := nav_agent.get_next_path_position()
 	var dir := global_position.direction_to(next_path_pos)
-	if is_instance_valid(host):
-		print(host.velocity, host.global_position)
+	if host:
+		print(dir)
 		host.velocity = host.velocity.lerp(dir * speed_change, acceleration)
 		host.move_and_slide()
+	else:
+		print("uhhh")
 
 #Pick random within range of another location 
 func random_location(location, range_D):
@@ -45,8 +47,9 @@ func random_pivot(range_D):
 
 #Resets the pathfinding path with help of timer 
 func make_path():
-	if target_node:
+	if target_vector_position:
 		nav_agent.target_position = target_vector_position
+		#print('path made')
 
 #Adds a pivot distace from the actual target so that everything pathfinding to it doesn't stack
 var target_pivot : Vector2 
