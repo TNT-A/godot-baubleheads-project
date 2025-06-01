@@ -14,7 +14,7 @@ extends CharacterBody2D
 
 enum States {IDLE, WALKING, SPRINTING, HOLDING}
 var state: States = States.IDLE
-
+var canHit = true
 var accept_input : bool = true
 var sprinting : bool = false
 
@@ -125,5 +125,17 @@ func die():
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	var enemy = area
-	if area.is_in_group("hurts_player"):
+	if area.is_in_group("hurts_player") && canHit:
 		change_health(enemy.damage_dealt)
+		flash(6)
+	
+func flash(count):
+	canHit = false
+	
+	for n in range(count):
+		visible = false
+		await get_tree().create_timer(0.07).timeout
+		visible = true
+		await get_tree().create_timer(0.07).timeout
+	canHit = true
+	
