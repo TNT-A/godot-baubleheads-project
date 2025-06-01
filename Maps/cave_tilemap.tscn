@@ -23,6 +23,7 @@ position = Vector2(1, 0)
 navigation_polygon = ExtResource("2_dlj4k")
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("3_pwdk1")]
+visible = true
 position = Vector2(223, 54)
 
 [node name="FloorExit" parent="." instance=ExtResource("3_f8v0e")]

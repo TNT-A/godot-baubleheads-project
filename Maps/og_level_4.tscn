@@ -26,6 +26,7 @@ tile_set = ExtResource("2_ur7rn")
 navigation_polygon = SubResource("NavigationPolygon_kxdmk")
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("3_0yqij")]
+visible = true
 position = Vector2(70, 105)
 
 [node name="EnemySpawner" parent="." groups=["navigation"] instance=ExtResource("5_kbx5h")]

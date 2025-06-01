@@ -25,20 +25,17 @@ position = Vector2(-184, -261)
 navigation_polygon = SubResource("NavigationPolygon_ltybv")
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("4_v7bx5")]
+visible = true
 position = Vector2(311, 313)
 
 [node name="FloorExit" parent="." instance=ExtResource("5_iqj4n")]
-visible = false
 position = Vector2(295, 74)
 
 [node name="BeegEarthworm" parent="." instance=ExtResource("7_p46kk")]
-visible = false
 position = Vector2(41, 133)
 
 [node name="BeegEarthworm2" parent="." instance=ExtResource("7_p46kk")]
-visible = false
 position = Vector2(607, 133)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("8_47nl3")]
-visible = false
 position = Vector2(311, 9)
