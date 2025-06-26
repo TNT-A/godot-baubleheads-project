@@ -30,22 +30,29 @@ func dig():
 func bite():
 	pass
 func crack():
-	add_child(crackshot.instantiate())
+	var vto = Vector2(Global.player.global_position.x, Global.player.global_position.y)
+	
 	var a = crackshot.instantiate()
-	a.mo = Vector2(0,0)
+	$AnimatedSprite2D.play("crackx3")
+	await get_tree().create_timer(.3).timeout
+	
+	a.changeAngle(vto.normalized())
 	add_child(a)
 	
 	var b = crackshot.instantiate()
-	b.mo = Vector2(0,0)
+	b.changeAngle(Vector2.from_angle(vto.angle() + PI/8).normalized())
 	add_child(b)
 	
+	var c = crackshot.instantiate()
+	c.changeAngle(Vector2.from_angle(vto.angle() - PI/8).normalized())
+	add_child(c)
 func crackcircle():
 	pass
 
 
 func _on_timer_timeout():
 	attackChoice = randf_range(0,100)
-	$Timer.wait_time = randf_range(0.5,1.5)
+	$Timer.wait_time = randf_range(3,5.5)
 
 	$Timer.start()
 	attack(attackChoice)
