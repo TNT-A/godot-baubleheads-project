@@ -7,7 +7,6 @@
 radius = 28.0179
 
 [node name="ItemUpgrade" type="Node2D"]
-position = Vector2(314, 140)
 script = ExtResource("1_wv6jd")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

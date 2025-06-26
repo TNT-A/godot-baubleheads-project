@@ -42,10 +42,10 @@ func state_functions():
 
 func update_slot(item_type, party_slot):
 	if item_type is String and party_slot == slot:
-		$TextureRect.texture = load("res://Inventory/partySprites/party_slot_"+item_type+".png")
+		$Sprite2D.texture = load("res://Inventory/partySprites/party_slot_"+item_type+".png")
 		held_type = item_type
 	if item_type == null:
-		$TextureRect.texture = load("res://Inventory/inventory_slot.png")
+		$Sprite2D.texture = load("res://Inventory/inventory_slot.png")
 		held_type = null
 
 func _on_area_2d_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:

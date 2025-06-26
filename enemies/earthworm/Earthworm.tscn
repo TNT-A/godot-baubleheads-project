@@ -6,16 +6,16 @@
 [ext_resource type="PackedScene" uid="uid://baov1nwgxw7ow" path="res://components/drop_pickups/drop_pickups.tscn" id="4_2vwey"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gjer8"]
-size = Vector2(24, 24)
+size = Vector2(32, 11)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mf51n"]
-radius = 28.1603
+radius = 16.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qvyj8"]
-radius = 371.163
+radius = 184.141
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ueksg"]
-radius = 165.003
+radius = 112.147
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dspvy"]
 atlas = ExtResource("3_gdush")
@@ -57,7 +57,7 @@ animations = [{
 script = ExtResource("1_pgrt0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-5, 4)
+position = Vector2(-9, 4.5)
 shape = SubResource("RectangleShape2D_gjer8")
 
 [node name="Mouth" type="Marker2D" parent="."]
@@ -85,7 +85,6 @@ shape = SubResource("CircleShape2D_ueksg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-13, -7)
-scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_a7f1e")
 frame_progress = 0.715843
 

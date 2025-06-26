@@ -4,20 +4,19 @@
 [ext_resource type="Texture2D" uid="uid://d33xh7n8lj63v" path="res://Inventory/inventorySprites/Item_ruby.png" id="2_t8nyd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0tbsg"]
-radius = 11.0
+radius = 9.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3ebjl"]
-radius = 16.2788
+radius = 9.0
 
 [node name="GemstonePickup" type="CharacterBody2D"]
-position = Vector2(236, 169)
 script = ExtResource("1_33yxk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_0tbsg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_t8nyd")
 
 [node name="PickupArea" type="Area2D" parent="."]

@@ -5,12 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://vf4avdxbghpn" path="res://PixelArt/Robot2pngOnlyRunAndHold.png" id="3_lfdng"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_idmmv"]
-radius = 16.0
-height = 48.0
+radius = 11.0
+height = 36.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ms536"]
-radius = 18.0
-height = 42.0
+height = 34.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_00i2u"]
 atlas = ExtResource("2_q8r5f")
@@ -305,12 +304,11 @@ animations = [{
 }]
 
 [node name="PlayerBody" type="CharacterBody2D"]
-position = Vector2(543, 276)
 collision_mask = 2
 script = ExtResource("1_rjkni")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 1)
+position = Vector2(3, 1)
 shape = SubResource("CapsuleShape2D_idmmv")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -318,13 +316,13 @@ shape = SubResource("CapsuleShape2D_idmmv")
 [node name="Hurtbox" type="Area2D" parent="." groups=["player"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(-1, 1)
+position = Vector2(3, 1)
 shape = SubResource("CapsuleShape2D_ms536")
 debug_color = Color(0.976901, 0, 0.408291, 0.42)
 
 [node name="Marker2D" type="Marker2D" parent="."]
 z_index = 100
-position = Vector2(6, -28)
+position = Vector2(5, -12)
 
 [node name="ColorRect" type="ColorRect" parent="Marker2D"]
 visible = false
@@ -334,7 +332,6 @@ color = Color(0.777324, 7.64316e-05, 0.624791, 1)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(4, 1)
-scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_3stiq")
 animation = &"run_and_hold"
 

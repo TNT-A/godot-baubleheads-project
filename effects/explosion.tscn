@@ -93,7 +93,6 @@ animations = [{
 radius = 10.0125
 
 [node name="Explosion" type="AnimatedSprite2D"]
-scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_re8k6")
 frame = 10
 frame_progress = 1.0

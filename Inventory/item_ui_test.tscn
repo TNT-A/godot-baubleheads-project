@@ -5,7 +5,7 @@
 [ext_resource type="Resource" uid="uid://bnqkjk51xm27m" path="res://pickups/pickup_resource/item_ruby.tres" id="2_xfyse"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jh323"]
-size = Vector2(63, 65)
+size = Vector2(32.5, 33.5)
 
 [node name="Item" type="Control" groups=["Item"]]
 z_index = 2
@@ -20,8 +20,8 @@ type = ExtResource("2_xfyse")
 
 [node name="Sprite2D" type="Sprite2D" parent="." groups=["Item"]]
 z_index = 1
-position = Vector2(32, 32)
-scale = Vector2(0.426667, 0.202265)
+position = Vector2(15.5, 15.875)
+scale = Vector2(0.206667, 0.0978962)
 texture = ExtResource("2_rqwbc")
 offset = Vector2(-7.62939e-06, 0)
 
@@ -29,7 +29,7 @@ offset = Vector2(-7.62939e-06, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["Item"]]
 visibility_layer = 2
-position = Vector2(32, 32)
+position = Vector2(16, 16)
 shape = SubResource("RectangleShape2D_jh323")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

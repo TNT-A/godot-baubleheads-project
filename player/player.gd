@@ -113,10 +113,10 @@ func walk(new_speed):
 		velocity = velocity.lerp(Vector2.ZERO,deceleration)
 	if velocity.x > 0:
 		sprite.flip_h = false
-		hand_marker.position = Vector2(6, -28)
+		hand_marker.position = Vector2(5, -12)
 	elif velocity.x < 0:
 		sprite.flip_h = true
-		hand_marker.position = Vector2(-6, -28)
+		hand_marker.position = Vector2(-5, -12)
 	move_and_slide()
 	#print(velocity)
 
