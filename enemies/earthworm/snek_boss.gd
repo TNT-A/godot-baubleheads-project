@@ -34,7 +34,7 @@ func crack():
 	
 	var a = crackshot.instantiate()
 	$AnimatedSprite2D.play("crackx3")
-	await get_tree().create_timer(.3).timeout
+	await get_tree().create_timer(.15).timeout
 	
 	a.changeAngle(vto.normalized())
 	add_child(a)
@@ -52,7 +52,7 @@ func crackcircle():
 
 func _on_timer_timeout():
 	attackChoice = randf_range(0,100)
-	$Timer.wait_time = randf_range(3,5.5)
+	$Timer.wait_time = randf_range(.5,1.5)
 
 	$Timer.start()
 	attack(attackChoice)
