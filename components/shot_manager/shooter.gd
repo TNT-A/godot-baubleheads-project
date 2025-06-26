@@ -1,3 +1,3 @@
 extends Node2D
 
-@export var projectile
+#@export var projectile

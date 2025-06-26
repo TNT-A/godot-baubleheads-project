@@ -57,7 +57,10 @@ func state_functions():
 
 func shoot():
 	if count_attacking <= 5:
-		add_child(crackshot.instantiate())
+		var a = crackshot.instantiate()
+		a.changeAngle(Vector2(Global.player.global_position.x - position.x, Global.player.global_position.y - position.y).normalized())
+		add_child(a)
+		
 	#Global.player.global_position 
 
 func change_health(enemy, change):
