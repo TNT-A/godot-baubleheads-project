@@ -1,8 +1,72 @@
-[gd_scene load_steps=9 format=3 uid="uid://b4hvwrbvuargs"]
+[gd_scene load_steps=25 format=3 uid="uid://b4hvwrbvuargs"]
 
 [ext_resource type="Script" uid="uid://615ylxw4j03x" path="res://enemies/earthworm/snek_boss.gd" id="1_coxfr"]
 [ext_resource type="Texture2D" uid="uid://sx74p7ouvwim" path="res://PixelArt/SerpentBoss.png" id="2_mvurq"]
 [ext_resource type="PackedScene" uid="uid://coa54e45uplra" path="res://player/player.tscn" id="3_hgn5k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yk3i8"]
+atlas = ExtResource("2_mvurq")
+region = Rect2(3936, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhguu"]
+atlas = ExtResource("2_mvurq")
+region = Rect2(4032, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6tso"]
+atlas = ExtResource("2_mvurq")
+region = Rect2(4128, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2wj6"]
+atlas = ExtResource("2_mvurq")
+region = Rect2(4224, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxc3v"]
+atlas = ExtResource("2_mvurq")
+region = Rect2(4320, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_osbmc"]
+atlas = ExtResource("2_mvurq")
+region = Rect2(4416, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kc7xl"]
+atlas = ExtResource("2_mvurq")
+region = Rect2(4512, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0bhb"]
+atlas = ExtResource("2_mvurq")
+region = Rect2(4608, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yecn8"]
+atlas = ExtResource("2_mvurq")
+region = Rect2(4704, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5i84a"]
+atlas = ExtResource("2_mvurq")
+region = Rect2(4800, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtfwy"]
+atlas = ExtResource("2_mvurq")
+region = Rect2(4896, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qn5q8"]
+atlas = ExtResource("2_mvurq")
+region = Rect2(4992, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g30ua"]
+atlas = ExtResource("2_mvurq")
+region = Rect2(5088, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ljd77"]
+atlas = ExtResource("2_mvurq")
+region = Rect2(5184, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_giedw"]
+atlas = ExtResource("2_mvurq")
+region = Rect2(5280, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6vsyj"]
+atlas = ExtResource("2_mvurq")
+region = Rect2(5376, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dc53k"]
 atlas = ExtResource("2_mvurq")
@@ -22,6 +86,59 @@ region = Rect2(288, 0, 96, 96)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_635il"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yk3i8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhguu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h6tso")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v2wj6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sxc3v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_osbmc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kc7xl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0bhb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yecn8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5i84a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gtfwy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qn5q8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g30ua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ljd77")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_giedw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6vsyj")
+}],
+"loop": false,
+"name": &"crackx3",
+"speed": 15.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_dc53k")
@@ -45,6 +162,8 @@ script = ExtResource("1_coxfr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_635il")
+animation = &"crackx3"
+frame_progress = 0.325836
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

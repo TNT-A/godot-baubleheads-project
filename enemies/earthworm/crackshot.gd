@@ -1,7 +1,7 @@
 extends Node2D
-var mo = Vector2()
 
-@onready var move = (Vector2(global_position.x - Global.player.global_position.x, global_position.y - Global.player.global_position.y) + mo).normalized()
+
+var move = Vector2(0,0)
 # Called when the node enters the scene tree for the first time.
 
 func _ready():
@@ -13,7 +13,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	if Engine.time_scale == 1:
-		global_position -= move*4
+		global_position += move*4
 
 func _on_timer_timeout():
 	queue_free()
@@ -28,3 +28,6 @@ func _on_damage_zone_area_shape_entered(area_rid, area, area_shape_index, local_
 		queue_free()
 	
 	pass # Replace with function body.
+func changeAngle(angle):
+	move = angle
+	
