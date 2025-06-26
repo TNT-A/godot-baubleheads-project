@@ -110,7 +110,6 @@ func check_attacking_baubles():
 	#new_pickup.global_position = global_position
 
 func die():
-	$DropPickups.drop_item()
 	SignalBus.enemy_dead.emit(self)
 	call_deferred("queue_free")
 

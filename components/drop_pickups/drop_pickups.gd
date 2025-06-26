@@ -1,5 +1,7 @@
 extends Node2D
 
+@onready var attached_enemy = get_parent()
+
 @export var none_limit : int = 40
 @export var ruby_limit : int = 60
 @export var sapphire_limit : int = 80
@@ -14,14 +16,18 @@ var drop_chart : Dictionary = {
 	"topaz" : 100}
 
 func _ready() -> void:
+	SignalBus.enemy_dead.connect(check_enemy)
 	set_drop_chart()
+
+func check_enemy(enemy):
+	if enemy == attached_enemy:
+		drop_item()
 
 func set_drop_chart():
 	drop_chart.none = none_limit
 	drop_chart.ruby = ruby_limit
 	drop_chart.sapphire = sapphire_limit
 	drop_chart.topaz = topaz_limit
-	#print(drop_chart)
 
 func drop_item():
 	var drop_chance : int = randi_range(0, 100)

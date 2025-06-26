@@ -16,8 +16,7 @@ func _on_button_start_pressed() -> void:
 		get_tree().change_scene_to_packed(game_scene)
 
 func _on_button_close_pressed() -> void:
-	#get_tree().quit()
-	pass
+	get_tree().quit()
 
 func transition():
 	pass
