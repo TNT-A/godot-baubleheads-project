@@ -178,7 +178,7 @@ func state_functions():
 				$TimerAttackCooldown.wait_time = 0.00001
 			$TimerAttackCooldown.start()
 		$AnimationPlayer.play("walk")
-		$AnimatedSprite2D.scale = Vector2(2,2)
+		$AnimatedSprite2D.scale = Vector2(1,1)
 		if current_enemy != null:
 			new_target(current_enemy.global_position, 50.0)
 		pathfinding(speed)
@@ -207,7 +207,7 @@ func state_changed():
 	$TimerAttackCooldown.stop()
 	$TimerRange.stop()
 	$AnimatedSprite2D.rotation = 0
-	$AnimatedSprite2D.scale = Vector2(2, 2)
+	$AnimatedSprite2D.scale = Vector2(1, 1)
 	immune = false
 
 func random_location(location, range):

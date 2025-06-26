@@ -36,7 +36,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l0gm8"]
-radius = 35.5106
+radius = 9.0
 
 [sub_resource type="Animation" id="Animation_ut8ka"]
 resource_name = "Fall"
@@ -170,16 +170,16 @@ script = ExtResource("1_qkiqy")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(5, 6)
 rotation = -1.5708
-scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_vinrg")
 frame_progress = 0.782519
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, 2)
 shape = SubResource("CircleShape2D_l0gm8")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_t7vy3")
+&"": SubResource("AnimationLibrary_t7vy3")
 }
 
 [node name="FallTimer" type="Timer" parent="."]

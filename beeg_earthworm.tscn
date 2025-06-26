@@ -131,7 +131,6 @@ radius = 14.0
 radius = 88.0511
 
 [node name="BeegEarthworm" type="CharacterBody2D" groups=["enemy"]]
-scale = Vector2(2, 2)
 script = ExtResource("1_x1g0n")
 health = 40
 

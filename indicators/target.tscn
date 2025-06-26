@@ -74,8 +74,6 @@ animations = [{
 
 [node name="Target" type="AnimatedSprite2D"]
 self_modulate = Color(1, 1, 1, 0.556863)
-position = Vector2(69, 75)
-scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_5myak")
 animation = &"grow"
 frame = 3

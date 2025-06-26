@@ -9,7 +9,6 @@
 [node name="TextureRect" type="TextureRect"]
 offset_right = 248.0
 offset_bottom = 171.0
-scale = Vector2(2, 2)
 texture = ExtResource("1_p4u8o")
 script = ExtResource("2_egbuj")
 

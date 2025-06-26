@@ -129,5 +129,5 @@ script = ExtResource("1_wo0nv")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_ybtb2")
+&"": SubResource("AnimationLibrary_ybtb2")
 }
