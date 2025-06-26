@@ -141,7 +141,7 @@ func die():
 #func drop_item():
 	#var drop_chance : int = randi_range(0, 100)
 	#if drop_chance < drop_chart["none"]:
-		##print("none")
+		#print("none")
 		#pass
 	#elif drop_chart["none"] < drop_chance and drop_chance <= drop_chart["ruby"]:
 		#create_pickup("ruby")
