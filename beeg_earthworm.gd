@@ -106,10 +106,9 @@ func check_attacking_baubles():
 	count_attacking = attacking_baubles.size()
 
 func die():
-	$DropPickups.drop_item()
 	SignalBus.enemy_dead.emit(self)
 	call_deferred("queue_free")
-#
+
 #func drop_item():
 	#var drop_chance : int = randi_range(0, 100)
 	#if drop_chance < drop_chart["none"]:

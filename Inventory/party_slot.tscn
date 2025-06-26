@@ -4,30 +4,29 @@
 [ext_resource type="Texture2D" uid="uid://cr1oop4kpupya" path="res://Inventory/inventory_slot.png" id="1_y1gp7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_elost"]
-size = Vector2(105, 105)
+size = Vector2(48, 48)
 
 [node name="PartySlot" type="CenterContainer" groups=["party_slot"]]
 z_index = 1
-custom_minimum_size = Vector2(110, 110)
+custom_minimum_size = Vector2(48, 48)
 anchors_preset = -1
-anchor_right = 0.173
-anchor_bottom = 0.306
-offset_right = -0.720001
-offset_bottom = -0.160011
+anchor_right = 0.15
+anchor_bottom = 0.268
+offset_bottom = -0.240002
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_g2gql")
 
-[node name="TextureRect" type="TextureRect" parent="." groups=["party_slot"]]
-custom_minimum_size = Vector2(110, 110)
-layout_mode = 2
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(24, 24)
+scale = Vector2(0.75, 0.75)
 texture = ExtResource("1_y1gp7")
 
 [node name="Area2D" type="Area2D" parent="." groups=["party_slot"]]
-position = Vector2(57, 54)
+position = Vector2(32, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["party_slot"]]
-position = Vector2(-2.5, 2.5)
+position = Vector2(-8, -8)
 shape = SubResource("RectangleShape2D_elost")
 
 [connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]

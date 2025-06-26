@@ -3,8 +3,7 @@ class_name draggable_object
 
 @export var type : Resource 
 
-@onready var og_scale : Vector2 = $Sprite2D.scale * 2
-
+@onready var og_scale : Vector2 = $Sprite2D.scale
 var target_slot : int = -1
 var base_position
 var is_mouse_entered : bool = false

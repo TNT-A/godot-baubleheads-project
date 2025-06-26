@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://baov1nwgxw7ow" path="res://components/drop_pickups/drop_pickups.tscn" id="4_4l6yv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yn4co"]
-radius = 14.0
-height = 66.0
+radius = 7.0
+height = 32.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uek58"]
 atlas = ExtResource("1_42smv")
@@ -46,16 +46,17 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p5ix1"]
-radius = 14.0
+radius = 6.99999
+height = 32.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cejg8"]
-radius = 264.03
+radius = 150.03
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5baap"]
-radius = 85.0059
+radius = 43.0116
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_61v2f"]
-radius = 264.197
+radius = 149.405
 
 [sub_resource type="Animation" id="Animation_nltmj"]
 resource_name = "took damage"
@@ -88,7 +89,6 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_yn4co")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_6c3bg")
 
 [node name="TimerDashLength" type="Timer" parent="."]

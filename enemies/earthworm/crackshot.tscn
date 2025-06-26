@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c8g0kk7fj1rdj" path="res://components/damage_zone/damage_zone.tscn" id="3_hk7xh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mmx3m"]
-radius = 15.0333
+radius = 8.06226
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dn7b8"]
 atlas = ExtResource("3_3k0ha")
@@ -47,12 +47,11 @@ script = ExtResource("1_561j4")
 [node name="DamageZone" parent="." instance=ExtResource("3_hk7xh")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
-position = Vector2(6, 4)
+position = Vector2(8, 5)
 shape = SubResource("CircleShape2D_mmx3m")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(5, 6)
-scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_ltg8f")
 frame_progress = 0.591421
 
