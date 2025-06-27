@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://b4hvwrbvuargs"]
+[gd_scene load_steps=26 format=3 uid="uid://b4hvwrbvuargs"]
 
 [ext_resource type="Script" uid="uid://615ylxw4j03x" path="res://enemies/earthworm/snek_boss.gd" id="1_coxfr"]
 [ext_resource type="Texture2D" uid="uid://sx74p7ouvwim" path="res://PixelArt/SerpentBoss.png" id="2_mvurq"]
@@ -137,7 +137,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"crackx3",
-"speed": 15.0
+"speed": 30.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -157,6 +157,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_yk3i8"]
+radius = 81.4678
+
 [node name="SnekBoss" type="Node2D"]
 script = ExtResource("1_coxfr")
 
@@ -170,4 +173,14 @@ one_shot = true
 
 [node name="PlayerBody" parent="." instance=ExtResource("3_hgn5k")]
 
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_yk3i8")
+
+[node name="Timer2" type="Timer" parent="."]
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
