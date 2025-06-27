@@ -1,6 +1,6 @@
 extends Node2D
 
-
+var spin = 0
 var move = Vector2(0,0)
 # Called when the node enters the scene tree for the first time.
 
@@ -14,7 +14,9 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	if Engine.time_scale == 1:
 		global_position += move*4
-
+	move = Vector2.from_angle(move.angle() + spin)
+	
+	
 func _on_timer_timeout():
 	queue_free()
 
@@ -30,4 +32,6 @@ func _on_damage_zone_area_shape_entered(area_rid, area, area_shape_index, local_
 	pass # Replace with function body.
 func changeAngle(angle):
 	move = angle
+func spinny(angle):
+	spin += angle
 	
