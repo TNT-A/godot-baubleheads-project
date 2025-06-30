@@ -9,13 +9,11 @@ var crackshot: PackedScene = preload("res://enemies/earthworm/crackshot.tscn")
 func _ready():
 	$Timer.wait_time = randf_range(0.5,1.5)
 	$Timer.start()
-	
+
 func _physics_process(delta: float) -> void:
 	if Engine.time_scale == 1:
 		pass
-	
-	
-	
+
 func attack(ac):
 	#if attackChoice <= 50:
 	#	crack()
@@ -77,10 +75,6 @@ func _on_timer_timeout():
 	$Timer.start()
 	attack(attackChoice)
 
-
-
-
-
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("bauble"):
 		nearbyBaubles.append(body)
@@ -90,7 +84,6 @@ func _on_area_2d_body_exited(body):
 		var index = nearbyBaubles.find(body)
 		nearbyBaubles.remove_at(index)
 	pass # Replace with function body.
-
 
 func _on_timer_2_timeout():
 	circleable = true
