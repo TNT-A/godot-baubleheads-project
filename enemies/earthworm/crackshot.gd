@@ -37,8 +37,6 @@ func _on_damage_zone_area_shape_entered(area_rid, area, area_shape_index, local_
 		get_parent().add_child(ex)
 		ex.global_position = global_position
 		queue_free()
-	
-	pass # Replace with function body.
 
 func changeAngle(angle):
 	move = angle
