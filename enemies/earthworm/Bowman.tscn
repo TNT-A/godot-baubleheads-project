@@ -1,9 +1,12 @@
-[gd_scene load_steps=21 format=3 uid="uid://2fiqjf68h72f"]
+[gd_scene load_steps=24 format=3 uid="uid://2fiqjf68h72f"]
 
-[ext_resource type="Script" uid="uid://b52pac6sr1qan" path="res://enemies/earthworm/earthworm.gd" id="1_x7epr"]
+[ext_resource type="Script" uid="uid://bs4phe8t022t4" path="res://enemies/earthworm/bowman.gd" id="1_gmkyk"]
 [ext_resource type="PackedScene" uid="uid://c8g0kk7fj1rdj" path="res://components/damage_zone/damage_zone.tscn" id="2_78bkr"]
 [ext_resource type="Texture2D" uid="uid://7cg5uxqhieim" path="res://PixelArt/bowman.png" id="3_x7epr"]
 [ext_resource type="PackedScene" uid="uid://baov1nwgxw7ow" path="res://components/drop_pickups/drop_pickups.tscn" id="4_7qth3"]
+[ext_resource type="PackedScene" uid="uid://b274kq41lq38r" path="res://components/shot_manager/shot_manager.tscn" id="5_78bkr"]
+[ext_resource type="SpriteFrames" uid="uid://bc6e18rnhsgjl" path="res://projectiles/spriteFrames/bowshot.tres" id="6_7qth3"]
+[ext_resource type="PackedScene" uid="uid://coa54e45uplra" path="res://player/player.tscn" id="7_7qth3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gjer8"]
 size = Vector2(32, 11)
@@ -103,7 +106,7 @@ animations = [{
 }]
 
 [node name="Bowman" type="CharacterBody2D" groups=["enemy"]]
-script = ExtResource("1_x7epr")
+script = ExtResource("1_gmkyk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-9, 4.5)
@@ -138,6 +141,11 @@ sprite_frames = SubResource("SpriteFrames_a7f1e")
 animation = &"new_animation"
 
 [node name="DropPickups" parent="." instance=ExtResource("4_7qth3")]
+
+[node name="PlayerBody" parent="." instance=ExtResource("7_7qth3")]
+
+[node name="ShotManager" parent="." instance=ExtResource("5_78bkr")]
+shot1_sprite = ExtResource("6_7qth3")
 
 [connection signal="timeout" from="TimerAttackCooldown" to="." method="_on_timer_attack_cooldown_timeout"]
 [connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]
