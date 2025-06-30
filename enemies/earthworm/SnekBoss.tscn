@@ -169,5 +169,6 @@ frame_progress = 0.325836
 one_shot = true
 
 [node name="PlayerBody" parent="." instance=ExtResource("3_hgn5k")]
+position = Vector2(120, 14)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

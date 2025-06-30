@@ -1,0 +1,35 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://bnasujvqw778r"]
+
+[ext_resource type="Texture2D" uid="uid://du34ovqx2rii" path="res://PixelArt/Meteorite-Sheet-Sheet.png" id="1_i6yh5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dn7b8"]
+atlas = ExtResource("1_i6yh5")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sfcot"]
+atlas = ExtResource("1_i6yh5")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8oqp"]
+atlas = ExtResource("1_i6yh5")
+region = Rect2(144, 0, 24, 24)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dn7b8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sfcot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8oqp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sfcot")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
