@@ -59,10 +59,11 @@ func crackcircle():
 	$Timer2.wait_time = 10
 	$Timer2.start()
 func spinnycircle():
-	
+	var rand = randf_range(0,20)
 	for i in range(12):
+		
 		var a = crackshot.instantiate()
-		a.changeAngle(Vector2.from_angle(i*PI/6).normalized())
+		a.changeAngle(Vector2.from_angle(i*PI/6 + rand).normalized())
 		a.spinny(.05) # make this really high for funny maelstrom
 		add_child(a)
 		
@@ -71,7 +72,7 @@ func spinnycircle():
 func _on_timer_timeout():
 	attackChoice = randf_range(0,100)
 	$Timer.wait_time = randf_range(.5,1.5)
-
+	
 	$Timer.start()
 	attack(attackChoice)
 
@@ -84,6 +85,8 @@ func _on_area_2d_body_exited(body):
 		var index = nearbyBaubles.find(body)
 		nearbyBaubles.remove_at(index)
 	pass # Replace with function body.
+
+	
 
 func _on_timer_2_timeout():
 	circleable = true

@@ -21,7 +21,10 @@ func _physics_process(delta: float) -> void:
 	$CharacterBody2D.move_and_slide()
 	if Engine.time_scale == 1:
 		global_position += move*4
-	move = Vector2.from_angle(move.angle() + spin)
+		move = Vector2.from_angle(move.angle() + spin)
+		$CharacterBody2D/AnimatedSprite2D.rotation += spin
+		spin -= spin/30
+		
 
 func _on_timer_timeout():
 	queue_free()
