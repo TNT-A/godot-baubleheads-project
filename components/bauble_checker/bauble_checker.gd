@@ -9,7 +9,6 @@ var count_attacking : int = 0
 func _physics_process(delta: float) -> void:
 	check_attacking_baubles()
 	parent.count_attacking = count_attacking
-	print(count_attacking)
 
 func check_attacking_baubles():
 	for bauble in nearby_baubles:

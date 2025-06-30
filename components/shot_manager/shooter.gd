@@ -106,6 +106,7 @@ func create_shot(sprite, scene, count, angle):
 func shoot(shot_num, angle):
 	if shot_num >= max_shots:
 		shot_num = max_shots
+	shot_num += 1
 	var current_shot = shot_loadout[shot_num]
 	var shot_sprite = current_shot[0]
 	var shot_scene = projectileList[current_shot[1]]
