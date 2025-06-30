@@ -56,10 +56,8 @@ func state_functions():
 			attack_time = false
 
 func shoot():
-	if count_attacking <= 5:
-		var a = crackshot.instantiate()
-		a.changeAngle(Vector2(Global.player.global_position.x - position.x, Global.player.global_position.y - position.y).normalized())
-		add_child(a)
+	$ShotManager.shoot(1, Vector2(Global.player.global_position.x - position.x, Global.player.global_position.y - position.y).normalized())
+		
 		
 	#Global.player.global_position 
 
