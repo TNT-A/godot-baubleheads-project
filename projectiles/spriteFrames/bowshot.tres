@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://bc6e18rnhsgjl"]
+
+[ext_resource type="Texture2D" uid="uid://dh4crpgxmf1df" path="res://PixelArt/Arrow.png" id="1_mh0ha"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pnfyr"]
+atlas = ExtResource("1_mh0ha")
+region = Rect2(0, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pnfyr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
