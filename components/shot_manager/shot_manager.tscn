@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://b274kq41lq38r"]
+[gd_scene load_steps=3 format=3 uid="uid://b274kq41lq38r"]
 
 [ext_resource type="Script" uid="uid://uuobvmi6pprv" path="res://components/shot_manager/shooter.gd" id="1_hcm2c"]
+[ext_resource type="SpriteFrames" uid="uid://bnasujvqw778r" path="res://projectiles/spriteFrames/crackshot.tres" id="2_8ei56"]
 
 [node name="ShotManager" type="Node2D"]
 script = ExtResource("1_hcm2c")
+shot1_sprite = ExtResource("2_8ei56")

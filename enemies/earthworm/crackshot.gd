@@ -1,17 +1,26 @@
 extends Node2D
 
+@onready var sprite = $CharacterBody2D/AnimatedSprite2D
+
+var new_sprite 
+var dir = Vector2(1,1)
+var speed = 75
 var spin = 0
 var move = Vector2(0,0)
-# Called when the node enters the scene tree for the first time.
 
 func _ready():
+	if new_sprite is SpriteFrames:
+		sprite.sprite_frames = new_sprite
+		print("I have a new animatiom :)")
+	$CharacterBody2D.velocity = dir * speed 
 	$Timer.wait_time = 6
 	$Timer.start() 
-	$AnimatedSprite2D.rotation = get_angle_to(Global.player.global_position)
-	$AnimatedSprite2D.play("default")
+	#$CharacterBody2D/AnimatedSprite2D.rotation = get_angle_to(Global.player.global_position)
+	$CharacterBody2D/AnimatedSprite2D.play("default")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	$CharacterBody2D.move_and_slide()
 	if Engine.time_scale == 1:
 		global_position += move*4
 	move = Vector2.from_angle(move.angle() + spin)
