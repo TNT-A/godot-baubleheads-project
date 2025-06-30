@@ -5,8 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://c8g0kk7fj1rdj" path="res://components/damage_zone/damage_zone.tscn" id="3_rikgm"]
 [ext_resource type="PackedScene" uid="uid://baov1nwgxw7ow" path="res://components/drop_pickups/drop_pickups.tscn" id="4_2vwey"]
 [ext_resource type="PackedScene" uid="uid://bs875jneal7bi" path="res://components/bauble_checker/bauble_checker.tscn" id="5_gpsd3"]
-[ext_resource type="PackedScene" uid="uid://coa54e45uplra" path="res://player/player.tscn" id="6_vslhg"]
-
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gjer8"]
 size = Vector2(32, 11)
@@ -92,10 +90,6 @@ frame_progress = 0.715843
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BaubleChecker"]
 position = Vector2(-8, -3)
 shape = SubResource("CircleShape2D_vslhg")
-
-[node name="PlayerBody" parent="." instance=ExtResource("6_vslhg")]
-position = Vector2(-8, -3)
-
 
 [connection signal="timeout" from="TimerAttackCooldown" to="." method="_on_timer_attack_cooldown_timeout"]
 [connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]

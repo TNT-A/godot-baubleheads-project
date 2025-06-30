@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://02aewb52n510" path="res://floor_exit.tscn" id="5_j6ngc"]
 [ext_resource type="PackedScene" uid="uid://cnmbx0805u1i3" path="res://enemies/earthworm/wiggly_earthworm.tscn" id="7_62gdq"]
 [ext_resource type="PackedScene" uid="uid://b4hvwrbvuargs" path="res://enemies/earthworm/SnekBoss.tscn" id="7_au4un"]
-[ext_resource type="PackedScene" uid="uid://2fiqjf68h72f" path="res://enemies/earthworm/Bowman.tscn" id="8_xfvqe"]
+[ext_resource type="PackedScene" uid="uid://cl5df20m73o7u" path="res://enemies/earthworm/Bowman.tscn" id="8_xfvqe"]
 [ext_resource type="PackedScene" uid="uid://buhvt42opr73m" path="res://beeg_earthworm.tscn" id="8_yigm5"]
 [ext_resource type="PackedScene" uid="uid://e477mip5fnwt" path="res://enemies/earthworm/Earthworm.tscn" id="9_7srho"]
 
