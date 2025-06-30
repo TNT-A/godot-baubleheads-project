@@ -47,12 +47,6 @@ var shot_loadout : Array = [
 	[],
 ]
 
-##List of every bullet texture
-#var textureList : Dictionary = {
-	#"crack" = preload("res://projectiles/spriteFrames/crackshot.tres")
-#}
-
-#List of every projectile scene, each scene makes the shot projectile act differently
 var projectileList : Dictionary = {
 	"straight" = preload("res://enemies/earthworm/crackshot.tscn")
 }
@@ -84,24 +78,17 @@ func set_shots():
 	var shot_count = len(shot_loadout)
 	for i in shot_count:
 		i = i+1
-		
 		var shot_sprite = get("shot"+str(i)+"_sprite") #Texture of Shot
 		var projectile = get("shot"+str(i)+"_projectile") #Scene + Behavior of Shot
 		var shot_type = get("shot"+str(i)+"_type") #Formation/Behavior of Shot Firing (ex: single shot, triple shot, spread shot, etc)
 		var shot_num = get("shot"+str(i)+"_num") #Number of Times Shot is Fired
-		
 		projectile = projectiles[projectile]
 		shot_type = shot_types[shot_type]
-		
 		shot_loadout[i-1].append(shot_sprite)
 		shot_loadout[i-1].append(projectile)
 		shot_loadout[i-1].append(shot_type)
 		shot_loadout[i-1].append(shot_num)
 	print(shot_loadout[0])
-	#print(shot_loadout[1])
-	#print(shot_loadout[2])
-	#print(shot_loadout[3])
-	#print(shot_loadout[4])
 
 #Bassic logic for instanciating a new bullet
 func create_shot(sprite, scene, count, angle):
@@ -111,7 +98,7 @@ func create_shot(sprite, scene, count, angle):
 		new_shot.dir = (Global.player.global_position - global_position).normalized()
 	else:
 		new_shot.global_position = Vector2(50,50)
-		new_shot.dir = angle
+		new_shot.move = angle
 	new_shot.new_sprite = sprite
 	add_child(new_shot)
 
