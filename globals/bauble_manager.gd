@@ -95,17 +95,17 @@ func _physics_process(delta: float) -> void:
 	held_count = held_baubles.size()
 	if Input.is_action_just_released("Player_Ability_1"):
 		determine_throw_order()
-	#if Input.is_action_just_pressed("Spawn_Bauble"):
-		#var current_index = find_empty_slot()
-		#if current_index is int and current_index < 10:
-			#spawn_bauble("ruby", current_index)
-	#if Input.is_action_just_pressed("Kill_Bauble"):
-		#var current_index = find_full_slot()
-		##print(current_index)
-		#if current_index is int and current_index < 10:
-			#despawn_bauble(current_index)
-	#if Input.is_action_just_pressed("Replace_Bauble"):
-		#replace_bauble("ruby", 0)
+	if Input.is_action_just_pressed("Spawn_Bauble"):
+		var current_index = find_empty_slot()
+		if current_index is int and current_index < 10:
+			spawn_bauble("ruby", current_index)
+	if Input.is_action_just_pressed("Kill_Bauble"):
+		var current_index = find_full_slot()
+		#print(current_index)
+		if current_index is int and current_index < 10:
+			despawn_bauble(current_index)
+	if Input.is_action_just_pressed("Replace_Bauble"):
+		replace_bauble("ruby", 0)
 
 func find_empty_slot():
 	var current_index
