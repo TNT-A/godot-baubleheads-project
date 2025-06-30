@@ -94,8 +94,8 @@ func set_shots():
 func create_shot(sprite, scene, count, angle):
 	var new_shot = scene.instantiate()
 	if parent_node.is_in_group("enemy"):
-		new_shot.global_position = parent_node
-		new_shot.dir = (Global.player.global_position - global_position).normalized()
+		new_shot.global_position = parent_node.global_position
+		new_shot.move = (Global.player.global_position - global_position).normalized()
 	else:
 		new_shot.global_position = Vector2(50,50)
 		new_shot.move = angle
