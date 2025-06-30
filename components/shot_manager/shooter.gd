@@ -95,6 +95,7 @@ func create_shot(sprite, scene, count, angle):
 	var new_shot = scene.instantiate()
 	if parent_node.is_in_group("enemy"):
 		new_shot.global_position = parent_node.global_position
+		#print(parent_node.global_position, " ", new_shot.global_position)
 		new_shot.move = (Global.player.global_position - global_position).normalized()
 	else:
 		new_shot.global_position = Vector2(50,50)
@@ -106,7 +107,7 @@ func create_shot(sprite, scene, count, angle):
 func shoot(shot_num, angle):
 	if shot_num >= max_shots:
 		shot_num = max_shots
-	shot_num += 1
+	shot_num -= 1
 	var current_shot = shot_loadout[shot_num]
 	var shot_sprite = current_shot[0]
 	var shot_scene = projectileList[current_shot[1]]

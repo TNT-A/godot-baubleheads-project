@@ -31,9 +31,9 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	if player:
 		if player.global_position < global_position and abs(global_position.x - player.global_position.x) > 20:
-			$AnimatedSprite2D.flip_h = false
-		if player.global_position > global_position and abs(global_position.x - player.global_position.x) > 20:
 			$AnimatedSprite2D.flip_h = true
+		if player.global_position > global_position and abs(global_position.x - player.global_position.x) > 20:
+			$AnimatedSprite2D.flip_h = false
 	check_attacking_baubles()
 	if is_alive == false:
 		die()
@@ -57,9 +57,9 @@ func state_functions():
 
 func shoot():
 	if count_attacking <= 5:
-		$ShotManager.shoot(0,Vector2(Global.player.global_position.x - position.x, Global.player.global_position.y - position.y).normalized())
-		print("yes")
-	#Global.player.global_position 
+		$ShotManager.shoot(1,Vector2(Global.player.global_position.x - position.x, Global.player.global_position.y - position.y).normalized())
+		#print(global_position)
+		#print("yes")
 
 func change_health(enemy, change):
 	if self == enemy:

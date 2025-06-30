@@ -10,7 +10,7 @@ var move = Vector2(0,0)
 func _ready():
 	if new_sprite is SpriteFrames:
 		sprite.sprite_frames = new_sprite
-		print("I have a new animatiom :)")
+		#print("I have a new animatiom :)")
 	$Timer.wait_time = 6
 	$Timer.start() 
 	#$CharacterBody2D/AnimatedSprite2D.rotation = get_angle_to(Global.player.global_position)
