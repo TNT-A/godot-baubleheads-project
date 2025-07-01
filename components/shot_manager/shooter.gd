@@ -97,6 +97,7 @@ func create_shot(sprite, scene, count, angle):
 		#new_shot.global_position = parent_node.global_position
 		#print(parent_node.global_position, " ", new_shot.global_position)
 		new_shot.move = (Global.player.global_position - global_position).normalized()
+		new_shot.rotation = new_shot.move.angle()
 		
 	else:
 		new_shot.global_position = Vector2(50,50)
