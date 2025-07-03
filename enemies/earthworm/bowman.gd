@@ -49,8 +49,10 @@ func state_transitions():
 func state_functions():
 	if state == States.ATTACK:
 		if $TimerAttackCooldown.is_stopped():
+			$CharacterBody2D/Bow.play("Reload")
 			$TimerAttackCooldown.wait_time = randf_range(timer_cooldown - 0.1, timer_cooldown + 0.1)
 			$TimerAttackCooldown.start()
+			print("hi")
 		if attack_time:
 			shoot()
 			attack_time = false
@@ -58,6 +60,7 @@ func state_functions():
 		pass
 func shoot():
 	if count_attacking <= 5:
+		$CharacterBody2D/Bow.play("Fire")
 		$ShotManager.shoot(1,Vector2(Global.player.global_position.x - position.x, Global.player.global_position.y - position.y).normalized())
 		#print(global_position)
 		#print("yes")
@@ -117,6 +120,8 @@ func die():
 
 func _on_timer_attack_cooldown_timeout():
 	if playerCrackable:
+		print("I'm reloading!!!!!!!!")
+		$CharacterBody2D/Bow.play("Reload")
 		attack_time = true
 
 func _on_area_2d_body_shape_entered(body_rid, body: Node2D, body_shape_index, local_shape_index):

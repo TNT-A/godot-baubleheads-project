@@ -54,7 +54,7 @@ position = Vector2(529, 646)
 position = Vector2(374, 658)
 
 [node name="Bowman" parent="." instance=ExtResource("8_xfvqe")]
-position = Vector2(638, 144)
+position = Vector2(411, 98)
 
 [node name="earthworm" parent="." instance=ExtResource("9_7srho")]
 position = Vector2(394, 161)
