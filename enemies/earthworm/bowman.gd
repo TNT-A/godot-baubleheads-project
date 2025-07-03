@@ -54,7 +54,8 @@ func state_functions():
 		if attack_time:
 			shoot()
 			attack_time = false
-
+	if state == States.MOVE:
+		pass
 func shoot():
 	if count_attacking <= 5:
 		$ShotManager.shoot(1,Vector2(Global.player.global_position.x - position.x, Global.player.global_position.y - position.y).normalized())
