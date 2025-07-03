@@ -26,7 +26,6 @@ texture_region_size = Vector2i(32, 32)
 9:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 24, 0, 24, 0, 32, 32, 32, 32, -32, -32, -32)
 7:6/0 = 0
 7:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 24, 32, 24, 32, -32, -32, -32, -32, 32, 8, 32)
-
 10:6/0 = 0
 10:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -16, 16, 12.108, 16, 12.7452, -16, 12.7452)
 11:6/0 = 0
@@ -36,7 +35,6 @@ texture_region_size = Vector2i(32, 32)
 13:6/0 = 0
 13:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 14:6/0 = 0
-
 14:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 12.5892, 13.4014, 16, -16, 16)
 15:6/0 = 0
 15:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -16, 16, 12.108, 16, 12.7452, -16, 12.7452)
@@ -59,7 +57,6 @@ texture_region_size = Vector2i(32, 32)
 15:2/0 = 0
 15:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, 0, 32, 0, 24, -32, 24)
 15:3/0 = 0
-
 15:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -16, 16, 16, -1.97845, 16, -1.97845, 12.9498, -16, 12.77)
 15:4/0 = 0
 15:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(16, -16, -1.30577, -16, -1.08815, 16, 16, 16)
@@ -80,7 +77,6 @@ texture_region_size = Vector2i(32, 32)
 9:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -32, 32, -32, 32, 24, 0, 24)
 11:4/0 = 0
 11:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 0, -32, 0, 24, -32, 24)
-
 10:4/0 = 0
 10:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 24, -32, 24)
 6:2/0 = 0
