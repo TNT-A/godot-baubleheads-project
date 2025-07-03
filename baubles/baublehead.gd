@@ -137,14 +137,14 @@ func state_transition():
 var attack_ready : bool = true
 func state_functions():
 	if state == States.FOLLOW:
-		new_target(player.global_position, 50.0)
-		reset_target(50)
+		new_target(player.global_position, 10.0)
+		reset_target(10)
 		pathfinding(speed)
 		$AnimationPlayer.play("walk")
 		$AnimatedSprite2D.play(bauble_type+"_run")
 	if state == States.RETURN:
-		new_target(player.global_position, 50.0)
-		reset_target(50)
+		new_target(player.global_position, 10.0)
+		reset_target(10)
 		pathfinding(speed*1.25)
 		$AnimationPlayer.play("walk")
 		current_enemy = null
@@ -155,11 +155,11 @@ func state_functions():
 		$AnimationPlayer.play("idle")
 		$AnimatedSprite2D.play(bauble_type+"_idle")
 	if state == States.PATROL:
-		new_target(get_global_mouse_position(), 20.0)
+		new_target(get_global_mouse_position(), 10.0)
 		var random_speed : float = randf_range(1.3, 1.6)
 		#temp_target = get_global_mouse_position()
 		if !inMouse:
-			reset_target(50)
+			reset_target(10)
 			pathfinding(speed*random_speed)
 		else:
 			reset_velocity()
@@ -180,7 +180,7 @@ func state_functions():
 		$AnimationPlayer.play("walk")
 		$AnimatedSprite2D.scale = Vector2(1,1)
 		if current_enemy != null:
-			new_target(current_enemy.global_position, 50.0)
+			new_target(current_enemy.global_position, 25.0)
 		pathfinding(speed)
 		$AnimatedSprite2D.play(bauble_type+"_run")
 	if state == States.ATTACK:

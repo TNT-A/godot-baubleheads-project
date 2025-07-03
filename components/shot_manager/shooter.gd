@@ -94,18 +94,22 @@ func set_shots():
 func create_shot(sprite, scene, count, angle):
 	var new_shot = scene.instantiate()
 	if parent_node.is_in_group("enemy"):
-		new_shot.global_position = parent_node
-		new_shot.dir = (Global.player.global_position - global_position).normalized()
+		#new_shot.global_position = parent_node.global_position
+		#print(parent_node.global_position, " ", new_shot.global_position)
+		new_shot.move = (Global.player.global_position - global_position).normalized()
+		new_shot.rotation = new_shot.move.angle()
+		
 	else:
 		new_shot.global_position = Vector2(50,50)
 		new_shot.move = angle
 	new_shot.new_sprite = sprite
 	add_child(new_shot)
-
+	
 #The actual function that will take you @export vars and build the shot based on the values given, then creates it
 func shoot(shot_num, angle):
 	if shot_num >= max_shots:
 		shot_num = max_shots
+	shot_num -= 1
 	var current_shot = shot_loadout[shot_num]
 	var shot_sprite = current_shot[0]
 	var shot_scene = projectileList[current_shot[1]]

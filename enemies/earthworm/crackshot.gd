@@ -10,7 +10,7 @@ var move = Vector2(0,0)
 func _ready():
 	if new_sprite is SpriteFrames:
 		sprite.sprite_frames = new_sprite
-		print("I have a new animatiom :)")
+		#print("I have a new animatiom :)")
 	$Timer.wait_time = 6
 	$Timer.start() 
 	#$CharacterBody2D/AnimatedSprite2D.rotation = get_angle_to(Global.player.global_position)
@@ -37,8 +37,6 @@ func _on_damage_zone_area_shape_entered(area_rid, area, area_shape_index, local_
 		get_parent().add_child(ex)
 		ex.global_position = global_position
 		queue_free()
-	
-	pass # Replace with function body.
 
 func changeAngle(angle):
 	move = angle
