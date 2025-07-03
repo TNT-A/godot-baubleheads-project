@@ -14,4 +14,8 @@ debug_enabled = true
 wait_time = 0.2
 autostart = true
 
+[node name="TimerTargetReset" type="Timer" parent="."]
+wait_time = 2.0
+
 [connection signal="timeout" from="TimerPathfinding" to="." method="_on_timer_pathfinding_timeout"]
+[connection signal="timeout" from="TimerTargetReset" to="." method="_on_timer_target_reset_timeout"]
