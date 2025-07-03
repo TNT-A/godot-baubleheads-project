@@ -19,6 +19,7 @@ var accept_input : bool = true
 var sprinting : bool = false
 
 func _ready() -> void:
+	z_index = 100
 	Global.register_player(self)
 	set_stats()
 	SignalBus.emit_signal("set_health_bar", stats.max_health, stats.health)
