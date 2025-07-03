@@ -1,10 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dj7gh6slo0b5u"]
+[gd_scene load_steps=4 format=3 uid="uid://dj7gh6slo0b5u"]
 
 [ext_resource type="PackedScene" uid="uid://l160kxor0r2e" path="res://components/pathfinding/pathfinding.tscn" id="1_atow8"]
+[ext_resource type="PackedScene" uid="uid://dejuduice2m1q" path="res://Maps/test_level.tscn" id="1_jjky6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jjky6"]
 
 [node name="PathfindingTest" type="Node2D"]
+
+[node name="TestLevel" parent="." instance=ExtResource("1_jjky6")]
+position = Vector2(-110, -102)
 
 [node name="Pathfinding" parent="." node_paths=PackedStringArray("host") instance=ExtResource("1_atow8")]
 position = Vector2(0, -2)
@@ -12,12 +16,16 @@ host = NodePath("../CharacterBody2D")
 target_vector_position = Vector2(500, 300)
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(-67, 147)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("CircleShape2D_jjky6")
 
 [node name="ColorRect" type="ColorRect" parent="CharacterBody2D"]
-offset_left = -14.0
-offset_top = -18.0
-offset_right = 26.0
-offset_bottom = 22.0
+offset_left = -15.0
+offset_top = -19.0
+offset_right = 25.0
+offset_bottom = 21.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
