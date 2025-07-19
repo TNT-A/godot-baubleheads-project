@@ -34,3 +34,6 @@ signal all_enemies_killed
 
 #player commands
 signal player_died
+
+#State Machine
+signal transitioned

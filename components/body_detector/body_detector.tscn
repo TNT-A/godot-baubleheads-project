@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgkikvd22mec6"]
+
+[ext_resource type="Script" uid="uid://y6jiypk6g2j2" path="res://components/body_detector/body_detector.gd" id="1_daf21"]
+
+[node name="BodyDetector" type="Area2D"]
+script = ExtResource("1_daf21")
+
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
+[connection signal="body_shape_exited" from="." to="." method="_on_body_shape_exited"]

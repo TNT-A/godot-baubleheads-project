@@ -37,6 +37,7 @@ disabled = true
 [node name="ColorRect" type="ColorRect" parent="CharacterBody2D"]
 offset_right = 10.0
 offset_bottom = 16.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Pathfinding" parent="CharacterBody2D" node_paths=PackedStringArray("host") instance=ExtResource("4_4th80")]
 position = Vector2(4, 0)
