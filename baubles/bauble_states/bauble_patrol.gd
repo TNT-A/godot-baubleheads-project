@@ -2,20 +2,38 @@ extends State
 class_name BaublePatrol
 
 var pathfinding_controller
+var body_detector
+var searching : bool = false
+var leave : bool = false
+var found_enemy : bool = false
+var target_enemy : Node
 
 func enter():
-	print(self)
 	pathfinding_controller = parent_body.find_child("Pathfinding")
+	body_detector = parent_body.find_child("BodyDetector")
 
 func physics_update(delta):
+	check_transitions()
 	pathfinding_controller.active = true
-	#pathfinding_controller.change_target(player) 
-	pathfinding_controller.speed = parent_body.stats.speed
+	body_detector.active = true
+	pathfinding_controller.speed = 250
+	if pathfinding_controller.at_target == true and searching == false:
+		search()
+	#May not want this, but useful for now
+	#if !Input.is_action_pressed("Player_Ability_2"):
+		#get_parent().get_parent().find_child("AdaptTarget").position = get_parent().get_parent().find_child("BaubleBody").position
+
+func search():
+	print("I'm searching baby")
+	searching = true
+	$Timer.start()
 
 func check_transitions():
-	if pathfinding_controller.at_target == true:
+	if Input.is_action_just_pressed("Crackhead_Call"):
+		SignalBus.transitioned.emit(self, "Return")
+	if leave == true:
 		SignalBus.transitioned.emit(self, "Idle")
-	if Input.is_action_pressed("Player_Ability_2") and parent_body.accept_input:
-		SignalBus.transitioned.emit(self, "Patrol")
-	if Input.is_action_pressed("Player_Ability_1") and pathfinding_controller.at_target and parent_body.accept_input and parent_body.can_hold and !BaubleManager.throwing:
-		SignalBus.transitioned.emit(self, "Held")
+
+func _on_timer_timeout() -> void:
+	leave = true
+	print("I'm done!")

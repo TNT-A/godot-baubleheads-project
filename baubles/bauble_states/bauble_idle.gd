@@ -5,7 +5,6 @@ var pathfinding_controller
 
 func enter():
 	pathfinding_controller = parent_body.find_child("Pathfinding")
-	#print(pathfinding_controller)
 
 func physics_update(delta):
 	check_transitions()
@@ -13,6 +12,7 @@ func physics_update(delta):
 	pathfinding_controller.change_target(player) 
 
 func check_transitions():
+	if Input.is_action_just_pressed("Player_Ability_2"):
+		SignalBus.transitioned.emit(self, "Patrol")
 	if pathfinding_controller.at_target == false:
-		#print("switching to follow")
 		SignalBus.transitioned.emit(self, "Follow")

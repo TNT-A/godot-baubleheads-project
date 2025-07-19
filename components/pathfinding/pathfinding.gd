@@ -82,7 +82,7 @@ func check_distance():
 	#print(distance, " ", at_target)
 
 func reset_velocity():
-	print("Trying to reset velocity")
+	#print("Trying to reset velocity")
 	host.velocity = host.velocity.lerp(Vector2.ZERO,deceleration)
 	host.move_and_slide()
 
