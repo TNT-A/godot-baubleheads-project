@@ -9,10 +9,10 @@ func enter():
 func physics_update(delta):
 	check_transitions()
 	pathfinding_controller.active = true
-	#pathfinding_controller.change_target(player) 
-	#pathfinding_controller.speed = parent_body.stats.speed
+	pathfinding_controller.speed = 200
 
 func check_transitions():
+	if Input.is_action_just_pressed("Player_Ability_2"):
+		SignalBus.transitioned.emit(self, "Patrol")
 	if pathfinding_controller.at_target == true:
-		#print("switching to idle")
 		SignalBus.transitioned.emit(self, "Idle")

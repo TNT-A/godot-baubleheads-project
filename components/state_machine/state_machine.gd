@@ -7,10 +7,10 @@ var current_state : State
 var states : Dictionary = {}
 
 func _ready() -> void:
+	SignalBus.transitioned.connect(on_child_transition)
 	for child in get_children():
 		if child is State:
 			states[child.name.to_lower()] = child
-			SignalBus.transitioned.connect(on_child_transition)
 	if initial_state:
 		initial_state.enter()
 		current_state = initial_state
@@ -25,17 +25,13 @@ func _physics_process(delta: float) -> void:
 		current_state.physics_update(delta)
 
 func on_child_transition(state, new_state_name):
-	#print(current_state)
 	if state != current_state:
 		return
-	
 	var new_state = states.get(new_state_name.to_lower())
 	if !new_state:
 		return
-	
 	if current_state:
 		current_state.exit()
-	
 	new_state.enter()
-	
 	current_state = new_state
+	print(current_state)

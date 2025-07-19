@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://e0xov8hgscfh"]
+[gd_scene load_steps=23 format=4 uid="uid://e0xov8hgscfh"]
 
 [ext_resource type="Script" uid="uid://cwxqfo76wqhmr" path="res://baubles/bauble.gd" id="1_lpuy0"]
 [ext_resource type="PackedScene" uid="uid://cgkikvd22mec6" path="res://components/body_detector/body_detector.tscn" id="1_srsha"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://bf8bm7473vluq" path="res://baubles/bauble_states/bauble_defend.gd" id="11_dyony"]
 [ext_resource type="Script" uid="uid://ci7bpo5hqxep1" path="res://baubles/bauble_states/bauble_return.gd" id="12_wet5a"]
 [ext_resource type="TileSet" uid="uid://3fxl7giqa67u" path="res://cave_tileset.tres" id="16_lpuy0"]
+[ext_resource type="Texture2D" uid="uid://dpnpiecti5fve" path="res://player/ironGiantPlaceholder.webp" id="17_hlfcm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lpuy0"]
 
@@ -30,6 +31,9 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(
 outlines = Array[PackedVector2Array]([PackedVector2Array(-31, -37, 480, -41, 481, 350, -49, 341)])
 source_geometry_mode = 1
 source_geometry_group_name = &"navigation"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aqm36"]
+radius = 27.0
 
 [node name="bauble" type="Node2D"]
 script = ExtResource("1_lpuy0")
@@ -89,6 +93,8 @@ script = ExtResource("5_lpuy0")
 [node name="Patrol" type="Node2D" parent="StateMachine"]
 script = ExtResource("6_hlfcm")
 
+[node name="Timer" type="Timer" parent="StateMachine/Patrol"]
+
 [node name="Targeting" type="Node2D" parent="StateMachine"]
 script = ExtResource("7_86d0t")
 
@@ -117,3 +123,16 @@ tile_set = ExtResource("16_lpuy0")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="BlankLevelTest/TileMapLayer"]
 navigation_polygon = SubResource("NavigationPolygon_hlfcm")
+
+[node name="Dummy" type="CharacterBody2D" parent="BlankLevelTest" groups=["enemy"]]
+position = Vector2(191, 152)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlankLevelTest/Dummy"]
+shape = SubResource("CircleShape2D_aqm36")
+
+[node name="Sprite2D" type="Sprite2D" parent="BlankLevelTest/Dummy"]
+scale = Vector2(0.015, 0.015)
+texture = ExtResource("17_hlfcm")
+
+[connection signal="timeout" from="StateMachine/Patrol/Timer" to="StateMachine/Patrol" method="_on_timer_timeout"]
