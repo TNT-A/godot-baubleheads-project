@@ -14,7 +14,7 @@ extends Node2D
 ## This var lets you determine the initial target position of the host (does nothing I think)
 @export var target_vector_position : Vector2 = Vector2()
 ## This var makes the host immediately target the player rather than any other scene
-@export var chase_player : bool = true
+@export var chase_player : bool
 
 @export_group("Speed Values") 
 ## Controls speed of host pathfinding
@@ -37,15 +37,15 @@ extends Node2D
 var has_target : bool = true
 var target_pivot : Vector2 
 var target_decided : bool = false
+var at_target : bool = false
 
 func _ready() -> void:
 	$TimerTargetReset.wait_time = reset_time
 	$TimerTargetReset.start()
-	if chase_player:
+	if chase_player == true:
 		target_node = player
 	if target_node == null:
 		has_target = false
-		print("I am targetless :pensive:")
 
 func _physics_process(delta: float) -> void:
 	if active:
@@ -65,27 +65,34 @@ func pathfinding(speed_change):
 		host.velocity = host.velocity.lerp(dir * speed_change, acceleration)
 		host.move_and_slide()
 
+func change_target(target):
+	if target != null:
+		target_node = target
+		target_decided = false
+
 #Checks if the host is within a certain distance of their target
 func check_distance():
 	var distance = global_position.distance_to(target_vector_position)
 	#print(distance)
 	if distance <= stop_range:
-		active = false
+		at_target = true
 	elif distance > stop_range:
-		active = true
+		at_target = false
+	
+	#print(distance, " ", at_target)
 
 func reset_velocity():
+	print("Trying to reset velocity")
 	host.velocity = host.velocity.lerp(Vector2.ZERO,deceleration)
 	host.move_and_slide()
 
-#Pick random within range of another location 
+#Pick random within range of another location [
 func random_location(location, range_D):
-	if player:
-		var rng = RandomNumberGenerator.new()
-		var random_position : Vector2 = Vector2()
-		random_position.x = location.x + rng.randf_range(-range_D,range_D)
-		random_position.y = location.y + rng.randf_range(-range_D,range_D)
-		return random_position
+	var rng = RandomNumberGenerator.new()
+	var random_position : Vector2 = Vector2()
+	random_position.x = location.x + rng.randf_range(-range_D,range_D)
+	random_position.y = location.y + rng.randf_range(-range_D,range_D)
+	return random_position
 
 #Resets the pathfinding path with help of timer 
 func make_path():
