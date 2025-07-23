@@ -9,13 +9,13 @@ var throw_started : bool = false
 var throw_ended : bool = false
 
 func enter():
+	throw_target = Vector2(0,0)
 	parent_body.can_throw = false
 	throw_started = false
 	throw_ended = false
 	pathfinding_controller = parent_body.find_child("Pathfinding")
 	body_detector = parent_body.find_child("BodyDetector")
 	animation_player = pathfinding_controller.host.find_child("AnimationPlayer")
-	throw_target = get_global_mouse_position()
 	body_detector.clear_body()
 
 func physics_update(delta):
@@ -23,6 +23,7 @@ func physics_update(delta):
 	pathfinding_controller.active = false
 	body_detector.active = true
 	if !throw_started:
+		throw_target = get_global_mouse_position()
 		throw()
 
 func throw():
@@ -48,6 +49,7 @@ func end_throw():
 	body_detector.active = false
 	parent_body.thrown = false
 	throw_ended = true
+	#print("My throw is ended: ", throw_ended)
 
 func check_transitions():
 	if throw_ended == true:
