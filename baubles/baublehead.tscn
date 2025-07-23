@@ -1,9 +1,8 @@
-[gd_scene load_steps=56 format=3 uid="uid://d31vg3emxkypt"]
+[gd_scene load_steps=45 format=3 uid="uid://d31vg3emxkypt"]
 
 [ext_resource type="Script" uid="uid://2y8st1i23l55" path="res://baubles/baublehead.gd" id="1_1xugq"]
 [ext_resource type="Texture2D" uid="uid://0iqsrpem6iqi" path="res://baubles/bauble_sprites/Bauble_Ruby.png" id="2_6cagt"]
 [ext_resource type="Texture2D" uid="uid://b1iewhes2imfx" path="res://baubles/bauble_sprites/Bauble_Ruby1.png" id="2_8fvfd"]
-[ext_resource type="PackedScene" uid="uid://l160kxor0r2e" path="res://components/pathfinding/pathfinding.tscn" id="2_q85ck"]
 [ext_resource type="Texture2D" uid="uid://b81jxq70lq0dw" path="res://baubles/bauble_sprites/Bauble_Ruby2.png" id="3_nkxpc"]
 [ext_resource type="Texture2D" uid="uid://cvgmjbp315e02" path="res://baubles/bauble_sprites/Bauble_Ruby3.png" id="4_s8h4q"]
 [ext_resource type="Texture2D" uid="uid://1pwl1h32db0n" path="res://baubles/bauble_sprites/Bauble_Ruby4.png" id="5_ojerh"]
@@ -15,16 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://jkfkxqxkr6nw" path="res://baubles/bauble_sprites/Bauble_Topaz3.png" id="12_bncvx"]
 [ext_resource type="Texture2D" uid="uid://dke7scl057kbm" path="res://baubles/bauble_sprites/Bauble_Topaz4.png" id="13_swha3"]
 [ext_resource type="Texture2D" uid="uid://lm0b0c32fqbk" path="res://baubles/bauble_sprites/Bauble_Topaz5.png" id="14_opbr1"]
-[ext_resource type="PackedScene" uid="uid://dnurpmd4urlt7" path="res://components/state_machine/state_machine.tscn" id="15_wjopr"]
-[ext_resource type="Script" uid="uid://8fx8nkbmyhti" path="res://baubles/bauble_states/bauble_idle.gd" id="16_dfyra"]
-[ext_resource type="Script" uid="uid://bhrdggt0womj2" path="res://baubles/bauble_states/bauble_follow.gd" id="17_7864n"]
-[ext_resource type="Script" uid="uid://540tlmo2yxrt" path="res://baubles/bauble_states/bauble_patrol.gd" id="18_5bey7"]
-[ext_resource type="Script" uid="uid://cpmovm7hur2uf" path="res://baubles/bauble_states/bauble_targeting.gd" id="19_wrae1"]
-[ext_resource type="Script" uid="uid://dmkxjipukcamf" path="res://baubles/bauble_states/bauble_attack.gd" id="20_u7xas"]
-[ext_resource type="Script" uid="uid://dty07i40qv77b" path="res://baubles/bauble_states/bauble_held.gd" id="21_u7xas"]
-[ext_resource type="Script" uid="uid://bvmxl8h6x88jw" path="res://baubles/bauble_states/bauble_thrown.gd" id="22_4hj66"]
-[ext_resource type="Script" uid="uid://bf8bm7473vluq" path="res://baubles/bauble_states/bauble_defend.gd" id="23_i0ibc"]
-[ext_resource type="Script" uid="uid://ci7bpo5hqxep1" path="res://baubles/bauble_states/bauble_return.gd" id="24_rqomk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r32wp"]
 atlas = ExtResource("2_8fvfd")
@@ -346,12 +335,8 @@ motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_1xugq")
 
-[node name="Pathfinding" parent="." node_paths=PackedStringArray("host") instance=ExtResource("2_q85ck")]
-host = NodePath("..")
-speed = 250
-deceleration = 0.05
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
 position = Vector2(-3, -1)
 sprite_frames = SubResource("SpriteFrames_tncxp")
 animation = &"sapphire_idle"
@@ -389,36 +374,6 @@ autostart = true
 libraries = {
 &"": SubResource("AnimationLibrary_bjdru")
 }
-
-[node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("15_wjopr")]
-initial_state = NodePath("Idle")
-
-[node name="Idle" type="Node2D" parent="StateMachine"]
-script = ExtResource("16_dfyra")
-
-[node name="Follow" type="Node2D" parent="StateMachine"]
-script = ExtResource("17_7864n")
-
-[node name="Patrol" type="Node2D" parent="StateMachine"]
-script = ExtResource("18_5bey7")
-
-[node name="Targeting" type="Node2D" parent="StateMachine"]
-script = ExtResource("19_wrae1")
-
-[node name="Attack" type="Node2D" parent="StateMachine"]
-script = ExtResource("20_u7xas")
-
-[node name="Held" type="Node2D" parent="StateMachine"]
-script = ExtResource("21_u7xas")
-
-[node name="Thrown" type="Node2D" parent="StateMachine"]
-script = ExtResource("22_4hj66")
-
-[node name="Defend" type="Node2D" parent="StateMachine"]
-script = ExtResource("23_i0ibc")
-
-[node name="Return" type="Node2D" parent="StateMachine"]
-script = ExtResource("24_rqomk")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]

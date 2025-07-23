@@ -1,27 +1,139 @@
-[gd_scene load_steps=5 format=4 uid="uid://dejuduice2m1q"]
+[gd_scene load_steps=23 format=4 uid="uid://e0xov8hgscfh"]
 
-[ext_resource type="Script" uid="uid://ban026lk18wos" path="res://Maps/test_level.gd" id="1_kafbu"]
-[ext_resource type="TileSet" uid="uid://3fxl7giqa67u" path="res://cave_tileset.tres" id="2_4th80"]
-[ext_resource type="PackedScene" uid="uid://q5o4kxajyvl6" path="res://Maps/player_spawn.tscn" id="3_kafbu"]
+[ext_resource type="Script" uid="uid://cwxqfo76wqhmr" path="res://baubles/bauble.gd" id="1_lpuy0"]
+[ext_resource type="PackedScene" uid="uid://cgkikvd22mec6" path="res://components/body_detector/body_detector.tscn" id="1_srsha"]
+[ext_resource type="PackedScene" uid="uid://l160kxor0r2e" path="res://components/pathfinding/pathfinding.tscn" id="2_mgsm3"]
+[ext_resource type="PackedScene" uid="uid://dnurpmd4urlt7" path="res://components/state_machine/state_machine.tscn" id="3_btsnt"]
+[ext_resource type="Texture2D" uid="uid://knrqs61vl2k2" path="res://baubles/bauble_sprites/Bauble_Diamond.png" id="3_g2pfq"]
+[ext_resource type="Script" uid="uid://8fx8nkbmyhti" path="res://baubles/bauble_states/bauble_idle.gd" id="4_g2pfq"]
+[ext_resource type="Script" uid="uid://c61cqr7jhfnf7" path="res://baubles/adapt_target.gd" id="4_lpuy0"]
+[ext_resource type="Script" uid="uid://bhrdggt0womj2" path="res://baubles/bauble_states/bauble_follow.gd" id="5_lpuy0"]
+[ext_resource type="Script" uid="uid://540tlmo2yxrt" path="res://baubles/bauble_states/bauble_patrol.gd" id="6_hlfcm"]
+[ext_resource type="Script" uid="uid://cpmovm7hur2uf" path="res://baubles/bauble_states/bauble_targeting.gd" id="7_86d0t"]
+[ext_resource type="Script" uid="uid://dmkxjipukcamf" path="res://baubles/bauble_states/bauble_attack.gd" id="8_aqm36"]
+[ext_resource type="Script" uid="uid://dty07i40qv77b" path="res://baubles/bauble_states/bauble_held.gd" id="9_qd0ka"]
+[ext_resource type="Script" uid="uid://bvmxl8h6x88jw" path="res://baubles/bauble_states/bauble_thrown.gd" id="10_yam3n"]
+[ext_resource type="Script" uid="uid://bf8bm7473vluq" path="res://baubles/bauble_states/bauble_defend.gd" id="11_dyony"]
+[ext_resource type="Script" uid="uid://ci7bpo5hqxep1" path="res://baubles/bauble_states/bauble_return.gd" id="12_wet5a"]
+[ext_resource type="TileSet" uid="uid://3fxl7giqa67u" path="res://cave_tileset.tres" id="16_lpuy0"]
+[ext_resource type="Texture2D" uid="uid://dpnpiecti5fve" path="res://player/ironGiantPlaceholder.webp" id="17_hlfcm"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_1qhcd"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_lpuy0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hlfcm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_86d0t"]
+radius = 10.5499
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_hlfcm"]
 vertices = PackedVector2Array(352.477, 187.977, 352.102, 189.594, 351.813, 188.211, 352.008, 186.57, 352.719, 187.977, 351.18, 188.203, 384.477, 187.977, 384.102, 189.594, 383.813, 188.211, 384.008, 186.57, 384.719, 187.977, 383.18, 188.203, 352.477, 155.977, 352.102, 157.594, 351.813, 156.211, 352.008, 154.57, 352.719, 155.977, 351.18, 156.203, 384.477, 155.977, 384.102, 157.594, 383.813, 156.211, 384.008, 154.57, 384.719, 155.977, 383.18, 156.203, 458, 330, 470.969, 339.82, -38.5078, 331.172, -10, 330, 470.023, -30.9219, 458, -10, -21.4531, -27.0703, -10, -10, 420.477, 209.867, 420.633, 182, 420.844, 214, 420.633, 214, 415.813, 188.211, 420.477, 177.867, 384.477, 123.977, 384.102, 125.594, 383.813, 124.211, 352.477, 123.977, 352.102, 125.594, 351.813, 124.211, 337.508, 296.18, 347.148, 228.07, 352.008, 218.57, 356.789, 228.07, 362, 296.18, 369.508, 296.18, 379.148, 228.07, 384.008, 218.57, 388.789, 228.07, 394, 296.18, 315.492, 145.57, 320.719, 155.977, 320.477, 155.977, 315.492, 177.57, 320.719, 187.977, 320.477, 187.977, 115.813, 158.453, 415.18, 188.203, 415.813, 156.211, 415.18, 156.203, 420.477, 145.867, 420.633, 150, 411.148, 228.07, 420.844, 246, 420.633, 246, 420.633, 54, 420.844, 86, 420.633, 86, 261.109, 38.7422, 413.711, 38.7422, 420.023, 42, 420.844, 118, 420.633, 118, 420.844, 150, 420.844, 182, 415.813, 124.211, 420.844, 278, 420.82, 278, 251.18, 278, 251.156, 278, 251.367, 246, 324.789, 228.07, 132.633, 246, 132.844, 278, 132.82, 278, 27.1797, 278, 27.1563, 278, 27.3672, 246, 44.1172, 231.156, 27.1563, 246, 27.3672, 214, 43.8594, 202, 44.1172, 202, 27.1563, 214, 27.3672, 182, 44.1875, 158.453, 27.1563, 182, 27.3672, 150, 27.1563, 150, 27.3672, 118, 138.109, 53.6172, 27.1563, 118, 27.3672, 86, 122.891, 38.7422, 34.2891, 38.7422, 27.1563, 86, 27.3672, 54, 27.9766, 42, 420.773, 42, 420.844, 54, 27.1563, 54, 27.2266, 42, 401.508, 296.18, 394, 296.203, 362, 296.203, 330, 296.203, 330, 296.18, 305.508, 296.18, 298, 296.203, 298, 296.18, 273.508, 296.18, 266, 296.203, 266, 296.18, 113.508, 296.18, 106, 296.203, 106, 296.18, 115.883, 231.156, 81.5078, 296.18, 74, 296.203, 74, 296.18, 95.7891, 230.742, 49.5078, 296.18, 42, 296.203, 42, 296.18, 115.883, 202, 116.141, 202, 140.188, 222.453, 140.008, 246, 243.992, 246, 243.813, 222.453, 420.602, 296.18, 251.398, 296.18, 132.602, 296.18, 27.3984, 296.18, 420.023, 38.8203, 27.9766, 38.8203, 315.492, 209.57, 150, 70.7422, 234, 70.7422, 320.477, 123.977, 96.0938, 158.094, 245.891, 53.6172, 234, 64.9297, 150, 64.9297, 63.9063, 158.094, 224.094, 222.094, 159.906, 222.094, 64.2109, 230.742)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 4, 0), PackedInt32Array(5, 3, 0, 2), PackedInt32Array(6, 7, 8), PackedInt32Array(9, 10, 6), PackedInt32Array(11, 9, 6, 8), PackedInt32Array(12, 13, 14), PackedInt32Array(15, 16, 12), PackedInt32Array(17, 15, 12, 14), PackedInt32Array(18, 19, 20), PackedInt32Array(21, 22, 18), PackedInt32Array(23, 21, 18, 20), PackedInt32Array(24, 25, 26, 27), PackedInt32Array(28, 25, 24, 29), PackedInt32Array(30, 28, 29, 31), PackedInt32Array(26, 30, 31, 27), PackedInt32Array(32, 33, 34, 35), PackedInt32Array(33, 32, 36, 37), PackedInt32Array(38, 39, 40), PackedInt32Array(41, 42, 43), PackedInt32Array(44, 45, 46, 47, 48), PackedInt32Array(49, 50, 51, 52, 53), PackedInt32Array(54, 55, 56), PackedInt32Array(57, 58, 59, 60), PackedInt32Array(36, 61, 37), PackedInt32Array(62, 63, 64, 65), PackedInt32Array(66, 32, 35, 67, 68), PackedInt32Array(69, 70, 71, 72, 73, 74), PackedInt32Array(71, 75, 76, 72), PackedInt32Array(76, 77, 65, 64), PackedInt32Array(65, 78, 33, 37), PackedInt32Array(65, 37, 62), PackedInt32Array(76, 64, 79), PackedInt32Array(68, 80, 81, 52, 66), PackedInt32Array(82, 83, 84, 85), PackedInt32Array(86, 87, 88), PackedInt32Array(89, 90, 91), PackedInt32Array(92, 91, 93, 94, 95, 96), PackedInt32Array(95, 94, 97, 98, 99), PackedInt32Array(98, 100, 101, 99), PackedInt32Array(101, 102, 103), PackedInt32Array(104, 103, 105, 106, 107), PackedInt32Array(108, 107, 106, 109, 110, 111), PackedInt32Array(112, 113, 69, 74), PackedInt32Array(110, 114, 115, 111), PackedInt32Array(116, 117, 53), PackedInt32Array(49, 118, 48), PackedInt32Array(44, 119, 120), PackedInt32Array(121, 122, 123, 85), PackedInt32Array(124, 125, 126, 85), PackedInt32Array(86, 88, 127, 128, 129, 130), PackedInt32Array(131, 132, 133, 134), PackedInt32Array(135, 136, 137), PackedInt32Array(86, 130, 138, 139, 140, 141), PackedInt32Array(84, 142, 143, 85), PackedInt32Array(81, 144, 116, 52), PackedInt32Array(126, 145, 82, 85), PackedInt32Array(88, 146, 127), PackedInt32Array(137, 147, 89), PackedInt32Array(73, 148, 74), PackedInt32Array(111, 149, 108), PackedInt32Array(139, 60, 150, 85, 143), PackedInt32Array(59, 150, 60), PackedInt32Array(56, 57, 60, 54), PackedInt32Array(151, 152, 153, 54, 60, 154, 103), PackedInt32Array(52, 116, 53), PackedInt32Array(47, 50, 49, 48), PackedInt32Array(85, 45, 44, 120), PackedInt32Array(85, 120, 121), PackedInt32Array(85, 123, 124), PackedInt32Array(72, 76, 79, 38), PackedInt32Array(72, 38, 40, 41), PackedInt32Array(72, 41, 43, 153, 155), PackedInt32Array(156, 155, 153, 152), PackedInt32Array(103, 104, 157, 151), PackedInt32Array(103, 154, 158, 101), PackedInt32Array(101, 158, 99), PackedInt32Array(139, 143, 159), PackedInt32Array(139, 159, 160), PackedInt32Array(139, 160, 140), PackedInt32Array(135, 137, 89, 91, 92, 161), PackedInt32Array(133, 135, 161, 134), PackedInt32Array(129, 131, 134, 130)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-31, -37, 480, -41, 481, 350, -49, 341)])
 source_geometry_mode = 1
 source_geometry_group_name = &"navigation"
 
-[node name="TestLevel" type="Node2D"]
-script = ExtResource("1_kafbu")
+[sub_resource type="CircleShape2D" id="CircleShape2D_aqm36"]
+radius = 27.0
 
-[node name="PlayerSpawn" parent="." instance=ExtResource("3_kafbu")]
-visible = true
-position = Vector2(197, 155)
+[node name="bauble" type="Node2D"]
+script = ExtResource("1_lpuy0")
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." groups=["navigation"]]
-y_sort_enabled = true
+[node name="AdaptTarget" type="Marker2D" parent="."]
+script = ExtResource("4_lpuy0")
+
+[node name="ColorRect" type="ColorRect" parent="AdaptTarget"]
+offset_left = 3.0
+offset_top = -3.0
+offset_right = 9.0
+offset_bottom = 4.0
+scale = Vector2(-0.918026, 0.785896)
+color = Color(0, 0.337255, 0.529412, 1)
+
+[node name="BaubleBody" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaubleBody"]
+shape = SubResource("CircleShape2D_lpuy0")
+
+[node name="Hurtbox" type="Area2D" parent="BaubleBody"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaubleBody/Hurtbox"]
+shape = SubResource("CircleShape2D_hlfcm")
+
+[node name="BodyDetector" parent="BaubleBody" instance=ExtResource("1_srsha")]
+active = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaubleBody/BodyDetector"]
+scale = Vector2(3.27954, -3.21653)
+shape = SubResource("CircleShape2D_86d0t")
+
+[node name="Sprite2D" type="Sprite2D" parent="BaubleBody"]
+position = Vector2(4, -5)
+texture = ExtResource("3_g2pfq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BaubleBody"]
+root_node = NodePath("../..")
+
+[node name="Pathfinding" parent="BaubleBody" node_paths=PackedStringArray("host", "target_node") instance=ExtResource("2_mgsm3")]
+host = NodePath("..")
+target_node = NodePath("../../AdaptTarget")
+speed = 200
+stop_range = 20.0
+
+[node name="Camera2D" type="Camera2D" parent="BaubleBody"]
+
+[node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("3_btsnt")]
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node2D" parent="StateMachine"]
+script = ExtResource("4_g2pfq")
+
+[node name="Follow" type="Node2D" parent="StateMachine"]
+script = ExtResource("5_lpuy0")
+
+[node name="Patrol" type="Node2D" parent="StateMachine"]
+script = ExtResource("6_hlfcm")
+
+[node name="Timer" type="Timer" parent="StateMachine/Patrol"]
+one_shot = true
+
+[node name="Targeting" type="Node2D" parent="StateMachine"]
+script = ExtResource("7_86d0t")
+
+[node name="Attack" type="Node2D" parent="StateMachine"]
+script = ExtResource("8_aqm36")
+
+[node name="Held" type="Node2D" parent="StateMachine"]
+script = ExtResource("9_qd0ka")
+
+[node name="Thrown" type="Node2D" parent="StateMachine"]
+script = ExtResource("10_yam3n")
+
+[node name="Defend" type="Node2D" parent="StateMachine"]
+script = ExtResource("11_dyony")
+
+[node name="Return" type="Node2D" parent="StateMachine"]
+script = ExtResource("12_wet5a")
+
+[node name="BlankLevelTest" type="Node2D" parent="."]
+z_index = -999
+position = Vector2(-55, -72)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="BlankLevelTest" groups=["navigation"]]
 tile_map_data = PackedByteArray("AAAAAAAAAAANAAMAAAABAAAAAAAOAAMAAAACAAAAAAAOAAMAAAADAAAAAAAOAAMAAAAEAAAAAAALAAYAAAAFAAAAAAAMAAYAAAAGAAAAAAAMAAYAAAAHAAAAAAAOAAYAAAAIAAAAAAAOAAMAAAAJAAAAAAAOAAMAAAAKAAAAAAAOAAMAAAALAAAAAAAOAAMAAAAMAAAAAAAOAAMAAAANAAAAAAAPAAMAAAANAAEAAAAPAAQAAAANAAIAAAAPAAQAAAANAAMAAAAPAAQAAAANAAQAAAAPAAQAAAANAAUAAAAPAAQAAAANAAYAAAAPAAQAAAAAAAYAAAANAAQAAAAAAAUAAAANAAQAAAAAAAQAAAANAAQAAAAAAAMAAAANAAQAAAAAAAIAAAANAAQAAAAAAAEAAAANAAQAAAAFAAMAAAAOAAEAAAAFAAIAAAAOAAEAAAAFAAEAAAAMAAcAAAAEAAEAAAALAAcAAAADAAEAAAAOAAEAAAACAAEAAAAOAAEAAAABAAEAAAAOAAEAAAABAAIAAAAOAAEAAAABAAMAAAAOAAQAAAABAAQAAAAOAAEAAAABAAUAAAAJAAAAAAABAAYAAAAJAAEAAAACAAYAAAAKAAEAAAACAAUAAAAKAAAAAAACAAQAAAAOAAEAAAACAAMAAAAOAAEAAAACAAIAAAAOAAEAAAADAAIAAAAOAAEAAAADAAMAAAAOAAEAAAADAAYAAAALAAEAAAAEAAYAAAAOAAEAAAAEAAMAAAAOAAEAAAAEAAIAAAAOAAEAAAAFAAYAAAAOAAEAAAAGAAYAAAAOAAEAAAAGAAUAAAAOAAEAAAAGAAQAAAAOAAEAAAAGAAMAAAAOAAEAAAAGAAIAAAAOAAEAAAAGAAEAAAAMAAcAAAAHAAEAAAAOAAcAAAAHAAIAAAAOAAEAAAAHAAMAAAAOAAEAAAAHAAQAAAAOAAQAAAAHAAUAAAAOAAEAAAAHAAYAAAAOAAEAAAAIAAYAAAAOAAEAAAAIAAUAAAAOAAEAAAAIAAQAAAAOAAEAAAAIAAMAAAAOAAEAAAAIAAIAAAAOAAEAAAAIAAEAAAAOAAEAAAAJAAEAAAAOAAEAAAAJAAIAAAAOAAEAAAAJAAMAAAAOAAEAAAAJAAQAAAAOAAEAAAAJAAUAAAAOAAEAAAAJAAYAAAAOAAEAAAAKAAMAAAAOAAEAAAAKAAIAAAAOAAEAAAAKAAEAAAAOAAEAAAALAAEAAAAOAAEAAAALAAIAAAAOAAEAAAALAAMAAAAOAAEAAAAMAAMAAAAOAAEAAAAMAAIAAAAOAAEAAAAMAAEAAAAOAAEAAAADAAUAAAALAAAAAAAFAAUAAAAOAAQAAAAFAAQAAAAOAAEAAAAEAAQAAAAOAAEAAAADAAQAAAAOAAEAAAAEAAUAAAAOAAEAAAAAAAkAAAANAAUAAAABAAkAAAAOAAUAAAACAAkAAAAOAAUAAAADAAkAAAAOAAUAAAAEAAkAAAAPAAUAAAAFAAkAAAANAAYAAAAGAAkAAAANAAYAAAAHAAkAAAANAAUAAAAJAAkAAAAOAAUAAAAKAAkAAAAOAAUAAAALAAkAAAAOAAUAAAAMAAkAAAAOAAUAAAANAAkAAAAPAAUAAAAAAAgAAAANAAQAAAAAAAcAAAANAAQAAAANAAgAAAAPAAQAAAANAAcAAAAPAAQAAAAGAAcAAAAGAAAAAAAFAAcAAAAGAAAAAAAEAAcAAAAFAAAAAAADAAcAAAAOAAEAAAACAAcAAAAOAAEAAAABAAcAAAAOAAEAAAABAAgAAAAOAAEAAAACAAgAAAAOAAEAAAADAAgAAAAOAAEAAAAEAAgAAAAPAAQAAAAFAAgAAAANAAYAAAAGAAgAAAANAAYAAAAHAAgAAAANAAQAAAAHAAcAAAAHAAAAAAAIAAcAAAAOAAEAAAAJAAgAAAAOAAEAAAAJAAcAAAAOAAEAAAAKAAcAAAAOAAEAAAAKAAgAAAAOAAQAAAALAAgAAAAOAAEAAAALAAcAAAAOAAEAAAAMAAcAAAAOAAEAAAAMAAgAAAAOAAEAAAAIAAkAAAAOAAUAAAAIAAgAAAAOAAEAAAAKAAYAAAAKAAUAAAAKAAUAAAAKAAUAAAAKAAQAAAAKAAUAAAALAAQAAAAKAAUAAAAMAAQAAAAKAAUAAAAMAAUAAAAKAAUAAAALAAUAAAAKAAUAAAALAAYAAAAKAAUAAAAMAAYAAAAKAAUAAAA=")
-tile_set = ExtResource("2_4th80")
+tile_set = ExtResource("16_lpuy0")
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="TileMapLayer"]
-navigation_polygon = SubResource("NavigationPolygon_1qhcd")
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="BlankLevelTest/TileMapLayer"]
+navigation_polygon = SubResource("NavigationPolygon_hlfcm")
+
+[node name="Dummy" type="CharacterBody2D" parent="BlankLevelTest" groups=["enemy"]]
+position = Vector2(191, 152)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlankLevelTest/Dummy"]
+shape = SubResource("CircleShape2D_aqm36")
+
+[node name="Sprite2D" type="Sprite2D" parent="BlankLevelTest/Dummy"]
+scale = Vector2(0.015, 0.015)
+texture = ExtResource("17_hlfcm")
+
+[connection signal="timeout" from="StateMachine/Patrol/Timer" to="StateMachine/Patrol" method="_on_timer_timeout"]

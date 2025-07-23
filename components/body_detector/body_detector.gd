@@ -6,17 +6,22 @@ extends Area2D
 @export var active : bool = true
 
 var tracked_body : Node
-var body_found : bool = false
+var enemy_found : bool = false
 
 func lose_enemy():
 	if !is_instance_valid(tracked_body):
-		body_found = false
+		enemy_found = false
 		tracked_body = null
 
+func clear_body():
+	enemy_found = false
+	tracked_body = null
+
 func _on_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
-	if is_instance_valid(body) and active:
+	#print(tracked_body, ", is the tracked body")
+	if is_instance_valid(body) and active and  body.is_in_group("enemy"):
 		tracked_body = body
-		body_found = true
+		enemy_found = true
 
 func _physics_process(delta: float) -> void:
 	lose_enemy()
