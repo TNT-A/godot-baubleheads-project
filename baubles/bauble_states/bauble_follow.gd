@@ -22,4 +22,5 @@ func check_transitions():
 	if pathfinding_controller.at_target == true:
 		SignalBus.transitioned.emit(self, "Idle")
 	if parent_body.thrown:
+		#print("I'm thrown")
 		SignalBus.transitioned.emit(self, "Thrown")

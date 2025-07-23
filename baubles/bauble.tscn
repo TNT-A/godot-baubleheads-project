@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://e0xov8hgscfh"]
+[gd_scene load_steps=23 format=3 uid="uid://e0xov8hgscfh"]
 
 [ext_resource type="Script" uid="uid://cwxqfo76wqhmr" path="res://baubles/bauble.gd" id="1_lpuy0"]
 [ext_resource type="PackedScene" uid="uid://cgkikvd22mec6" path="res://components/body_detector/body_detector.tscn" id="1_srsha"]
@@ -78,9 +78,37 @@ tracks/1/keys = {
 "values": [Vector2(4, -5), Vector2(4, -35), Vector2(4, -5)]
 }
 
+[sub_resource type="Animation" id="Animation_g2pfq"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BaubleBody/Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BaubleBody/Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4, -5)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_aqm36"]
 _data = {
 &"RESET": SubResource("Animation_86d0t"),
+&"idle": SubResource("Animation_g2pfq"),
 &"throw": SubResource("Animation_hlfcm")
 }
 
@@ -175,5 +203,6 @@ script = ExtResource("11_dyony")
 [node name="Return" type="Node2D" parent="StateMachine"]
 script = ExtResource("12_wet5a")
 
+[connection signal="animation_finished" from="BaubleBody/AnimationPlayer" to="StateMachine/Thrown" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="StateMachine/Patrol/Timer" to="StateMachine/Patrol" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Targeting/AttackTimer" to="StateMachine/Targeting" method="_on_attack_timer_timeout"]
