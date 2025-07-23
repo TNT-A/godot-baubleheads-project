@@ -236,19 +236,3 @@ func choose_thrown():
 		if is_instance_valid(selected_bauble):
 			selected_bauble.thrown = true
 			selected_bauble = null
-
-
-
-		#var closest_bauble = null
-		#var last_distance : float = 9999.0
-		#for bauble in bauble_inventory:
-			#if is_instance_valid(bauble):
-				#var distance = bauble.position.distance_to(player.global_position)
-				#if distance < last_distance:
-					#closest_bauble = bauble
-					#last_distance = distance
-		#closest_bauble.scale = Vector2(1.3,1.3)
-		#if is_instance_valid(closest_bauble):
-			#closest_bauble.thrown = true
-			#closest_bauble.scale = Vector2(1,1)
-			#closest_bauble = null

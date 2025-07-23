@@ -26,11 +26,25 @@ func physics_update(delta):
 		throw()
 
 func throw():
-	var tween = get_tree().create_tween()
-	tween.tween_property(pathfinding_controller.host, "global_position", throw_target, .5)
+	throw_started = true
+	var direction = (throw_target - global_position).normalized()
+	pathfinding_controller.host.velocity = direction * 600
 	animation_player.play("throw")
-	await tween.finished
+
+func check_collisions():
+	if pathfinding_controller.host.is_on_wall() or pathfinding_controller.host.is_on_ceiling():
+		print("Hit Wall")
+		end_throw()
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "throw":
+		print("anim done")
+		end_throw()
+
+func end_throw():
 	animation_player.stop()
+	animation_player.play("idle")
+	pathfinding_controller.host.velocity = Vector2(0,0)
 	body_detector.active = false
 	parent_body.thrown = false
 	throw_ended = true
