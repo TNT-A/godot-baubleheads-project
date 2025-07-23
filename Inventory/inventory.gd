@@ -61,7 +61,7 @@ func organize_party():
 		slot_index = partySlots.find(slot)
 		global_inventory_slot = BaubleManager.bauble_inventory[slot_index]
 		if global_inventory_slot is Node:
-			global_type_in_slot = global_inventory_slot.type.type
+			global_type_in_slot = global_inventory_slot.type_data.type
 		if slot.held_type != global_type_in_slot:
 			SignalBus.update_party_slot.emit(global_type_in_slot, slot_index)
 

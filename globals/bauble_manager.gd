@@ -1,8 +1,9 @@
 extends Node
 
 @onready var main = get_tree().current_scene
+@onready var player : Node = Global.player
 
-var bauble_scene : PackedScene = preload("res://baubles/baublehead.tscn")
+var bauble_scene : PackedScene = preload("res://baubles/bauble.tscn")
 var held_count : int = 0
 var max_bauble_count : int = 3
 var max_baubles_held : bool = false
@@ -91,10 +92,10 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	main = get_tree().current_scene
-	count_held()
+	#count_held()
 	held_count = held_baubles.size()
 	if Input.is_action_just_released("Player_Ability_1"):
-		determine_throw_order()
+		choose_thrown()
 	if Input.is_action_just_pressed("Spawn_Bauble"):
 		var current_index = find_empty_slot()
 		if current_index is int and current_index < 10:
@@ -128,7 +129,6 @@ func find_full_slot():
 func determine_bauble_control(item, party_slot):
 	var item_type = item.type 
 	var pickup_type = "pickup_" + item_type
-	
 	if bauble_inventory[party_slot] is Node:
 		bauble_inventory[party_slot].add_xp(pickup_type)
 	else:
@@ -153,7 +153,7 @@ func spawn_bauble(type_of_bauble, slot):
 	var new_bauble = bauble_scene.instantiate()
 	if slot is int and slot < 10:
 		bauble_inventory[slot] = new_bauble
-		new_bauble.type = load(bauble_types[type_of_bauble])
+		new_bauble.type_data = load(bauble_types[type_of_bauble])
 		main.add_child(new_bauble)
 		#print("okay :D")
 	else:
@@ -178,40 +178,44 @@ func replace_bauble(type_of_bauble, slot):
 		#print('Nothing to replace')
 		pass
 
-func count_held():
-	#add and remove held baubles from the held list
-	for bauble in bauble_inventory:
-		if is_instance_valid(bauble):
-			if bauble.being_held:
-				if !held_baubles.has(bauble):
-					held_baubles.append(bauble)
-			elif !bauble.being_held:
-				if held_baubles.has(bauble):
-					var index = held_baubles.find(bauble)
-					held_baubles.remove_at(index)
-	for held_bauble in held_baubles:
-		if !is_instance_valid(held_bauble):
-			var index = held_baubles.find(held_bauble)
-			held_baubles.remove_at(index)
-	#manage baubles above bauble maximum
-	if held_baubles.size() >= max_bauble_count:
-		for bauble in bauble_inventory:
-			if bauble is Node:
-				bauble.can_hold = false
-				if held_baubles.find(bauble) >= max_bauble_count:
-					bauble.to_be_dropped = true
-	else:
+#func count_held():
+	##add and remove held baubles from the held list
+	#for bauble in bauble_inventory:
+		#if is_instance_valid(bauble):
+			#if bauble.being_held:
+				#if !held_baubles.has(bauble):
+					#held_baubles.append(bauble)
+			#elif !bauble.being_held:
+				#if held_baubles.has(bauble):
+					#var index = held_baubles.find(bauble)
+					#held_baubles.remove_at(index)
+	#for held_bauble in held_baubles:
+		#if !is_instance_valid(held_bauble):
+			#var index = held_baubles.find(held_bauble)
+			#held_baubles.remove_at(index)
+	##manage baubles above bauble maximum
+	#if held_baubles.size() >= max_bauble_count:
+		#for bauble in bauble_inventory:
+			#if bauble is Node:
+				#bauble.can_hold = false
+				#if held_baubles.find(bauble) >= max_bauble_count:
+					#bauble.to_be_dropped = true
+	#else:
+		#for bauble in bauble_inventory:
+			#if is_instance_valid(bauble):
+				#bauble.can_hold = true
+
+func choose_thrown():
+	if !is_instance_valid(player):
+		player = Global.player
+	if is_instance_valid(player):
+		var closest_bauble = null
+		var last_distance : float = 9999.0
 		for bauble in bauble_inventory:
 			if is_instance_valid(bauble):
-				bauble.can_hold = true
-
-func determine_throw_order():
-	throwing = true
-	for bauble in bauble_inventory:
-		if is_instance_valid(bauble):
-			if held_baubles.has(bauble):
-				var index = held_baubles.find(bauble)
-				#print(held_baubles.find(bauble))
-				held_baubles[index].to_be_thrown = true
-				await get_tree().create_timer(throw_cooldown).timeout
-	throwing = false
+				var distance = bauble.global_position.distance_to(player.global_position)
+				if distance < last_distance:
+					closest_bauble = bauble
+					last_distance = distance
+		if is_instance_valid(closest_bauble):
+			closest_bauble.thrown = true

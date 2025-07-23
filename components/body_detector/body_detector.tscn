@@ -6,4 +6,3 @@
 script = ExtResource("1_daf21")
 
 [connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
-[connection signal="body_shape_exited" from="." to="." method="_on_body_shape_exited"]

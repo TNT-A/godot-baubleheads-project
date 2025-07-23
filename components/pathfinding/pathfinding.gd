@@ -14,7 +14,7 @@ extends Node2D
 ## This var lets you determine the initial target position of the host (does nothing I think)
 @export var target_vector_position : Vector2 = Vector2()
 ## This var makes the host immediately target the player rather than any other scene
-@export var chase_player : bool
+@export var chase_player : bool = false
 
 @export_group("Speed Values") 
 ## Controls speed of host pathfinding
@@ -65,6 +65,14 @@ func pathfinding(speed_change):
 		host.velocity = host.velocity.lerp(dir * speed_change, acceleration)
 		host.move_and_slide()
 
+func reset_velocity():
+	#slow down speed befor lerping down?
+	#var next_path_pos := nav_agent.get_next_path_position()
+	#var dir := global_position.direction_to(next_path_pos)
+	#print("Trying to reset velocity")
+	host.velocity = host.velocity.lerp(Vector2.ZERO,deceleration)
+	host.move_and_slide()
+
 func change_target(target):
 	if target != null:
 		target_node = target
@@ -73,18 +81,10 @@ func change_target(target):
 #Checks if the host is within a certain distance of their target
 func check_distance():
 	var distance = global_position.distance_to(target_vector_position)
-	#print(distance)
 	if distance <= stop_range:
 		at_target = true
 	elif distance > stop_range:
 		at_target = false
-	
-	#print(distance, " ", at_target)
-
-func reset_velocity():
-	#print("Trying to reset velocity")
-	host.velocity = host.velocity.lerp(Vector2.ZERO,deceleration)
-	host.move_and_slide()
 
 #Pick random within range of another location [
 func random_location(location, range_D):
