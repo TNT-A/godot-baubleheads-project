@@ -30,15 +30,6 @@ func throw():
 	var direction = (throw_target - global_position).normalized()
 	pathfinding_controller.host.velocity = direction * 600
 	animation_player.play("throw")
-	
-	#var tween = get_tree().create_tween()
-	#tween.tween_property(pathfinding_controller.host, "position", throw_target, .5)
-	#animation_player.play("throw")
-	#await tween.finished
-	#animation_player.stop()
-	#body_detector.active = false
-	#parent_body.thrown = false
-	#throw_ended = true
 
 func check_collisions():
 	if pathfinding_controller.host.is_on_wall() or pathfinding_controller.host.is_on_ceiling():

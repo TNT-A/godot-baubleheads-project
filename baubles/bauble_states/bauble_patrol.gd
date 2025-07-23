@@ -27,10 +27,10 @@ func physics_update(delta):
 	search()
 
 func search():
-	if pathfinding_controller.at_target == true:
+	if pathfinding_controller.at_target == true and !Input.is_action_pressed("Player_Ability_2"):
 		pathfinding_controller.active = false
 		searching = true
-		print("we're at target, ", pathfinding_controller.target_vector_position, ", ", self.global_position)
+		#print("we're at target, ", pathfinding_controller.target_vector_position, ", ", self.global_position)
 		if $Timer.is_stopped() and !leave:
 			$Timer.start()
 	else: 
