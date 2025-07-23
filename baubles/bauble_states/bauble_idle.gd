@@ -5,6 +5,7 @@ var pathfinding_controller
 var adapt_target
 
 func enter():
+	parent_body.can_throw = true
 	pathfinding_controller = parent_body.find_child("Pathfinding")
 	adapt_target = parent_body.find_child("AdaptTarget")
 

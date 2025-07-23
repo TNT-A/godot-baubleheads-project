@@ -7,6 +7,7 @@ var attack_finished : bool = false
 var body_detector
 
 func enter():
+	parent_body.can_throw = false
 	attack_started = false
 	attack_finished = false
 	pathfinding_controller = parent_body.find_child("Pathfinding")

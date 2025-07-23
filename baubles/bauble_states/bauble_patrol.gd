@@ -10,6 +10,7 @@ var target_enemy : Node
 var adapt_target
 
 func enter():
+	parent_body.can_throw = false
 	leave = false
 	pathfinding_controller = parent_body.find_child("Pathfinding")
 	body_detector = parent_body.find_child("BodyDetector")

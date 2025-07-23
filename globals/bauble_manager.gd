@@ -205,17 +205,34 @@ func replace_bauble(type_of_bauble, slot):
 			#if is_instance_valid(bauble):
 				#bauble.can_hold = true
 
+var bauble_distances : Dictionary = {
+	
+}
+
+func set_distances():
+	if !is_instance_valid(player):
+		player = Global.player
+	if is_instance_valid(player):
+		for bauble in bauble_inventory:
+			if is_instance_valid(bauble):
+				var distance = bauble.global_position.distance_to(player.global_position)
+				bauble_distances[bauble] = distance
+
 func choose_thrown():
 	if !is_instance_valid(player):
 		player = Global.player
 	if is_instance_valid(player):
-		var closest_bauble = null
-		var last_distance : float = 9999.0
-		for bauble in bauble_inventory:
-			if is_instance_valid(bauble):
-				var distance = bauble.global_position.distance_to(player.global_position)
-				if distance < last_distance:
-					closest_bauble = bauble
-					last_distance = distance
-		if is_instance_valid(closest_bauble):
-			closest_bauble.thrown = true
+		set_distances()
+		var selected_bauble
+		var lowest_distance : float = 999999.0
+		for bauble in bauble_distances:
+			if is_instance_valid(bauble) and bauble.can_throw == true:
+				var distance = bauble_distances[bauble]
+				if distance < lowest_distance:
+					selected_bauble = bauble
+					lowest_distance = distance
+				#print("New Closest: ", selected_bauble, ": ", distance)
+		#print("Trying to throw: ", selected_bauble)
+		if is_instance_valid(selected_bauble):
+			selected_bauble.thrown = true
+			selected_bauble = null
