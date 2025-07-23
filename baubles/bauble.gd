@@ -19,6 +19,7 @@ var bauble_stats : Dictionary = {
 }
 
 var accept_input : bool = true
+var can_throw : bool = true
 var thrown : bool = false
 
 func _ready() -> void:

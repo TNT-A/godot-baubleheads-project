@@ -9,6 +9,7 @@ var throw_started : bool = false
 var throw_ended : bool = false
 
 func enter():
+	parent_body.can_throw = false
 	throw_started = false
 	throw_ended = false
 	pathfinding_controller = parent_body.find_child("Pathfinding")
@@ -26,7 +27,7 @@ func physics_update(delta):
 
 func throw():
 	var tween = get_tree().create_tween()
-	tween.tween_property(pathfinding_controller.host, "position", throw_target, .5)
+	tween.tween_property(pathfinding_controller.host, "global_position", throw_target, .5)
 	animation_player.play("throw")
 	await tween.finished
 	animation_player.stop()
