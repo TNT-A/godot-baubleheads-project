@@ -7,6 +7,7 @@ var attack_time : float = 3.0
 var attack_ready : bool = false
 
 func enter():
+	parent_body.can_throw = false
 	attack_ready = false
 	pathfinding_controller = parent_body.find_child("Pathfinding")
 	body_detector = parent_body.find_child("BodyDetector")
