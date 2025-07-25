@@ -1,4 +1,4 @@
-# godot-baubleheads-project
+# Godot Baubleheads Project
  
 Silly Pikmin inspired game about gemstone friends named Baubleheads :D
 Check it out here: https://tnt-a.itch.io/hcjbaubleheads
