@@ -71,7 +71,7 @@ enum ShotTypes {reg, spread}
 func _ready() -> void:
 	max_shots = len(shot_loadout)
 	set_shots()
-	shoot(0, Vector2(1,0))
+	#shoot(0, Vector2(1,0))
 
 #Sets the enemy's shot_loadout based on the values of their @export vars
 func set_shots():
@@ -88,9 +88,9 @@ func set_shots():
 		shot_loadout[i-1].append(projectile)
 		shot_loadout[i-1].append(shot_type)
 		shot_loadout[i-1].append(shot_num)
-	print(shot_loadout[0])
+	#print(shot_loadout[0])
 
-#Bassic logic for instanciating a new bullet
+#Basic logic for instanciating a new bullet
 func create_shot(sprite, scene, count, angle):
 	var new_shot = scene.instantiate()
 	if parent_node.is_in_group("enemy"):

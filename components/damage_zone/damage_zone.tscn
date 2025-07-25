@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://bx77dks4awqgm" path="res://components/damage_zone/damage_zone.gd" id="1_karui"]
 
 [node name="DamageZone" type="Area2D" groups=["hurts_player"]]
+collision_layer = 16
+collision_mask = 0
 script = ExtResource("1_karui")
 
 [node name="Timer" type="Timer" parent="."]

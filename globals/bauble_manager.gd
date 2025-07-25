@@ -130,7 +130,8 @@ func determine_bauble_control(item, party_slot):
 	var item_type = item.type 
 	var pickup_type = "pickup_" + item_type
 	if bauble_inventory[party_slot] is Node:
-		bauble_inventory[party_slot].add_xp(pickup_type)
+		pass
+		#bauble_inventory[party_slot].add_xp(pickup_type)
 	else:
 		replace_bauble(item_type, party_slot)
 
@@ -219,7 +220,7 @@ func set_distances():
 				bauble_distances[bauble] = distance
 
 func choose_thrown():
-	if !is_instance_valid(player):
+	if !is_instance_valid(player) and is_instance_valid(Global.player):
 		player = Global.player
 	if is_instance_valid(player):
 		set_distances()

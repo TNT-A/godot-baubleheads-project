@@ -1,9 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://cnmbx0805u1i3"]
+[gd_scene load_steps=19 format=3 uid="uid://cnmbx0805u1i3"]
 
 [ext_resource type="Texture2D" uid="uid://dn4yltu1tkd68" path="res://PixelArt/wiggle_worm-Recovered.png" id="1_42smv"]
 [ext_resource type="Script" uid="uid://dx70x1ax1otne" path="res://enemies/earthworm/wiggly_earthworm.gd" id="1_61cal"]
 [ext_resource type="PackedScene" uid="uid://c8g0kk7fj1rdj" path="res://components/damage_zone/damage_zone.tscn" id="1_of30d"]
 [ext_resource type="PackedScene" uid="uid://baov1nwgxw7ow" path="res://components/drop_pickups/drop_pickups.tscn" id="4_4l6yv"]
+[ext_resource type="PackedScene" uid="uid://l160kxor0r2e" path="res://components/pathfinding/pathfinding.tscn" id="5_o1v1a"]
+[ext_resource type="PackedScene" uid="uid://bs875jneal7bi" path="res://components/bauble_checker/bauble_checker.tscn" id="6_xg1qj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yn4co"]
 radius = 7.0
@@ -55,9 +57,6 @@ radius = 150.03
 [sub_resource type="CircleShape2D" id="CircleShape2D_5baap"]
 radius = 43.0116
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_61v2f"]
-radius = 149.405
-
 [sub_resource type="Animation" id="Animation_nltmj"]
 resource_name = "took damage"
 tracks/0/type = "value"
@@ -78,11 +77,16 @@ _data = {
 &"took damage": SubResource("Animation_nltmj")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_k370n"]
+radius = 135.093
+
 [node name="WigglyEarthworm" type="CharacterBody2D" groups=["enemy"]]
-collision_mask = 6
+collision_layer = 8
+collision_mask = 3
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_61cal")
+health = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
@@ -106,11 +110,6 @@ one_shot = true
 wait_time = 0.2
 autostart = true
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-path_desired_distance = 16.0
-target_desired_distance = 8.0
-debug_enabled = true
-
 [node name="DamageZone" parent="." instance=ExtResource("1_of30d")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
@@ -119,20 +118,19 @@ shape = SubResource("CapsuleShape2D_p5ix1")
 
 [node name="targetDetector" type="Area2D" parent="."]
 rotation = 1.5708
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="targetDetector"]
 shape = SubResource("CircleShape2D_cejg8")
 
 [node name="PlayerChecker" type="Area2D" parent="."]
 rotation = 1.5708
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerChecker"]
 shape = SubResource("CircleShape2D_5baap")
-
-[node name="BaubleChecker" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BaubleChecker"]
-shape = SubResource("CircleShape2D_61v2f")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -141,6 +139,18 @@ libraries = {
 
 [node name="DropPickups" parent="." instance=ExtResource("4_4l6yv")]
 
+[node name="Pathfinding" parent="." node_paths=PackedStringArray("host") instance=ExtResource("5_o1v1a")]
+active = false
+host = NodePath("..")
+chase_player = true
+speed = 75
+stop_range = 25.0
+
+[node name="BaubleChecker" parent="." instance=ExtResource("6_xg1qj")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaubleChecker"]
+shape = SubResource("CircleShape2D_k370n")
+
 [connection signal="timeout" from="TimerDashLength" to="." method="_on_timer_dash_length_timeout"]
 [connection signal="timeout" from="TimerDashCooldown" to="." method="_on_timer_dash_cooldown_timeout"]
 [connection signal="timeout" from="TimerDashWindup" to="." method="_on_timer_dash_windup_timeout"]
@@ -148,5 +158,3 @@ libraries = {
 [connection signal="body_entered" from="targetDetector" to="." method="_on_target_detector_body_entered"]
 [connection signal="body_entered" from="PlayerChecker" to="." method="_on_player_checker_body_entered"]
 [connection signal="body_exited" from="PlayerChecker" to="." method="_on_player_checker_body_exited"]
-[connection signal="body_entered" from="BaubleChecker" to="." method="_on_bauble_checker_body_entered"]
-[connection signal="body_exited" from="BaubleChecker" to="." method="_on_bauble_checker_body_exited"]

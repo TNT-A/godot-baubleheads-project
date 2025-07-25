@@ -18,7 +18,7 @@ func clear_body():
 	tracked_body = null
 
 func _on_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
-	#print(tracked_body, ", is the tracked body")
+	#print(body, ", was just hit")
 	if is_instance_valid(body) and active and  body.is_in_group("enemy"):
 		tracked_body = body
 		enemy_found = true

@@ -67,7 +67,6 @@ libraries = {
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 self_modulate = Color(1, 1, 1, 0)
-scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_in3xx")
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

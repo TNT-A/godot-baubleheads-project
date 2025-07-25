@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var player = Global.player
+@onready var state_machine = $StateMachine
 
 var type_data : Resource 
 var type_name : String

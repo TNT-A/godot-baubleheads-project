@@ -49,7 +49,7 @@ func find_empty_slot():
 		remove_item()
 
 func remove_item():
-	$TextureRect.texture = empty_slot_texture
+	$Sprite2D.texture = empty_slot_texture
 	held_item.queue_free()
 	held_item = null
 	held_type = "blank"
