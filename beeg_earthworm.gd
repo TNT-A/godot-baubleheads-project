@@ -109,28 +109,10 @@ func die():
 	SignalBus.enemy_dead.emit(self)
 	call_deferred("queue_free")
 
-#func drop_item():
-	#var drop_chance : int = randi_range(0, 100)
-	#if drop_chance < drop_chart["none"]:
-		##print("none")
-		#pass
-	#elif drop_chart["none"] < drop_chance and drop_chance <= drop_chart["ruby"]:
-		#create_pickup("ruby")
-	#elif drop_chart["ruby"] < drop_chance and drop_chance <= drop_chart["sapphire"]:
-		#create_pickup("sapphire")
-	#elif drop_chart["sapphire"] < drop_chance and drop_chance <= drop_chart["topaz"]:
-		#create_pickup("topaz")
-#
-#func create_pickup(pickup):
-	#var new_pickup = pickup_scene.instantiate()
-	#new_pickup.item_resource = load("res://pickups/pickup_resource/item_" + pickup + ".tres")
-	#get_parent().add_child(new_pickup)
-	#new_pickup.global_position = global_position
-
 func spawn_crack(target_node):
 	var crackshot = crackshot_scene.instantiate()
 	if target_node:
-		var range_max : int = 50
+		var range_max : int = 25
 		var random_pivot : Vector2 = Vector2(randi_range(-range_max, range_max), randi_range(-range_max, range_max))
 		crackshot.target = target_node.global_position + random_pivot
 	else:
@@ -146,7 +128,6 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 
 func _on_animated_sprite_2d_frame_changed() -> void:
 	if $AnimatedSprite2D.animation == "shoot" and $AnimatedSprite2D.frame == 9:
-		#print("thats shooting right there")
 		crack_spawned = false
 
 func _on_bauble_checker_body_entered(body: Node2D) -> void:

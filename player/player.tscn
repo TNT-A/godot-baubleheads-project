@@ -317,7 +317,7 @@ fill_to = Vector2(1, 1)
 [node name="PlayerBody" type="CharacterBody2D"]
 y_sort_enabled = true
 collision_layer = 2
-collision_mask = 9
+collision_mask = 49
 script = ExtResource("1_rjkni")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -327,6 +327,8 @@ shape = SubResource("CapsuleShape2D_idmmv")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Hurtbox" type="Area2D" parent="." groups=["player"]]
+collision_layer = 2
+collision_mask = 24
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(3, 1)
@@ -350,6 +352,7 @@ sprite_frames = SubResource("SpriteFrames_3stiq")
 animation = &"run_and_hold"
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
 texture = SubResource("GradientTexture2D_qjkh3")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

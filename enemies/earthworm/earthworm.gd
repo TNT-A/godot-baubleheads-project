@@ -34,8 +34,10 @@ func _physics_process(delta: float) -> void:
 func state_transitions():
 	if playerCrackable:
 		state = States.ATTACK
+		#print("I'm cracking")
 	elif true: #change conditional later
 		state = States.MOVE
+		#print("idk why I exist")
 
 func state_functions():
 	if state == States.ATTACK:
@@ -48,11 +50,10 @@ func state_functions():
 
 func shoot():
 	if count_attacking <= 5:
-		var a = crackshot.instantiate()
-		a.changeAngle(Vector2(Global.player.global_position.x - position.x, Global.player.global_position.y - position.y).normalized())
-		add_child(a)
-		
-	#Global.player.global_position 
+		var dir = Vector2(0,0)
+		if player:
+			(global_position - player.global_position).normalized()
+		$ShotManager.shoot(1, dir)
 
 func change_health(enemy, change):
 	if self == enemy:

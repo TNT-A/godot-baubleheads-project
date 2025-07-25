@@ -56,7 +56,8 @@ func _physics_process(delta: float) -> void:
 		target_vector_position = target_node.global_position
 	if target_node == null:
 		has_target = false
-	new_target(target_node.global_position, pivot_range)
+	if is_instance_valid(target_node):
+		new_target(target_node.global_position, pivot_range)
 
 func pathfinding(speed_change):
 	var next_path_pos := nav_agent.get_next_path_position()

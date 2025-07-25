@@ -1,17 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://dol4pn3hf2vu4"]
+[gd_scene load_steps=3 format=3 uid="uid://dol4pn3hf2vu4"]
 
 [ext_resource type="Script" uid="uid://gf2lw40iyx2l" path="res://testing/health_bar.gd" id="1_n47n2"]
 
+[sub_resource type="Theme" id="Theme_m7ell"]
+
 [node name="HealthBar" type="ProgressBar"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 37.0
-offset_top = 18.0
-offset_right = -279.0
-offset_bottom = -135.0
+anchors_preset = -1
+anchor_right = 1.25312
+anchor_bottom = 0.966667
+offset_left = 228.0
+offset_top = 7.0
+offset_right = -88.0
+offset_bottom = -146.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_m7ell")
+theme_override_font_sizes/font_size = 12
 max_value = 5.0
 step = 1.0
 fill_mode = 1

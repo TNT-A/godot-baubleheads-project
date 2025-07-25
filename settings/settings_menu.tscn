@@ -1,34 +1,37 @@
 [gd_scene load_steps=5 format=3 uid="uid://b0r48ca6qo1lv"]
 
-[ext_resource type="Shader" uid="uid://cggdiqe0gx1n1" path="res://settings/settings_menu.gdshader" id="1_wyset"]
 [ext_resource type="Script" uid="uid://v308abkh1i5i" path="res://settings/settings_menu.gd" id="1_y5uni"]
+[ext_resource type="Shader" uid="uid://cbf550vjy4f6m" path="res://pause/pause_menu.gdshader" id="2_olm1t"]
 [ext_resource type="Texture2D" uid="uid://dlqd6ye3l3q85" path="res://PixelArt/backButton.png" id="3_rfns8"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_75slf"]
-render_priority = 0
-shader = ExtResource("1_wyset")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_shoos"]
+shader = ExtResource("2_olm1t")
+shader_parameter/amount = 2.5
 
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -320.0
+offset_bottom = -180.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_y5uni")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_75slf")
-layout_mode = 0
-offset_left = -267.0
-offset_top = -225.0
-offset_right = 368.0
-offset_bottom = 295.0
+material = SubResource("ShaderMaterial_shoos")
+offset_left = -1.0
+offset_top = -14.0
+offset_right = 320.0
+offset_bottom = 198.0
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 71.0
+offset_top = 69.0
+offset_right = 247.0
+offset_bottom = 109.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2

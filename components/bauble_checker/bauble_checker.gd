@@ -21,10 +21,10 @@ func check_attacking_baubles():
 			attacking_baubles.remove_at(index)
 	for bauble in nearby_baubles:
 		if !attacking_baubles.has(bauble):
-			if bauble.state == bauble.States.ATTACK or bauble.state == bauble.States.TARGETING: 
+			if bauble.state_machine.current_state == "attack" or bauble.state_machine.current_state == "targeting": 
 				attacking_baubles.append(bauble)
 		elif attacking_baubles.has(bauble):
-			if bauble.state != bauble.States.ATTACK and bauble.state != bauble.States.TARGETING: 
+			if bauble.state_machine.current_state == "attack" or bauble.state_machine.current_state == "targeting": 
 				var index = attacking_baubles.find(bauble)
 				attacking_baubles.remove_at(index)
 	count_attacking = attacking_baubles.size()

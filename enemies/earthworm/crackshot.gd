@@ -3,7 +3,7 @@ extends Node2D
 @onready var sprite = $CharacterBody2D/AnimatedSprite2D
 
 var new_sprite 
-var speed = 75
+var speed = 2
 var spin = 0
 var move = Vector2(0,0)
 
@@ -20,7 +20,7 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	$CharacterBody2D.move_and_slide()
 	if Engine.time_scale == 1:
-		global_position += move*4
+		global_position += move*speed
 		move = Vector2.from_angle(move.angle() + spin)
 		$CharacterBody2D/AnimatedSprite2D.rotation += spin
 		spin -= spin/30

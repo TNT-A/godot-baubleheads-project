@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://e477mip5fnwt"]
+[gd_scene load_steps=16 format=3 uid="uid://e477mip5fnwt"]
 
 [ext_resource type="Script" uid="uid://b52pac6sr1qan" path="res://enemies/earthworm/earthworm.gd" id="1_pgrt0"]
 [ext_resource type="Texture2D" uid="uid://bffbnpkx5ldko" path="res://PixelArt/earthworm_spritesheet - Copy.png" id="3_gdush"]
 [ext_resource type="PackedScene" uid="uid://c8g0kk7fj1rdj" path="res://components/damage_zone/damage_zone.tscn" id="3_rikgm"]
 [ext_resource type="PackedScene" uid="uid://baov1nwgxw7ow" path="res://components/drop_pickups/drop_pickups.tscn" id="4_2vwey"]
 [ext_resource type="PackedScene" uid="uid://bs875jneal7bi" path="res://components/bauble_checker/bauble_checker.tscn" id="5_gpsd3"]
+[ext_resource type="PackedScene" uid="uid://b274kq41lq38r" path="res://components/shot_manager/shot_manager.tscn" id="6_vslhg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gjer8"]
 size = Vector2(32, 11)
@@ -13,7 +14,7 @@ size = Vector2(32, 11)
 radius = 16.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qvyj8"]
-radius = 184.141
+radius = 147.003
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dspvy"]
 atlas = ExtResource("3_gdush")
@@ -55,9 +56,12 @@ animations = [{
 radius = 98.6154
 
 [node name="earthworm" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 8
+collision_mask = 6
 script = ExtResource("1_pgrt0")
+health = 10
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["enemy"]]
 position = Vector2(-9, 4.5)
 shape = SubResource("RectangleShape2D_gjer8")
 
@@ -74,6 +78,8 @@ position = Vector2(-7, -3)
 shape = SubResource("CircleShape2D_mf51n")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_qvyj8")
@@ -90,6 +96,8 @@ frame_progress = 0.715843
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BaubleChecker"]
 position = Vector2(-8, -3)
 shape = SubResource("CircleShape2D_vslhg")
+
+[node name="ShotManager" parent="." instance=ExtResource("6_vslhg")]
 
 [connection signal="timeout" from="TimerAttackCooldown" to="." method="_on_timer_attack_cooldown_timeout"]
 [connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]

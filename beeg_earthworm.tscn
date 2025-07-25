@@ -1,9 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://buhvt42opr73m"]
+[gd_scene load_steps=24 format=3 uid="uid://buhvt42opr73m"]
 
 [ext_resource type="Texture2D" uid="uid://5uaa1xijly2y" path="res://PixelArt/big_worm-Recovered.png" id="1_qguem"]
 [ext_resource type="Script" uid="uid://hopqr2tjbrru" path="res://beeg_earthworm.gd" id="1_x1g0n"]
 [ext_resource type="PackedScene" uid="uid://c8g0kk7fj1rdj" path="res://components/damage_zone/damage_zone.tscn" id="3_fxgpl"]
 [ext_resource type="PackedScene" uid="uid://baov1nwgxw7ow" path="res://components/drop_pickups/drop_pickups.tscn" id="4_pvgcw"]
+[ext_resource type="PackedScene" uid="uid://bs875jneal7bi" path="res://components/bauble_checker/bauble_checker.tscn" id="5_5mpkx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f8tap"]
 atlas = ExtResource("1_qguem")
@@ -127,12 +128,14 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1ay0a"]
 radius = 14.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_mo1us"]
-radius = 88.0511
+[sub_resource type="CircleShape2D" id="CircleShape2D_twiot"]
+radius = 135.093
 
 [node name="BeegEarthworm" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 8
+collision_mask = 6
 script = ExtResource("1_x1g0n")
-health = 40
+health = 15
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_umh22")
@@ -157,15 +160,13 @@ position = Vector2(0, 1)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_1ay0a")
 
-[node name="BaubleChecker" type="Area2D" parent="."]
+[node name="DropPickups" parent="." instance=ExtResource("4_pvgcw")]
+
+[node name="BaubleChecker" parent="." instance=ExtResource("5_5mpkx")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BaubleChecker"]
-shape = SubResource("CircleShape2D_mo1us")
-
-[node name="DropPickups" parent="." instance=ExtResource("4_pvgcw")]
+shape = SubResource("CircleShape2D_twiot")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="timeout" from="TimerShotCooldown" to="." method="_on_timer_shot_cooldown_timeout"]
-[connection signal="body_entered" from="BaubleChecker" to="." method="_on_bauble_checker_body_entered"]
-[connection signal="body_exited" from="BaubleChecker" to="." method="_on_bauble_checker_body_exited"]

@@ -14,7 +14,7 @@ func _ready() -> void:
 	if initial_state:
 		initial_state.enter()
 		current_state = initial_state
-	print(current_state)
+	#print(current_state)
 
 func _process(delta: float) -> void:
 	if current_state:
@@ -34,4 +34,4 @@ func on_child_transition(state, new_state_name):
 		current_state.exit()
 	new_state.enter()
 	current_state = new_state
-	print(current_state)
+	#print(current_state)

@@ -24,17 +24,7 @@ offset_bottom = 0.0
 [node name="PauseMenu" parent="." instance=ExtResource("2_uspk5")]
 unique_name_in_owner = true
 z_index = 999
-offset_left = 250.0
-offset_top = 81.0
-offset_right = -390.0
-offset_bottom = -279.0
-scale = Vector2(3, 3)
 
 [node name="SettingsMenu" parent="." instance=ExtResource("3_4bekk")]
 unique_name_in_owner = true
 z_index = 999
-offset_left = 197.0
-offset_top = 124.0
-offset_right = -443.0
-offset_bottom = -236.0
-scale = Vector2(2, 2)

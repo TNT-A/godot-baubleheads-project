@@ -7,10 +7,10 @@ func transition_scenes():
 	SignalBus.emit_signal("scene_transition")
 
 func _on_body_entered(body: Node2D) -> void:
+	print("trying to leave, exit open: ", exit_open)
 	if body == player:
 		if exit_open == true:
 			transition_scenes()
-			#print("transitioning")
+			print("transitioning")
 		else:
-			#print("L bozo")
-			pass
+			print("L bozo")

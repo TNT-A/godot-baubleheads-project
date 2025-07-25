@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://di7gpr0kh88u5" path="res://components/bauble_checker/bauble_checker.gd" id="1_772ap"]
 
 [node name="BaubleChecker" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
 script = ExtResource("1_772ap")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

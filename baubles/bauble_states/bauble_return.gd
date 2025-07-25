@@ -7,6 +7,7 @@ var adapt_target
 func enter():
 	pathfinding_controller = parent_body.find_child("Pathfinding")
 	adapt_target = parent_body.find_child("AdaptTarget")
+	parent_body.find_child("BaubleBody").find_child("CollisionShape2D").disabled = true
 
 func physics_update(delta):
 	if is_instance_valid(player):
@@ -17,4 +18,5 @@ func physics_update(delta):
 
 func check_transitions():
 	if pathfinding_controller.at_target == true:
+		parent_body.find_child("BaubleBody").find_child("CollisionShape2D").disabled = false
 		SignalBus.transitioned.emit(self, "Idle")

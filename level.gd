@@ -17,14 +17,14 @@ var ui_scene : PackedScene = preload("res://in_game_ui.tscn")
 var map_scene : PackedScene 
 
 var level_scenes : Array = [
-	preload("res://Maps/test_level.tscn"),
+	#preload("res://Maps/test_level.tscn"),
 	#preload("res://Maps/cave_tilemap.tscn"),
-	#preload("res://Maps/og_level_1.tscn"),
-	#preload("res://Maps/og_level_2.tscn"),
-	#preload("res://Maps/og_level_3.tscn"),
-	#preload("res://Maps/og_level_4.tscn"),
-	#preload("res://Maps/og_level_5.tscn"),
-	#preload("res://Maps/og_level_6.tscn"),
+	preload("res://Maps/og_level_1.tscn"),
+	preload("res://Maps/og_level_2.tscn"),
+	preload("res://Maps/og_level_3.tscn"),
+	preload("res://Maps/og_level_4.tscn"),
+	preload("res://Maps/og_level_5.tscn"),
+	preload("res://Maps/og_level_6.tscn"),
 	#preload("res://Maps/og_level_7.tscn"),
 	#preload("res://Maps/og_level_8.tscn"),
 ]
@@ -120,7 +120,7 @@ func save_baubles():
 		var target = bauble
 		var index = BaubleManager.bauble_inventory.find(bauble)
 		if target != null:
-			BaubleManager.saved_baubles[index] = BaubleManager.bauble_inventory[index].type.type
+			BaubleManager.saved_baubles[index] = BaubleManager.bauble_inventory[index].type_data.type
 		elif target == null:
 			BaubleManager.saved_baubles[index] = null
 
@@ -129,7 +129,7 @@ func save_bauble_stats():
 		var target = bauble
 		var index = BaubleManager.bauble_inventory.find(bauble)
 		if target != null:
-			var bauble_stats = bauble.stats
+			var bauble_stats = bauble.bauble_stats
 			BaubleManager.bauble_stats_list[index] = bauble_stats
 		elif target == null:
 			BaubleManager.bauble_stats_list[index] = null
