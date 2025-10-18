@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://dfg2r6fq6umud"]
+
+[ext_resource type="Shader" uid="uid://c3p83an72xc01" path="res://shader1.gdshader" id="1_3qsmc"]
+[ext_resource type="Texture2D" uid="uid://ccc1a3jm21j33" path="res://PixelArt/Torch.png" id="2_brqd8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rkg6o"]
+shader = ExtResource("1_3qsmc")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbbhn"]
+atlas = ExtResource("2_brqd8")
+region = Rect2(0, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sy5ve"]
+atlas = ExtResource("2_brqd8")
+region = Rect2(24, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqk3e"]
+atlas = ExtResource("2_brqd8")
+region = Rect2(48, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1s5ik"]
+atlas = ExtResource("2_brqd8")
+region = Rect2(72, 0, 24, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lrya4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fbbhn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sy5ve")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gqk3e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1s5ik")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_rkg6o")
+position = Vector2(14, 8)
+sprite_frames = SubResource("SpriteFrames_lrya4")
+frame = 2
+frame_progress = 0.9548189
