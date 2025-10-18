@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dv2wb5pfcn00l"
-path="res://.godot/imported/party_slot_sapphire.png-0089de709690671ac7f2034e9df4bbb4.ctex"
+uid="uid://jhhf4fnkpbrt"
+path="res://.godot/imported/index.icon.png-8b3f867a9edfe1b33872192344a34282.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Inventory/partySprites/party_slot_sapphire.png"
-dest_files=["res://.godot/imported/party_slot_sapphire.png-0089de709690671ac7f2034e9df4bbb4.ctex"]
+source_file="res://builds/Bauble HTML Shipwrecked Draft/index.icon.png"
+dest_files=["res://.godot/imported/index.icon.png-8b3f867a9edfe1b33872192344a34282.ctex"]
 
 [params]
 
