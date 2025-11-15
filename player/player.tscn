@@ -1,17 +1,14 @@
-[gd_scene load_steps=42 format=3 uid="uid://coa54e45uplra"]
+[gd_scene load_steps=43 format=3 uid="uid://coa54e45uplra"]
 
 [ext_resource type="Script" uid="uid://kqxrrugv4bv8" path="res://player/player.gd" id="1_rjkni"]
 [ext_resource type="Texture2D" uid="uid://22a58735dink" path="res://PixelArt/Robot2-Sheet.png" id="2_q8r5f"]
-[ext_resource type="Shader" path="res://player/player.gdshader" id="2_yw30f"]
+[ext_resource type="Shader" uid="uid://df3oycdq6omnx" path="res://player/player.gdshader" id="2_yw30f"]
 [ext_resource type="Texture2D" uid="uid://vf4avdxbghpn" path="res://PixelArt/Robot2pngOnlyRunAndHold.png" id="3_lfdng"]
+[ext_resource type="PackedScene" uid="uid://c57jjvc6v1ab5" path="res://components/hitbox_and_health/hitbox_and_health.tscn" id="5_qjkh3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_idmmv"]
 radius = 11.0
 height = 36.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ms536"]
-radius = 17.0
-height = 34.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qjkh3"]
 shader = ExtResource("2_yw30f")
@@ -314,6 +311,8 @@ animations = [{
 gradient = SubResource("Gradient_yw30f")
 fill_to = Vector2(1, 1)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qjkh3"]
+
 [node name="PlayerBody" type="CharacterBody2D"]
 y_sort_enabled = true
 collision_layer = 2
@@ -325,15 +324,6 @@ position = Vector2(3, 1)
 shape = SubResource("CapsuleShape2D_idmmv")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="Hurtbox" type="Area2D" parent="." groups=["player"]]
-collision_layer = 2
-collision_mask = 24
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(3, 1)
-shape = SubResource("CapsuleShape2D_ms536")
-debug_color = Color(0.976901, 0, 0.408291, 0.42)
 
 [node name="Marker2D" type="Marker2D" parent="."]
 z_index = 100
@@ -355,4 +345,12 @@ animation = &"run_and_hold"
 visible = false
 texture = SubResource("GradientTexture2D_qjkh3")
 
-[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[node name="HitboxAndHealth" parent="." node_paths=PackedStringArray("host") instance=ExtResource("5_qjkh3")]
+host = NodePath("..")
+max_health = 5
+current_health = 5
+isPlayer = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxAndHealth"]
+position = Vector2(3, 1)
+shape = SubResource("CapsuleShape2D_qjkh3")

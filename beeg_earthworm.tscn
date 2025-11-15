@@ -154,6 +154,7 @@ position = Vector2(-93, -41)
 wait_time = 10.0
 
 [node name="DamageZone" parent="." instance=ExtResource("3_fxgpl")]
+hurts_player = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
 position = Vector2(0, 1)
