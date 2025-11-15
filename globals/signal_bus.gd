@@ -20,7 +20,6 @@ signal fade_from_black
 
 #Enemy Thingamajigs
 signal change_enemy_health(enemy, change)
-signal enemy_dead(enemy)
 signal enemy_added(enemy)
 
 #Moving Scenese
@@ -32,8 +31,13 @@ signal target_hit(target_indicator)
 #level control
 signal all_enemies_killed
 
-#player commands
-signal player_died
-
 #State Machine
 signal transitioned
+
+#Hitbox/Health and Damage Things
+signal player_dead
+signal enemy_dead(enemy)
+signal bauble_dead(bauble)
+signal player_hit
+signal enemy_hit(enemy)
+signal bauble_hit(bauble)

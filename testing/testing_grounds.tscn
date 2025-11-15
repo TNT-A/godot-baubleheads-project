@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyu68dbf41yg1"]
+
+[ext_resource type="PackedScene" uid="uid://jyxuq2ulfvqh" path="res://testing/evil_damage_dealer_of_doom_and_despair.tscn" id="1_l3780"]
+[ext_resource type="PackedScene" uid="uid://cxfwi71udlfmw" path="res://testing/just_a_guy.tscn" id="2_p4gem"]
+
+[node name="TestingGrounds" type="Node2D"]
+
+[node name="EvilDamageDealerOfDoomAndDespair" parent="." instance=ExtResource("1_l3780")]
+position = Vector2(157, 100)
+
+[node name="JustAGuy" parent="." instance=ExtResource("2_p4gem")]
+position = Vector2(158, 83)

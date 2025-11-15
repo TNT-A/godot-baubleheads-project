@@ -35,7 +35,7 @@ func _ready() -> void:
 	#print("level started")
 	SignalBus.scene_transition.connect(switch_maps)
 	SignalBus.all_enemies_killed.connect(set_can_continue)
-	SignalBus.player_died.connect(reset_game)
+	SignalBus.player_dead.connect(reset_game)
 	choose_map()
 	create_game_scene()
 	BaubleManager.refill_party()

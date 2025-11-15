@@ -122,7 +122,7 @@ func walk(new_speed):
 	#print(velocity)
 
 func die():
-	SignalBus.emit_signal("player_died")
+	SignalBus.emit_signal("player_dead")
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	var enemy = area

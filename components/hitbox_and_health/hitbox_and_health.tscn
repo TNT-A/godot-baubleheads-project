@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c57jjvc6v1ab5"]
+
+[ext_resource type="Script" uid="uid://cqo7uevkxseat" path="res://components/hitbox_and_health/hitbox_and_health.gd" id="1_v8o2x"]
+
+[node name="HitboxAndHealth" type="Area2D"]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("1_v8o2x")
+
+[connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered"]

@@ -41,6 +41,8 @@ player="It's legit just the player bro"
 enemy="Is an enemy lmao"
 bauble="is a bauble"
 navigation=""
+hurts_enemy=""
+hurts_bauble=""
 
 [input]
 
