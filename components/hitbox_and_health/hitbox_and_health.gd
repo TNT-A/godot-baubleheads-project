@@ -17,6 +17,8 @@ var self_string : String = ""
 @export var isEnemy : bool = false
 @export var isBauble : bool = false
 
+var invincible : bool = false
+
 func _ready() -> void:
 	if isPlayer:
 		add_to_group("player")
@@ -29,8 +31,8 @@ func _ready() -> void:
 		self_string = "bauble"
 
 func _on_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
-	#print(area.get_groups())
-	if area.is_in_group("hurts_" + self_string):
+	print(area.get_groups())
+	if area.is_in_group("hurts_" + self_string) and !invincible:
 		hit(area.damage_dealt)
 		if area.is_fire or area.is_ice or area.is_electric:
 			if area.is_fire:
@@ -42,14 +44,14 @@ func _on_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, 
 			#print(element_stacks)
 
 func hit(damage):
+	current_health -= damage
+	print("Youch!!!! ", current_health)
 	if isPlayer:
 		SignalBus.emit_signal("player_hit")
 	if isEnemy:
 		SignalBus.emit_signal("enemy_hit", host)
 	if isBauble:
 		SignalBus.emit_signal("bauble_hit", host)
-	current_health -= damage
-	print("Youch!!!! ", current_health)
 	if current_health <= 0:
 		die()
 

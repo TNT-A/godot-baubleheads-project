@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var attached_enemy = get_parent()
 
+#@export var attached_enemy : CharacterBody2D 
 @export var none_limit : int = 40
 @export var ruby_limit : int = 60
 @export var sapphire_limit : int = 80

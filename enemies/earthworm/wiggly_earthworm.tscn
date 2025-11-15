@@ -111,6 +111,7 @@ wait_time = 0.2
 autostart = true
 
 [node name="DamageZone" parent="." instance=ExtResource("1_of30d")]
+hurts_player = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
 rotation = 1.5708

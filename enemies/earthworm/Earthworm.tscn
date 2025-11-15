@@ -72,6 +72,7 @@ gizmo_extents = 23.0
 [node name="TimerAttackCooldown" type="Timer" parent="."]
 
 [node name="DamageZone" parent="." instance=ExtResource("3_rikgm")]
+hurts_player = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
 position = Vector2(-7, -3)

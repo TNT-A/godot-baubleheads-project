@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cxfwi71udlfmw"]
+[gd_scene load_steps=6 format=3 uid="uid://cxfwi71udlfmw"]
 
 [ext_resource type="PackedScene" uid="uid://c57jjvc6v1ab5" path="res://components/hitbox_and_health/hitbox_and_health.tscn" id="1_7j8dm"]
 [ext_resource type="Texture2D" uid="uid://dlaq3f3hiu07f" path="res://images/godotwaka.png" id="2_411od"]
+[ext_resource type="PackedScene" uid="uid://baov1nwgxw7ow" path="res://components/drop_pickups/drop_pickups.tscn" id="3_nun4o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nun4o"]
 size = Vector2(48, 28)
@@ -26,3 +27,6 @@ texture = ExtResource("2_411od")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_411od")
+
+[node name="DropPickups" parent="." instance=ExtResource("3_nun4o")]
+none_limit = 0

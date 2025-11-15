@@ -4,8 +4,6 @@ extends CharacterBody2D
 @export var deceleration : float = .1
 
 @export var stats : Dictionary = {
-	max_health = 5,
-	health = 5,
 	speed = 250,
 }
 
@@ -19,22 +17,20 @@ var accept_input : bool = true
 var sprinting : bool = false
 
 func _ready() -> void:
+	SignalBus.player_hit.connect(change_health)
 	z_index = 100
 	Global.register_player(self)
 	set_stats()
-	SignalBus.emit_signal("set_health_bar", stats.max_health, stats.health)
+	SignalBus.emit_signal("set_health_bar", $HitboxAndHealth.max_health, $HitboxAndHealth.current_health)
 
 func set_stats():
 	Global.register_player(self)
 	for stat in stats:
 		stats[stat] = Global.player_stats[stat]
 
-func change_health(change):
-	stats.health -= change
-	if stats.health <= 0:
-		stats.health = 0
-		die()
-	SignalBus.emit_signal("set_health_bar", stats.max_health, stats.health)
+func change_health():
+	SignalBus.emit_signal("set_health_bar", $HitboxAndHealth.max_health, $HitboxAndHealth.current_health)
+	flash(6)
 
 func _physics_process(delta: float) -> void:
 	state_transition()
@@ -121,22 +117,12 @@ func walk(new_speed):
 	move_and_slide()
 	#print(velocity)
 
-func die():
-	SignalBus.emit_signal("player_dead")
-
-func _on_hurtbox_area_entered(area: Area2D) -> void:
-	var enemy = area
-	if area.is_in_group("hurts_player") && canHit:
-		change_health(enemy.damage_dealt)
-		flash(6)
-	
 func flash(count):
-	canHit = false
-	
+	$HitboxAndHealth.invincible = true
 	for n in range(count):
 		visible = false
 		await get_tree().create_timer(0.07).timeout
 		visible = true
 		await get_tree().create_timer(0.07).timeout
-	canHit = true
+	$HitboxAndHealth.invincible = false
 	
