@@ -32,12 +32,14 @@ func _on_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, 
 	#print(area.get_groups())
 	if area.is_in_group("hurts_" + self_string):
 		hit(area.damage_dealt)
-		if area.is_fire:
-			pass
-		if area.is_ice:
-			pass
-		if area.is_electric:
-			pass
+		if area.is_fire or area.is_ice or area.is_electric:
+			if area.is_fire:
+				element_stacks["fire"] += 1
+			if area.is_ice:
+				element_stacks["ice"] += 1
+			if area.is_electric:
+				element_stacks["electric"] += 1
+			#print(element_stacks)
 
 func hit(damage):
 	if isPlayer:
@@ -47,7 +49,7 @@ func hit(damage):
 	if isBauble:
 		SignalBus.emit_signal("bauble_hit", host)
 	current_health -= damage
-	#print("Youch!!!! ", current_health)
+	print("Youch!!!! ", current_health)
 	if current_health <= 0:
 		die()
 

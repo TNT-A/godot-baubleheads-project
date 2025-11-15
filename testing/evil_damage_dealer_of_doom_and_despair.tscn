@@ -12,6 +12,7 @@ script = ExtResource("1_svodr")
 
 [node name="DamageZone" parent="." instance=ExtResource("1_4dcrx")]
 hurts_enemy = true
+is_fire = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
 shape = SubResource("CircleShape2D_4dgr3")
