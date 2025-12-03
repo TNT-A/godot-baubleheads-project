@@ -112,9 +112,10 @@ _data = {
 &"throw": SubResource("Animation_hlfcm")
 }
 
-[node name="bauble" type="Node2D"]
+[node name="bauble" type="Node2D" node_paths=PackedStringArray("body")]
 y_sort_enabled = true
 script = ExtResource("1_lpuy0")
+body = NodePath("BaubleBody")
 
 [node name="AdaptTarget" type="Marker2D" parent="."]
 visible = false
@@ -131,7 +132,6 @@ color = Color(0, 0.337255, 0.529412, 1)
 [node name="BaubleBody" type="CharacterBody2D" parent="."]
 z_index = 3
 collision_layer = 4
-collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BaubleBody"]
 shape = SubResource("CircleShape2D_lpuy0")
@@ -166,6 +166,14 @@ target_node = NodePath("../../AdaptTarget")
 speed = 200
 deceleration = 0.1
 stop_range = 30.0
+
+[node name="ColorRect" type="ColorRect" parent="BaubleBody"]
+z_index = -10
+offset_left = -3.0
+offset_top = -2.0
+offset_right = 11.0
+offset_bottom = 3.0
+color = Color(0, 0, 0, 1)
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("3_btsnt")]
 initial_state = NodePath("Idle")
@@ -202,6 +210,9 @@ script = ExtResource("9_qd0ka")
 [node name="Thrown" type="Node2D" parent="StateMachine"]
 script = ExtResource("10_yam3n")
 
+[node name="ThrowTimer" type="Timer" parent="StateMachine/Thrown"]
+one_shot = true
+
 [node name="Defend" type="Node2D" parent="StateMachine"]
 script = ExtResource("11_dyony")
 
@@ -212,3 +223,4 @@ script = ExtResource("12_wet5a")
 [connection signal="timeout" from="StateMachine/Patrol/Timer" to="StateMachine/Patrol" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Targeting/AttackTimer" to="StateMachine/Targeting" method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Attack/AttackLength" to="StateMachine/Attack" method="_on_attack_length_timeout"]
+[connection signal="timeout" from="StateMachine/Thrown/ThrowTimer" to="StateMachine/Thrown" method="_on_throw_timer_timeout"]

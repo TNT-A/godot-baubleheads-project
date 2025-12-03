@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var body : CharacterBody2D
+
 @onready var player = Global.player
 @onready var state_machine = $StateMachine
 

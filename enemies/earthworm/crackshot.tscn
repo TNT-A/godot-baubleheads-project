@@ -30,6 +30,7 @@ sprite_frames = ExtResource("2_jup0v")
 frame_progress = 0.591421
 
 [node name="DamageZone" parent="CharacterBody2D" instance=ExtResource("3_hk7xh")]
+hurts_player = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/DamageZone"]
 position = Vector2(8, 5)
