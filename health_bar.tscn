@@ -6,12 +6,12 @@
 
 [node name="HealthBar" type="ProgressBar"]
 anchors_preset = -1
-anchor_right = 1.25312
-anchor_bottom = 0.966667
-offset_left = 228.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 323.0
 offset_top = 7.0
-offset_right = -88.0
-offset_bottom = -146.0
+offset_right = -29.0
+offset_bottom = -233.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_m7ell")

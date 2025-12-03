@@ -113,7 +113,7 @@ func send_bauble_state():
 
 func save_player_stats():
 	for stat in Global.player_stats:
-		Global.player_stats[stat] = current_player.stats[stat]
+		Global.player_stats[stat] = current_player.hhealth.current_health
 
 func save_baubles():
 	for bauble in BaubleManager.bauble_inventory:
