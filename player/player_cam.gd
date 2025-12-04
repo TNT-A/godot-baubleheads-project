@@ -1,11 +1,12 @@
 extends Camera2D
 
 var max_dist : float = 100
-var follow_speed : float = 1
+var follow_speed : float = 0.0
 var following : bool = true
 
 func _physics_process(delta: float) -> void:
-	follow()
+	#follow()
+	pass
 	#if position.distance_to(Vector2(0,0)) >= 50:
 		#following = false
 	#elif position.distance_to(Vector2(0,0)) <= 40:
@@ -20,14 +21,14 @@ func _physics_process(delta: float) -> void:
 
 func follow():
 	var mouse_pos = get_global_mouse_position()
-	
 	var target : Vector2 = Vector2(0, 0)
 	target = (mouse_pos - global_position).normalized() * max_dist
-	
 	if mouse_pos.distance_to(global_position) >= max_dist:
-		position = position.lerp(target, 0.02)
+		follow_speed = lerp(follow_speed, 1.0, 0.1)
+		position = position.lerp(target * follow_speed, 0.02)
 	else:
-		position = position.lerp(Vector2(0, 0), 0.02)
+		follow_speed = 0
+		position = position.lerp(Vector2(0,0), 0.01)
 	print(position, " & ", position.distance_to(Vector2(0,0)))
 
 func _input(event: InputEvent) -> void:
