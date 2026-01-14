@@ -168,12 +168,12 @@ deceleration = 0.1
 stop_range = 30.0
 
 [node name="ColorRect" type="ColorRect" parent="BaubleBody"]
-z_index = -10
+z_index = -1
 offset_left = -3.0
 offset_top = -2.0
 offset_right = 11.0
 offset_bottom = 3.0
-color = Color(0, 0, 0, 1)
+color = Color(0, 0, 0, 0.46666667)
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("3_btsnt")]
 initial_state = NodePath("Idle")
