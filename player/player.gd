@@ -63,14 +63,14 @@ func state_transition():
 		state = States.WALKING
 	elif (state == States.WALKING or state == States.SPRINTING) and check_for_input() == false:
 		state = States.IDLE
-	elif state == States.WALKING and sprinting:
-		state = States.SPRINTING
-	elif state == States.SPRINTING and !sprinting:
-		state = States.WALKING
-	elif (state == States.IDLE or state == States.WALKING or state == States.SPRINTING) and BaubleManager.held_count > 0:
-		state = States.HOLDING
-	elif state == States.HOLDING and BaubleManager.held_count <= 0:
-		state = States.IDLE
+	#elif state == States.WALKING and sprinting:
+		#state = States.SPRINTING
+	#elif state == States.SPRINTING and !sprinting:
+		#state = States.WALKING
+	#elif (state == States.IDLE or state == States.WALKING or state == States.SPRINTING):
+		#state = States.HOLDING
+	#elif state == States.HOLDING:
+		#state = States.IDLE
 
 func check_for_input():
 	var isButtonPressed : bool = false
