@@ -54,16 +54,17 @@ func reset_inventory():
 		inventory[item] = 0
 
 func organize_party():
-	for slot in partySlots:
-		var global_inventory_slot
-		var global_type_in_slot = null
-		var slot_index
-		slot_index = partySlots.find(slot)
-		global_inventory_slot = BaubleManager.bauble_inventory[slot_index]
-		if global_inventory_slot is Node:
-			global_type_in_slot = global_inventory_slot.type_data.type
-		if slot.held_type != global_type_in_slot:
-			SignalBus.update_party_slot.emit(global_type_in_slot, slot_index)
+	#for slot in partySlots:
+		#var global_inventory_slot
+		#var global_type_in_slot = null
+		#var slot_index
+		#slot_index = partySlots.find(slot)
+		#global_inventory_slot = BaubleManager.bauble_inventory[slot_index]
+		#if global_inventory_slot is Node:
+			#global_type_in_slot = global_inventory_slot.type_data.type
+		#if slot.held_type != global_type_in_slot:
+			#SignalBus.update_party_slot.emit(global_type_in_slot, slot_index)
+	pass
 
 func find_empty_slot():
 	var found_slot : Node 

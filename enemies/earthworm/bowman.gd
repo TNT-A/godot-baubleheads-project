@@ -52,7 +52,7 @@ func state_functions():
 			$CharacterBody2D/Bow.play("Reload")
 			$TimerAttackCooldown.wait_time = randf_range(timer_cooldown - 0.1, timer_cooldown + 0.1)
 			$TimerAttackCooldown.start()
-			print("hi")
+			#print("hi")
 		if attack_time:
 			shoot()
 			attack_time = false
@@ -120,7 +120,7 @@ func die():
 
 func _on_timer_attack_cooldown_timeout():
 	if playerCrackable:
-		print("I'm reloading!!!!!!!!")
+		#print("I'm reloading!!!!!!!!")
 		$CharacterBody2D/Bow.play("Reload")
 		attack_time = true
 

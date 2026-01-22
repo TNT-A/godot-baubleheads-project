@@ -17,14 +17,14 @@ var ui_scene : PackedScene = preload("res://in_game_ui.tscn")
 var map_scene : PackedScene 
 
 var level_scenes : Array = [
-	#preload("res://Maps/test_level.tscn"),
+	preload("res://Maps/test_level.tscn"),
 	#preload("res://Maps/cave_tilemap.tscn"),
-	preload("res://Maps/og_level_1.tscn"),
-	preload("res://Maps/og_level_2.tscn"),
-	preload("res://Maps/og_level_3.tscn"),
-	preload("res://Maps/og_level_4.tscn"),
-	preload("res://Maps/og_level_5.tscn"),
-	preload("res://Maps/og_level_6.tscn"),
+	#preload("res://Maps/og_level_1.tscn"),
+	#preload("res://Maps/og_level_2.tscn"),
+	#preload("res://Maps/og_level_3.tscn"),
+	#preload("res://Maps/og_level_4.tscn"),
+	#preload("res://Maps/og_level_5.tscn"),
+	#preload("res://Maps/og_level_6.tscn"),
 	#preload("res://Maps/og_level_7.tscn"),
 	#preload("res://Maps/og_level_8.tscn"),
 ]
@@ -67,7 +67,7 @@ func switch_maps():
 		#print("sick nasty")
 		save_player_stats()
 		save_baubles()
-		save_bauble_stats()
+		#save_bauble_stats()
 		save_inventory()
 		$FadeToBlack.fade_to_black()
 		await $FadeToBlack/AnimationPlayer.animation_finished
@@ -102,7 +102,7 @@ func send_state_info():
 	send_bauble_state()
 
 func send_bauble_state():
-	for bauble in BaubleManager.bauble_inventory:
+	for bauble in BaubleManager.all_baubles():
 		if bauble is Node:
 			if state == States.GAME:
 				bauble.accept_input = true
@@ -115,24 +115,27 @@ func save_player_stats():
 	for stat in Global.player_stats:
 		Global.player_stats[stat] = current_player.hhealth.current_health
 
-func save_baubles():
-	for bauble in BaubleManager.bauble_inventory:
-		var target = bauble
-		var index = BaubleManager.bauble_inventory.find(bauble)
-		if target != null:
-			BaubleManager.saved_baubles[index] = BaubleManager.bauble_inventory[index].type_data.type
-		elif target == null:
-			BaubleManager.saved_baubles[index] = null
+#func save_baubles():
+	#for bauble in BaubleManager.bauble_inventory:
+		#var target = bauble
+		#var index = BaubleManager.bauble_inventory.find(bauble)
+		#if target != null:
+			#BaubleManager.saved_baubles[index] = BaubleManager.bauble_inventory[index].type_data.type
+		#elif target == null:
+			#BaubleManager.saved_baubles[index] = null
+#
+#func save_bauble_stats():
+	#for bauble in BaubleManager.bauble_inventory:
+		#var target = bauble
+		#var index = BaubleManager.bauble_inventory.find(bauble)
+		#if target != null:
+			#var bauble_stats = bauble.bauble_stats
+			#BaubleManager.bauble_stats_list[index] = bauble_stats
+		#elif target == null:
+			#BaubleManager.bauble_stats_list[index] = null
 
-func save_bauble_stats():
-	for bauble in BaubleManager.bauble_inventory:
-		var target = bauble
-		var index = BaubleManager.bauble_inventory.find(bauble)
-		if target != null:
-			var bauble_stats = bauble.bauble_stats
-			BaubleManager.bauble_stats_list[index] = bauble_stats
-		elif target == null:
-			BaubleManager.bauble_stats_list[index] = null
+func save_baubles():
+	BaubleManager.save_party()
 
 func save_inventory():
 	var inventory = current_ui.get_child(1).inventory
