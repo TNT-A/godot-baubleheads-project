@@ -1,4 +1,4 @@
-extends Node2D
+extends Level
 
 var room_count : int = 4
 var room_list : Dictionary = {
@@ -14,4 +14,5 @@ func generate_floor():
 func create_base_room():
 	var base_room = room_list["base_room"].instantiate()
 	add_child(base_room)
-	base_room.spawn_player()
+	player_spawn_location = base_room.player_spawn_location
+	#base_room.spawn_player()

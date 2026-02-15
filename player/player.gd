@@ -2,11 +2,11 @@ extends CharacterBody2D
 
 @onready var hhealth: HealthComponent = $HitboxAndHealth
 
-@export var acceleration : float = .1
-@export var deceleration : float = .1
+@export var acceleration : float = .25
+@export var deceleration : float = .25
 
 @export var stats : Dictionary = {
-	speed = 150,
+	speed = 20,
 }
 
 @onready var hand_marker = $Marker2D
@@ -42,19 +42,19 @@ func _physics_process(delta: float) -> void:
 
 func state_functions():
 	if state == States.IDLE:
-		stats.speed = 200
+		#stats.speed = 200
 		reset_velocity()
 		$AnimatedSprite2D.play("idle")
 	if state == States.WALKING:
-		stats.speed = 200
+		#stats.speed = 200
 		walk(stats.speed)
 		$AnimatedSprite2D.play("walk")
 	if state == States.SPRINTING:
-		stats.speed = 250
+		#stats.speed = 250
 		walk(stats.speed)
 		$AnimatedSprite2D.play("run")
 	if state == States.HOLDING:
-		stats.speed = 200
+		#stats.speed = 200
 		walk(stats.speed)
 		$AnimatedSprite2D.play("run_and_hold")
 

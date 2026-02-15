@@ -8,7 +8,7 @@ var throw_target : Vector2
 var throw_ended : bool = false
 var damage_active : bool = true
 var throw_damage : int = 2
-var range : float = 0.4
+var range : float = 0.5
 var bauble_body : CharacterBody2D 
 
 var throw_speed : float = 500
