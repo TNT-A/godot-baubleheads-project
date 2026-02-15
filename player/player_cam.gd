@@ -29,7 +29,7 @@ func follow():
 	else:
 		follow_speed = 0
 		position = position.lerp(Vector2(0,0), 0.01)
-	print(position, " & ", position.distance_to(Vector2(0,0)))
+	#print(position, " & ", position.distance_to(Vector2(0,0)))
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_up"):

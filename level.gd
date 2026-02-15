@@ -17,7 +17,8 @@ var ui_scene : PackedScene = preload("res://in_game_ui.tscn")
 var map_scene : PackedScene 
 
 var level_scenes : Array = [
-	preload("res://Maps/test_level.tscn"),
+	preload("res://Maps/procedural_generation.tscn"),
+	#preload("res://Maps/test_level.tscn"),
 	#preload("res://Maps/cave_tilemap.tscn"),
 	#preload("res://Maps/og_level_1.tscn"),
 	#preload("res://Maps/og_level_2.tscn"),

@@ -165,7 +165,6 @@ host = NodePath("..")
 target_node = NodePath("../../AdaptTarget")
 speed = 200
 deceleration = 0.1
-stop_range = 30.0
 
 [node name="ColorRect" type="ColorRect" parent="BaubleBody"]
 z_index = -1

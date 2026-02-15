@@ -8,8 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://c57jjvc6v1ab5" path="res://components/hitbox_and_health/hitbox_and_health.tscn" id="5_qjkh3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_idmmv"]
-radius = 11.0
-height = 36.0
+radius = 3.0
+height = 18.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qjkh3"]
 shader = ExtResource("2_yw30f")
@@ -319,9 +319,11 @@ y_sort_enabled = true
 collision_layer = 2
 collision_mask = 49
 script = ExtResource("1_rjkni")
+acceleration = 0.2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(3, 1)
+position = Vector2(3, 11)
+rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_idmmv")
 
 [node name="PlayerCam" type="Camera2D" parent="."]
