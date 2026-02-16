@@ -4,8 +4,9 @@ class_name Room
 @onready var player_scene : PackedScene = preload("res://player/player.tscn")
 @onready var player_spawn_position = $PlayerSpawn.global_position
 
-var room_width : int = 10
-var room_height : int = 10
+#Assume 10x10 = 1x1
+var room_width : int = 1
+var room_height : int = 1
 
 var doorways : Dictionary = {
 	"top1" = false,
@@ -26,7 +27,8 @@ var doorways : Dictionary = {
 }
 
 func _ready() -> void:
-	spawn_player()
+	#spawn_player()
+	pass
 
 func spawn_player():
 	var new_player = player_scene.instantiate()
