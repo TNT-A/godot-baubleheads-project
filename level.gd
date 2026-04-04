@@ -17,16 +17,16 @@ var ui_scene : PackedScene = preload("res://in_game_ui.tscn")
 var map_scene : PackedScene 
 
 var level_scenes : Array = [
-	preload("res://Maps/procedural_generation.tscn"),
+	#preload("res://Maps/procedural_generation.tscn"),
 	#preload("res://Maps/test_level.tscn"),
 	#preload("res://Maps/cave_tilemap.tscn"),
-	#preload("res://Maps/og_level_1.tscn"),
-	#preload("res://Maps/og_level_2.tscn"),
-	#preload("res://Maps/og_level_3.tscn"),
-	#preload("res://Maps/og_level_4.tscn"),
-	#preload("res://Maps/og_level_5.tscn"),
-	#preload("res://Maps/og_level_6.tscn"),
-	#preload("res://Maps/og_level_7.tscn"),
+	preload("res://Maps/og_level_1.tscn"),
+	preload("res://Maps/og_level_2.tscn"),
+	preload("res://Maps/og_level_3.tscn"),
+	preload("res://Maps/og_level_4.tscn"),
+	preload("res://Maps/og_level_5.tscn"),
+	preload("res://Maps/og_level_6.tscn"),
+	preload("res://Maps/og_level_7.tscn"),
 	#preload("res://Maps/og_level_8.tscn"),
 ]
 
@@ -113,8 +113,9 @@ func send_bauble_state():
 				bauble.accept_input = false
 
 func save_player_stats():
-	for stat in Global.player_stats:
-		Global.player_stats[stat] = current_player.hhealth.current_health
+	#for stat in Global.player_stats:
+		#Global.player_stats[stat] = player
+	Global.player_stats["health"] = current_player.hhealth.current_health
 
 #func save_baubles():
 	#for bauble in BaubleManager.bauble_inventory:
@@ -149,7 +150,7 @@ func set_can_continue():
 func reset_game():
 	$FadeToBlack.fade_to_red()
 	await $FadeToBlack/AnimationPlayer.animation_finished
-	BaubleManager.saved_baubles = BaubleManager.base_bauble_inventory
+	BaubleManager.saved_baubles = BaubleManager.default_baubles
 	Global.player_stats = Global.base_player_stats
 	Global.pickup_inventory = Global.base_pickup_inventory
 	if is_instance_valid(get_tree()):

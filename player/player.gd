@@ -6,7 +6,7 @@ extends CharacterBody2D
 @export var deceleration : float = .25
 
 @export var stats : Dictionary = {
-	speed = 20,
+	speed = 200,
 }
 
 @onready var hand_marker = $Marker2D
@@ -25,10 +25,10 @@ func _ready() -> void:
 	set_stats()
 	SignalBus.emit_signal("set_health_bar", $HitboxAndHealth.max_health, $HitboxAndHealth.current_health)
 
+
 func set_stats():
 	Global.register_player(self)
-	for stat in stats:
-		stats[stat] = Global.player_stats[stat]
+	hhealth.current_health = Global.player_stats["health"]
 
 func change_health():
 	SignalBus.emit_signal("set_health_bar", $HitboxAndHealth.max_health, $HitboxAndHealth.current_health)

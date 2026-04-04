@@ -9,7 +9,7 @@ var throw_ended : bool = false
 var damage_active : bool = true
 var throw_damage : int = 2
 var range : float = 0.5
-var bauble_body : CharacterBody2D 
+var bauble_body : Bauble
 
 var throw_speed : float = 500
 var base_throw_speed : float = 500
@@ -37,6 +37,8 @@ func enter():
 	set_speed()
 	$ThrowTimer.wait_time = range
 	$ThrowTimer.start()
+	get_parent().get_parent().activate_damage_zone()
+	
 	#animation_player.play("throw")
 
 func set_speed():
@@ -59,7 +61,7 @@ func spin():
 
 func rise():
 	var pos = abs(dist/2 - abs($"../../BaubleBody".global_position.distance_to(throw_target) - dist/2)) / dist
-	print(pos)
+	#print(pos)
 	$"../../BaubleBody/Sprite2D".position.y = pos * -75
 
 func check_collisions():
@@ -81,7 +83,7 @@ func reset():
 
 func check_transitions():
 	if throw_ended == true:
-		#print(body_detector.enemy_found)
+		get_parent().get_parent().deactivate_damage_zone()
 		SignalBus.transitioned.emit(self, "Return")
 
 func _on_throw_timer_timeout() -> void:

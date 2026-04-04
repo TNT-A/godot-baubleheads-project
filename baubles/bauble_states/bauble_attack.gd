@@ -50,7 +50,7 @@ func _on_attack_length_timeout() -> void:
 	pathfinding_controller.host.velocity = Vector2(0,0)
 	parent_body.find_child("BaubleBody").set_collision_mask_value(4, true)
 	if is_instance_valid(body_detector.tracked_body):
-		SignalBus.emit_signal("change_enemy_health", body_detector.tracked_body, damage)
+		SignalBus.emit_signal("enemy_hit", body_detector.tracked_body)
 		#print("Damage dealt")
 	
 	await get_tree().create_timer(.2).timeout

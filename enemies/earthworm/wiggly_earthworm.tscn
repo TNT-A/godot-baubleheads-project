@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cnmbx0805u1i3"]
+[gd_scene load_steps=21 format=3 uid="uid://cnmbx0805u1i3"]
 
 [ext_resource type="Texture2D" uid="uid://dn4yltu1tkd68" path="res://PixelArt/wiggle_worm-Recovered.png" id="1_42smv"]
 [ext_resource type="Script" uid="uid://dx70x1ax1otne" path="res://enemies/earthworm/wiggly_earthworm.gd" id="1_61cal"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://baov1nwgxw7ow" path="res://components/drop_pickups/drop_pickups.tscn" id="4_4l6yv"]
 [ext_resource type="PackedScene" uid="uid://l160kxor0r2e" path="res://components/pathfinding/pathfinding.tscn" id="5_o1v1a"]
 [ext_resource type="PackedScene" uid="uid://bs875jneal7bi" path="res://components/bauble_checker/bauble_checker.tscn" id="6_xg1qj"]
+[ext_resource type="PackedScene" uid="uid://c57jjvc6v1ab5" path="res://components/hitbox_and_health/hitbox_and_health.tscn" id="7_k370n"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yn4co"]
 radius = 7.0
@@ -80,6 +81,8 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_k370n"]
 radius = 135.093
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7b1sy"]
+
 [node name="WigglyEarthworm" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 8
 collision_mask = 3
@@ -151,6 +154,17 @@ stop_range = 25.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BaubleChecker"]
 shape = SubResource("CircleShape2D_k370n")
+
+[node name="HitboxAndHealth" parent="." node_paths=PackedStringArray("host") instance=ExtResource("7_k370n")]
+collision_layer = 8
+host = NodePath("..")
+max_health = 9
+current_health = 9
+isEnemy = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxAndHealth"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_7b1sy")
 
 [connection signal="timeout" from="TimerDashLength" to="." method="_on_timer_dash_length_timeout"]
 [connection signal="timeout" from="TimerDashCooldown" to="." method="_on_timer_dash_cooldown_timeout"]
