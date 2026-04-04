@@ -45,7 +45,7 @@ func _on_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, 
 
 func hit(damage):
 	current_health -= damage
-	print("Youch!!!! ", host)
+	#print("Youch!!!! ", host)
 	if isPlayer:
 		SignalBus.emit_signal("player_hit")
 	if isEnemy:
