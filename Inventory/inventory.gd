@@ -91,6 +91,7 @@ func use_item(item_resource, slot):
 	inventory[item_type] -=1
 
 func recieve_item(item_resource):
+	Global.gems += 1
 	var target_slot : int
 	if item_resource:
 		inventory[item_resource.type] += 1

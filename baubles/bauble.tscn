@@ -141,7 +141,7 @@ shape = SubResource("CircleShape2D_lpuy0")
 
 [node name="DamageZone" parent="BaubleBody" instance=ExtResource("3_lpuy0")]
 hurts_enemy = true
-damage_dealt = 100
+damage_dealt = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BaubleBody/DamageZone" groups=["hurts_enemy"]]
 z_index = 4096
@@ -231,8 +231,13 @@ script = ExtResource("11_dyony")
 [node name="Return" type="Node2D" parent="StateMachine"]
 script = ExtResource("12_wet5a")
 
+[node name="TeleTimer" type="Timer" parent="StateMachine/Return"]
+wait_time = 10.0
+one_shot = true
+
 [connection signal="animation_finished" from="BaubleBody/AnimationPlayer" to="StateMachine/Thrown" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="StateMachine/Patrol/Timer" to="StateMachine/Patrol" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Targeting/AttackTimer" to="StateMachine/Targeting" method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Attack/AttackLength" to="StateMachine/Attack" method="_on_attack_length_timeout"]
 [connection signal="timeout" from="StateMachine/Thrown/ThrowTimer" to="StateMachine/Thrown" method="_on_throw_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Return/TeleTimer" to="StateMachine/Return" method="_on_tele_timer_timeout"]

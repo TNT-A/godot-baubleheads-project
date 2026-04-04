@@ -3,8 +3,6 @@ extends Node2D
 enum States {GAME, INVENTORY, PAUSED}
 var state: States = States.GAME
 
-#var current_level : int = 0
-
 var current_player : Node
 var current_map : Node 
 var current_ui : Node
@@ -16,9 +14,10 @@ var player_scene : PackedScene = preload("res://player/player.tscn")
 var ui_scene : PackedScene = preload("res://in_game_ui.tscn")
 var map_scene : PackedScene 
 
+var safety_level : PackedScene = preload("res://Maps/test_level.tscn")
+
 var level_scenes : Array = [
 	#preload("res://Maps/procedural_generation.tscn"),
-	#preload("res://Maps/test_level.tscn"),
 	#preload("res://Maps/cave_tilemap.tscn"),
 	preload("res://Maps/og_level_1.tscn"),
 	preload("res://Maps/og_level_2.tscn"),
@@ -34,6 +33,7 @@ var can_continue : bool = false
 
 func _ready() -> void:
 	#print("level started")
+	Global.level += 1
 	SignalBus.scene_transition.connect(switch_maps)
 	SignalBus.all_enemies_killed.connect(set_can_continue)
 	SignalBus.player_dead.connect(reset_game)
@@ -62,6 +62,10 @@ func create_game_scene():
 func choose_map():
 	var level_index = randi_range(0, level_scenes.size()-1)
 	map_scene = level_scenes[level_index]
+	if Global.level == Global.rest_frequency:
+		map_scene = safety_level
+		Global.level = 0
+		Global.rest_frequency += 1
 
 func switch_maps():
 	if can_continue:
@@ -153,5 +157,7 @@ func reset_game():
 	BaubleManager.saved_baubles = BaubleManager.default_baubles
 	Global.player_stats = Global.base_player_stats
 	Global.pickup_inventory = Global.base_pickup_inventory
+	Global.gems = 0
+	Global.level = 0
 	if is_instance_valid(get_tree()):
 		get_tree().change_scene_to_file("res://TitleScreen.tscn")

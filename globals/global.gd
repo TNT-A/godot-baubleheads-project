@@ -2,6 +2,10 @@ extends Node
 
 var player
 
+var gems : int = 0
+var level : float = 0.0
+var rest_frequency : float = 2.0
+
 var player_stats : Dictionary = {
 	max_health = 5,
 	health = 5,
@@ -13,7 +17,7 @@ var base_player_stats : Dictionary = {
 	health = 5,
 	speed = 200,
 }
-
+#Ignore these for now :)
 var pickup_inventory : Dictionary = {
 	"ruby" = 0,
 	"topaz" = 0,
