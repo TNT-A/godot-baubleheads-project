@@ -83,8 +83,9 @@ func refill_party():
 #Saves the number or each bauble the player has in order to respawn them later
 func save_party():
 	saved_baubles["ruby"] = bauble_inventory_ruby.size()
-	saved_baubles["sapphire"] = bauble_inventory_ruby.size()
-	saved_baubles["topaz"] = bauble_inventory_ruby.size()
+	saved_baubles["sapphire"] = bauble_inventory_sapphire.size()
+	saved_baubles["topaz"] = bauble_inventory_topaz.size()
+	#print("Saved: " + str(saved_baubles["ruby"]) + " " + str(saved_baubles["sapphire"]) + " " + str(saved_baubles["topaz"]))
 
 #Spawns a bauble of a given type 
 func spawn_bauble(type_of_bauble):

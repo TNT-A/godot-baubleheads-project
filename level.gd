@@ -121,25 +121,6 @@ func save_player_stats():
 		#Global.player_stats[stat] = player
 	Global.player_stats["health"] = current_player.hhealth.current_health
 
-#func save_baubles():
-	#for bauble in BaubleManager.bauble_inventory:
-		#var target = bauble
-		#var index = BaubleManager.bauble_inventory.find(bauble)
-		#if target != null:
-			#BaubleManager.saved_baubles[index] = BaubleManager.bauble_inventory[index].type_data.type
-		#elif target == null:
-			#BaubleManager.saved_baubles[index] = null
-#
-#func save_bauble_stats():
-	#for bauble in BaubleManager.bauble_inventory:
-		#var target = bauble
-		#var index = BaubleManager.bauble_inventory.find(bauble)
-		#if target != null:
-			#var bauble_stats = bauble.bauble_stats
-			#BaubleManager.bauble_stats_list[index] = bauble_stats
-		#elif target == null:
-			#BaubleManager.bauble_stats_list[index] = null
-
 func save_baubles():
 	BaubleManager.save_party()
 
