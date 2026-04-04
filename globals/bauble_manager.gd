@@ -55,11 +55,12 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	main = get_tree().current_scene
 	if Input.is_action_just_released("Player_Ability_1"):
-		choose_thrown()
-	if Input.is_action_just_released("Spawn_Bauble"):
-		spawn_bauble("ruby")
-	if Input.is_action_just_released("Kill_Bauble"):
-		despawn_bauble("ruby")
+		alt_choose_thrown()
+		#Should be choose_thrown(), but alto version for now since I couldn't finish the other stuff
+	#if Input.is_action_just_released("Spawn_Bauble"):
+		#spawn_bauble("ruby")
+	#if Input.is_action_just_released("Kill_Bauble"):
+		#despawn_bauble("ruby")
 
 #Something to do with using items idk
 func determine_bauble_control(item, party_slot):
@@ -100,17 +101,6 @@ func despawn_bauble(type_of_bauble):
 		bauble_to_delete.queue_free()
 		inventory.remove_at(inventory.find(bauble_to_delete))
 
-#Checks all the distances for each bauble of a given type
-func set_distances(group : String):
-	if !is_instance_valid(player):
-		player = Global.player
-	if is_instance_valid(player):
-		for bauble in get("bauble_inventory_" + group):
-			if is_instance_valid(bauble):
-				var distance = bauble.global_position.distance_to(player.global_position)
-				#print("Bauble: " + str(bauble) + " Distance: " + str(distance))
-				get("bauble_distances_" + group)[bauble] = distance
-
 #Checks which bauble to throw based on distance from the player
 func choose_thrown():
 	if !is_instance_valid(player) and is_instance_valid(Global.player):
@@ -129,3 +119,46 @@ func choose_thrown():
 		if is_instance_valid(selected_bauble):
 			selected_bauble.thrown = true
 			selected_bauble = null
+
+#Checks all the distances for each bauble of a given type
+func set_distances(group : String):
+	if !is_instance_valid(player):
+		player = Global.player
+	if is_instance_valid(player):
+		for bauble in get("bauble_inventory_" + group):
+			if is_instance_valid(bauble):
+				var distance = bauble.global_position.distance_to(player.global_position)
+				#print("Bauble: " + str(bauble) + " Distance: " + str(distance))
+				get("bauble_distances_" + group)[bauble] = distance
+
+
+var bauble_distances : Dictionary = {}
+func alt_choose_thrown():
+	if !is_instance_valid(player) and is_instance_valid(Global.player):
+		player = Global.player
+	if is_instance_valid(player):
+		alt_set_distances()
+		var selected_bauble
+		var lowest_distance : float = 999999.0
+		for bauble in bauble_distances:
+			if is_instance_valid(bauble) and bauble.can_throw == true:
+				var distance = bauble_distances[bauble]
+				if distance < lowest_distance:
+					selected_bauble = bauble
+					lowest_distance = distance
+		#print(get("bauble_distances_" + selected_type))
+		if is_instance_valid(selected_bauble):
+			selected_bauble.thrown = true
+			selected_bauble = null
+
+func alt_set_distances():
+	bauble_distances.clear()
+	if !is_instance_valid(player):
+		player = Global.player
+	if is_instance_valid(player):
+		for bauble in all_baubles():
+			if is_instance_valid(bauble):
+				var distance = bauble.global_position.distance_to(player.global_position)
+				#print("Bauble: " + str(bauble) + " Distance: " + str(distance))
+				bauble_distances[bauble] = distance
+ 

@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://q5o4kxajyvl6"]
+[gd_scene load_steps=3 format=3 uid="uid://q5o4kxajyvl6"]
 
+[ext_resource type="Script" uid="uid://c5cxh8mk2y11" path="res://Maps/player_spawn.gd" id="1_5tjg0"]
 [ext_resource type="Texture2D" uid="uid://b18ac30irhyo5" path="res://icon.svg" id="1_hig5k"]
 
 [node name="PlayerSpawn" type="Node2D"]
 visible = false
+script = ExtResource("1_5tjg0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)

@@ -21,8 +21,8 @@ func _ready():
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Pause") and can_open_pause:
 		pauseMenu()
-	if Input.is_action_just_pressed("Inventory") and can_open_inventory:
-		inventoryMenu()
+	#if Input.is_action_just_pressed("Inventory") and can_open_inventory:
+		#inventoryMenu()
 	if paused:
 		Engine.time_scale = 0
 

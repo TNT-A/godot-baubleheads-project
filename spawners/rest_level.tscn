@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpbn2m4kv5qng"]
+
+[ext_resource type="Script" uid="uid://btwa28lpci28m" path="res://Maps/cave_level.gd" id="1_88rw8"]
+[ext_resource type="PackedScene" uid="uid://q5o4kxajyvl6" path="res://Maps/player_spawn.tscn" id="2_55l0r"]
+
+[node name="RestLevel" type="Node"]
+script = ExtResource("1_88rw8")
+metadata/_custom_type_script = "uid://btwa28lpci28m"
+
+[node name="PlayerSpawn" parent="." instance=ExtResource("2_55l0r")]
