@@ -32,7 +32,8 @@ enum States {IDLE, SHOOT}
 var state: States = States.IDLE
 
 func _ready() -> void:
-	SignalBus.change_enemy_health.connect(change_health)
+	#Add flashing and stuff later yada yada
+	#SignalBus.enemy_hit.connect()
 	$TimerShotCooldown.wait_time = randf_range(attack_cooldown - cooldown_differential, attack_cooldown + cooldown_differential)
 	$TimerShotCooldown.start()
 	$AnimatedSprite2D.play("idle")
@@ -73,14 +74,6 @@ func state_functions():
 				spawn_crack(self)
 				crack_spawned = true
 			cooldown_done = false
-
-func change_health(enemy, change):
-	if self == enemy:
-		health -= change
-	if health <= 0:
-		health = 0
-		is_alive = false
-	#print("I'm hurt :( ", health)
 
 func check_attacking_baubles():
 	for bauble in nearby_baubles:

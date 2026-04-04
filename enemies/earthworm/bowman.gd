@@ -25,7 +25,7 @@ var drop_chart : Dictionary = {
 	"topaz" : 100}
 
 func _ready():
-	SignalBus.change_enemy_health.connect(change_health)
+	SignalBus.enemy_hit.connect(change_health)
 	$AnimatedSprite2D.play("default")
 
 func _physics_process(delta: float) -> void:

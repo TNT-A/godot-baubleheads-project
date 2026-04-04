@@ -258,7 +258,7 @@ func attack_enemy():
 	distance = abs(enemy_position - global_position)
 	if distance.x >= max_enemy_distance.x or distance.y >= max_enemy_distance.y:
 		reset_velocity()
-		SignalBus.emit_signal("change_enemy_health", current_enemy, stats.damage)
+		SignalBus.emit_signal("enemy_hit", current_enemy, stats.damage)
 		attack_ready = true
 		attack_time_ready = false
 	else:
@@ -407,7 +407,7 @@ func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_inde
 	if body.is_in_group("enemy") and (state == States.PATROL or state == States.THROWN):
 		current_enemy = body
 	if body.is_in_group("enemy") and state == States.THROWN:
-		SignalBus.emit_signal("change_enemy_health", body, stats.throw_damage * 3)
+		SignalBus.emit_signal("enemy_hit", body, stats.throw_damage * 3)
 
 func _on_area_2d_body_shape_exited(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	if body == player:

@@ -36,7 +36,7 @@ var default_baubles : Dictionary = {
 }
 
 var saved_baubles : Dictionary = {
-	"ruby" = 3,
+	"ruby" = 1,
 	"sapphire" = 1,
 	"topaz" = 1,
 }
@@ -69,6 +69,12 @@ func determine_bauble_control(item, party_slot):
 #Spawns the default baubles and resets all the saved data
 func refill_party():
 	main = get_tree().current_scene
+	bauble_inventory_ruby.clear()
+	bauble_inventory_sapphire.clear()
+	bauble_inventory_topaz.clear()
+	bauble_distances_ruby.clear()
+	bauble_distances_sapphire.clear()
+	bauble_distances_topaz.clear()
 	for current_type in saved_baubles:
 		for num in saved_baubles[current_type]:
 			spawn_bauble(current_type)

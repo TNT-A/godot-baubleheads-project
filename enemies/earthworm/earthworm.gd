@@ -1,4 +1,4 @@
-extends Node2D
+extends Enemy
 
 @onready var player = Global.player
 
@@ -17,7 +17,8 @@ var timer_cooldown : float = 1.6
 var count_attacking : int = 0
 
 func _ready():
-	SignalBus.change_enemy_health.connect(change_health)
+	#Include flash here :)
+	#SignalBus.enemy_hit.connect()
 	$AnimatedSprite2D.play("default")
 
 func _physics_process(delta: float) -> void:
@@ -54,13 +55,6 @@ func shoot():
 		if player:
 			(global_position - player.global_position).normalized()
 		$ShotManager.shoot(1, dir)
-
-func change_health(enemy, change):
-	if self == enemy:
-		health -= change
-	if health <= 0:
-		health = 0
-		is_alive = false
 
 func die():
 	SignalBus.enemy_dead.emit(self)

@@ -1,4 +1,5 @@
 extends Node2D
+class_name Bauble
 
 @export var body : CharacterBody2D
 
@@ -34,6 +35,20 @@ func _ready() -> void:
 	if type_data != null:  
 		type_name = type_data.type
 	$BaubleBody/Sprite2D.texture = type_data.sprite
+
+func damage_zone():
+	pass
+	#Code for pinpoint damage on landing:
+	#$BaubleBody/DamageZone/CollisionShape2D.disabled = false
+	#await get_tree().create_timer(.1).timeout
+	#print("damage zone oh yea")
+	#$BaubleBody/DamageZone/CollisionShape2D.disabled = true
+
+func activate_damage_zone():
+	$BaubleBody/DamageZone/CollisionShape2D.disabled = false
+
+func deactivate_damage_zone():
+	$BaubleBody/DamageZone/CollisionShape2D.disabled = true
 
 func random_location(location, range):
 	if player:

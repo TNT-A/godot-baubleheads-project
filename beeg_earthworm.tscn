@@ -1,10 +1,11 @@
-[gd_scene load_steps=24 format=3 uid="uid://buhvt42opr73m"]
+[gd_scene load_steps=26 format=3 uid="uid://buhvt42opr73m"]
 
 [ext_resource type="Texture2D" uid="uid://5uaa1xijly2y" path="res://PixelArt/big_worm-Recovered.png" id="1_qguem"]
 [ext_resource type="Script" uid="uid://hopqr2tjbrru" path="res://beeg_earthworm.gd" id="1_x1g0n"]
 [ext_resource type="PackedScene" uid="uid://c8g0kk7fj1rdj" path="res://components/damage_zone/damage_zone.tscn" id="3_fxgpl"]
 [ext_resource type="PackedScene" uid="uid://baov1nwgxw7ow" path="res://components/drop_pickups/drop_pickups.tscn" id="4_pvgcw"]
 [ext_resource type="PackedScene" uid="uid://bs875jneal7bi" path="res://components/bauble_checker/bauble_checker.tscn" id="5_5mpkx"]
+[ext_resource type="PackedScene" uid="uid://c57jjvc6v1ab5" path="res://components/hitbox_and_health/hitbox_and_health.tscn" id="6_twiot"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f8tap"]
 atlas = ExtResource("1_qguem")
@@ -131,6 +132,9 @@ radius = 14.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_twiot"]
 radius = 135.093
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_1x6mt"]
+radius = 24.33105
+
 [node name="BeegEarthworm" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 8
 collision_mask = 6
@@ -167,6 +171,16 @@ shape = SubResource("CapsuleShape2D_1ay0a")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BaubleChecker"]
 shape = SubResource("CircleShape2D_twiot")
+
+[node name="HitboxAndHealth" parent="." node_paths=PackedStringArray("host") instance=ExtResource("6_twiot")]
+rotation = -0.0058595603
+host = NodePath("..")
+max_health = 30
+current_health = 30
+isEnemy = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxAndHealth"]
+shape = SubResource("CircleShape2D_1x6mt")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]

@@ -36,7 +36,8 @@ enum States {FOLLOW, WINDUP, DASH}
 var state: States = States.FOLLOW
 
 func _ready() -> void:
-	SignalBus.change_enemy_health.connect(change_health)
+	#Add flash invincibility here
+	#SignalBus.enemy_hit.connect()
 	$AnimatedSprite2D.play("default")
 	if starting_position:
 		global_position = starting_position
@@ -101,13 +102,6 @@ func state_functions():
 			$TimerDashLength.stop()
 		velocity = (dash_dir * dash_speed)
 		move_and_slide()
-
-func change_health(enemy, change):
-	if self == enemy:
-		health -= change
-	if health <= 0:
-		health = 0
-		is_alive = false
 
 func die():
 	SignalBus.enemy_dead.emit(self)

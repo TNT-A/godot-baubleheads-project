@@ -1,10 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://e0xov8hgscfh"]
+[gd_scene load_steps=25 format=3 uid="uid://e0xov8hgscfh"]
 
 [ext_resource type="Script" uid="uid://cwxqfo76wqhmr" path="res://baubles/bauble.gd" id="1_lpuy0"]
 [ext_resource type="PackedScene" uid="uid://cgkikvd22mec6" path="res://components/body_detector/body_detector.tscn" id="1_srsha"]
 [ext_resource type="PackedScene" uid="uid://l160kxor0r2e" path="res://components/pathfinding/pathfinding.tscn" id="2_mgsm3"]
 [ext_resource type="PackedScene" uid="uid://dnurpmd4urlt7" path="res://components/state_machine/state_machine.tscn" id="3_btsnt"]
 [ext_resource type="Texture2D" uid="uid://knrqs61vl2k2" path="res://baubles/bauble_sprites/Bauble_Diamond.png" id="3_g2pfq"]
+[ext_resource type="PackedScene" uid="uid://c8g0kk7fj1rdj" path="res://components/damage_zone/damage_zone.tscn" id="3_lpuy0"]
 [ext_resource type="Script" uid="uid://8fx8nkbmyhti" path="res://baubles/bauble_states/bauble_idle.gd" id="4_g2pfq"]
 [ext_resource type="Script" uid="uid://c61cqr7jhfnf7" path="res://baubles/adapt_target.gd" id="4_lpuy0"]
 [ext_resource type="Script" uid="uid://bhrdggt0womj2" path="res://baubles/bauble_states/bauble_follow.gd" id="5_lpuy0"]
@@ -17,6 +18,9 @@
 [ext_resource type="Script" uid="uid://ci7bpo5hqxep1" path="res://baubles/bauble_states/bauble_return.gd" id="12_wet5a"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lpuy0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g2pfq"]
+radius = 16.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hlfcm"]
 
@@ -112,10 +116,9 @@ _data = {
 &"throw": SubResource("Animation_hlfcm")
 }
 
-[node name="bauble" type="Node2D" node_paths=PackedStringArray("body")]
+[node name="bauble" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_lpuy0")
-body = NodePath("BaubleBody")
 
 [node name="AdaptTarget" type="Marker2D" parent="."]
 visible = false
@@ -135,6 +138,16 @@ collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BaubleBody"]
 shape = SubResource("CircleShape2D_lpuy0")
+
+[node name="DamageZone" parent="BaubleBody" instance=ExtResource("3_lpuy0")]
+hurts_enemy = true
+damage_dealt = 100
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaubleBody/DamageZone" groups=["hurts_enemy"]]
+z_index = 4096
+shape = SubResource("CircleShape2D_g2pfq")
+disabled = true
+debug_color = Color(0.3529412, 0, 0.5294118, 1)
 
 [node name="Hurtbox" type="Area2D" parent="BaubleBody"]
 

@@ -19,7 +19,6 @@ signal fade_to_black
 signal fade_from_black
 
 #Enemy Thingamajigs
-signal change_enemy_health(enemy, change)
 signal enemy_added(enemy)
 
 #Moving Scenese
